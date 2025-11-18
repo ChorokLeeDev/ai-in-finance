@@ -50,13 +50,15 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 if torch.cuda.is_available():
     torch.set_num_threads(1)
 seed_everything(args.seed)
+np.random.seed(args.seed)
 
 task: EntityTask = get_task(args.dataset, args.task, download=args.download)
 dataset = task.dataset
 
 train_table = task.get_table("train")
 val_table = task.get_table("val")
-test_table = task.get_table("test")
+# For autocomplete tasks, we need unmasked test data to make predictions
+test_table = task.get_table("test", mask_input_cols=False)
 
 
 dfs: Dict[str, pd.DataFrame] = {}
@@ -99,6 +101,7 @@ else:
     raise ValueError(f"Unsupported task type called {task.task_type}")
 
 # randomly subsample in case training data size is too large.
+sampled_idx = None
 if args.sample_size > 0 and args.sample_size < len(train_table):
     sampled_idx = np.random.permutation(len(train_table))[: args.sample_size]
     train_table.df = train_table.df.iloc[sampled_idx]
@@ -166,7 +169,7 @@ train_dataset = torch_frame.data.Dataset(
     ),
 )
 path = Path(
-    f"{args.cache_dir}/{args.dataset}/tasks/{args.task}/materialized/node_train{'_join' if args.left_join_fkey else ''}.pt"
+    f"{args.cache_dir}/{args.dataset}/tasks/{args.task}/materialized/node_train{'_join' if args.left_join_fkey else ''}_{args.sample_size if args.sample_size > 0 else 'full'}.pt"
 )
 path.parent.mkdir(parents=True, exist_ok=True)
 train_dataset = train_dataset.materialize(path=path)
@@ -195,7 +198,6 @@ if task.task_type in [
     model = LightGBM(
         task_type=train_dataset.task_type,
         metric=tune_metric,
-        probability=True,
         num_classes=(
             task.num_classes
             if task.task_type == TaskType.MULTICLASS_CLASSIFICATION
@@ -204,17 +206,42 @@ if task.task_type in [
     )
     model.tune(tf_train=tf_train, tf_val=tf_val, num_trials=args.num_trials)
 
-    pred = model.predict(tf_test=tf_train).numpy()
-    train_metrics = task.evaluate(pred, train_table)
+    train_pred = model.predict(tf_test=tf_train).numpy()
+    train_metrics = task.evaluate(train_pred, train_table)
 
-    pred = model.predict(tf_test=tf_val).numpy()
-    val_metrics = task.evaluate(pred, val_table)
+    val_pred = model.predict(tf_test=tf_val).numpy()
+    val_metrics = task.evaluate(val_pred, val_table)
 
-    pred = model.predict(tf_test=tf_test).numpy()
-    test_metrics = task.evaluate(pred)
+    test_pred = model.predict(tf_test=tf_test).numpy()
+    test_metrics = task.evaluate(test_pred)
 else:
     raise ValueError(f"Task task type is unsupported {task.task_type}")
 
 print(f"Train: {train_metrics}")
 print(f"Val: {val_metrics}")
 print(f"Test: {test_metrics}")
+
+# Save predictions for ensemble analysis
+if task.task_type in [TaskType.MULTICLASS_CLASSIFICATION, TaskType.REGRESSION]:
+    import pickle
+    results_dir = Path(f"results/ensemble/{args.dataset}/{args.task}")
+    results_dir.mkdir(parents=True, exist_ok=True)
+
+    save_data = {
+        'seed': args.seed,
+        'train_pred': train_pred,
+        'val_pred': val_pred,
+        'test_pred': test_pred,
+        'train_true': train_table.df[task.target_col].values,
+        'val_true': val_table.df[task.target_col].values,
+        'test_true': test_table.df[task.target_col].values,
+        'train_metrics': train_metrics,
+        'val_metrics': val_metrics,
+        'test_metrics': test_metrics,
+        'task_type': str(task.task_type),
+    }
+
+    save_path = results_dir / f"seed_{args.seed}_sample_{args.sample_size}.pkl"
+    with open(save_path, 'wb') as f:
+        pickle.dump(save_data, f)
+    print(f"\nSaved predictions to: {save_path}")

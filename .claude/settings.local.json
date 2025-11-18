@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(C:/Users/hippo/miniconda3/envs/gnn_env/python.exe analyze_regression_uq_conformal.py --dataset rel-f1 --task results-position --num_seeds 3 --sample_size 10000 --alpha 0.1)",
+      "Bash(C:/Users/hippo/miniconda3/envs/gnn_env/python.exe run_regression_ensemble.py --dataset rel-f1 --task driver-position --num_trials 5 --sample_size 10000 --seeds 42 43 44 45 46 47 48 49 50)",
+      "Bash(tasklist)",
+      "Bash(findstr python)",
+      "Bash(python -c \"from relbench.tasks import get_task_names; datasets = [''rel-amazon'', ''rel-avito'', ''rel-event'', ''rel-f1'', ''rel-hm'', ''rel-stack'', ''rel-trial'', ''rel-salt'']; total=0; [print(f''{ds}: {len(get_task_names(ds))} tasks'') or (total := total + len(get_task_names(ds))) for ds in datasets]; print(f''Total: {total} tasks'')\")",
+      "Bash(python -c \"\nfrom relbench.tasks import get_task_names\ndatasets = [''rel-amazon'', ''rel-avito'', ''rel-event'', ''rel-f1'', ''rel-hm'', ''rel-stack'', ''rel-trial'', ''rel-salt'']\ntotal = 0\nfor ds in datasets:\n    tasks = get_task_names(ds)\n    print(f''{ds}: {len(tasks)} tasks - {tasks}'')\n    total += len(tasks)\nprint(f''\\nTotal: {total} tasks'')\n\")",
+      "Bash(python:*)",
+      "Bash(find:*)",
+      "Bash(cat:*)",
+      "Bash(git check-ignore:*)",
+      "Bash(rm:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd uncertainty quantification analysis tools\n\n- Enhanced lightgbm_autocomplete.py to save predictions for ensemble UQ\n- Added analyze_regression_uq.py for epistemic uncertainty analysis\n- Added analyze_regression_uq_conformal.py for conformal prediction\n- Added run_regression_ensemble.py for training ensemble models\n\nThese tools enable uncertainty quantification research on regression tasks\nusing ensemble methods and conformal prediction for coverage guarantees.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git config:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Bash(ssh-keygen:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(ssh-keyscan:*)",
+      "Bash(~/.ssh/known_hosts)",
+      "Bash(git pull:*)",
+      "Bash(git checkout:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

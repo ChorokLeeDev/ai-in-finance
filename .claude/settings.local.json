@@ -30,7 +30,10 @@
       "Bash(timeout 30 C:/Users/hippo/miniconda3/envs/gnn_env/python.exe:*)",
       "Bash(timeout 120 C:/Users/hippo/miniconda3/envs/gnn_env/python.exe:*)",
       "Bash(timeout 180 C:/Users/hippo/miniconda3/envs/gnn_env/python.exe:*)",
-      "Bash(timeout 60 C:/Users/hippo/miniconda3/envs/gnn_env/python.exe:*)"
+      "Bash(timeout 60 C:/Users/hippo/miniconda3/envs/gnn_env/python.exe:*)",
+      "Bash(timeout 10 C:/Users/hippo/miniconda3/envs/gnn_env/python.exe:*)",
+      "Bash(nul)",
+      "Bash(findstr:*)"
     ],
     "deny": [],
     "ask": []

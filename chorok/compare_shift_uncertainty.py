@@ -228,15 +228,15 @@ def print_summary_table(tasks, psi_values, uncertainty_increases, js_divs):
         # Interpretation
         print("\nINTERPRETATION:")
         if corr_psi > 0.7 and p_psi < 0.05:
-            print("  ✅ STRONG POSITIVE CORRELATION - Hypothesis VALIDATED")
-            print("     Epistemic uncertainty reliably tracks distribution shift magnitude")
+            print("  [OK] STRONG POSITIVE CORRELATION - Hypothesis VALIDATED")
+            print("       Epistemic uncertainty reliably tracks distribution shift magnitude")
         elif corr_psi > 0.5 and p_psi < 0.05:
-            print("  ✓ MODERATE POSITIVE CORRELATION - Hypothesis SUPPORTED")
-            print("     Epistemic uncertainty generally increases with distribution shift")
+            print("  [OK] MODERATE POSITIVE CORRELATION - Hypothesis SUPPORTED")
+            print("       Epistemic uncertainty generally increases with distribution shift")
         elif corr_psi > 0 and p_psi < 0.05:
-            print("  ~ WEAK POSITIVE CORRELATION - Hypothesis PARTIALLY SUPPORTED")
+            print("  [~]  WEAK POSITIVE CORRELATION - Hypothesis PARTIALLY SUPPORTED")
         else:
-            print("  ✗ NO SIGNIFICANT CORRELATION - Hypothesis NOT VALIDATED")
+            print("  [!!] NO SIGNIFICANT CORRELATION - Hypothesis NOT VALIDATED")
 
     print("="*80 + "\n")
 

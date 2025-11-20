@@ -23,7 +23,14 @@
       "Bash(ssh-keyscan:*)",
       "Bash(~/.ssh/known_hosts)",
       "Bash(git pull:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(C:/Users/hippo/miniconda3/envs/gnn_env/python.exe:*)",
+      "Bash(dir:*)",
+      "Bash(timeout 3 C:/Users/hippo/miniconda3/envs/gnn_env/python.exe:*)",
+      "Bash(timeout 30 C:/Users/hippo/miniconda3/envs/gnn_env/python.exe:*)",
+      "Bash(timeout 120 C:/Users/hippo/miniconda3/envs/gnn_env/python.exe:*)",
+      "Bash(timeout 180 C:/Users/hippo/miniconda3/envs/gnn_env/python.exe:*)",
+      "Bash(timeout 60 C:/Users/hippo/miniconda3/envs/gnn_env/python.exe:*)"
     ],
     "deny": [],
     "ask": []

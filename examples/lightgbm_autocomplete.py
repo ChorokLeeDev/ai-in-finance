@@ -103,6 +103,8 @@ else:
 # randomly subsample in case training data size is too large.
 sampled_idx = None
 if args.sample_size > 0 and args.sample_size < len(train_table):
+    # Set random seed for reproducible sampling across ensemble members
+    np.random.seed(args.seed)
     sampled_idx = np.random.permutation(len(train_table))[: args.sample_size]
     train_table.df = train_table.df.iloc[sampled_idx]
 
@@ -117,6 +119,7 @@ for split, table in [
     for col in set(entity_df.columns).intersection(set(table.df.columns)):
         if col != entity_table.pkey_col:
             entity_df.pop(col)
+
     dfs[split] = table.df.merge(
         entity_df,
         how="left",
@@ -206,14 +209,63 @@ if task.task_type in [
     )
     model.tune(tf_train=tf_train, tf_val=tf_val, num_trials=args.num_trials)
 
-    train_pred = model.predict(tf_test=tf_train).numpy()
-    train_metrics = task.evaluate(train_pred, train_table)
+    # Get probability predictions for UQ analysis
+    # For multiclass, we need probabilities. For regression, we use wrapper's predict()
+    if task.task_type == TaskType.MULTICLASS_CLASSIFICATION:
+        # CRITICAL FIX: Bypass the wrapper's _predict_helper which applies argmax
+        # Instead, use _to_lightgbm_input to get properly encoded features,
+        # then call model.model.predict() directly to get probabilities
 
-    val_pred = model.predict(tf_test=tf_val).numpy()
-    val_metrics = task.evaluate(val_pred, val_table)
+        # Extract encoded features using torch_frame's conversion method
+        # This handles categorical encoding, text embeddings, and feature ordering correctly
+        train_x, _, _ = model._to_lightgbm_input(tf_train)
+        val_x, _, _ = model._to_lightgbm_input(tf_val)
+        test_x, _, _ = model._to_lightgbm_input(tf_test)
 
-    test_pred = model.predict(tf_test=tf_test).numpy()
-    test_metrics = task.evaluate(test_pred)
+        # Get probability predictions from LightGBM Booster
+        # For multiclass, predict() returns (n_samples, n_classes) probabilities
+        train_pred = model.model.predict(train_x)
+        val_pred = model.model.predict(val_x)
+        test_pred = model.model.predict(test_x)
+
+        # Validation: Check that predictions have variance (not all identical)
+        # This detects the bug where all test predictions collapse to the same value
+        print(f"\nPrediction variance check:")
+        print(f"  Train pred std: {np.std(train_pred, axis=0).mean():.6f}")
+        print(f"  Val pred std:   {np.std(val_pred, axis=0).mean():.6f}")
+        print(f"  Test pred std:  {np.std(test_pred, axis=0).mean():.6f}")
+
+        if np.std(test_pred) < 1e-10:
+            print(f"  WARNING: Test predictions have zero variance! All predictions are identical.")
+            print(f"  Sample test predictions:\n{test_pred[:5]}")
+
+        train_metrics = task.evaluate(train_pred, train_table)
+        val_metrics = task.evaluate(val_pred, val_table)
+        test_metrics = task.evaluate(test_pred)
+    else:
+        # For regression and binary classification, also use direct Booster prediction
+        # to avoid potential issues with the wrapper's predict() method
+        train_x, _, _ = model._to_lightgbm_input(tf_train)
+        val_x, _, _ = model._to_lightgbm_input(tf_val)
+        test_x, _, _ = model._to_lightgbm_input(tf_test)
+
+        train_pred = model.model.predict(train_x)
+        val_pred = model.model.predict(val_x)
+        test_pred = model.model.predict(test_x)
+
+        train_metrics = task.evaluate(train_pred, train_table)
+        val_metrics = task.evaluate(val_pred, val_table)
+        test_metrics = task.evaluate(test_pred)
+
+        # Validation: Check that predictions have variance (not all identical)
+        print(f"\nPrediction variance check:")
+        print(f"  Train pred std: {np.std(train_pred):.6f}")
+        print(f"  Val pred std:   {np.std(val_pred):.6f}")
+        print(f"  Test pred std:  {np.std(test_pred):.6f}")
+
+        if np.std(test_pred) < 1e-10:
+            print(f"  WARNING: Test predictions have zero variance! All predictions are identical.")
+            print(f"  Sample test predictions: {test_pred[:5]}")
 else:
     raise ValueError(f"Task task type is unsupported {task.task_type}")
 

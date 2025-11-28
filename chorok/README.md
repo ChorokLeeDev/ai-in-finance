@@ -9,11 +9,26 @@
 See **[RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md)** for the full plan.
 
 ### Status
-- **Phase 1 (Baseline)**: 90% - LOO, SHAP, Permutation, VFA
-- **Phase 2 (Theory)**: 0% - FK→DAG, Interventional UQ, Identification
-- **Phase 3 (Method)**: 0% - Causal UQ algorithm
-- **Phase 4 (Experiments)**: 0% - Synthetic + Real validation
+- **Phase 1 (Baseline)**: 100% - LOO, SHAP, Permutation, VFA
+- **Phase 2 (Theory)**: 100% - FK→DAG, Interventional UQ, Identification
+- **Phase 3 (Method)**: 100% - FK-Causal-UQ algorithm implemented
+- **Phase 4 (Experiments)**: 60% - Synthetic validation complete
 - **Phase 5 (Paper)**: 0%
+
+### Key Result (Synthetic Validation)
+| Method | Correlation with Ground Truth |
+|--------|------------------------------|
+| **Interventional (Ours)** | **ρ = 0.964, p = 0.0005** |
+| LOO (Baseline) | ρ = 0.741, p = 0.057 |
+
+### Documents
+- **[RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md)** - Master plan with checkboxes
+- **[LITERATURE_REVIEW.md](LITERATURE_REVIEW.md)** - Causal inference + UQ literature
+- **[THEORY.md](THEORY.md)** - Formal theory: FK→DAG, identification theorem
+
+### Code
+- **fk_causal_uq.py** - Our method (interventional, no retraining)
+- **synthetic_causal_data.py** - Synthetic validation with ground truth
 
 We developed **Leave-One-Out FK Uncertainty Attribution** and validated it against baselines.
 
@@ -39,32 +54,38 @@ We developed **Leave-One-Out FK Uncertainty Attribution** and validated it again
 chorok/
 ├── README.md                      # This file
 ├── RESEARCH_ROADMAP.md            # ** MASTER PLAN: Baseline → Causal **
-├── SESSION_SUMMARY.md             # Current progress
-├── BASELINE_COMPARISON.md         # Phase 1 findings
-├── CASE_STUDY.md                  # Business interpretation
-├── PAPER_OUTLINE.md               # Paper outline (will evolve)
-├── RESULTS_TABLE.md               # Phase 1 results
 │
-├── fk_uncertainty_attribution.py  # Our method (Leave-One-Out)
+├── # THEORY (Phase 2)
+├── LITERATURE_REVIEW.md           # Causal inference + UQ literature
+├── THEORY.md                      # FK→DAG mapping, identification theorem
+│
+├── # CAUSAL METHOD (Phase 3) - THE NOVEL CONTRIBUTION
+├── fk_causal_uq.py                # ** OUR METHOD: Interventional, no retraining **
+├── synthetic_causal_data.py       # Ground truth validation (ρ=0.964)
+│
+├── # BASELINES (Phase 1)
+├── fk_uncertainty_attribution.py  # LOO baseline (correlational)
 ├── shap_attribution.py            # SHAP baseline
 ├── permutation_attribution.py     # Permutation baseline
 ├── vfa_attribution.py             # VFA baseline
+│
+├── # ANALYSIS
 ├── compare_attribution_methods.py # Comparison framework
 ├── covid_timeline_analysis.py     # Monthly attribution timeline
 ├── statistical_significance.py    # Bootstrap CIs and p-values
 │
+├── # DOCUMENTATION
+├── PAPER_OUTLINE.md               # Paper outline
+├── RESULTS_TABLE.md               # Phase 1 results
+├── CASE_STUDY.md                  # Business interpretation
+│
 ├── results/                       # JSON results
+│   ├── synthetic_validation.json  # ** KEY: ρ=0.964 vs ρ=0.741 **
 │   ├── fk_uncertainty_attribution.json
-│   ├── shap_attribution.json
-│   ├── permutation_attribution.json
-│   ├── vfa_attribution.json
-│   └── statistical_significance.json
+│   └── ...
 │
 ├── cache/                         # Cached datasets (pickle)
-├── figures/                       # Plots
-│
-└── archive/                       # Old research (Phase 1: PSI vs UQ)
-    └── phase1_psi_uq/
+└── figures/                       # Plots
 ```
 
 ---
@@ -116,28 +137,34 @@ python chorok/compare_attribution_methods.py --all_tasks --sample_size 5000
 
 ---
 
-## Next Steps
+## Next Steps (Priority Order)
 
-1. **COVID Timeline** - Monthly attribution changes (script created, running)
-2. **Statistical Significance** - Bootstrap CIs complete (ρ=-0.175, p=0.122)
-3. **Paper Writing** - UAI submission outline ready
+1. **Run FK-Causal-UQ on SALT** - Test causal method on real COVID data
+2. **Semi-synthetic validation** - Inject known shifts into real FK structure
+3. **Paper writing** - Abstract with synthetic validation results
 
-### Run COVID Timeline
+### Run Our Causal Method
 ```bash
-python chorok/covid_timeline_analysis.py --task sales-group --sample_size 2000
+python chorok/fk_causal_uq.py --task sales-group --sample_size 5000
 ```
 
-### Run Statistical Significance
+### Run Synthetic Validation
 ```bash
-python chorok/statistical_significance.py
+python chorok/synthetic_causal_data.py
 ```
 
 ---
 
-## Archive
+## For New Sessions
 
-Previous research (PSI vs UQ correlation) is in `archive/phase1_psi_uq/`.
-That phase concluded: PSI does not correlate with epistemic uncertainty (r=0.425, p=0.294).
+**TL;DR**: We're building a causal (not correlational) UQ attribution framework for relational data using FK structure as causal prior.
+
+**Key files to read first**:
+1. `RESEARCH_ROADMAP.md` - Master plan with checkboxes
+2. `THEORY.md` - The theoretical contribution (identification theorem)
+3. `fk_causal_uq.py` - The novel algorithm
+
+**Current achievement**: Synthetic validation shows our interventional method (ρ=0.964) significantly outperforms LOO baseline (ρ=0.741) in recovering ground truth causal effects.
 
 ---
 

@@ -1,35 +1,117 @@
-# Selective Prediction Under Distribution Shift
+# Uncertainty Attribution for Relational Data
 
-## 핵심 아이디어
-Distribution shift 상황에서 uncertainty가 높은 샘플은 예측을 거부(abstain)하면 정확도가 올라간다.
-COVID-19를 natural experiment로 사용하여 이를 검증.
+## 연구 질문
+> "예측이 불확실한 이유가 **어떤 데이터 소스(FK relationship)**에서 오는가?"
 
-## Phase 1: Tabular Selective Prediction (2-3주)
+---
 
-### 질문
-SALT 데이터에서 COVID 전후로:
-1. Uncertainty가 높은 샘플을 거부하면 정확도가 올라가는가?
-2. Shift 상황에서 adaptive threshold가 fixed보다 나은가?
+## Part 1: Validation Test 결과 (2025-11-28)
 
-### 방법
-1. LightGBM ensemble (5 seeds) → uncertainty = prediction entropy
-2. Selective prediction: uncertainty > threshold인 샘플 거부
-3. Risk-coverage curve 그리기
-4. Train vs Val 비교 (COVID shift 효과)
+### 발견: Feature Importance ≠ Uncertainty Contribution
 
-### 성공 기준
-- Coverage 80%에서 Val accuracy 향상 → Phase 2 진행
-- 효과 없음 → 분석 후 pivot
+**실험**: SALT 데이터셋, 3개 classification tasks, Leave-one-out 방식
 
-## Phase 2: Temporal Adaptive (추가 2-3주, Phase 1 성공 시)
-- Shift 감지 시 자동으로 threshold 조절
-- "Self-adaptive selective prediction under distribution shift"
+| Task | Spearman r | Top 3 Ranking |
+|------|------------|---------------|
+| sales-group | 0.029 | DIFFERENT |
+| sales-office | 0.200 | DIFFERENT |
+| sales-payterms | 0.486 | DIFFERENT |
 
-## 완료된 작업
-- [x] SALT 8개 태스크 분석
-- [x] COVID shift ranking (results/covid_shift_analysis/)
-  - sales-group: JS=0.33 (highest)
-  - item-shippoint: JS=0.13
-- [ ] LightGBM ensemble 학습
-- [ ] Selective prediction 구현
-- [ ] Risk-coverage curve
+**평균 상관관계: 0.238** (약함)
+
+### 일관된 패턴
+```
+SALESORGANIZATION: 예측 중요도 1위 → 불확실성 기여 낮음
+DISTRIBUTIONCHANNEL: 예측 중요도 낮음 → 불확실성 기여 높음
+```
+
+### 의미
+- 예측을 잘 하는 feature ≠ 확신을 주는 feature
+- Uncertainty attribution은 feature importance와 **다른 정보**를 제공
+
+---
+
+## Part 2: 문헌 조사
+
+### 관련 연구 (Uncertainty Attribution)
+
+| 논문 | 연도 | 핵심 내용 | 한계 |
+|-----|------|---------|------|
+| [CLUE](https://ar5iv.labs.arxiv.org/html/2006.06848) | 2020 | Counterfactual로 BNN uncertainty 설명 | 이미지, BNN 한정 |
+| [Attribution of Predictive Uncertainties](https://arxiv.org/abs/2107.08756) | 2021 | Classification uncertainty를 feature에 attribution | 이미지 중심 |
+| [Path Integrals for Model Uncertainties](https://openreview.net/forum?id=ZC1s7bdR9bD) | UAI 2022 | Path integral로 uncertainty attribution | 이미지, BNN |
+| [Variance Feature Attribution](https://arxiv.org/abs/2312.07252v1) | 2023 | Variance를 feature에 attribution | Tabular 가능 |
+| [Effects of Uncertainty on SHAP](https://umangsbhatt.github.io/reports/AAAI_XAI_QB.pdf) | AAAI | OOD에서 SHAP 품질 저하 | 분석만, 해결책 없음 |
+
+### 핵심 인용
+> "Understanding model uncertainties requires meaningfully **attributing** a model's predictive uncertainty to its input features" - UAI 2022
+
+### Gap 분석
+
+| 기존 연구 | 우리 방향 |
+|----------|----------|
+| 이미지 (픽셀 level) | Tabular/Relational |
+| BNN 필수 | Ensemble (실용적) |
+| 개별 feature | FK relationship (그룹) |
+| 단일 시점 | Distribution shift 전후 |
+
+---
+
+## Part 3: 연구 방향 옵션
+
+### Option A: Distribution Shift + Uncertainty Attribution
+
+**가설**: Distribution shift 발생 시, 특정 FK의 uncertainty 기여가 더 크게 증가
+
+**방법**:
+1. Train set (pre-COVID)에서 FK별 uncertainty 기여 측정
+2. Val set (COVID)에서 FK별 uncertainty 기여 측정
+3. 비교: 어느 FK에서 delta가 큰가?
+
+**장점**: COVID라는 실제 사례로 검증 가능
+**단점**: SALT FK 구조가 단순 (4개 customer FK 중복)
+
+### Option B: GNN + FK Attribution (Message Passing)
+
+**가설**: GNN의 message passing 경로별로 uncertainty 기여가 다름
+
+**방법**:
+1. RelBench GNN 학습
+2. 각 FK 경로의 message를 제거하고 uncertainty 측정
+3. FK 경로별 기여도 비교
+
+**장점**: Relational learning에 specific한 contribution
+**단점**: 구현 복잡, 계산 비용 높음
+
+---
+
+## Part 4: 현재 상태
+
+### 완료
+- [x] Feature-level validation test (3 tasks)
+- [x] 문헌 조사 (uncertainty attribution 분야)
+- [x] Gap 확인 (relational + FK grouping 없음)
+- [x] 연구 방향 옵션 정리
+
+### 미결정
+- [ ] Option A vs B 선택
+- [ ] 데이터셋 선택 (SALT vs rel-stack)
+
+### 리스크
+1. **단순 aggregation 비판**: FK grouping만으로는 novelty 부족할 수 있음
+2. **SALT FK 중복**: 4개 customer FK가 88% 동일
+3. **계산 비용**: Shapley 방식은 2^n 조합 필요
+
+---
+
+## Part 5: 다음 단계
+
+**즉시 할 일**:
+1. Option A 또는 B 결정
+2. 선택한 방향으로 prototype 구현
+3. 결과에 따라 pivot 또는 진행
+
+**판단 기준**:
+- FK별 uncertainty 기여가 유의미하게 다른가?
+- Distribution shift 전후로 패턴이 변하는가?
+- 기존 feature importance와 다른 insight를 주는가?

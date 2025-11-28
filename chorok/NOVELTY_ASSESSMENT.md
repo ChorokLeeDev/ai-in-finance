@@ -25,6 +25,22 @@
 | UQ attribution | VFA (ensemble variance) | Causal, not correlational |
 | Do-calculus | Pearl (1995, 2009) | Standard application |
 
+### Critical Distinction: Causal Shapley vs Our Method
+
+**Causal Shapley (Heskes et al., NeurIPS 2020):**
+- Explains **predictions** f(x)
+- Question: "Why did the model predict Y=3?"
+- Uses causal graph for conditional sampling
+- Paper: https://arxiv.org/abs/2011.01625
+
+**Our FK-Causal-UQ:**
+- Explains **uncertainty** U(f(x))
+- Question: "Why is the model uncertain about its prediction?"
+- Uses FK structure as causal prior
+- No existing work does this combination
+
+**This IS a genuine novelty**: Causal attribution for UQ (not just prediction) using FK structure.
+
 ### Weaknesses
 1. **Synthetic validation only** - We generated the data, could be biased
 2. **No comparison with actual Causal SHAP** - Just claimed difference

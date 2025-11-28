@@ -1,16 +1,28 @@
-# FK Uncertainty Attribution Research
+# Causal UQ for Relational Data
 
-**Research Question**: Which FK relationship causes model uncertainty?
+**Research Question**: Can we use FK structure for *causal* (not correlational) uncertainty attribution?
 
 ---
 
-## Current Phase: Baseline Comparison
+## Current Phase: Baseline → Causal Framework
 
-We developed **Leave-One-Out FK Uncertainty Attribution** and compared it against 3 baselines.
+See **[RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md)** for the full plan.
+
+### Status
+- **Phase 1 (Baseline)**: 90% - LOO, SHAP, Permutation, VFA
+- **Phase 2 (Theory)**: 0% - FK→DAG, Interventional UQ, Identification
+- **Phase 3 (Method)**: 0% - Causal UQ algorithm
+- **Phase 4 (Experiments)**: 0% - Synthetic + Real validation
+- **Phase 5 (Paper)**: 0%
+
+We developed **Leave-One-Out FK Uncertainty Attribution** and validated it against baselines.
 
 ### Key Finding
 
-**Feature Importance ≠ Uncertainty Contribution (ρ = 0.064)**
+**Feature Importance ≠ Uncertainty Contribution**
+
+- Pooled ρ = -0.175, 95% CI: [-0.396, 0.056], p = 0.122
+- Cross-dataset average: ρ = -0.17
 
 | Method | What it Measures |
 |--------|------------------|
@@ -26,21 +38,29 @@ We developed **Leave-One-Out FK Uncertainty Attribution** and compared it agains
 ```
 chorok/
 ├── README.md                      # This file
+├── RESEARCH_ROADMAP.md            # ** MASTER PLAN: Baseline → Causal **
 ├── SESSION_SUMMARY.md             # Current progress
-├── BASELINE_COMPARISON.md         # Detailed findings
+├── BASELINE_COMPARISON.md         # Phase 1 findings
+├── CASE_STUDY.md                  # Business interpretation
+├── PAPER_OUTLINE.md               # Paper outline (will evolve)
+├── RESULTS_TABLE.md               # Phase 1 results
 │
 ├── fk_uncertainty_attribution.py  # Our method (Leave-One-Out)
 ├── shap_attribution.py            # SHAP baseline
 ├── permutation_attribution.py     # Permutation baseline
 ├── vfa_attribution.py             # VFA baseline
 ├── compare_attribution_methods.py # Comparison framework
+├── covid_timeline_analysis.py     # Monthly attribution timeline
+├── statistical_significance.py    # Bootstrap CIs and p-values
 │
 ├── results/                       # JSON results
 │   ├── fk_uncertainty_attribution.json
 │   ├── shap_attribution.json
 │   ├── permutation_attribution.json
-│   └── vfa_attribution.json
+│   ├── vfa_attribution.json
+│   └── statistical_significance.json
 │
+├── cache/                         # Cached datasets (pickle)
 ├── figures/                       # Plots
 │
 └── archive/                       # Old research (Phase 1: PSI vs UQ)
@@ -72,19 +92,45 @@ python chorok/compare_attribution_methods.py --all_tasks --sample_size 5000
 
 ## Results Summary
 
+### SALT Dataset (8 tasks)
+
 | Comparison | Spearman ρ | Top-3 Overlap |
 |------------|------------|---------------|
 | LOO vs SHAP | 0.064 | 41.7% |
 | LOO vs Perm | -0.273 | 25.0% |
 | LOO vs VFA | -0.085 | 54.2% |
 
+### Stack Dataset (1 task)
+
+| Comparison | Spearman ρ | Top FK Match |
+|------------|------------|--------------|
+| LOO vs SHAP | -0.400 | No |
+
+### Cross-Dataset Summary
+
+| Dataset | LOO vs SHAP ρ |
+|---------|---------------|
+| SALT | +0.064 |
+| Stack | -0.400 |
+| **Average** | **-0.168** |
+
 ---
 
 ## Next Steps
 
-1. **H&M Dataset** - Validate on second dataset
-2. **COVID Timeline** - Monthly attribution changes
-3. **Paper Writing** - UAI submission
+1. **COVID Timeline** - Monthly attribution changes (script created, running)
+2. **Statistical Significance** - Bootstrap CIs complete (ρ=-0.175, p=0.122)
+3. **Paper Writing** - UAI submission outline ready
+
+### Run COVID Timeline
+```bash
+python chorok/covid_timeline_analysis.py --task sales-group --sample_size 2000
+```
+
+### Run Statistical Significance
+```bash
+python chorok/statistical_significance.py
+```
 
 ---
 

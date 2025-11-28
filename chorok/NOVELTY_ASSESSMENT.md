@@ -60,20 +60,31 @@
 - [ ] If yes → our novelty is weaker (just applied existing method)
 - [ ] If no → genuine contribution (FK structure provides advantage)
 
-### Priority 2: Semi-Synthetic Validation
+### Priority 2: Semi-Synthetic Validation ✅ DONE
 **Why**: Synthetic data is too controlled, real data has no ground truth
-**How**:
-- [ ] Take real SALT FK structure
-- [ ] Inject KNOWN distribution shifts into specific FKs
-- [ ] Test: Does our method correctly identify the shifted FK?
-- [ ] This provides "ground truth" on real data structure
+**Results** (5 columns tested with permutation shift):
 
-### Priority 3: Formal Proof of Identification Theorem
+| Shifted Column | LOO | Causal |
+|----------------|-----|--------|
+| CUSTOMERPAYMENTTERMS | ✗ | ✗ |
+| SALESORGANIZATION | ✗ | **✓** |
+| TRANSACTIONCURRENCY | ✗ | **✓** |
+| DISTRIBUTIONCHANNEL | ✗ | ✗ |
+| HEADERINCOTERMSCLASSIFICATION | ✗ | **✓** |
+
+**LOO Accuracy: 0/5 (0%) | Causal Accuracy: 3/5 (60%)**
+
+- [x] Take real SALT FK structure (sales-group task)
+- [x] Inject KNOWN distribution shifts into specific columns
+- [x] Test: Does our method correctly identify the shifted column?
+- [x] **Result**: Causal method 60% accurate, LOO method 0% accurate!
+
+### Priority 3: Formal Proof of Identification Theorem ✅ DONE
 **Why**: A stated theorem without proof is not a contribution
 **How**:
-- [ ] Write formal proof using do-calculus rules
-- [ ] Identify EXACTLY which assumptions are needed
-- [ ] Show when identification FAILS (negative results matter)
+- [x] Write formal proof using do-calculus rules (THEORY.md §4.4)
+- [x] Identify EXACTLY which assumptions are needed (Causal Sufficiency, FK=Causal, Acyclicity)
+- [x] Show when identification FAILS (THEORY.md §4.3 - confounders, reversed FK, cycles)
 
 ### Priority 4: Add Conformal Wrapper
 **Why**: Coverage guarantees are a concrete, verifiable contribution

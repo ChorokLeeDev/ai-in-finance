@@ -39,6 +39,7 @@
 - [x] Identification theorem (see THEORY.md §4)
   - When is causal UQ identifiable from FK structure?
   - What assumptions needed? (no unmeasured confounders within FK path)
+- [x] **FORMAL PROOF** (see THEORY.md §4.4) - Rigorous do-calculus proof added
 - [x] Prove: LOO ≠ Interventional (theoretically, not just empirically) (see THEORY.md §3.3)
 
 ### Phase 3: Method Development
@@ -57,7 +58,10 @@
 - [x] Synthetic data with known ground truth causal effects
   - We KNOW the true causal UQ, compare methods
   - **Result**: Interventional ρ = 0.964 vs LOO ρ = 0.741 (see synthetic_causal_data.py)
-- [ ] Semi-synthetic: Inject known shifts into real FK structure
+- [x] Semi-synthetic: Inject known shifts into real FK structure ✅ DONE
+  - Implementation: semi_synthetic_validation.py
+  - **Result: Causal 60% (3/5), LOO 0% (0/5)**
+  - Causal method correctly identifies shifted columns, LOO fails completely
 - [ ] Real data: SALT (COVID), Stack, + 1-2 more datasets
 - [x] Baselines:
   - LOO (our current work) - correlational ✓

@@ -12,14 +12,22 @@ See **[RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md)** for the full plan.
 - **Phase 1 (Baseline)**: 100% - LOO, SHAP, Permutation, VFA
 - **Phase 2 (Theory)**: 100% - FK→DAG, Interventional UQ, Identification
 - **Phase 3 (Method)**: 100% - FK-Causal-UQ algorithm implemented
-- **Phase 4 (Experiments)**: 60% - Synthetic validation complete
+- **Phase 4 (Experiments)**: 80% - Synthetic + Semi-synthetic validation complete
 - **Phase 5 (Paper)**: 0%
 
-### Key Result (Synthetic Validation)
+### Key Results
+
+**Synthetic Validation** (known ground truth):
 | Method | Correlation with Ground Truth |
 |--------|------------------------------|
 | **Interventional (Ours)** | **ρ = 0.964, p = 0.0005** |
 | LOO (Baseline) | ρ = 0.741, p = 0.057 |
+
+**Semi-Synthetic Validation** (inject shifts into real SALT data):
+| Method | Shift Detection Accuracy |
+|--------|--------------------------|
+| **Causal (Ours)** | **60% (3/5 correct)** |
+| LOO (Baseline) | 0% (0/5 correct) |
 
 ### Documents
 - **[RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md)** - Master plan with checkboxes

@@ -93,9 +93,9 @@ DISTRIBUTIONCHANNEL: 예측 중요도 낮음 → 불확실성 기여 높음
 - [x] Gap 확인 (relational + FK grouping 없음)
 - [x] 연구 방향 옵션 정리
 
-### 미결정
-- [ ] Option A vs B 선택
-- [ ] 데이터셋 선택 (SALT vs rel-stack)
+### 결정 완료 (2025-11-28)
+- [x] Option A vs B 선택 → **Option A: Distribution Shift + Uncertainty Attribution**
+- [x] 데이터셋 선택 → **SALT** (COVID-19 자연 실험, 기존 4 phase 완료)
 
 ### 리스크
 1. **단순 aggregation 비판**: FK grouping만으로는 novelty 부족할 수 있음
@@ -104,12 +104,47 @@ DISTRIBUTIONCHANNEL: 예측 중요도 낮음 → 불확실성 기여 높음
 
 ---
 
-## Part 5: 다음 단계
+## Part 5: FK Uncertainty Attribution Results (2025-11-28)
 
-**즉시 할 일**:
-1. Option A 또는 B 결정
-2. 선택한 방향으로 prototype 구현
-3. 결과에 따라 pivot 또는 진행
+### Option A 실행 결과: Train vs Val FK 기여도 비교
+
+| Task | Biggest FK Change | Delta | 해석 |
+|------|-------------------|-------|------|
+| **sales-payterms** | SALESGROUP | **+0.4473** | COVID 중 SALESGROUP이 불확실성의 주요 원인 |
+| **item-shippoint** | BILLTOPARTY | **+0.2139** | BILLTOPARTY 기여 급증 |
+| **sales-incoterms** | SALESGROUP | -0.3786 | SALESGROUP 기여 급감 |
+| **item-incoterms** | PAYERPARTY | -0.2363 | PAYERPARTY 기여 감소 |
+| **sales-group** | HEADERINCOTERMSCLASSIFICATION | +0.0645 | 증가 |
+
+### 핵심 발견
+
+1. **sales-payterms**: SALESGROUP가 Train에서 거의 0 기여 → Val에서 +0.4473 (핵심 불확실성 원인)
+2. **item-shippoint**: BILLTOPARTY가 +0.005 → +0.219 (40배 증가)
+3. **sales-incoterms**: SALESGROUP가 +0.378 → -0.0002 (방향 역전!)
+
+### 의미
+
+**연구 질문에 대한 답**: "예측이 불확실한 이유가 어떤 데이터 소스에서 오는가?"
+
+→ **Distribution shift 시 불확실성의 원인이 되는 FK가 달라진다!**
+- Pre-COVID: 특정 FK들이 불확실성에 기여
+- COVID: 다른 FK들이 불확실성의 주요 원인으로 부상
+
+이것이 기존 Feature Importance와 다른 정보를 제공:
+- Feature Importance: 어떤 feature가 **예측**에 중요한가
+- Uncertainty Attribution: 어떤 feature가 **확신/불확신**에 기여하는가
+
+---
+
+## Part 6: 다음 단계
+
+**완료** (2025-11-28):
+1. ~~Option A 또는 B 결정~~ → ✅ Option A 선택
+2. ~~FK Uncertainty Attribution (Train vs Val)~~ → ✅ 8개 task 완료
+
+**다음 단계**:
+1. 결과 시각화 (FK attribution delta heatmap)
+2. Publication 준비 (workshop paper)
 
 **판단 기준**:
 - FK별 uncertainty 기여가 유의미하게 다른가?

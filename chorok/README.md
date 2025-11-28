@@ -23,6 +23,7 @@ See **[RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md)** for the full plan.
 
 ### Documents
 - **[RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md)** - Master plan with checkboxes
+- **[NOVELTY_ASSESSMENT.md](NOVELTY_ASSESSMENT.md)** - Honest evaluation of contribution
 - **[LITERATURE_REVIEW.md](LITERATURE_REVIEW.md)** - Causal inference + UQ literature
 - **[THEORY.md](THEORY.md)** - Formal theory: FK→DAG, identification theorem
 

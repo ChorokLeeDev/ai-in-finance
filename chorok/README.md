@@ -1,188 +1,91 @@
-# Causal UQ for Relational Data
+# Uncertainty Quantification for Relational Data
 
-**Research Question**: Can we use FK structure for *causal* (not correlational) uncertainty attribution?
+## Research Journey (2025-11-29)
 
----
-
-## Current Phase: Baseline → Causal Framework
-
-See **[RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md)** for the full plan.
-
-### Status
-- **Phase 1 (Baseline)**: 100% - LOO, SHAP, Permutation, VFA
-- **Phase 2 (Theory)**: 100% - FK→DAG, Interventional UQ, Identification
-- **Phase 3 (Method)**: 100% - FK-Causal-UQ algorithm implemented
-- **Phase 4 (Experiments)**: 100% - Synthetic, Semi-synthetic, COVID case study complete
-- **Phase 5 (Paper)**: 0%
-
-### Key Results
-
-**Synthetic Validation** (known ground truth):
-| Method | Correlation with Ground Truth |
-|--------|------------------------------|
-| **Interventional (Ours)** | **ρ = 0.964, p = 0.0005** |
-| LOO (Baseline) | ρ = 0.741, p = 0.057 |
-
-**Semi-Synthetic Validation** (inject shifts into real SALT data):
-| Method | Shift Detection Accuracy |
-|--------|--------------------------|
-| **Causal (Ours)** | **60% (3/5 correct)** |
-| LOO (Baseline) | 0% (0/5 correct) |
-
-**COVID Case Study** (SALT data Feb 2020):
-| Task | Top FK Change | Delta |
-|------|---------------|-------|
-| sales-group | CUSTOMERPAYMENTTERMS | **+0.2158** |
-| sales-payterms | SHIPPINGCONDITION | +0.0612 |
-
-Key: CUSTOMERPAYMENTTERMS spiked to +2.11 in Feb 2020 (COVID onset), showing the method detects real distribution shifts with business-meaningful attribution.
-
-### Documents
-- **[RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md)** - Master plan with checkboxes
-- **[NOVELTY_ASSESSMENT.md](NOVELTY_ASSESSMENT.md)** - Honest evaluation of contribution
-- **[LITERATURE_REVIEW.md](LITERATURE_REVIEW.md)** - Causal inference + UQ literature
-- **[THEORY.md](THEORY.md)** - Formal theory: FK→DAG, identification theorem
-
-### Code
-- **fk_causal_uq.py** - Our method (interventional, no retraining)
-- **synthetic_causal_data.py** - Synthetic validation with ground truth
-
-We developed **Leave-One-Out FK Uncertainty Attribution** and validated it against baselines.
-
-### Key Finding
-
-**Feature Importance ≠ Uncertainty Contribution**
-
-- Pooled ρ = -0.175, 95% CI: [-0.396, 0.056], p = 0.122
-- Cross-dataset average: ρ = -0.17
-
-| Method | What it Measures |
-|--------|------------------|
-| LOO (Ours) | Which FK causes uncertainty |
-| SHAP | Which feature predicts target |
-| Permutation | Which FK destabilizes predictions |
-| VFA | Which FK causes ensemble disagreement |
+This project explores uncertainty quantification and attribution for relational databases.
 
 ---
 
-## Directory Structure
+## Folder Structure
 
 ```
 chorok/
-├── README.md                      # This file
-├── RESEARCH_ROADMAP.md            # ** MASTER PLAN: Baseline → Causal **
-│
-├── # THEORY (Phase 2)
-├── LITERATURE_REVIEW.md           # Causal inference + UQ literature
-├── THEORY.md                      # FK→DAG mapping, identification theorem
-│
-├── # CAUSAL METHOD (Phase 3) - THE NOVEL CONTRIBUTION
-├── fk_causal_uq.py                # ** OUR METHOD: Interventional, no retraining **
-├── synthetic_causal_data.py       # Ground truth validation (ρ=0.964)
-│
-├── # BASELINES (Phase 1)
-├── fk_uncertainty_attribution.py  # LOO baseline (correlational)
-├── shap_attribution.py            # SHAP baseline
-├── permutation_attribution.py     # Permutation baseline
-├── vfa_attribution.py             # VFA baseline
-│
-├── # ANALYSIS
-├── compare_attribution_methods.py # Comparison framework
-├── covid_timeline_analysis.py     # Monthly attribution timeline
-├── statistical_significance.py    # Bootstrap CIs and p-values
-│
-├── # DOCUMENTATION
-├── PAPER_OUTLINE.md               # Paper outline
-├── RESULTS_TABLE.md               # Phase 1 results
-├── CASE_STUDY.md                  # Business interpretation
-│
-├── results/                       # JSON results
-│   ├── synthetic_validation.json  # ** KEY: ρ=0.964 vs ρ=0.741 **
-│   ├── fk_uncertainty_attribution.json
-│   └── ...
-│
-├── cache/                         # Cached datasets (pickle)
-└── figures/                       # Plots
+├── v1_fk_causal_uq/     # DEPRECATED: FK as causal prior
+├── v2_aggregation_uq/   # PAUSED: Aggregation-aware calibration
+├── v3_fk_risk_attribution/  # CURRENT: FK-level risk attribution
+├── cache/               # Cached datasets
+├── figures/             # Generated plots
+├── results/             # JSON results
+└── archive/             # Old files
 ```
 
 ---
 
-## Quick Start
+## Research Directions
 
-### Run FK Attribution (Our Method)
-```bash
-python chorok/fk_uncertainty_attribution.py --all_tasks --sample_size 10000
-```
+### V1: FK-Causal-UQ (DEPRECATED)
 
-### Run All Baselines
-```bash
-python chorok/shap_attribution.py --all_tasks --sample_size 5000
-python chorok/permutation_attribution.py --all_tasks --sample_size 5000
-python chorok/vfa_attribution.py --all_tasks --sample_size 5000 --n_models 5
-```
+**Idea**: Use FK structure as causal DAG for interventional uncertainty attribution.
 
-### Compare Methods
-```bash
-python chorok/compare_attribution_methods.py --all_tasks --sample_size 5000
-```
+**Result**: Same as Causal SHAP (Heskes 2020). No advantage from FK structure.
+
+**Lesson**: Permutation-based methods are equivalent regardless of DAG knowledge.
+
+→ See [v1_fk_causal_uq/](v1_fk_causal_uq/)
 
 ---
 
-## Results Summary
+### V2: Aggregation-Aware UQ (PAUSED)
 
-### SALT Dataset (8 tasks)
+**Idea**: Models are miscalibrated for aggregation uncertainty (1/√n).
 
-| Comparison | Spearman ρ | Top-3 Overlap |
-|------------|------------|---------------|
-| LOO vs SHAP | 0.064 | 41.7% |
-| LOO vs Perm | -0.273 | 25.0% |
-| LOO vs VFA | -0.085 | 54.2% |
+**Evidence**: 12% error difference between low/high cardinality (p=0.039), but model uncertainty is same.
 
-### Stack Dataset (1 task)
+**Problem**: Real phenomenon, but contribution is weak.
 
-| Comparison | Spearman ρ | Top FK Match |
-|------------|------------|--------------|
-| LOO vs SHAP | -0.400 | No |
-
-### Cross-Dataset Summary
-
-| Dataset | LOO vs SHAP ρ |
-|---------|---------------|
-| SALT | +0.064 |
-| Stack | -0.400 |
-| **Average** | **-0.168** |
+→ See [v2_aggregation_uq/](v2_aggregation_uq/)
 
 ---
 
-## Next Steps (Priority Order)
+### V3: Process Risk Attribution (CURRENT)
 
-1. **Run FK-Causal-UQ on SALT** - Test causal method on real COVID data
-2. **Semi-synthetic validation** - Inject known shifts into real FK structure
-3. **Paper writing** - Abstract with synthetic validation results
+**Idea**: Decompose prediction uncertainty by data source (FK relationship) for process risk assessment.
 
-### Run Our Causal Method
-```bash
-python chorok/fk_causal_uq.py --task sales-group --sample_size 5000
-```
+**Goal**: "Which process/relationship contributes most to prediction risk?"
 
-### Run Synthetic Validation
-```bash
-python chorok/synthetic_causal_data.py
-```
+**Novel Contribution**:
+- Relational data has natural structure (FK = data source = process step)
+- Uncertainty can be decomposed along this structure
+- Enables counterfactual risk analysis: "What if we change supplier X?"
+- Actionable: tells you which process to investigate, not which feature to change
 
----
+**Related but Different**:
+- Existing work (InfoSHAP, SHAP): Feature-level, single table, model explanation
+- Our focus: Relationship-level, multi-table, process risk management
 
-## For New Sessions
-
-**TL;DR**: We're building a causal (not correlational) UQ attribution framework for relational data using FK structure as causal prior.
-
-**Key files to read first**:
-1. `RESEARCH_ROADMAP.md` - Master plan with checkboxes
-2. `THEORY.md` - The theoretical contribution (identification theorem)
-3. `fk_causal_uq.py` - The novel algorithm
-
-**Current achievement**: Synthetic validation shows our interventional method (ρ=0.964) significantly outperforms LOO baseline (ρ=0.741) in recovering ground truth causal effects.
+→ See [v3_fk_risk_attribution/](v3_fk_risk_attribution/)
 
 ---
 
-**Last Updated**: 2025-11-29
+## Key Literature
+
+| Paper | Relevance |
+|-------|-----------|
+| [InfoSHAP (NeurIPS 2023)](https://arxiv.org/abs/2306.05724) | Feature-level uncertainty attribution |
+| [Causal SHAP (NeurIPS 2020)](https://arxiv.org/abs/2011.01625) | Interventional attribution |
+| [Depeweg (ICML 2018)](https://proceedings.mlr.press/v80/depeweg18a.html) | Epistemic/Aleatoric decomposition |
+| [Risk Attribution via Shapley](https://academic.oup.com/rof/article/20/3/1189/2461317) | Shapley for risk decomposition |
+
+---
+
+## Current Focus
+
+**FK-Level Risk Attribution**:
+1. Decompose uncertainty by FK relationship
+2. Enable process risk assessment
+3. Support counterfactual questions ("what if we change supplier?")
+4. More actionable than feature-level attribution
+
+---
+
+*Last Updated: 2025-11-29*

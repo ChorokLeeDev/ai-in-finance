@@ -51,14 +51,27 @@
 
 ## How to Strengthen Novelty
 
-### Priority 1: Rigorous Comparison with Causal SHAP
+### Priority 1: Rigorous Comparison with Causal SHAP ✅ DONE - NEGATIVE RESULT
 **Why**: If we claim to be different, we must SHOW it empirically
-**How**:
-- [ ] Implement actual Causal SHAP (use `causal-shap` package or implement)
-- [ ] Run on same synthetic data
-- [ ] Compare: Does Causal SHAP also get ρ ≈ 0.96?
-- [ ] If yes → our novelty is weaker (just applied existing method)
-- [ ] If no → genuine contribution (FK structure provides advantage)
+**Results** (2025-11-29):
+
+| Method | Correlation with Ground Truth |
+|--------|------------------------------|
+| Standard SHAP | ρ = 0.900, p = 0.037 ** |
+| **Causal SHAP** | ρ = 0.900, p = 0.037 ** |
+| FK-Causal-UQ (Ours) | ρ = 0.600, p = 0.285 |
+| True Interventional | ρ = 0.700, p = 0.188 |
+
+**CRITICAL FINDING**: Causal SHAP performs BETTER than our FK-Causal-UQ method.
+- Standard SHAP and Causal SHAP: ρ = 0.900 (significant)
+- Our method: ρ = 0.600 (not significant)
+- Δρ = -0.300 (we are worse)
+
+**Verdict**: NO NOVELTY - Causal SHAP already solves this problem
+- [ ] ~~Implement actual Causal SHAP~~ → Done (compare_causal_shap.py)
+- [x] Run on same synthetic data → Yes
+- [x] Compare: Does Causal SHAP also get ρ ≈ 0.96? → YES, better than us
+- [x] If yes → our novelty is weaker → **CONFIRMED: WEAK/NO NOVELTY**
 
 ### Priority 2: Semi-Synthetic Validation ✅ DONE
 **Why**: Synthetic data is too controlled, real data has no ground truth
@@ -159,18 +172,44 @@ Week 4: Conformal Wrapper
 
 ---
 
-## Bottom Line
+## Bottom Line (Updated 2025-11-29)
 
-**Current state**: Promising direction with preliminary results
-**Not ready for**: Top venue (NeurIPS/ICML main track)
-**Might be ready for**: Workshop paper, arXiv preprint
+### Causal SHAP Comparison Results
 
-**To reach top venue**:
-1. Must compare with Causal SHAP empirically
-2. Must validate on real/semi-synthetic data
-3. Must prove identification theorem
-4. Coverage guarantees would strengthen
+After rigorous comparison with Causal SHAP (Heskes 2020):
+
+| Method | ρ with Ground Truth |
+|--------|---------------------|
+| Standard SHAP | 0.900 |
+| Causal SHAP | 0.900 |
+| **FK-Causal-UQ (Ours)** | **0.900** |
+| True Interventional | 0.700 |
+
+**Finding**: All permutation-based methods perform identically. FK structure provides **NO ADVANTAGE** for static attribution.
+
+### What FK Structure Actually Provides
+
+1. **NOT useful for**: Static uncertainty attribution (same as standard SHAP)
+2. **POTENTIALLY useful for**: Distribution shift detection (semi-synthetic: 60% vs 0%)
+3. **Useful for**: Computational efficiency (no retraining)
+
+### Remaining Valid Contributions
+
+1. **Semi-synthetic validation**: 60% vs 0% for shift detection (still valid)
+2. **COVID case study**: CUSTOMERPAYMENTTERMS +2.11 in Feb 2020 (observational)
+3. **Computational**: O(N × predict) vs O(|FK| × train)
+4. **Theory**: Identification theorem (applies, but doesn't differentiate from Causal SHAP)
+
+### Revised Assessment
+
+**Current state**: The core hypothesis (FK structure helps) is NOT supported for attribution
+**Valid contribution**: Distribution shift detection using FK-aware methods
+**Not valid**: Claims of novelty over Causal SHAP for static attribution
+
+**Honest verdict**: This is NOT a top venue paper. Could be a workshop paper focused specifically on:
+- "FK-aware distribution shift detection in relational data"
+- NOT "Causal uncertainty attribution" (already solved by Causal SHAP)
 
 ---
 
-*Last Updated*: 2025-11-29
+*Last Updated*: 2025-11-29 (after Causal SHAP comparison)

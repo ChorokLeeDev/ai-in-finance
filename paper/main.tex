@@ -193,16 +193,18 @@ that enables drill-down analysis and intervention planning.
 
 \begin{table}[h]
 \centering
-\caption{Hierarchy comparison across methods}
+\caption{Hierarchy and stability comparison across methods}
 \label{tab:hierarchy}
-\begin{tabular}{lcccc}
+\begin{tabular}{lccccc}
 \toprule
-Method & Level 1 & Level 2 & Level 3 & Stable? \\
+Method & Level 1 & Level 2 & Level 3 & Grouping Stable? & Attr.\ Stable? \\
 \midrule
-Feature-level & -- & feature & value & N/A \\
-Correlation & CORR\_GROUP & feature & value & \textbf{No} \\
-\textbf{RelUQ (FK)} & FK group & feature & entity & \textbf{Yes} \\
+Feature-level & -- & feature & value & N/A (no grouping) & 0.956 \\
+Correlation & CORR\_GROUP & feature & value & \textbf{No} & 0.933 \\
+Random & RANDOM & feature & value & Yes$^*$ & -0.400 \\
+\textbf{RelUQ (FK)} & FK group & feature & entity & \textbf{Yes} & \textbf{0.933} \\
 \bottomrule
+\multicolumn{6}{l}{\small $^*$Random grouping is fixed but attribution is unstable.}
 \end{tabular}
 \end{table}
 

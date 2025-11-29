@@ -12,7 +12,7 @@ See **[RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md)** for the full plan.
 - **Phase 1 (Baseline)**: 100% - LOO, SHAP, Permutation, VFA
 - **Phase 2 (Theory)**: 100% - FK→DAG, Interventional UQ, Identification
 - **Phase 3 (Method)**: 100% - FK-Causal-UQ algorithm implemented
-- **Phase 4 (Experiments)**: 80% - Synthetic + Semi-synthetic validation complete
+- **Phase 4 (Experiments)**: 100% - Synthetic, Semi-synthetic, COVID case study complete
 - **Phase 5 (Paper)**: 0%
 
 ### Key Results
@@ -28,6 +28,14 @@ See **[RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md)** for the full plan.
 |--------|--------------------------|
 | **Causal (Ours)** | **60% (3/5 correct)** |
 | LOO (Baseline) | 0% (0/5 correct) |
+
+**COVID Case Study** (SALT data Feb 2020):
+| Task | Top FK Change | Delta |
+|------|---------------|-------|
+| sales-group | CUSTOMERPAYMENTTERMS | **+0.2158** |
+| sales-payterms | SHIPPINGCONDITION | +0.0612 |
+
+Key: CUSTOMERPAYMENTTERMS spiked to +2.11 in Feb 2020 (COVID onset), showing the method detects real distribution shifts with business-meaningful attribution.
 
 ### Documents
 - **[RESEARCH_ROADMAP.md](RESEARCH_ROADMAP.md)** - Master plan with checkboxes

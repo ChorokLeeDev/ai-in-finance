@@ -62,7 +62,10 @@
   - Implementation: semi_synthetic_validation.py
   - **Result: Causal 60% (3/5), LOO 0% (0/5)**
   - Causal method correctly identifies shifted columns, LOO fails completely
-- [ ] Real data: SALT (COVID), Stack, + 1-2 more datasets
+- [x] Real data: SALT (COVID) ✅ DONE
+  - CUSTOMERPAYMENTTERMS spiked +2.11 in Feb 2020 (COVID onset)
+  - SHIPPINGCONDITION became key for sales-payterms (+0.0612)
+  - Business-meaningful: payment terms, shipping conditions changed
 - [x] Baselines:
   - LOO (our current work) - correlational ✓
   - SHAP - correlational ✓

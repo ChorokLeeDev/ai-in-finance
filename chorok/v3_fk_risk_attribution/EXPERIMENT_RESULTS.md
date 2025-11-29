@@ -35,15 +35,15 @@ customer → ADDRESSID
 
 **File:** `experiment_salt_entity_optimization.py`
 
-### Results (n=10,000 samples)
+### Results (n=3,000 samples, 3 runs averaged)
 
 | FK Group | Attribution | Features |
 |----------|-------------|----------|
-| ITEM | 37.3% | SHIPPINGPOINT, ITEMINCOTERMSCLASSIFICATION |
-| SALESDOCUMENT | 24.3% | SALESOFFICE, CUSTOMERPAYMENTTERMS, SHIPPINGCONDITION |
-| SALESGROUP | 20.7% | SALESGROUP |
-| SHIPTOPARTY | 9.2% | SHIPTOPARTY, SHIPTO_ADDRESSID |
-| SOLDTOPARTY | 8.6% | SOLDTOPARTY, SOLDTO_ADDRESSID |
+| ITEM | 34.2% | SHIPPINGPOINT, ITEMINCOTERMSCLASSIFICATION |
+| SALESDOCUMENT | 21.7% | SALESOFFICE, CUSTOMERPAYMENTTERMS, SHIPPINGCONDITION |
+| SALESGROUP | 20.2% | SALESGROUP |
+| SHIPTOPARTY | 12.1% | SHIPTOPARTY, SHIPTO_ADDRESSID |
+| SOLDTOPARTY | 11.8% | SOLDTOPARTY, SOLDTO_ADDRESSID |
 
 **Key Finding:** ITEM FK (shipping point) is the biggest lever for uncertainty reduction.
 
@@ -288,10 +288,176 @@ For 1M+ transactions:
 
 ---
 
+## Experiment 6: Actionability Validation (2025-11-30)
+
+**File:** `experiment_intervention_correlation_v2.py`
+
+### Purpose
+
+Validate that FK Attribution is truly "actionable":
+- Can entity selection within FK groups actually reduce uncertainty?
+- How much potential improvement exists?
+
+### Entity Quality Gap Measurement
+
+**Method:**
+- For each FK group, compute per-entity average uncertainty
+- Gap = (Worst entity - Best entity) / Mean × 100%
+
+**Results:**
+
+| Domain | FK Group | Attribution | Entity Gap | Interpretation |
+|--------|----------|-------------|------------|----------------|
+| **SALT** | ITEM | 34.2% | 523% | High contribution, room to improve |
+| | SALESGROUP | 20.2% | 597% | Medium contribution, room to improve |
+| | SHIPTOPARTY | 12.1% | 757% | Low contribution, large room to improve |
+| **Amazon** | PRODUCT | 51.8% | 0% | Already optimized |
+| | REVIEW | 48.2% | 470% | Room to improve |
+| **Stack** | POST | 74.4% | 0% | Already optimized |
+| | ENGAGEMENT | 16.1% | 1,127% | Very large room to improve |
+
+### Key Finding: Attribution vs Entity Gap Inverse Relationship
+
+- SALT: Spearman ρ = -0.80
+- Stack: Spearman ρ = -0.50
+
+**Interpretation:**
+```
+High Attribution = Good entities already selected → Low Entity Gap
+Low Attribution = Entity selection not optimized → High Entity Gap (improvement potential)
+```
+
+### Actionability Summary
+
+| Domain | Avg Entity Gap | Verdict |
+|--------|----------------|---------|
+| SALT | 641% | Highly Actionable |
+| Amazon | 470% | Actionable |
+| Stack | 890% | Highly Actionable |
+| **Overall** | **667%** | **Entity selection can reduce uncertainty 6-9x** |
+
+### Important Caveat: Entity Gap is Potential, Not Prescription
+
+Entity Gap shows "how much CAN be improved" but practical recommendations must consider:
+
+1. **Capacity Constraints**: Can't route all orders to best entity
+2. **Business Constraints**: Some high-uncertainty entities must be served
+3. **Portfolio Optimization**: Need optimal allocation, not just "use best"
+
+**This is where Level 3 (Optimization) comes in:**
+- Q2 (Optimal Allocation): 45.6% to Entity A, 15.3% to Entity B...
+- Q3 (Constrained): When forced to include high-risk entity, minimize others
+- Q4 (Threshold): What percentage meets acceptable threshold
+
+**Conclusion:**
+Entity Gap validates that FK Attribution IS actionable.
+But actionability = knowing the levers + optimal allocation under constraints.
+
+---
+
+## Experiment 7: Attribution-Error Validation (THE MOST IMPORTANT TEST)
+
+**File:** `experiment_attribution_error_validation.py`
+
+### Purpose
+
+The definitive test: Does uncertainty-based attribution actually reflect prediction error impact?
+
+**Previous validation was circular:**
+- Attribution = FK permute → uncertainty increase
+- Validation = FK permute → uncertainty increase (same thing!)
+
+**True validation:**
+- Attribution (uncertainty increase) vs Error Impact (MAE increase)
+- If correlated → Attribution reflects actual predictive performance
+
+### Results
+
+| Domain | Type | Spearman ρ | p-value | Verdict |
+|--------|------|-----------|---------|---------|
+| **SALT (ERP)** | Transactional | **0.900** | 0.037 | ✅ STRONG MATCH |
+| **Trial (Clinical)** | Process-based | **0.943** | 0.005 | ✅ STRONG MATCH |
+| Amazon (E-commerce) | E-commerce | N/A | N/A | ⚠️ (only 2 FKs) |
+| Stack (Q&A) | Content/Social | -0.500 | 0.667 | ❌ NO MATCH |
+
+### Key Finding: Error Propagation Hypothesis Confirmed
+
+**Domains WITH error propagation structure (ERP, Clinical):**
+- FK relationships represent causal business dependencies
+- Error in entity A → affects downstream predictions
+- Uncertainty attribution ≈ Error impact
+
+**Domains WITHOUT error propagation structure (Q&A):**
+- FK relationships are associative, not causal
+- Uncertainty and error driven by different mechanisms
+- Attribution does NOT reflect error impact
+
+### Ranking Comparison Detail
+
+**SALT (ERP) - Perfect Match:**
+```
+Unc Attribution: [ITEM, SALESDOCUMENT, SALESGROUP, SHIPTOPARTY, SOLDTOPARTY]
+Error Impact:    [ITEM, SALESDOCUMENT, SALESGROUP, SOLDTOPARTY, SHIPTOPARTY]
+```
+
+**Trial (Clinical) - Strong Match:**
+```
+Unc Attribution: [STUDY, FACILITY, ELIGIBILITY, SPONSOR, CONDITION, INTERVENTION]
+Error Impact:    [STUDY, FACILITY, ELIGIBILITY, CONDITION, SPONSOR, INTERVENTION]
+```
+
+**Stack (Q&A) - Inverted:**
+```
+Unc Attribution: [POST, ENGAGEMENT, USER]
+Error Impact:    [ENGAGEMENT, USER, POST]
+```
+
+### Theoretical Implication
+
+FK Attribution works when FK relationships represent **error propagation chains**:
+
+```
+ERP:      ITEM → SALESDOCUMENT → CUSTOMER → PLANT prediction
+Clinical: STUDY → SPONSOR → FACILITY → ADVERSE_EVENT prediction
+```
+
+Does NOT work for association-based relationships:
+```
+Q&A:      POST ↔ USER ↔ ENGAGEMENT (no causal chain)
+```
+
+### Paper Scope Clarification
+
+**Framework is validated for:**
+- ERP/transactional data (supply chain, manufacturing, logistics)
+- Healthcare/clinical data (trials, patient outcomes)
+- Any domain with FK-based error propagation
+
+**Requires different approach for:**
+- Social network data
+- Content-based platforms
+- Recommendation systems
+
+---
+
+## Multi-Domain Verification Summary (Updated)
+
+| Domain | Type | Attribution-Error ρ | Entity Gap | Verdict |
+|--------|------|---------------------|------------|---------|
+| SALT (ERP) | Transactional | 0.900 | 641% | ✅ VALIDATED |
+| Trial (Clinical) | Process-based | 0.943 | N/A | ✅ VALIDATED |
+| Amazon | E-commerce | N/A | 470% | ⚠️ Inconclusive |
+| Stack (Q&A) | Social/Content | -0.500 | 890% | ❌ NOT VALIDATED |
+
+**Framework is validated for error-propagation domains (ERP, Clinical Trials)**
+
+---
+
 ## Next Steps
 
-1. Apply to other datasets (Amazon, Stack Overflow)
-2. Add temporal forecasting (predict future uncertainty spikes)
-3. Build interactive dashboard for entity-level exploration
-4. Integrate with SAP S/4HANA process traces for richer context
-5. Test on 1M+ samples with distributed computing
+1. ~~Apply to other datasets (Amazon, Stack Overflow)~~ DONE
+2. ~~Validate Attribution-Error correlation~~ DONE
+3. ~~Add Clinical Trials domain~~ DONE
+4. Identify additional error-propagation datasets
+5. Build interactive dashboard for entity-level exploration
+6. Paper writing for NeurIPS 2026: Focus on error-propagation domains

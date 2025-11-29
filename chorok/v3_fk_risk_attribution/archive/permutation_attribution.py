@@ -1,4 +1,12 @@
 """
+[ARCHIVED - 2025-11-29]
+========================
+원래 목적: Permutation importance 기반 FK attribution (baseline 비교)
+폐기 이유: 실험 방향 변경 - 단일 모델 permutation에서 ensemble noise injection으로 전환
+           Noise injection이 hierarchical_attribution.py에 통합됨
+           Permutation은 fixed model에서 측정하므로 ensemble uncertainty와 다름
+========================
+
 Permutation-based FK Uncertainty Attribution
 =============================================
 

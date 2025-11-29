@@ -1,4 +1,12 @@
 """
+[ARCHIVED - 2025-11-29]
+========================
+원래 목적: Variance Feature Attribution (VFA) 기반 FK attribution
+폐기 이유: 실험 결과 variance가 0으로 나옴 (classification task에서)
+           entropy 기반 uncertainty로 전환 (ensemble.py)
+           VFA 논문 방법론은 regression에 적합, classification에서는 entropy 사용
+========================
+
 Variance Feature Attribution (VFA)
 ===================================
 

@@ -293,7 +293,8 @@ chorok/v3_fk_risk_attribution/
 ├── experiment_calibration.py         # 실험 2: Calibration
 ├── experiment_fk_vs_datadriven.py    # 실험 3: FK vs Corr
 ├── experiment_hierarchical_validation.py  # Level 2/3 검증
-└── results/                          # 실험 결과 JSON
+├── results/                          # 실험 결과 JSON
+└── archive/                          # 폐기된 파일 (헤더에 폐기 사유 기재)
 ```
 
 ---
@@ -333,8 +334,18 @@ chorok/v3_fk_risk_attribution/
 결과: N=5, 힌트 수준, 의미없음
 ```
 
-### 폐기된 파일
-- `semi_synthetic_all_methods.py` 결과 (실험 방향 잘못됨)
+### 폐기된 파일 (archive/ 디렉토리)
+각 파일 상단에 `[ARCHIVED]` 헤더로 원래 목적과 폐기 사유 기재됨:
+- `compare_attribution_methods.py` - 여러 방법 비교 → Risk Attribution으로 전환
+- `fk_uncertainty_attribution.py` - Train vs Val 비교 (COVID shift) → Risk Attribution으로 전환
+- `shap_attribution.py` - SHAP baseline → Hierarchical framework로 대체
+- `permutation_attribution.py` - Permutation baseline → Noise injection으로 대체
+- `vfa_attribution.py` - Variance Feature Attribution → Entropy로 대체 (variance=0 문제)
+- `covid_timeline_analysis.py` - 월별 COVID 타임라인 → FK 계층 구조에 집중
+- `statistical_significance.py` - Bootstrap CI → t-test/Spearman으로 대체
+- `compare_stack_methods.py` - Stack 데이터셋 비교 → rel-salt에 집중
+- `fk_attribution_stack.py` - Stack LOO → rel-salt에 집중
+- `shap_attribution_stack.py` - Stack SHAP → rel-salt에 집중
 
 ---
 

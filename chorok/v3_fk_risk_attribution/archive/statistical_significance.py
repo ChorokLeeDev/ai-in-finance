@@ -1,4 +1,12 @@
 """
+[ARCHIVED - 2025-11-29]
+========================
+원래 목적: Bootstrap CI 계산 (LOO vs SHAP 상관관계, FK attribution 변화)
+폐기 이유: 실험 방향 변경 - LOO vs SHAP 비교에서 Calibration/Stability 검증으로 전환
+           새로운 통계 검증: experiment_hierarchical_validation.py (t-test, Spearman)
+           UAI paper → NeurIPS 2026으로 목표 변경
+========================
+
 Statistical Significance: Bootstrap Confidence Intervals
 =========================================================
 

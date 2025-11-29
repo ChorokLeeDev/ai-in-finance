@@ -1,4 +1,12 @@
 """
+[ARCHIVED - 2025-11-29]
+========================
+원래 목적: Train vs Val FK별 uncertainty 비교 (COVID shift detection)
+폐기 이유: 실험 방향 변경 - "Shift Detection"이 아닌 "Risk Attribution"으로 전환
+           새로운 실험은 experiment_decomposition.py, experiment_calibration.py로 대체됨
+           COVID-19 shift 감지가 아닌 "어느 FK가 불확실성에 기여하는가"로 연구 초점 변경
+========================
+
 FK Uncertainty Attribution: Train vs Val Comparison
 =====================================================
 

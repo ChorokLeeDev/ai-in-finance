@@ -1,4 +1,12 @@
 """
+[ARCHIVED - 2025-11-29]
+========================
+원래 목적: Stack 데이터셋에서 LOO vs SHAP 비교
+폐기 이유: Stack 데이터셋 실험 중단 - rel-salt에 집중하기로 결정
+           FK 구조가 명확한 rel-salt (SAP 데이터)가 연구에 더 적합
+           새로운 검증은 experiment_fk_vs_datadriven.py (Correlation clustering 비교)
+========================
+
 Compare LOO vs SHAP Attribution for Stack Dataset
 ==================================================
 

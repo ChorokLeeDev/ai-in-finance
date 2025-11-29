@@ -1,4 +1,12 @@
 """
+[ARCHIVED - 2025-11-29]
+========================
+원래 목적: SHAP 기반 FK별 uncertainty attribution (baseline 비교)
+폐기 이유: 실험 방향 변경 - "여러 방법 비교"에서 "Risk Attribution 프레임워크 검증"으로 전환
+           SHAP은 feature importance를 측정하며, uncertainty attribution과 다름
+           새로운 프레임워크: hierarchical_attribution.py (3-level drill-down)
+========================
+
 SHAP-based FK Uncertainty Attribution
 ======================================
 

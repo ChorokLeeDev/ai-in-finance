@@ -1,4 +1,12 @@
 """
+[ARCHIVED - 2025-11-29]
+========================
+원래 목적: 월별 COVID 타임라인 분석 (FK attribution 변화 추적)
+폐기 이유: 연구 방향 변경 - COVID shift 감지 → FK Risk Attribution으로 전환
+           "COVID 때 어떤 FK가 바뀌었나"가 아니라 "어느 FK가 불확실성 원인인가"로 변경
+           새로운 프레임워크는 시간 축이 아닌 FK 계층 구조에 집중
+========================
+
 COVID Timeline Analysis: Monthly FK Uncertainty Attribution
 ============================================================
 

@@ -1,4 +1,11 @@
 """
+[ARCHIVED - 2025-11-29]
+========================
+원래 목적: LOO, SHAP, Permutation, VFA 등 여러 방법 비교
+폐기 이유: 실험 방향 변경 - "Shift Detection"이 아닌 "Risk Attribution"으로 전환
+           새로운 실험은 experiment_*.py 파일들로 대체됨
+========================
+
 Compare FK Attribution Methods
 ===============================
 

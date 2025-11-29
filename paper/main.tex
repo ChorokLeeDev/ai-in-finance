@@ -431,6 +431,36 @@ Level 3 (Entity):  Within dob:
 This level of drill-down is impossible with feature-level methods (no grouping)
 and unreliable with correlation methods (groups change across runs).
 
+\subsection{Ablation Studies}
+
+We test sensitivity to key hyperparameters on rel-f1.
+
+\begin{table}[h]
+\centering
+\caption{Ablation study results}
+\label{tab:ablation}
+\begin{tabular}{llcc}
+\toprule
+Parameter & Values Tested & Sweet Spot & Finding \\
+\midrule
+$K$ (ensemble size) & 3, 5, 7, 10, 15 & $K \geq 5$ & $K=3$ unstable (0.83), $K \geq 5$ stable (0.93) \\
+$P$ (permutation runs) & 1, 3, 5, 10, 20 & $P \geq 1$ & All stable; $P=5$ is cost-effective \\
+$n$ (sample size) & 500--5000 & $n \geq 1000$ & $n=500$ unstable (0.80), $n \geq 1000$ stable \\
+Subsample rate & 0.5--1.0 & 0.7--0.8 & Rate=1.0 yields zero variance \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Key finding: Subsampling is critical.}
+With subsample rate = 1.0 (no subsampling), all ensemble members train on identical data,
+producing identical predictions and \emph{zero} epistemic uncertainty.
+Subsampling rates of 0.7--0.8 provide sufficient model diversity while maintaining accuracy.
+This confirms that ensemble diversity, not just ensemble size, drives meaningful uncertainty estimates.
+
+\paragraph{Robustness.}
+The top FK (DRIVER) remains consistent across all ablation settings,
+demonstrating that RelUQ's conclusions are robust to reasonable hyperparameter choices.
+
 % ============================================================================
 \section{Conclusion}
 \label{sec:conclusion}

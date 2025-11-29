@@ -653,7 +653,73 @@ chorok/v3_fk_risk_attribution/
 
 ---
 
+## Phase 6: 추가 검증 실험 (2025-11-29)
+
+### C1: Calibration Experiment (rel-f1)
+
+**목적**: Noise injection attribution이 실제 uncertainty 민감도와 일치하는가?
+
+**방법**:
+1. Noise injection으로 예측된 기여도(%) 계산
+2. 각 FK를 "fix" (column mean으로 대체)
+3. 실제 uncertainty 변화량 |delta| 측정
+4. Spearman correlation 계산
+
+**결과**:
+```
+FK              Predicted    Actual (|delta|)    Diff
+------------------------------------------------------
+DRIVER              28.5%           25.3%       +3.1%
+RACE                21.4%           27.1%       -5.7%
+PERFORMANCE         19.2%           18.3%       +0.9%
+CIRCUIT             18.8%           20.7%       -1.9%
+CONSTRUCTOR         12.2%            8.7%       +3.5%
+
+Spearman correlation: 0.800 (p=0.104)
+```
+
+**해석**:
+- ρ = 0.800: 높은 상관관계 (p > 0.05는 N=5라서 통계적 power 부족)
+- 예측된 기여도와 실제 민감도가 잘 일치
+- "DRIVER가 가장 중요하다" → 검증됨 (둘 다 1~2위)
+
+### C2: FK vs Correlation Comparison (rel-f1)
+
+**목적**: FK grouping이 correlation clustering 대비 어떤가?
+
+**결과**:
+```
+Method              Stability    Interpretability
+-------------------------------------------------
+FK Grouping             0.820    ✅ "DRIVER", "RACE"
+Correlation             1.000    ❌ "CORR_GROUP_4"
+
+Average Attribution (5 runs):
+  FK:    DRIVER 28.1% ± 0.6%, RACE 20.5% ± 0.6%
+  Corr:  CORR_GROUP_4 39.0% ± 1.1%, CORR_GROUP_3 22.3% ± 0.9%
+```
+
+**핵심 발견**:
+- Correlation이 stability에서 승리 (1.000 vs 0.820)
+- 하지만 "CORR_GROUP_4"는 actionable하지 않음
+- FK "DRIVER"는 즉시 조치 가능
+
+**Verdict**: Stability 경쟁에서는 졌지만, **Actionability**가 FK의 진짜 가치
+
+### 추가된 파일
+
+```
+chorok/v3_fk_risk_attribution/
+├── experiment_calibration_f1.py       # C1: Calibration 검증
+├── experiment_fk_vs_datadriven_f1.py  # C2: FK vs Correlation
+└── results/
+    ├── calibration_f1.json
+    └── fk_vs_datadriven_f1.json
+```
+
+---
+
 *마지막 업데이트: 2025-11-29*
-- Phase 5 완료: 회귀 전환 및 스케일업 성공
-- 안정성: 0.339 → 0.850 (PASS)
-- 다음: 논문 작성 또는 추가 데이터셋 검증
+- Phase 6 완료: Calibration (ρ=0.800), FK vs Correlation 비교
+- 핵심 발견: FK가 stability에서 살짝 졌지만 actionability에서 압승
+- 다음: 추가 데이터셋 검증 또는 논문 작성

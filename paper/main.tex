@@ -466,42 +466,32 @@ The top FK group varies by domain, reflecting domain-specific uncertainty source
 \label{fig:multidomain}
 \end{figure}
 
-\subsection{Intervention Simulation Experiment}
+\subsection{Intervention Simulation (Proposed)}
 
-We validate that FK attribution predicts actual uncertainty reduction under intervention.
+A key advantage of FK grouping is enabling \textbf{intervention simulation}: predicting
+how data quality improvements would reduce uncertainty. We outline the approach here;
+full experimental validation is ongoing work.
 
-\paragraph{Setup.}
+\paragraph{Proposed Setup.}
 For each FK group $g_i$:
 \begin{enumerate}
     \item Compute predicted attribution $\alpha_i$ via noise injection
-    \item Apply intervention: replace $g_i$ features with low-uncertainty reference values
-    \item Measure actual uncertainty change $|\Delta u_i|$
-    \item Compare predicted vs.\ actual rankings
+    \item Define reference set: samples with low uncertainty (bottom 20\%)
+    \item Apply intervention: replace $g_i$ features with reference values
+    \item Measure simulated uncertainty change $|\Delta u_i|$
+    \item Compare predicted ranking vs.\ simulated ranking
 \end{enumerate}
 
-\begin{table}[h]
-\centering
-\caption{Intervention simulation results (rel-f1)}
-\label{tab:intervention}
-\begin{tabular}{lcc}
-\toprule
-FK Group & Predicted (\%) & Actual $|\Delta u|$ (\%) \\
-\midrule
-DRIVER & 28.5 & 25.3 \\
-RACE & 21.4 & 27.1 \\
-PERFORMANCE & 19.2 & 18.3 \\
-CIRCUIT & 18.8 & 20.7 \\
-CONSTRUCTOR & 12.2 & 8.7 \\
-\midrule
-\multicolumn{2}{l}{Spearman $\rho$} & \textbf{0.800} \\
-\bottomrule
-\end{tabular}
-\end{table}
+\paragraph{Why FK enables this (and correlation clustering doesn't).}
+FK groups share a \textbf{common intervention point}---the data collection process for that table.
+Improving DRIVER data quality affects \emph{all} DRIVER features simultaneously.
+In contrast, correlation clusters group statistically similar features that may come from
+different processes with no shared intervention mechanism.
 
-\paragraph{Interpretation.}
-The high correlation ($\rho = 0.800$) indicates that FK attribution accurately predicts
-which groups will yield the largest uncertainty reduction when improved.
-This validates RelUQ's utility for \textbf{prioritizing data quality investments}.
+\paragraph{Expected validation.}
+If FK attribution is calibrated, we expect high correlation ($\rho > 0.7$) between
+predicted attribution and simulated uncertainty reduction. This would validate
+RelUQ's utility for \textbf{prioritizing data quality investments}.
 
 \subsection{Case Study: Hierarchical Drill-Down}
 

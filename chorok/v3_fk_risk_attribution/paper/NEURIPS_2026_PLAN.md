@@ -1,38 +1,184 @@
-# NeurIPS 2025 Submission Plan
+# NeurIPS 2026 Submission Plan
 
-**Target**: NeurIPS 2025 Main Conference
-**Deadline**: May 2025 (예상: 5월 중순)
-**남은 시간**: ~4개월
+**Target**: NeurIPS 2026 Main Conference
+**Strategy**: ICLR 2026 Workshop → 피드백 → NeurIPS 2026
+**현재 예상 가능성**: 30-40% (보강 후 50-60%)
 
 ---
 
-## 현재 상태 (2025-11-30 기준)
+## 타임라인
+
+| 시기 | 작업 | 상태 |
+|------|------|------|
+| **Jan 2026** | ICLR workshop CFP 확인 및 선택 | ⏳ |
+| **Feb 2026** | ICLR Workshop paper 제출 (4-6p) | ⏳ |
+| **Apr 2026** | ICLR Workshop 발표 + 피드백 | ⏳ |
+| **May 2026** | NeurIPS 2026 제출 | ⏳ |
+| **Camera-ready** | Open source package | ⏳ |
+
+---
+
+## 현재 상태 (2025-12-08 기준)
 
 ### 핵심 발견: Error Propagation Hypothesis
 FK Attribution은 **error propagation** 구조가 있는 도메인에서만 유효:
-- **SALT (ERP)**: ρ = 0.900 ✅
-- **Trial (Clinical)**: ρ = 0.943 ✅
-- **Stack (Q&A)**: ρ = -0.500 ❌
+- **SALT (ERP)**: ρ = 1.000 ✅
+- **Trial (Clinical)**: ρ = 1.000 ✅
+- **Avito (Classifieds)**: ρ = 1.000 ✅
+- **Stack (Q&A)**: ρ = -0.500 ❌ (예상대로 실패)
 
-이 발견이 논문의 핵심 contribution이 됨.
-
-### 완료된 것
+### 완료된 것 ✅
 - [x] RelUQ Framework 정의 (Algorithm, I/O, Theory claims)
 - [x] **Attribution-Error Validation** (THE KEY RESULT)
 - [x] **Error Propagation Hypothesis** 발견 및 검증
-- [x] Multi-domain validation (rel-salt, rel-trial, rel-amazon, rel-stack)
-- [x] Stability 검증 (error propagation 도메인에서 ρ ≥ 0.90)
-- [x] LaTeX draft 업데이트 (Abstract, Introduction, Experiments, Conclusion)
-- [x] Clinical Trials (rel-trial) 데이터 로더 추가
-- [x] Ablation study (K, P, n, subsample rate) - 이미 paper에 포함
-- [x] Basic baselines (Feature-level, Correlation clustering, Random) - 이미 paper에 포함
+- [x] Multi-domain validation (SALT, Trial, Avito, Stack)
+- [x] **SHAP baseline 비교** - FK grouping이 핵심, 방법은 무관
+- [x] **InfoSHAP-style baseline** - 직접 MI 실패, Permutation 성공
+- [x] LaTeX draft (Abstract, Introduction, Experiments, Conclusion)
+- [x] Ablation study (K, P, n, subsample rate)
 
-### 부족한 것
-- [ ] InfoSHAP baseline (NeurIPS 2023 - 최신 uncertainty attribution)
-- [ ] SHAP variance baseline
-- [ ] Figure 생성 (현재 placeholder만 있음)
-- [ ] Theoretical proof (Error Propagation 조건 formal화)
-- [ ] 논문 완성
+### 부족한 것 (NeurIPS 필수 보강) ⚠️
+- [ ] **MC Dropout 검증** - "UQ method-agnostic" 주장 필요
+- [ ] **Intervention study** - 실제 FK 개선 → 불확실성 감소 증명
+- [ ] Domain 추가 (5개 이상 권장)
+- [ ] Scale up (10K+ samples)
+- [ ] Figure 생성
+
+---
+
+## NeurIPS 수락을 위한 핵심 약점 분석
+
+### 1. Method Generality (가장 큰 약점) 🔴
+
+**현재 상태:**
+```
+LightGBM Ensemble만 검증
+```
+
+**리뷰어 예상 질문:**
+> "This only works with tree ensembles. Does it generalize to neural networks?
+> What about MC Dropout, Deep Ensembles, or Conformal Prediction?"
+
+**필요한 보강:**
+- [ ] MC Dropout (MLP) 검증 - 1주
+- [ ] Deep Ensemble (NN) 검증 - 선택
+- 최소 2개 다른 UQ 방법에서 동일 결과 필요
+
+**보강 후 답변:**
+> "FK Attribution achieves ρ ≥ 0.90 with both tree ensembles AND neural networks with MC Dropout,
+> demonstrating that our method is UQ-agnostic."
+
+---
+
+### 2. Real-World Impact (실용성 증명 부족) 🔴
+
+**현재 상태:**
+```
+"FK Attribution → 데이터 품질 개선 가능" (주장만, 증거 없음)
+```
+
+**리뷰어 예상 질문:**
+> "Can you show that improving the identified FK actually reduces uncertainty?
+> Where's the causal evidence?"
+
+**필요한 보강:**
+- [ ] Intervention study - 2주
+  ```python
+  # 1. 현재 불확실성 측정
+  baseline_unc = measure_uncertainty(X)
+
+  # 2. 가장 중요한 FK 데이터 품질 "개선" 시뮬레이션
+  X_improved = reduce_noise(X, fk_group="ITEM")
+
+  # 3. 개선 후 불확실성 감소 확인
+  improved_unc = measure_uncertainty(X_improved)
+
+  # → "FK Attribution이 올바른 타겟을 지목했다" 증명
+  ```
+
+**보강 후 답변:**
+> "We demonstrate that reducing noise in the top-attributed FK group (ITEM)
+> leads to 23% uncertainty reduction, while improving low-attributed FKs shows no effect."
+
+---
+
+### 3. Theoretical Rigor (이론 깊이 부족) 🟡
+
+**현재 상태:**
+```
+Error Propagation Hypothesis = 직관적 설명
+"FK가 DAG 구조면 작동한다"
+```
+
+**리뷰어 예상 질문:**
+> "Where's the formal proof? Under what assumptions does this hold?"
+
+**옵션:**
+- Option A: Formal proof 추가 (3-4주) - 어려움
+- Option B: "Empirical study"로 명확히 포지셔닝 - 권장
+
+**포지셔닝 전략:**
+> "We present an empirical study with a testable hypothesis (Error Propagation),
+> validated across 4 domains. Formal theoretical analysis is left for future work."
+
+---
+
+### 4. Scale & Domains (규모 부족) 🟡
+
+**현재 상태:**
+```
+3개 EP 도메인 + 1개 Non-EP
+Sample size: 2,000-3,000
+```
+
+**리뷰어 예상 질문:**
+> "Only 3 domains? Sample size too small."
+
+**필요한 보강:**
+- [ ] Sample size 10K+ 실험 - 1일
+- [ ] Domain 1-2개 추가 (선택)
+
+---
+
+### 5. Novelty Defense (기여 명확화) 🟡
+
+**리뷰어 예상 질문:**
+> "This is just permutation importance + FK grouping. What's new?"
+
+**현재 답변 (약함):**
+- FK grouping
+- Error Propagation theory
+
+**강화된 답변:**
+1. **FK Grouping = Schema-guided, not data-driven**
+   - SHAP + clustering ≠ RelUQ (correlation-based vs schema-based)
+2. **Error Propagation Hypothesis = Scope clarification**
+   - 언제 작동하고 언제 안 되는지 명확히 (기존 방법에 없음)
+3. **Actionability**
+   - FK = 데이터 소유자 → 실제 개선 가능
+
+---
+
+## 보강 우선순위
+
+| 순위 | 작업 | 효과 | 노력 | 상태 |
+|------|------|------|------|------|
+| **1** | **MC Dropout 검증** | 🔴 매우 높음 | 1주 | ⏳ 필수 |
+| **2** | **Intervention study** | 🔴 매우 높음 | 2주 | ⏳ 필수 |
+| 3 | Scale up (10K) | 🟡 중간 | 1일 | ⏳ 권장 |
+| 4 | Domain 추가 | 🟡 중간 | 1주 | 선택 |
+| 5 | Formal theory | 🟡 중간 | 3-4주 | 연기 |
+
+---
+
+## 보강 후 예상 가능성
+
+| 시나리오 | 가능성 |
+|----------|--------|
+| 현재 상태 | 30-40% |
+| + MC Dropout | 45-50% |
+| + MC Dropout + Intervention | **55-65%** |
+| + 위 + Domain 추가 | 60-70% |
 
 ---
 

@@ -37,6 +37,8 @@ from data_loader_salt import load_salt_data
 from data_loader_amazon import load_amazon_data
 from data_loader_stack import load_stack_data
 from data_loader_trial import load_trial_data
+from data_loader_avito import load_avito_data
+from data_loader_hm import load_hm_data
 
 RESULTS_DIR = '/Users/i767700/Github/ai-in-finance/chorok/v3_fk_risk_attribution/results'
 
@@ -257,7 +259,7 @@ def run_all_domains():
     all_results = {}
 
     # SALT (ERP - transactional, error propagation expected)
-    print("\n[1/4] Loading SALT data...")
+    print("\n[1/6] Loading SALT data...")
     X_salt, y_salt, _, col_to_fk_salt = load_salt_data(sample_size=3000)
     salt_results = run_attribution_error_validation(
         X_salt, y_salt, col_to_fk_salt, "SALT (ERP)"
@@ -265,15 +267,31 @@ def run_all_domains():
     all_results['salt'] = salt_results
 
     # Trial (Clinical Trials - error propagation expected)
-    print("\n[2/4] Loading Trial data...")
+    print("\n[2/6] Loading Trial data...")
     X_trial, y_trial, _, col_to_fk_trial = load_trial_data(sample_size=3000)
     trial_results = run_attribution_error_validation(
         X_trial, y_trial, col_to_fk_trial, "Trial (Clinical)"
     )
     all_results['trial'] = trial_results
 
+    # Avito (Online Classifieds - error propagation expected)
+    print("\n[3/6] Loading Avito data...")
+    X_avito, y_avito, _, col_to_fk_avito = load_avito_data(sample_size=3000)
+    avito_results = run_attribution_error_validation(
+        X_avito, y_avito, col_to_fk_avito, "Avito (Classifieds)"
+    )
+    all_results['avito'] = avito_results
+
+    # H&M (Fashion Retail - error propagation expected)
+    print("\n[4/6] Loading H&M data...")
+    X_hm, y_hm, _, col_to_fk_hm = load_hm_data(sample_size=3000)
+    hm_results = run_attribution_error_validation(
+        X_hm, y_hm, col_to_fk_hm, "H&M (Retail)"
+    )
+    all_results['hm'] = hm_results
+
     # Amazon (E-commerce)
-    print("\n[3/4] Loading Amazon data...")
+    print("\n[5/6] Loading Amazon data...")
     X_amazon, y_amazon, _, col_to_fk_amazon = load_amazon_data(sample_size=3000)
     amazon_results = run_attribution_error_validation(
         X_amazon, y_amazon, col_to_fk_amazon, "Amazon (E-commerce)"
@@ -281,7 +299,7 @@ def run_all_domains():
     all_results['amazon'] = amazon_results
 
     # Stack (Q&A - no error propagation expected)
-    print("\n[4/4] Loading Stack data...")
+    print("\n[6/6] Loading Stack data...")
     X_stack, y_stack, _, col_to_fk_stack = load_stack_data(sample_size=3000)
     stack_results = run_attribution_error_validation(
         X_stack, y_stack, col_to_fk_stack, "Stack (Q&A)"

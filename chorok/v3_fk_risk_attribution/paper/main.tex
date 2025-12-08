@@ -370,6 +370,80 @@ Our experiments confirm this: FK grouping (5 groups, $\rho = 0.933$) achieves
 comparable stability to feature-level (24 groups, $\rho = 0.956$) despite
 having 5x fewer groups, and dramatically outperforms random grouping ($\rho = -0.40$).
 
+\subsection{Error Propagation Theory}
+\label{sec:ep_theory}
+
+The Error Propagation Hypothesis---that FK attribution accurately reflects prediction error impact in certain domains---requires formal justification. We provide this through a causal analysis of FK relationships.
+
+\begin{definition}[FK Dependency DAG]
+\label{def:fk_dag}
+The FK dependency graph $G = (V, E)$ where $V = \{T_1, \ldots, T_n\}$ are tables and $E = \{(T_j, T_i) : T_i \xrightarrow{FK} T_j\}$ represents data flow direction. If $G$ is a directed acyclic graph (DAG), we call it an FK Dependency DAG.
+\end{definition}
+
+\begin{definition}[Causal vs.\ Associative FK]
+\label{def:causal_fk}
+\begin{itemize}
+    \item[(a)] \textbf{Causal FK:} $T_j \to T_i$ is causal iff $P(\mathbf{x}_i \mid do(\mathbf{x}_j = \mathbf{a})) \neq P(\mathbf{x}_i \mid do(\mathbf{x}_j = \mathbf{b}))$ for some $\mathbf{a} \neq \mathbf{b}$. Intervention on parent affects child distribution.
+    \item[(b)] \textbf{Associative FK:} $T_j \leftrightarrow T_i$ is associative iff $\exists$ confounder $C$ such that $\mathbf{x}_i \leftarrow C \rightarrow \mathbf{x}_j$. Correlation exists but intervention has no effect.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Error Propagation Structure]
+\label{def:ep_structure}
+Database $\mathcal{D}$ has \textbf{Error Propagation Structure} ($\mathcal{D} \in \mathcal{EP}$) iff:
+\begin{enumerate}
+    \item \textbf{[Structural]} FK graph $G$ is a DAG
+    \item \textbf{[Causal]} All FK relations $(T_j, T_i) \in E$ are causal (Definition~\ref{def:causal_fk}a)
+    \item \textbf{[Path]} Directed path exists from each FK group $g_i$ to target $y$
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Error Propagation $\Rightarrow$ Valid Attribution]
+\label{thm:ep_valid}
+If $\mathcal{D} \in \mathcal{EP}$ (Error Propagation Structure), then:
+\[
+\rho_s\Big(\{\alpha^u(g_i)\}_{i=1}^m, \{\alpha^e(g_i)\}_{i=1}^m\Big) \geq \tau
+\]
+where $\alpha^u(g_i)$ is uncertainty attribution, $\alpha^e(g_i)$ is error impact, $\rho_s$ is Spearman correlation, and $\tau > 0$ is a domain-dependent threshold.
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+\textbf{Step 1 (Causal Path):} By Definition~\ref{def:ep_structure}, each FK group $g_j$ has a causal path to $y$ through structural equations.
+
+\textbf{Step 2 (Sensitivity):} Define sensitivity $S_j = \|\partial \hat{y}/\partial \mathbf{x}_{g_j}\|_F$. Causal FK ensures $S_j > 0$ via chain rule through the path.
+
+\textbf{Step 3 (Variance Decomposition):} Permuting $g$ breaks its relationship with $y$, increasing input variance. By first-order Taylor expansion:
+\[
+\Delta u(g) = u(\pi_g(\mathbf{x})) - u(\mathbf{x}) \propto S_g^2 \cdot \Delta\sigma_g^2
+\]
+
+\textbf{Step 4 (Error Decomposition):} Similarly:
+\[
+\Delta \text{MAE}(g) \propto |S_g| \cdot \Delta\sigma_g
+\]
+
+\textbf{Step 5 (Rank Preservation):} Both $\alpha^u(g) \propto S_g^2$ and $\alpha^e(g) \propto |S_g|$ induce the same ranking over FK groups, yielding $\rho_s \geq \tau$.
+\end{proof}
+
+\begin{theorem}[Associative Structure Invalidates Attribution]
+\label{thm:assoc_fail}
+If $\mathcal{D} \notin \mathcal{EP}$ (i.e., FK relations are associative), then $\rho_s(\{\alpha^u(g_i)\}, \{\alpha^e(g_i)\})$ may be $\leq 0$.
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+For associative FK $T_j \leftrightarrow T_i$ with confounder $C$, permuting $g_j$ breaks spurious correlation with $y$ (affecting $\Delta u$) but not the causal path $C \to g_i \to y$ (which determines $\Delta$MAE). Thus $\alpha^u(g_j) \propto \text{Corr}(g_j, y)^2$ while $\alpha^e(g_j) \propto \text{CausalEffect}(g_j \to y)$. When correlation $\neq$ causation, rankings diverge, potentially yielding $\rho_s < 0$.
+\end{proof}
+
+\paragraph{Connection to experiments.}
+\begin{itemize}
+    \item \textbf{SALT (ERP):} DAG structure (ITEM $\to$ SALESDOCUMENT $\to$ SHIPTOPARTY $\to$ $y$), causal FK (master data errors propagate). Theorem~\ref{thm:ep_valid} applies: $\rho = 0.90$.
+    \item \textbf{Trial (Clinical):} Similar EP structure. $\rho = 0.94$.
+    \item \textbf{Stack (Q\&A):} Cyclic structure (POST $\leftrightarrow$ USER), confounded by user skill. Theorem~\ref{thm:assoc_fail} applies: $\rho = -0.50$.
+\end{itemize}
+
+\paragraph{Diagnostic criterion.}
+If $\rho_s < 0.5$ on a new domain, the domain likely lacks Error Propagation Structure. FK attribution should not be trusted for that domain.
+
 % ============================================================================
 \section{Experiments}
 \label{sec:experiments}
@@ -662,17 +736,38 @@ relational database schema as prior knowledge. Our key contributions are:
 \end{enumerate}
 
 \paragraph{Scope and Limitations.}
+
+\textbf{Domain Applicability.}
 RelUQ is validated for \textbf{error propagation domains}---transactional systems (ERP, supply chain)
 and process-based data (clinical trials, manufacturing)---where FK relationships encode causal dependencies.
 It is \emph{not} validated for associative domains (social networks, content platforms, recommendation systems)
 where FK relationships are statistical rather than causal.
-Additionally, RelUQ requires a relational database with explicit FK constraints;
-for denormalized data, FK groups must be manually defined.
+The Error Propagation Hypothesis (Theorem~\ref{thm:ep_valid}) provides theoretical grounding for this scope:
+attribution validity requires causal FK structure (Definition~\ref{def:ep_structure}).
+
+\textbf{Methodological Scope.}
+Our experiments use ensemble variance for uncertainty quantification and permutation-based attribution.
+While Theorem~\ref{thm:ep_valid} is agnostic to specific UQ methods (the proof relies on sensitivity $S_g$,
+not UQ implementation), we have not empirically validated with alternative UQ methods (MC Dropout,
+Bayesian neural networks, conformal prediction) or attribution methods (SHAP, Integrated Gradients).
+We expect FK grouping to benefit these methods similarly, as the core insight---aggregating correlated
+features reduces variance---is method-independent.
+
+\textbf{Data Requirements.}
+RelUQ requires: (1) a relational database with explicit FK constraints (for denormalized data,
+FK groups must be manually defined); (2) sufficient samples per FK group ($n \geq 1000$ empirically);
+(3) within-group correlation $\rho_g > 0$ for variance reduction (Proposition~\ref{prop:variance}).
+High-cardinality FK groups (millions of entities) may require hierarchical sub-grouping.
 
 \paragraph{Future work.}
-Characterizing additional error propagation domains (banking, insurance, telecommunications),
-developing diagnostic tools to identify whether a new domain has error propagation structure,
-and extending RelUQ to classification tasks are promising directions.
+\begin{itemize}
+    \item \textbf{Broader validation}: Characterizing additional EP domains (banking, insurance, telecommunications)
+          and negative results on content platforms
+    \item \textbf{UQ method comparison}: Validating FK attribution with MC Dropout, conformal prediction
+    \item \textbf{Attribution baselines}: Comparing with TreeSHAP variance attribution and InfoSHAP
+    \item \textbf{Diagnostic tools}: Automatic detection of Error Propagation Structure for new domains
+    \item \textbf{Classification extension}: Extending to classification via ensemble disagreement
+\end{itemize}
 
 % ============================================================================
 \bibliographystyle{plain}

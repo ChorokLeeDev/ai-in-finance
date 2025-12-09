@@ -23,38 +23,63 @@ PLANT 테이블 → 데이터 품질 개선 시 불확실성 -12% [95% CI: -15%,
 
 ## Bayesian ML이 필요한 이유
 
-### 이유 1: Credible Intervals (신뢰구간)
+### 핵심: 데이터는 항상 부족하다
 
-일반 방법: "데이터 개선하면 12% 좋아집니다"
-Bayesian: "데이터 개선하면 12% 좋아집니다 **[95% 확률로 9%~15% 사이]**"
-
-이 신뢰구간이 중요한 이유:
-- **의사결정**: "최악의 경우에도 9%는 좋아지니까 투자할 가치 있음"
-- **우선순위**: 신뢰구간이 겹치면 더 확실한 것부터 하기
-- **리스크 관리**: 넓은 신뢰구간 = 데이터 더 필요함
-
-### 이유 2: Hierarchical Structure (계층 구조)
-
-관계형 데이터베이스 = 자연스러운 계층 구조
 ```
-Database
-├── 테이블 A (FK: customer)
-│   ├── 컬럼 A1 (age)
-│   │   ├── 값 범위 [20-30]
-│   │   └── 값 범위 [30-40]
-│   └── 컬럼 A2 (income)
-├── 테이블 B (FK: product)
+"데이터가 충분하다" = 착각
+
+현실:
+├── 새 고객 가입 → 데이터 없음
+├── 새 상품 출시 → 판매 데이터 없음
+├── 시장 변화 (코로나 등) → 과거 데이터 무의미
+├── Edge cases → 항상 부족
+└── Long-tail 카테고리 → 샘플 수 적음
 ```
 
-Bayesian Hierarchical Model은 이 구조를 prior로 자연스럽게 인코딩할 수 있음.
+**이게 바로 우리가 불확실성을 측정하는 이유.**
 
-### 이유 3: Intervention = do-calculus
+데이터가 충분하면 point estimate만 믿으면 됨.
+하지만 데이터는 항상 부족하니까:
 
-Causal inference의 do-operator와 연결:
-- P(Y | X) = 관찰 (현재 상태)
-- P(Y | do(X=x)) = 개입 (바꾸면 어떻게 되는지)
+```
+1. 예측에 불확실성이 있다 (epistemic uncertainty)
+        ↓
+2. 그 불확실성이 어디서 오는지 알아야 한다 (FK attribution)
+        ↓
+3. "어디서 오는지"에 대한 추정도 불확실하다!
+        ↓
+4. 그래서 Bayesian이 필요하다 (uncertainty over uncertainty)
+```
 
-"PLANT 데이터를 개선하면" = do(PLANT_quality = improved)
+### Bootstrap vs Bayesian - 진짜 차이
+
+| 상황 | Bootstrap | Bayesian |
+|------|-----------|----------|
+| 데이터 많음 | OK | OK |
+| **데이터 적음** | CI 불안정, 너무 넓음 | **Prior가 regularization** |
+| **새 FK 추가** | 처음부터 다시 | **계층 prior로 정보 공유** |
+| **극단값** | shrinkage 없음 | **평균 쪽으로 shrinkage** |
+
+**핵심 장점**: ITEM importance 추정할 때, CUSTOMER나 ORDER의 정보를 빌려올 수 있음!
+
+### Hierarchical Information Sharing
+
+```
+# 모든 FK가 공유하는 hyperprior
+σ_FK ~ HalfNormal(1.0)  # "FK들의 importance가 보통 얼마나 다른가?"
+
+# 개별 FK의 importance
+α_ITEM ~ Normal(0, σ_FK)
+α_CUSTOMER ~ Normal(0, σ_FK)
+```
+
+**마법**: α_ITEM 추정할 때, ITEM 데이터만 쓰는 게 아님.
+모든 FK의 정보로 σ_FK를 추정하고, 그게 α_ITEM에 영향을 줌.
+
+### 이게 왜 중요한가?
+
+데이터가 적은 FK (예: 새로 추가된 테이블)도 안정적인 추정 가능.
+다른 FK들의 "importance가 보통 이 정도다"라는 정보를 빌려오기 때문.
 
 ---
 

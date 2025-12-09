@@ -27,11 +27,53 @@ Level 3: weight ∈ [0, 0.5] → 추가 데이터 수집 시 불확실성 -8% [9
 
 ---
 
-## 2. Why Bayesian ML?
+## 2. Why Bayesian ML? - The Core Motivation
 
-### 2.1 Natural Fit for Hierarchical Structure
+### 2.1 The Fundamental Problem: Data is NEVER Enough
 
-Relational Database = Hierarchical Structure:
+In real-world relational databases, we **never** have sufficient data:
+
+```
+Scenario                      │ Data Status
+──────────────────────────────┼─────────────────────────
+New customer signs up         │ Zero history
+New product launched          │ No sales data
+Market shift (e.g., COVID)    │ Past data becomes irrelevant
+Edge cases                    │ Always sparse by definition
+Seasonal items                │ Data only for part of year
+Long-tail categories          │ Few samples per category
+```
+
+**This is why we measure uncertainty in the first place.**
+
+If data were always sufficient, we wouldn't need uncertainty quantification - we'd just trust the point estimates. But data is never sufficient, so:
+
+1. **Predictions have uncertainty** (epistemic uncertainty)
+2. **We need to know WHERE uncertainty comes from** (FK attribution)
+3. **Our estimates of "where" are ALSO uncertain** (uncertainty over uncertainty)
+
+**→ This is why Bayesian is not optional - it's necessary.**
+
+### 2.2 Why Not Bootstrap?
+
+Bootstrap CI answers: *"If I resample my data, how much would my estimate vary?"*
+
+Bayesian CI answers: *"What is the probability that the true value lies in this interval?"*
+
+| Situation | Bootstrap | Bayesian |
+|-----------|-----------|----------|
+| Abundant data | Works OK | Works OK |
+| Sparse data | CI unstable, too wide | **Prior provides regularization** |
+| New FK added | Start from scratch | **Borrow information via hierarchy** |
+| Extreme values | No shrinkage | **Hierarchical shrinkage toward mean** |
+
+**Key advantage**: Hierarchical Bayesian models enable **information sharing across FKs**.
+
+When estimating ITEM importance, we can borrow information from CUSTOMER, ORDER, etc. through the shared hyperprior. This is especially valuable when some FKs have limited data.
+
+### 2.3 Hierarchical Structure Matches Relational Data
+
+Relational Database = Natural Hierarchy:
 ```
 Database
 ├── Table A (FK: customer)
@@ -45,27 +87,52 @@ Database
 
 Bayesian Hierarchical Model encodes this naturally:
 ```
-# FK-level prior
+# Hyperprior (shared across all FKs)
+σ_FK ~ HalfNormal(1.0)  # "How variable are FK importances in general?"
+
+# FK-level prior (information sharing happens here)
 α_FK ~ Normal(0, σ_FK)
 
-# Column-level prior (nested)
+# Column-level prior (nested, inherits from FK)
 β_col|FK ~ Normal(α_FK, σ_col)
 
-# Value-level prior (nested)
+# Value-level prior (nested, inherits from column)
 γ_val|col ~ Normal(β_col, σ_val)
 ```
 
-### 2.2 Credible Intervals on Interventions
+**The magic**: When we estimate `α_ITEM`, we're not just using ITEM data.
+We're using information from ALL FKs to estimate `σ_FK`, which then informs `α_ITEM`.
 
-Frequentist: "Intervention reduces uncertainty by 12%"
-Bayesian: "Intervention reduces uncertainty by 12% [95% CI: 9%, 15%]"
+### 2.4 Credible Intervals: Uncertainty Over Uncertainty
 
-The credible interval tells us:
-- **Confidence in the estimate**: Wide CI = need more data
-- **Risk assessment**: Even worst-case (9%) might be worth it
-- **Prioritization**: Compare overlapping CIs to rank interventions
+Frequentist: "ITEM importance is 75%"
+Bayesian: "ITEM importance is 75% [95% CI: 7.5%, 142.4%]"
 
-### 2.3 Posterior Predictive for "What-If" Analysis
+This credible interval tells us:
+- **Confidence in the ranking**: Is ITEM really more important than CUSTOMER?
+- **Data sufficiency**: Wide CI = need more data for this FK
+- **Decision-making**: Even if CI is wide, lower bound > 0 means "definitely important"
+
+### 2.5 The Complete Picture
+
+```
+Data is never enough
+        ↓
+Predictions have epistemic uncertainty
+        ↓
+We decompose uncertainty by FK (attribution)
+        ↓
+Attribution estimates are also uncertain
+        ↓
+Bayesian hierarchical model provides:
+  • True credible intervals (not bootstrap approximation)
+  • Information sharing across FKs (hierarchical prior)
+  • Stable estimates even with sparse data (regularization)
+        ↓
+Actionable recommendations WITH confidence levels
+```
+
+### 2.6 Posterior Predictive for "What-If" Analysis
 
 ```python
 # Current state
@@ -471,10 +538,10 @@ This framework focuses exclusively on **epistemic uncertainty** - the uncertaint
 - [x] Document limitations and scope
 - [x] Identify missing uncertainty types
 
-### Phase 3: TODO - Bayesian Extension
-- [ ] Implement hierarchical Pyro model for FK structure
-- [ ] Add proper posterior inference (replace bootstrap with VI)
-- [ ] Generate true credible intervals (not bootstrap CI)
+### Phase 3: Bayesian Extension ✓ DONE
+- [x] Implement hierarchical Pyro model for FK structure
+- [x] Add proper posterior inference (replace bootstrap with VI)
+- [x] Generate true credible intervals (not bootstrap CI)
 
 ### Phase 4: TODO - Multi-Domain Validation
 - [ ] Test on F1 dataset
@@ -499,15 +566,47 @@ This framework focuses exclusively on **epistemic uncertainty** - the uncertaint
 
 **Title**: "Hierarchical Bayesian Intervention Analysis for Structured Uncertainty in Relational Data"
 
-**Abstract** (draft):
-> We present a framework for decomposing epistemic uncertainty in machine learning models along the natural hierarchical structure of relational databases. Unlike existing uncertainty quantification methods that provide aggregate uncertainty estimates, our approach identifies *where* in the data hierarchy uncertainty originates and *how much* targeted interventions would reduce it. Using a hierarchical Bayesian model, we provide credible intervals on intervention effects, enabling principled decision-making about data quality improvements. Experiments on 6 real-world domains show that our method consistently identifies actionable root causes with well-calibrated uncertainty estimates.
+### Core Narrative: Data is Never Enough
 
-**Key Contributions**:
-1. **Structured Decomposition**: First method to decompose epistemic uncertainty along FK hierarchy
-2. **Intervention Effects**: Not just "what's wrong" but "what to change and by how much"
-3. **Credible Intervals**: Bayesian uncertainty over the uncertainty reduction estimates
-4. **Practical Algorithm**: Works with any UQ backbone (ensemble, MC Dropout, BNN)
+**The Problem**:
+> In real-world relational databases, we never have "enough" data.
+> New customers, new products, market shifts, edge cases - data sparsity is the norm, not the exception.
+> This is precisely why we need uncertainty quantification in the first place.
+
+**The Insight**:
+> If we're measuring uncertainty because data is insufficient,
+> then our estimates of WHERE that uncertainty comes from are ALSO uncertain.
+> We need uncertainty over uncertainty - and that's what Bayesian provides.
+
+**The Solution**:
+> Hierarchical Bayesian model that:
+> 1. Decomposes uncertainty along the FK structure
+> 2. Provides TRUE credible intervals (not bootstrap approximations)
+> 3. Enables information sharing across FKs via hierarchical priors
+> 4. Gives stable estimates even for data-sparse FKs
+
+### Abstract (draft)
+
+> In relational databases, data is never sufficient: new entities arrive constantly, markets shift, and edge cases are sparse by definition. This fundamental data insufficiency is why we measure epistemic uncertainty - but existing methods ignore that our uncertainty estimates are themselves uncertain. We present Hierarchical Bayesian Intervention Analysis, a framework that decomposes epistemic uncertainty along the natural foreign key structure of relational data while providing principled credible intervals on the decomposition itself. Our hierarchical Bayesian model enables information sharing across foreign keys, providing stable importance estimates even when individual tables have limited data. Unlike bootstrap approaches, we provide true Bayesian credible intervals that answer "what is the probability that this FK is the most important?" rather than "how variable is my estimate under resampling?" Experiments on 6 real-world domains demonstrate consistent identification of uncertainty sources with well-calibrated credible intervals.
+
+### Key Contributions
+
+1. **The Right Question**: Not just "what's the uncertainty?" but "where does it come from, with what confidence?"
+
+2. **Hierarchical Information Sharing**: When estimating ITEM importance, we borrow information from CUSTOMER, ORDER, etc. through shared hyperpriors - crucial for data-sparse FKs
+
+3. **True Credible Intervals**: Bayesian posterior provides probability statements ("95% chance importance is in [7.5%, 142%]") vs bootstrap's frequency interpretation
+
+4. **Practical & Principled**: Works with any UQ backbone (ensemble, MC Dropout) while maintaining Bayesian rigor
+
+### Why NeurIPS Bayesian ML Track?
+
+1. **Hierarchical Bayesian Model**: Core technical contribution is the FK-structured prior
+2. **Principled Uncertainty**: "Uncertainty over uncertainty" is fundamentally Bayesian
+3. **Practical Impact**: Real-world relational data + actionable recommendations
+4. **Novel Application**: First to apply hierarchical Bayes to uncertainty decomposition in relational data
 
 ---
 
 *This document defines the research direction for v4_structured_uncertainty.*
+*Last updated: 2025-12-09 - Added "Data is Never Enough" narrative*

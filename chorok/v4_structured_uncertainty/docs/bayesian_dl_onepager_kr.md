@@ -1,24 +1,60 @@
-# Bayesian Deep Learning - 방향 정리 (Plain Korean)
+# Hierarchical Bayesian Intervention - 방향 정리 (Plain Korean)
 
 ## 우리가 하고 싶은 것
 
-**FK Attribution**: 테이블 데이터에서 "어느 테이블(FK)이 예측 불확실성에 가장 큰 영향을 주는가?"를 찾아내는 방법.
+**Hierarchical Bayesian Intervention Analysis**:
+테이블 데이터에서 "뭘 얼마나 바꾸면 불확실성이 얼마나 줄어드는지"를 계층적으로 찾아내는 방법.
 
-예를 들어 자동차 경주 결과 예측에서:
-- 드라이버 정보가 문제인지?
-- 팀 정보가 문제인지?
-- 날씨 정보가 문제인지?
+### v3 (이전): 어디가 문제인지만 알려줌
+```
+PLANT 테이블이 37% 기여
+```
 
-이걸 알면 **어디를 개선해야 예측이 좋아지는지** 알 수 있음.
+### v4 (목표): 뭘 얼마나 바꾸면 되는지까지 알려줌
+```
+PLANT 테이블 → 데이터 품질 개선 시 불확실성 -12% [95% CI: -15%, -9%]
+  └─ capacity 컬럼 → 결측치 보정 시 -5% [95% CI: -7%, -3%]
+      └─ capacity ∈ [0, 100] → 추가 데이터 수집 시 -3% [95% CI: -4.5%, -1.7%]
+```
+
+**핵심 차이**: 단순히 "어디"가 아니라 "얼마나 바꾸면 얼마나 좋아지는지" + 신뢰구간
 
 ---
 
 ## Bayesian ML이 필요한 이유
 
-일반 ML은 "정답은 42입니다"라고만 말함.
-Bayesian ML은 "정답은 42인데, 확신도는 80%입니다"라고 말함.
+### 이유 1: Credible Intervals (신뢰구간)
 
-이 **불확실성(uncertainty)**을 FK별로 분해해서 "어느 테이블 때문에 불확실한지" 찾는 게 우리 연구.
+일반 방법: "데이터 개선하면 12% 좋아집니다"
+Bayesian: "데이터 개선하면 12% 좋아집니다 **[95% 확률로 9%~15% 사이]**"
+
+이 신뢰구간이 중요한 이유:
+- **의사결정**: "최악의 경우에도 9%는 좋아지니까 투자할 가치 있음"
+- **우선순위**: 신뢰구간이 겹치면 더 확실한 것부터 하기
+- **리스크 관리**: 넓은 신뢰구간 = 데이터 더 필요함
+
+### 이유 2: Hierarchical Structure (계층 구조)
+
+관계형 데이터베이스 = 자연스러운 계층 구조
+```
+Database
+├── 테이블 A (FK: customer)
+│   ├── 컬럼 A1 (age)
+│   │   ├── 값 범위 [20-30]
+│   │   └── 값 범위 [30-40]
+│   └── 컬럼 A2 (income)
+├── 테이블 B (FK: product)
+```
+
+Bayesian Hierarchical Model은 이 구조를 prior로 자연스럽게 인코딩할 수 있음.
+
+### 이유 3: Intervention = do-calculus
+
+Causal inference의 do-operator와 연결:
+- P(Y | X) = 관찰 (현재 상태)
+- P(Y | do(X=x)) = 개입 (바꾸면 어떻게 되는지)
+
+"PLANT 데이터를 개선하면" = do(PLANT_quality = improved)
 
 ---
 
@@ -65,45 +101,71 @@ Bayesian ML은 "정답은 42인데, 확신도는 80%입니다"라고 말함.
 
 ---
 
-## 논문 방향 제안
+## 논문 방향: Hierarchical Bayesian Intervention
 
-### 옵션 A: "Practical Bayesian" 접근
-- Deep Ensemble + MC Dropout 중심
-- "FK Attribution이 실용적인 UQ 방법들에서 일관되게 작동한다"
-- 장점: 실험 쉬움, 결과 확실함
-- 단점: "진짜 Bayesian 아니잖아" 비판 가능
+### 핵심 기여 (Contributions)
 
-### 옵션 B: "Bayesian 관점에서 분석" 접근
-- FK Attribution을 Bayesian 이론으로 정당화
-- 예: "uncertainty decomposition은 posterior predictive variance의 구조적 분해"
-- 장점: 이론적 기여 강조 가능
-- 단점: 수학적으로 엄밀해야 함
+1. **Structured Decomposition**: 불확실성을 FK 계층 구조로 분해
+2. **Intervention Effects**: "뭘 바꾸면 얼마나 좋아지는지" 정량화
+3. **Credible Intervals**: 효과 추정치에 대한 신뢰구간 제공
+4. **Practical Algorithm**: 어떤 UQ 방법(ensemble, MC Dropout)과도 호환
 
-### 옵션 C: 하이브리드
-- 이론: Bayesian 관점에서 FK Attribution 정의
-- 실험: 실용적 방법들(Deep Ensemble, MC Dropout)로 검증
-- "이론적으로 올바르고, 실용적으로도 작동함"
+### 왜 이게 NeurIPS Bayesian ML에 맞는가?
 
-**추천: 옵션 C** - NeurIPS Bayesian ML 트랙에 가장 적합
+1. **Hierarchical Bayesian Model**: FK→Column→Value 구조를 prior로 인코딩
+2. **Posterior over Interventions**: 개입 효과의 불확실성까지 정량화
+3. **Causal Connection**: do-operator와의 연결로 이론적 기반
 
 ---
 
 ## 핵심 메시지 (한 줄 요약)
 
-> "테이블 데이터의 불확실성을 FK 단위로 분해하면,
-> 어디를 고쳐야 예측이 좋아지는지 알 수 있다.
-> 이건 Deep Ensemble이든 MC Dropout이든 일관되게 작동한다."
+> "관계형 데이터의 불확실성을 계층적으로 분해하고,
+> 각 레벨에서 개입 효과를 **신뢰구간과 함께** 제공한다.
+> 이를 통해 '뭘 얼마나 바꾸면 얼마나 좋아지는지' 알 수 있다."
+
+---
+
+## 예상 Output
+
+```
+═══════════════════════════════════════════════════════════════
+HIERARCHICAL BAYESIAN INTERVENTION ANALYSIS
+═══════════════════════════════════════════════════════════════
+
+LEVEL 1: FK TABLE
+───────────────────────────────────────────────────────────────
+FK Table   │ Intervention          │ Expected Effect [95% CI]
+───────────────────────────────────────────────────────────────
+PLANT      │ Data quality audit    │ -12.3% [-15.1%, -9.5%]
+ITEM       │ Data quality audit    │  -8.7% [-11.2%, -6.2%]
+───────────────────────────────────────────────────────────────
+
+LEVEL 2: COLUMN (within PLANT)
+───────────────────────────────────────────────────────────────
+Column     │ Intervention          │ Expected Effect [95% CI]
+───────────────────────────────────────────────────────────────
+capacity   │ Impute missing        │ -5.2% [-6.8%, -3.6%]
+efficiency │ Fix measurement error │ -3.8% [-5.1%, -2.5%]
+───────────────────────────────────────────────────────────────
+
+RECOMMENDED ACTION:
+  1. PLANT 데이터 품질 개선 → 예상 -12.3% 불확실성 감소
+  2. 최악의 경우에도 -9.5%는 보장됨 (95% 신뢰)
+```
 
 ---
 
 ## 다음 할 일
 
-1. **Deep Ensemble 구현** (현재 LightGBM만 있음 → Neural Net 버전 추가)
-2. **이론적 정당화** 작성 (posterior variance decomposition)
-3. **추가 데이터셋**에서 검증 (rel-f1 외 다른 데이터셋)
-4. **논문 초안** 작성 시작
+1. **Intervention Framework 구현**: 개입 시뮬레이션 + 효과 추정
+2. **Bootstrap CI 구현**: 빠른 검증용 (full Bayesian 전 단계)
+3. **Hierarchical Pyro Model**: 진짜 Bayesian posterior inference
+4. **Multi-domain 검증**: SALT, F1, H&M, Stack에서 테스트
+5. **논문 초안** 작성
 
 ---
 
 *Created: 2025-12-09*
+*Updated: 2025-12-09 - Hierarchical Bayesian Intervention 방향 반영*
 *Author: ChorokLeeDev*

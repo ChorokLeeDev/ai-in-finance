@@ -1,6 +1,6 @@
-# V6: Self-Adapting RAG
+# V6: MoE-RAG Attention
 
-> **"Dump your data, get a working Q&A system. No configuration required."**
+> **"Learn diverse attention heads on documents alone, route queries to relevant heads at inference. Zero configuration required."**
 
 ---
 
@@ -9,32 +9,39 @@
 | Aspect | Status |
 |--------|--------|
 | Vision | Documented |
-| Technical Approach | Sketched |
-| Literature Validation | TODO |
+| Core Idea | **MoE-RAG Attention** |
+| Technical Approach | Detailed |
+| Literature Validation | Done (gap confirmed) |
 | Prototype | Not started |
-| Feasibility | Unknown (needs validation) |
+| Feasibility | Promising |
 
 ---
 
 ## The Problem
 
-Every SAP team builds their own RAG. Even with shared infrastructure, each team spends weeks on:
-- Prompt engineering
-- Context curation
-- RAG tuning
-- Validation setup
+```
+Training time: We have documents, NO queries
+Inference time: Query arrives, need to attend
 
-**This doesn't scale.**
+How do you learn attention without knowing what to attend FOR?
+```
+
+**Insight:** Queries cluster into types. Different types need different attention patterns. We can pre-learn patterns without knowing specific queries.
 
 ---
 
-## The Vision
+## The Solution: MoE-RAG
 
-A self-adapting RAG system that:
-1. Takes raw data dump (no structure required)
-2. Trains itself to understand the domain
-3. Answers questions with source attribution
-4. No per-team engineering needed
+```
+Standard RAG:
+  Query → Retrieve → Concatenate (equal weight) → Generate
+
+MoE-RAG:
+  Query → Retrieve → Route to attention heads → Weighted attention → Generate
+                     ↑
+                     Heads pre-learned on documents
+                     Each head specializes on query type
+```
 
 ---
 
@@ -42,28 +49,61 @@ A self-adapting RAG system that:
 
 | Document | Purpose |
 |----------|---------|
-| [VISION.md](VISION.md) | Full vision and motivation |
-| [TECHNICAL_SKETCH.md](TECHNICAL_SKETCH.md) | Technical architecture and approach |
-| [VALIDATION_PLAN.md](VALIDATION_PLAN.md) | How to validate this is achievable |
-| [LITERATURE_TODO.md](LITERATURE_TODO.md) | Literature search to confirm gap |
+| [MOE_RAG_ATTENTION.md](MOE_RAG_ATTENTION.md) | **Core research direction** |
+| [VISION.md](VISION.md) | Original motivation |
+| [TECHNICAL_SKETCH.md](TECHNICAL_SKETCH.md) | Earlier technical approach |
+| [VALIDATION_PLAN.md](VALIDATION_PLAN.md) | Validation strategy |
+| [LITERATURE_TODO.md](LITERATURE_TODO.md) | Literature analysis |
 
 ---
 
 ## Key Technical Ideas
 
-1. **Self-supervised attention**: Learn what to focus on without labels
-2. **Synthetic query generation**: Create training data from documents
-3. **Automatic structure discovery**: Find patterns in raw data
-4. **Confidence calibration**: Know when to say "I don't know"
+1. **Mixture of Attention Experts**: Multiple attention heads, each specialized
+2. **Query-type spectrum**: Factual, procedural, causal, comparative, etc.
+3. **Self-supervised training**: Generate synthetic queries per type
+4. **Diversity by construction**: Each head trains on different query type
+5. **Learned routing**: Query → relevant head(s)
 
 ---
 
 ## Next Steps
 
-1. [ ] Complete literature search (confirm gap)
-2. [ ] Quick validation tests (embeddings, clustering)
-3. [ ] Minimal prototype on SQL migration data
-4. [ ] Decide go/no-go based on results
+### Immediate (Week 1-2)
+
+1. [ ] Implement basic MoE-RAG architecture
+2. [ ] Implement synthetic query generation (8 types)
+3. [ ] Test on small dataset (Natural Questions subset)
+4. [ ] Verify heads learn different patterns
+
+### Short-term (Week 3-6)
+
+1. [ ] Full training pipeline
+2. [ ] Diversity regularization experiments
+3. [ ] Benchmark on NQ, TriviaQA, HotpotQA
+4. [ ] Compare to baselines (AttentionRAG, RankRAG)
+
+### Medium-term (Week 7-12)
+
+1. [ ] Ablation studies (# heads, diversity loss, routing)
+2. [ ] Cross-domain transfer experiments
+3. [ ] Analysis of learned heads
+4. [ ] Paper writing
+
+---
+
+## Literature Gap (Confirmed)
+
+| Existing Work | What It Does | Our Gap |
+|---------------|--------------|---------|
+| AttentionRAG | Uses LLM's built-in attention | Not learned, not diverse |
+| RankRAG | Hard ranking of contexts | Not soft attention |
+| FiD | Implicit cross-attention | Not explicit, not interpretable |
+| SEER | Evidence extraction | Binary, not weighted |
+| SimRAG | Self-supervised QA | No attention mechanism |
+| ALoFTRAG | Auto fine-tuning | No MoE, no attention heads |
+
+**Our contribution:** MoE applied to RAG attention with self-supervised diverse heads.
 
 ---
 
@@ -71,28 +111,39 @@ A self-adapting RAG system that:
 
 | Previous | Lesson | Applied in V6 |
 |----------|--------|---------------|
-| V3 FK Attribution | Structure matters | Learn structure automatically |
-| V5 Shrinkage | Don't claim existing theory | Focus on application, not theory |
-| Workshop Paper | Hand-crafted works but doesn't scale | Use hand-crafted as training signal |
-| Quant Research | Apply methods to new domains | Self-supervised learning → RAG |
+| V3 FK Attribution | Structure matters | Learn attention patterns |
+| V5 Shrinkage | Don't claim existing theory | Novel MoE application |
+| Workshop Paper | Hand-crafted works but doesn't scale | Self-supervised replaces manual |
+| Quant Research | Apply methods to new domains | MoE → RAG attention |
 
 ---
 
 ## Target
 
-- **Venue**: NeurIPS 2026 (or KDD if more applied)
+- **Venue**: NeurIPS 2026
 - **Timeline**: ~4 months to submission-ready
-- **Success metric**: Match 80% of hand-crafted quality with zero configuration
+- **Paper title**: "MoE-RAG: Mixture of Attention Experts for Zero-Config RAG"
+
+---
+
+## Novel Contributions
+
+1. Apply MoE to RAG attention (not FFN)
+2. Self-supervised head training via query-type spectrum
+3. Diversity by construction + regularization
+4. Zero-config deployment
+5. Interpretable attention (which heads activated?)
 
 ---
 
 ## The Bet
 
-**If this works**: Every team can have working RAG in hours, not weeks.
+**If this works**: Zero-config RAG that adapts via learned attention heads.
 
-**If this fails**: We learn what human input is truly irreplaceable.
+**If this fails**: We learn whether query-type clustering is the right inductive bias.
 
 ---
 
 *Created: 2025-12-09*
+*Updated: 2025-12-09 (MoE-RAG focus)*
 *Author: Chorok Lee*

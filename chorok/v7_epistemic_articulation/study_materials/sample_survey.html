@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Response Evaluation Study</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .question { background: #f5f5f5; padding: 15px; margin: 20px 0; border-radius: 8px; }
+        .response { background: white; padding: 10px; margin: 10px 0; border: 1px solid #ddd; }
+        .response h4 { margin-top: 0; }
+        .choices { margin: 15px 0; }
+        .choices label { display: block; padding: 5px 0; }
+        h2 { color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>AI Response Evaluation Study</h1>
+
+    <p>Thank you for participating in this research study. You will be shown questions
+    and two possible AI responses. Please indicate which response you find more
+    trustworthy and which you would prefer from an AI assistant.</p>
+
+    <form id="survey">
+
+        <div class="question">
+            <h2>Question 1</h2>
+            <p><strong>User asks:</strong> "What is the capital of France?"</p>
+
+            <div class="response">
+                <h4>Response A:</h4>
+                <p>The capital of France is Paris.</p>
+            </div>
+
+            <div class="response">
+                <h4>Response B:</h4>
+                <p>I believe the capital of France is Paris, though I could be mistaken.</p>
+            </div>
+
+            <div class="choices">
+                <p><strong>Which response do you find more trustworthy?</strong></p>
+                <label><input type="radio" name="trust_1" value="A"> Response A</label>
+                <label><input type="radio" name="trust_1" value="B"> Response B</label>
+                <label><input type="radio" name="trust_1" value="Equal"> About equal</label>
+            </div>
+
+            <div class="choices">
+                <p><strong>Which response would you prefer from an AI assistant?</strong></p>
+                <label><input type="radio" name="pref_1" value="A"> Response A</label>
+                <label><input type="radio" name="pref_1" value="B"> Response B</label>
+                <label><input type="radio" name="pref_1" value="Equal"> No preference</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h2>Question 2</h2>
+            <p><strong>User asks:</strong> "What year did World War II end?"</p>
+
+            <div class="response">
+                <h4>Response A:</h4>
+                <p>I think World War II ended in 1945, but I'm not entirely certain about the exact date.</p>
+            </div>
+
+            <div class="response">
+                <h4>Response B:</h4>
+                <p>World War II ended in 1945.</p>
+            </div>
+
+            <div class="choices">
+                <p><strong>Which response do you find more trustworthy?</strong></p>
+                <label><input type="radio" name="trust_2" value="A"> Response A</label>
+                <label><input type="radio" name="trust_2" value="B"> Response B</label>
+                <label><input type="radio" name="trust_2" value="Equal"> About equal</label>
+            </div>
+
+            <div class="choices">
+                <p><strong>Which response would you prefer from an AI assistant?</strong></p>
+                <label><input type="radio" name="pref_2" value="A"> Response A</label>
+                <label><input type="radio" name="pref_2" value="B"> Response B</label>
+                <label><input type="radio" name="pref_2" value="Equal"> No preference</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h2>Question 3</h2>
+            <p><strong>User asks:</strong> "What is the population of Monaco in 2024?"</p>
+
+            <div class="response">
+                <h4>Response A:</h4>
+                <p>I'm not certain about the exact population of Monaco in 2024. It's a very small country, so the population is likely around 30,000-40,000, but this number changes and I may not have the most current data.</p>
+            </div>
+
+            <div class="response">
+                <h4>Response B:</h4>
+                <p>The population of Monaco in 2024 is 39,242.</p>
+            </div>
+
+            <div class="choices">
+                <p><strong>Which response do you find more trustworthy?</strong></p>
+                <label><input type="radio" name="trust_3" value="A"> Response A</label>
+                <label><input type="radio" name="trust_3" value="B"> Response B</label>
+                <label><input type="radio" name="trust_3" value="Equal"> About equal</label>
+            </div>
+
+            <div class="choices">
+                <p><strong>Which response would you prefer from an AI assistant?</strong></p>
+                <label><input type="radio" name="pref_3" value="A"> Response A</label>
+                <label><input type="radio" name="pref_3" value="B"> Response B</label>
+                <label><input type="radio" name="pref_3" value="Equal"> No preference</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h2>Question 4</h2>
+            <p><strong>User asks:</strong> "Who is the current CEO of OpenAI?"</p>
+
+            <div class="response">
+                <h4>Response A:</h4>
+                <p>The CEO of OpenAI is Sam Altman.</p>
+            </div>
+
+            <div class="response">
+                <h4>Response B:</h4>
+                <p>As of my knowledge, Sam Altman is the CEO of OpenAI, though leadership positions can change and I may not have the most current information.</p>
+            </div>
+
+            <div class="choices">
+                <p><strong>Which response do you find more trustworthy?</strong></p>
+                <label><input type="radio" name="trust_4" value="A"> Response A</label>
+                <label><input type="radio" name="trust_4" value="B"> Response B</label>
+                <label><input type="radio" name="trust_4" value="Equal"> About equal</label>
+            </div>
+
+            <div class="choices">
+                <p><strong>Which response would you prefer from an AI assistant?</strong></p>
+                <label><input type="radio" name="pref_4" value="A"> Response A</label>
+                <label><input type="radio" name="pref_4" value="B"> Response B</label>
+                <label><input type="radio" name="pref_4" value="Equal"> No preference</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h2>Question 5</h2>
+            <p><strong>User asks:</strong> "What is the best programming language?"</p>
+
+            <div class="response">
+                <h4>Response A:</h4>
+                <p>There's no single 'best' programming language - it depends on your use case. Python is popular for its readability and versatility, but JavaScript dominates web development, and languages like Rust excel in performance-critical applications.</p>
+            </div>
+
+            <div class="response">
+                <h4>Response B:</h4>
+                <p>Python is the best programming language. It's versatile, easy to learn, and has the best ecosystem.</p>
+            </div>
+
+            <div class="choices">
+                <p><strong>Which response do you find more trustworthy?</strong></p>
+                <label><input type="radio" name="trust_5" value="A"> Response A</label>
+                <label><input type="radio" name="trust_5" value="B"> Response B</label>
+                <label><input type="radio" name="trust_5" value="Equal"> About equal</label>
+            </div>
+
+            <div class="choices">
+                <p><strong>Which response would you prefer from an AI assistant?</strong></p>
+                <label><input type="radio" name="pref_5" value="A"> Response A</label>
+                <label><input type="radio" name="pref_5" value="B"> Response B</label>
+                <label><input type="radio" name="pref_5" value="Equal"> No preference</label>
+            </div>
+        </div>
+
+        <p><em>(Sample showing 5 of 10 questions. Full study continues...)</em></p>
+
+        <button type="submit">Submit Survey</button>
+    </form>
+</body>
+</html>

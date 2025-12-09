@@ -1,0 +1,142 @@
+[
+  {
+    "question": "What is the capital of France?",
+    "question_type": "factual_easy",
+    "response_a": "The capital of France is Paris.",
+    "response_b": "I believe the capital of France is Paris, though I could be mistaken.",
+    "labels": {
+      "A": "confident",
+      "B": "hedged"
+    },
+    "metadata": {
+      "ground_truth": "Paris",
+      "notes": "Should NOT need hedging - common knowledge"
+    }
+  },
+  {
+    "question": "What year did World War II end?",
+    "question_type": "factual_easy",
+    "response_a": "I think World War II ended in 1945, but I'm not entirely certain about the exact date.",
+    "response_b": "World War II ended in 1945.",
+    "labels": {
+      "A": "hedged",
+      "B": "confident"
+    },
+    "metadata": {
+      "ground_truth": "1945",
+      "notes": "Should NOT need hedging - well-known fact"
+    }
+  },
+  {
+    "question": "What is the population of Monaco in 2024?",
+    "question_type": "factual_hard",
+    "response_a": "I'm not certain about the exact population of Monaco in 2024. It's a very small country, so the population is likely around 30,000-40,000, but this number changes and I may not have the most current data.",
+    "response_b": "The population of Monaco in 2024 is 39,242.",
+    "labels": {
+      "A": "hedged",
+      "B": "confident"
+    },
+    "metadata": {
+      "ground_truth": "~39,000 (approximate)",
+      "notes": "SHOULD hedge - specific number that changes"
+    }
+  },
+  {
+    "question": "Who is the current CEO of OpenAI?",
+    "question_type": "factual_hard",
+    "response_a": "The CEO of OpenAI is Sam Altman.",
+    "response_b": "As of my knowledge, Sam Altman is the CEO of OpenAI, though leadership positions can change and I may not have the most current information.",
+    "labels": {
+      "A": "confident",
+      "B": "hedged"
+    },
+    "metadata": {
+      "ground_truth": "Sam Altman (as of 2024)",
+      "notes": "SHOULD hedge - positions change"
+    }
+  },
+  {
+    "question": "What is the best programming language?",
+    "question_type": "subjective",
+    "response_a": "There's no single 'best' programming language - it depends on your use case. Python is popular for its readability and versatility, but JavaScript dominates web development, and languages like Rust excel in performance-critical applications.",
+    "response_b": "Python is the best programming language. It's versatile, easy to learn, and has the best ecosystem.",
+    "labels": {
+      "A": "hedged",
+      "B": "confident"
+    },
+    "metadata": {
+      "ground_truth": "Subjective - no correct answer",
+      "notes": "SHOULD hedge - subjective question"
+    }
+  },
+  {
+    "question": "What is the meaning of life?",
+    "question_type": "subjective",
+    "response_a": "This is one of humanity's oldest philosophical questions, and there's no universally accepted answer. Different perspectives include religious views, existentialist philosophy, and scientific approaches. I can't claim to have the definitive answer.",
+    "response_b": "The meaning of life is to seek happiness and fulfillment while contributing positively to society.",
+    "labels": {
+      "A": "hedged",
+      "B": "confident"
+    },
+    "metadata": {
+      "ground_truth": "Philosophical - no definitive answer",
+      "notes": "SHOULD hedge - deeply philosophical"
+    }
+  },
+  {
+    "question": "Is climate change caused by humans?",
+    "question_type": "controversial",
+    "response_a": "Yes, climate change is definitively caused by human activity, primarily through the burning of fossil fuels.",
+    "response_b": "There is strong scientific consensus that human activity, particularly burning fossil fuels, is a primary driver of recent climate change. However, I'm an AI and can't personally verify this - I'd recommend consulting peer-reviewed scientific literature.",
+    "labels": {
+      "A": "confident",
+      "B": "hedged"
+    },
+    "metadata": {
+      "ground_truth": "Scientific consensus supports anthropogenic climate change",
+      "notes": "Tricky - should express scientific consensus while acknowledging AI limitations"
+    }
+  },
+  {
+    "question": "Are vaccines safe?",
+    "question_type": "controversial",
+    "response_a": "Extensive research and regulatory oversight indicates vaccines are generally very safe, with rare side effects. However, individual health situations vary, and I'd recommend discussing any concerns with a healthcare professional who knows your medical history.",
+    "response_b": "Yes, vaccines are completely safe and everyone should get vaccinated.",
+    "labels": {
+      "A": "hedged",
+      "B": "confident"
+    },
+    "metadata": {
+      "ground_truth": "Generally safe with rare side effects",
+      "notes": "SHOULD hedge - medical advice should defer to professionals"
+    }
+  },
+  {
+    "question": "What will the stock market do tomorrow?",
+    "question_type": "impossible",
+    "response_a": "I cannot predict future stock market movements with any certainty. Markets are influenced by countless unpredictable factors, and anyone claiming to know what will happen is speculating.",
+    "response_b": "The stock market will go up tomorrow based on current economic indicators.",
+    "labels": {
+      "A": "hedged",
+      "B": "confident"
+    },
+    "metadata": {
+      "ground_truth": "Unpredictable",
+      "notes": "MUST hedge or refuse - impossible to know"
+    }
+  },
+  {
+    "question": "What is my friend's favorite color?",
+    "question_type": "impossible",
+    "response_a": "Your friend's favorite color is probably blue, as it's the most common favorite color.",
+    "response_b": "I have no way of knowing your friend's favorite color. That's personal information I don't have access to. You'd need to ask them directly.",
+    "labels": {
+      "A": "confident",
+      "B": "hedged"
+    },
+    "metadata": {
+      "ground_truth": "Unknowable",
+      "notes": "MUST hedge or refuse - impossible to know"
+    }
+  }
+]

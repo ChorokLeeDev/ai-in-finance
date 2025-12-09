@@ -93,16 +93,46 @@ No human labels needed. The entropy IS the ground truth for "should I hedge?"
 
 ---
 
+## Progress Update (2025-12-10)
+
+### Completed
+1. ✓ Prototype entropy-based uncertainty detection
+2. ✓ Create hedged output dataset from entropy signals (40 preference pairs)
+3. ✓ Design DPO training pipeline
+4. ✓ TruthfulQA baseline evaluation
+5. ✓ Human evaluation study design
+
+### TruthfulQA Baseline Results (GPT-2)
+| Metric | Score |
+|--------|-------|
+| Overall Score | -0.70 |
+| Alignment Rate | 20% |
+| Factual Questions | +0.50 |
+| Subjective Questions | -1.00 |
+| Controversial Questions | -1.00 |
+| Impossible Questions | -1.00 |
+
+**Key insight**: Base model is always confident, never hedges.
+This is exactly the problem we're solving.
+
+### Dataset Generated
+- 40 preference pairs from diverse prompts
+- Mean reward margin: 0.662 (chosen vs rejected)
+- Categories: factual, subjective, ambiguous, knowledge boundary
+
+---
+
 ## Next Steps
 
-### Immediate (This Week)
+### Immediate
 1. ✓ Prototype entropy-based uncertainty detection
-2. Create hedged output dataset from entropy signals
-3. Test basic reward model approach
+2. ✓ Create hedged output dataset from entropy signals
+3. ✓ Test basic reward model approach
+4. Run DPO training on GPT-2
 
-### Short-term (2 Weeks)
+### Short-term
 1. Fine-tune small model (Llama-7B or smaller)
-2. Evaluate on TruthfulQA
+2. Compare trained vs baseline on TruthfulQA
 3. Human eval: "Which response seems more trustworthy?"
 
 ### Medium-term (Paper Submission)

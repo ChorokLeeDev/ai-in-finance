@@ -50,14 +50,41 @@ v4_structured_uncertainty/
 
 NeurIPS 2026 Bayesian ML Track
 
-## Status
+## Scope and Limitations
 
-- [x] Design document complete
-- [ ] Core intervention framework
-- [ ] Bayesian effect estimation
-- [ ] Multi-domain validation
-- [ ] Paper draft
+### What We Capture
+| Type | Status |
+|------|--------|
+| Epistemic (model uncertainty) | ✓ Captured |
+
+### What We DON'T Capture
+| Type | Status | How to Add |
+|------|--------|------------|
+| Aleatoric (data noise) | ✗ | Heteroscedastic models |
+| Distribution shift | ✗ | Conformal prediction |
+| Model misspecification | ✗ | Bayesian model comparison |
+
+See `docs/HIERARCHICAL_BAYESIAN_INTERVENTION.md` Section 8 for details.
+
+---
+
+## Implementation Status
+
+### Done ✓
+- [x] Design document
+- [x] Core intervention framework (bootstrap CI)
+- [x] SALT data validation
+- [x] Out-of-sample ranking consistency test
+- [x] Limitations documented
+
+### TODO
+- [ ] **Bayesian Extension**: Pyro hierarchical model (replace bootstrap with VI)
+- [ ] **Multi-Domain**: Test on F1, H&M, Stack datasets
+- [ ] **Aleatoric**: Add heteroscedastic uncertainty estimation
+- [ ] **Distribution Shift**: Add conformal prediction
+- [ ] **Paper**: NeurIPS 2026 submission
 
 ---
 
 *Created: 2025-12-09*
+*Updated: 2025-12-09 - Added scope/limitations and TODO*

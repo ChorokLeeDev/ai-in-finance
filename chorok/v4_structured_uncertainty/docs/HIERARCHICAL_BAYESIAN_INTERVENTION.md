@@ -399,31 +399,103 @@ For **decision-making** (which intervention to prioritize), Bayesian CI is more 
 
 ---
 
-## 8. Implementation Plan
+## 8. Scope and Limitations
 
-### Phase 1: Core Framework
-- [ ] Implement intervention simulation methods
-- [ ] Implement effect estimation with bootstrap CI
-- [ ] Test on SALT data
+### 8.1 What This Framework Captures
 
-### Phase 2: Bayesian Extension
-- [ ] Implement hierarchical Pyro model
-- [ ] Add proper posterior inference
-- [ ] Generate credible intervals
+| Uncertainty Type | Status | Method |
+|-----------------|--------|--------|
+| **Epistemic (Model)** | ✓ Captured | Ensemble variance / MC Dropout |
 
-### Phase 3: Validation
-- [ ] Compare with ground-truth interventions (synthetic data)
-- [ ] Test across multiple domains (F1, H&M, Stack)
-- [ ] Validate CI coverage
+This framework focuses exclusively on **epistemic uncertainty** - the uncertainty arising from limited data and model capacity. This is the uncertainty that CAN be reduced by:
+- Collecting more data
+- Improving data quality
+- Better feature engineering
 
-### Phase 4: Paper
-- [ ] Formalize theorems
-- [ ] Generate figures
-- [ ] Write NeurIPS submission
+### 8.2 What This Framework Does NOT Capture
+
+| Uncertainty Type | Status | Required Method |
+|-----------------|--------|-----------------|
+| **Aleatoric (Data Noise)** | ✗ Not captured | Heteroscedastic models, Quantile regression |
+| **Distribution Shift** | ✗ Not captured | Conformal prediction, Domain adaptation |
+| **Model Misspecification** | ✗ Not captured | Bayesian model comparison |
+
+#### Aleatoric Uncertainty
+- **What it is**: Irreducible noise in the data-generating process
+- **Example**: Same customer features → different purchase amounts (inherent randomness)
+- **Evidence from SALT**: Mean y-variance among similar samples = 13.59
+- **How to capture**: Heteroscedastic neural networks, quantile regression
+
+#### Distribution Shift
+- **What it is**: Future data differs from training data
+- **Example**: COVID-19 changed customer behavior patterns
+- **Evidence**: When ITEM distribution shifted, uncertainty increased 467%
+- **How to capture**: Conformal prediction, domain adaptation methods
+
+#### Model Misspecification
+- **What it is**: The model structure itself is wrong
+- **Example**: Using linear model for nonlinear relationships
+- **How to capture**: Bayesian model comparison, cross-validation across model classes
+
+### 8.3 Experimental Validation Results
+
+**Q1: Does actual data improvement reduce uncertainty?**
+- Current result: 0% reduction in simulation
+- Reason: Variance reduction ≠ actual data correction
+- TODO: Validate with real data corrections
+
+**Q2: Does importance ranking hold for future data?**
+- ✓ YES: Rankings are consistent between train/test
+- Train ranking: ITEM > SALESDOCUMENT > SALESGROUP > SHIPTOPARTY > SOLDTOPARTY
+- Test ranking: ITEM > SALESDOCUMENT > SALESGROUP > SHIPTOPARTY > SOLDTOPARTY
+- Magnitudes differ but priorities are preserved
+
+### 8.4 Paper Framing Recommendation
+
+> "We focus on **epistemic uncertainty decomposition** along the FK hierarchy.
+> Aleatoric uncertainty is orthogonal and can be addressed via heteroscedastic models.
+> Distribution shift requires separate treatment via conformal prediction or domain adaptation.
+> Model misspecification is outside the scope of this work."
 
 ---
 
-## 9. Paper Positioning for NeurIPS Bayesian ML
+## 9. Implementation Status
+
+### Phase 1: Core Framework ✓ DONE
+- [x] Implement intervention simulation methods
+- [x] Implement effect estimation with bootstrap CI
+- [x] Test on SALT data
+
+### Phase 2: Validation ✓ DONE
+- [x] Test importance ranking consistency (train vs test)
+- [x] Document limitations and scope
+- [x] Identify missing uncertainty types
+
+### Phase 3: TODO - Bayesian Extension
+- [ ] Implement hierarchical Pyro model for FK structure
+- [ ] Add proper posterior inference (replace bootstrap with VI)
+- [ ] Generate true credible intervals (not bootstrap CI)
+
+### Phase 4: TODO - Multi-Domain Validation
+- [ ] Test on F1 dataset
+- [ ] Test on H&M dataset
+- [ ] Test on Stack dataset
+- [ ] Validate CI coverage across domains
+
+### Phase 5: TODO - Address Limitations
+- [ ] Add aleatoric uncertainty estimation (heteroscedastic extension)
+- [ ] Add distribution shift detection (conformal prediction)
+- [ ] Real data intervention validation (not just simulation)
+
+### Phase 6: TODO - Paper
+- [ ] Formalize theorems
+- [ ] Generate figures
+- [ ] Write NeurIPS submission
+- [ ] Clearly state scope/limitations in paper
+
+---
+
+## 10. Paper Positioning for NeurIPS Bayesian ML
 
 **Title**: "Hierarchical Bayesian Intervention Analysis for Structured Uncertainty in Relational Data"
 

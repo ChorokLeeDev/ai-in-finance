@@ -1,7 +1,62 @@
-# Literature Differentiation: Our Novel Contribution
+# Literature Differentiation: Honest Assessment
 
 **Created**: 2025-12-09
-**Purpose**: Document how our work differs from existing literature
+**Last Updated**: 2025-12-09
+**Purpose**: Honest assessment of what's novel vs what already exists
+
+---
+
+## 0. CRITICAL LITERATURE REVIEW (Updated 2025-12-09)
+
+### What We Initially Claimed Was Novel
+
+| Claim | Reality | Reference |
+|-------|---------|-----------|
+| Prospective variance reduction formula | **TEXTBOOK** | Every Bayesian stats book |
+| Unknown unknowns detection | **DONE BY LAKKARAJU** | AAAI 2017 |
+| Hierarchical ROI for data collection | **PARTIALLY EXPLORED** | Active learning, Bayesian exp. design |
+
+### Papers That Already Exist On Our "Novel" Claims
+
+#### 1. Variance Reduction Formula = Textbook
+
+**The formula**: V(n) = 1/(1/τ² + n/σ²) = τ²σ²/(nτ² + σ²)
+
+**Already in**:
+- Murphy (2007) - "Conjugate Bayesian analysis of the Gaussian distribution"
+- Wikipedia - Conjugate prior
+- MIT 18.05 course notes
+- Stanford Stats 200 lectures
+- Gelman et al. "Bayesian Data Analysis" (the bible)
+
+**Our "reduction formula"** Δn/(n + Δn + λ) is just algebraic rearrangement.
+
+#### 2. Unknown Unknowns Detection = Lakkaraju et al.
+
+**Paper**: "Identifying Unknown Unknowns in the Open World" (AAAI 2017)
+- Lakkaraju, Kamar, Caruana, Horvitz
+
+**What they did**:
+- Same definition: "confident but wrong"
+- Same problem: high-confidence errors
+- Model-agnostic methodology
+- Explore-exploit for discovery
+
+**Our angle**: We apply to hierarchical Bayesian, they did discriminative models.
+But the CONCEPT is theirs.
+
+#### 3. Bayesian Experimental Design / Active Learning
+
+**Existing work**:
+- Chaloner & Verdinelli (1995) - "Bayesian Experimental Design: A Review"
+- Wang & Gelfand (2002) - Simulation-based Bayesian sample size
+- Sahu & Smith (2006) - Sample size determination
+- Active learning literature (huge field)
+
+**What they address**:
+- "How much data do I need?"
+- "Where should I collect data?"
+- Uncertainty-guided acquisition
 
 ---
 
@@ -37,248 +92,452 @@ From their paper:
 
 They acknowledge this as future work.
 
----
+### Lakkaraju et al. (AAAI 2017) - "Identifying Unknown Unknowns in the Open World"
 
-## 2. Other Related Work
+**Key contribution**: First algorithmic approach to discovering unknown unknowns
 
-### Efron & Morris (1975) - Shrinkage Estimators
+**Their definition** (same as ours):
+- Known unknowns: low confidence + wrong
+- Unknown unknowns: high confidence + wrong
 
-- Proved shrinkage is admissible for K ≥ 3 groups
-- Derived optimal shrinkage factor
-- **Did NOT**: Give variance reduction as function of future samples
+**Their method**:
+- Model-agnostic
+- Two-phase: organize by similarity + confidence, then explore-exploit
+- Oracle feedback to discover errors
 
-### Gelman (2006) - Prior Distributions for Variance Parameters
+**What they did NOT do**:
+- Apply to hierarchical Bayesian models
+- Connect to borrowing strength / shrinkage
+- Provide closed-form characterization
 
-- How to set priors on σ²_FK
-- Effect of prior choice on inference
-- **Did NOT**: Prospective intervention planning
+### Bayesian Experimental Design Literature
 
-### NBER (2024) - Empirical Bayes in Labor Economics
+**Chaloner & Verdinelli (1995)** - "Bayesian Experimental Design: A Review"
+- Expected utility framework
+- Information-theoretic criteria
+- Optimal design under various objectives
 
-- Modern applications of EB methods
-- Value-added models with varying standard errors
-- **Did NOT**: ROI formula for data collection decisions
-
----
-
-## 3. The Gap in Literature
-
-### What Exists
-
-```
-RETROSPECTIVE ANALYSIS
-├── "How much did groups borrow from each other?" (Gu 2020)
-├── "What's the optimal shrinkage factor?" (Efron-Morris)
-└── "How does prior choice affect inference?" (Gelman)
-```
-
-### What's Missing
-
-```
-PROSPECTIVE DECISION-MAKING
-├── "If I collect Δn more samples, how much will variance drop?" [MISSING]
-├── "What's my ROI on data collection investment?" [MISSING]
-└── "When is borrowing DANGEROUS?" [MISSING]
-```
+**Wang & Gelfand (2002)** - "Sample size determination for hierarchical models"
+- Simulation-based approach
+- Performance under posterior model
+- No closed-form for complex hierarchies
 
 ---
 
-## 4. Our Differentiated Contribution
+## 2. What Actually Remains Novel?
 
-### 4.1 The Core Difference
+After honest literature review, here's what MIGHT still be novel:
 
-| Dimension | Prior Work | Our Work |
-|-----------|------------|----------|
-| **Timing** | Retrospective (after fitting) | **Prospective (before collecting)** |
-| **Question** | "How much did we borrow?" | **"How much WILL uncertainty drop?"** |
-| **Purpose** | Model comparison | **Investment decision** |
-| **Output** | Index (descriptive) | **ROI formula (prescriptive)** |
-| **Assumption** | Borrowing is good | **Borrowing can be dangerous** |
+### Potentially Novel Angle 1: FK Structure Exploitation
 
-### 4.2 Our Three Novel Contributions
+**Existing**: General hierarchical models
+**Our angle**: Specific FK relational structure in databases
 
-#### Contribution 1: Prospective Variance Reduction Formula
+Questions:
+- Does FK structure give additional structure beyond generic hierarchy?
+- Can we exploit FK cardinality, fan-out patterns?
 
-**Existing**: Measure borrowing after the fact
-**Ours**: Predict variance reduction before collecting data
+**Verdict**: Weak novelty. FK structure is just another hierarchy.
 
-```
-FORMULA:
-                    Δn
-Reduction = ─────────────────
-             n + Δn + λ
+### Potentially Novel Angle 2: Combining Borrowing + Unknown Unknowns
 
-USAGE:
-  "I have 100 samples. If I collect 200 more, variance drops by 200/(100+200+λ)"
+**Existing separately**:
+- Gu et al.: Borrowing strength measurement
+- Lakkaraju et al.: Unknown unknowns detection
 
-  No need to fit model first. Just plug in numbers.
-```
+**Our angle**: When borrowing makes unknown unknowns WORSE
 
-#### Contribution 2: Unknown Unknowns Detection
+**Key insight**: Shrinkage increases confidence for sparse groups.
+If sparse group is DIFFERENT, shrinkage makes it MORE confidently wrong.
 
-**Existing**: Assumes borrowing is beneficial
-**Ours**: Identifies when borrowing is dangerous
+**Verdict**: Possibly novel if we can formalize this connection.
 
-```
-DANGEROUS REGION:
-  Low uncertainty + Low sample count = Unknown Unknown
+### Potentially Novel Angle 3: Intervention-Aware Borrowing
 
-  Model is confident but WRONG because it has never seen this region.
-  Borrowing from other groups makes it MORE confident, not better.
+**Existing**: Static borrowing measurement (Gu et al.)
+**Our angle**: How borrowing affects intervention DECISIONS
 
-DETECTION:
-  Flag when: Var(α_k) is low BUT n_k is low
-  This is the "confidently wrong" scenario.
-```
+Questions:
+- When should you NOT borrow for intervention planning?
+- How does borrowing distort ROI calculations?
 
-#### Contribution 3: Hierarchical ROI for Data Investment
+**Verdict**: Needs more literature search.
 
-**Existing**: Compare models after fitting
-**Ours**: Guide data collection decisions prospectively
+---
+
+## 3. Revised Gap Analysis
+
+### What ACTUALLY Exists (More Than We Thought)
 
 ```
-DECISION FRAMEWORK:
+VARIANCE REDUCTION
+├── Textbook posterior variance formulas (Gelman, Murphy, etc.)
+├── Sample size determination (Chaloner, Wang, Sahu)
+└── Active learning for data collection (huge field)
 
-  For each FK k:
-    1. Current samples: n_k
-    2. Estimated λ_k = σ²_obs / σ²_FK
-    3. If collect Δn samples:
-       Guaranteed reduction ≥ Δn / (n_k + Δn + λ_k)
-    4. Cost of collecting Δn: $C
-    5. Value of uncertainty reduction: $V
+UNKNOWN UNKNOWNS
+├── Definition and detection (Lakkaraju et al. 2017)
+├── Explore-exploit discovery (Lakkaraju et al.)
+└── OOD detection literature (separate but related)
 
-  → Prioritize FKs by V/C ratio
+BORROWING STRENGTH
+├── Retrospective measurement (Gu et al. 2020)
+├── Optimal shrinkage factors (Efron-Morris 1975)
+└── Hierarchical model theory (Gelman & Hill)
 ```
 
-### 4.3 The "Smart Borrowing" Gap We Fill
-
-Gu et al. (2020) explicitly noted they do NOT address "smart borrowing."
-
-We address this through **Unknown Unknowns Detection**:
+### What MIGHT Still Be Missing
 
 ```
-SMART BORROWING = Knowing when NOT to trust borrowed information
-
-Case 1: FK_k has many samples, borrows little → SAFE (data-driven)
-Case 2: FK_k has few samples, borrows a lot, other FKs similar → SAFE (valid borrowing)
-Case 3: FK_k has few samples, borrows a lot, FK_k is DIFFERENT → DANGEROUS (unknown unknown)
-
-We detect Case 3 by checking:
-  - Is n_k small?
-  - Is posterior variance suspiciously low?
-  - Is FK_k structurally different from others?
+THE CONNECTION BETWEEN BORROWING AND UNKNOWN UNKNOWNS
+├── When does shrinkage CREATE unknown unknowns? [UNEXPLORED]
+├── Formal characterization of "dangerous borrowing" [UNEXPLORED]
+└── Intervention planning under borrowing distortion [UNEXPLORED]
 ```
 
 ---
 
-## 5. Positioning Statement
+## 4. REVISED: What Is Actually Our Contribution?
 
-### For the Paper
+### 4.1 Honest Assessment
 
-> "While prior work quantifies borrowing strength retrospectively — measuring how much information was shared after model fitting (Gu et al., 2020) — we derive **prospective bounds** for intervention planning. Our framework answers: given current data, what's the **guaranteed minimum uncertainty reduction** from collecting Δn additional samples?
+| Our Initial Claim | Reality Check | Actual Status |
+|-------------------|---------------|---------------|
+| Prospective variance formula | Textbook algebra | **NOT NOVEL** |
+| Unknown unknowns detection | Lakkaraju et al. 2017 | **NOT NOVEL** |
+| When borrowing is dangerous | **Possibly unexplored** | **NEEDS VERIFICATION** |
+
+### 4.2 The ONE Potentially Novel Angle
+
+**The connection between SHRINKAGE and UNKNOWN UNKNOWNS**
+
+```
+EXISTING WORK (SEPARATE):
+┌─────────────────────────────────────────────────────────────┐
+│  Gu et al. 2020                 Lakkaraju et al. 2017      │
+│  ─────────────                  ───────────────────         │
+│  "Borrowing happens"            "Unknown unknowns exist"    │
+│  "Smaller groups borrow more"   "High confidence + wrong"   │
+│  No connection to harm          No connection to shrinkage  │
+└─────────────────────────────────────────────────────────────┘
+
+POTENTIAL GAP:
+┌─────────────────────────────────────────────────────────────┐
+│  SHRINKAGE CREATES UNKNOWN UNKNOWNS                        │
+│  ──────────────────────────────────                        │
+│  - Sparse group gets shrunk toward global mean             │
+│  - Posterior variance DECREASES (looks confident)          │
+│  - But if sparse group is DIFFERENT from others...         │
+│  - Shrinkage makes it CONFIDENTLY WRONG                    │
+│                                                             │
+│  This is unknown unknown INDUCED BY hierarchical model!    │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 4.3 Why This Might Actually Be Novel
+
+**What Lakkaraju did NOT consider**:
+- They study discriminative models (classifiers)
+- Unknown unknowns arise from training data bias
+- No connection to Bayesian hierarchical models
+- No connection to shrinkage/borrowing
+
+**What Gu et al. did NOT consider**:
+- They measure borrowing, don't evaluate if it's HARMFUL
+- They explicitly say "smart borrowing" is future work
+- No connection to prediction errors
+
+**The gap**: Nobody has formally characterized when shrinkage CREATES unknown unknowns.
+
+### 4.4 What We Found When We Searched (CRITICAL!)
+
+**We searched and found: THIS IS ALSO NOT NOVEL**
+
+#### The "Tyranny of the Majority" Problem (Efron & Morris 1971!)
+
+**Paper**: Efron & Morris (1971) - Already identified this 50+ years ago!
+
+**Their observation**:
+> "The James-Stein estimator shrinks individuals by the same amount regardless
+> of their random effect, which can result in LARGE BIAS FOR OUTLIERS—
+> individuals with random effects that are far away from the common mean."
+
+**They called it**: "The relevance problem" / "Tyranny of the majority"
+
+**Solutions already proposed**:
+- Efron & Morris (1971): Identify and don't shrink outliers
+- Efron (2010): Use covariates to identify relevant individuals
+- "Limited translation estimators" - cap shrinkage
+- "Discarding priors estimators" - use Cauchy-like heavy tails
+- "The Clemente Problem" paper (2024) - treat exceptional cases differently
+
+#### Local Empirical Bayes (2024 paper!)
+
+**Paper**: "Local Empirical Bayes shrinkage framework" (arXiv 2511.21282)
+
+**What they do**:
+> "Replaces global pooling with small, experiment-specific neighborhoods"
+> "Combines process features and outcome similarity to enable localized
+> and selective information borrowing under nonstationarity and heterogeneity"
+
+**Their theorem**:
+> "Under treatment-effect heterogeneity, local EB achieves strictly lower MSE
+> than classical EB. Improvement arises because variance reduction is preserved
+> while systematic bias from inappropriate global pooling is avoided."
+
+**This is EXACTLY what we were calling "smart borrowing"!**
+
+#### Individual Shrinkage (2023 paper)
+
+**Paper**: "Individual Shrinkage for Random Effects" (arXiv 2308.01596)
+
+**What they do**:
+> "Target individual-level accuracy rather than aggregate performance"
+> "Shrinks each individual toward a common mean using individual-specific weights
+> derived from that person's own data history alone"
+
+**Directly addresses our "unknown unknowns" concern!**
+
+### 4.5 REVISED: What Is Actually Left?
+
+After thorough search, here's the honest assessment:
+
+| Our Claim | Existing Work | Status |
+|-----------|---------------|--------|
+| Variance reduction formula | Textbook | **NOT NOVEL** |
+| Unknown unknowns detection | Lakkaraju 2017 | **NOT NOVEL** |
+| Shrinkage harms outliers | Efron & Morris 1971 | **NOT NOVEL** |
+| Local/selective borrowing | Local EB 2024 | **NOT NOVEL** |
+| Individual accuracy | Individual Shrinkage 2023 | **NOT NOVEL** |
+
+**Potentially remaining**:
+1. Application to FK/relational structure specifically
+2. Connection to intervention/data collection decisions
+3. Empirical validation in relational learning domain
+
+**But these are APPLICATION papers, not THEORY papers.**
+
+### 4.6 Honest Path Forward
+
+Given the literature review, we have three options:
+
+#### Option A: Pivot to Application Paper
+
+**Venue**: KDD, ICML Applications Track, or domain venue
+**Contribution**: Apply existing theory to relational learning
+**Message**: "We show how Local EB / Individual Shrinkage ideas apply to FK-structured data"
+
+**Pros**: Honest, achievable, useful
+**Cons**: Not NeurIPS theory track
+
+#### Option B: Find Genuinely Novel Theory Angle
+
+**Potential angles NOT covered by existing work**:
+
+1. **FK structure as graph** - Can we exploit graph structure of FK relationships?
+   - Existing: General hierarchical models
+   - Novel?: Graph-based neighborhood for local EB
+
+2. **Temporal aspects** - FK relationships change over time
+   - Existing: Local EB handles nonstationarity within experiments
+   - Novel?: Cross-FK temporal borrowing
+
+3. **Multi-level hierarchy** - FK → Column → Value
+   - Existing: 2-level hierarchical models
+   - Novel?: 3+ level borrowing with different shrinkage at each level?
+
+**Needs more literature search on these specific angles.**
+
+#### Option C: Combination Paper
+
+**Contribution**: Novel APPLICATION + existing theory
+**Format**:
+- Theory section: Properly cite Efron-Morris, Local EB, etc.
+- Novel part: How to apply to relational data + empirical validation
+- "We bring these ideas to relational learning for the first time"
+
+### 4.7 Key References We Must Cite
+
+If we proceed, we MUST cite:
+
+1. **Efron & Morris (1971, 1973, 1975)** - Tyranny of majority, shrinkage
+2. **Lakkaraju et al. (2017)** - Unknown unknowns detection
+3. **Gu et al. (2020)** - Borrowing strength index
+4. **Individual Shrinkage (2023)** - arXiv 2308.01596
+5. **Local Empirical Bayes (2024)** - arXiv 2511.21282
+6. **The Clemente Problem (2024)** - Treating exceptional cases
+7. **Chaloner & Verdinelli (1995)** - Bayesian experimental design
+8. **Gelman et al.** - Bayesian Data Analysis
+
+---
+
+## 5. REVISED Positioning Statement
+
+### What We CAN'T Claim (Based on Literature Review)
+
+❌ "First to identify unknown unknowns" - Lakkaraju et al. 2017
+❌ "First to recognize shrinkage harms outliers" - Efron & Morris 1971
+❌ "First to propose local/selective borrowing" - Local EB 2024
+❌ "Novel variance reduction formula" - Textbook
+
+### What We MIGHT Be Able To Claim
+
+**Option A (Application)**:
+> "We are the first to apply Local Empirical Bayes and selective borrowing
+> concepts to relational learning with FK-structured data, demonstrating
+> that FK hierarchies naturally define neighborhoods for local shrinkage."
+
+**Option B (If Novel Theory Found)**:
+> "We extend Local EB to multi-level FK hierarchies, showing that optimal
+> shrinkage at each level (FK → Column → Value) differs and provides
+> tighter bounds than single-level approaches."
+
+### Honest One-Sentence Summary
+
+> **What we do**: Apply existing theory (Efron-Morris, Local EB, Individual Shrinkage)
+> to the novel domain of FK-structured relational data.
 >
-> Furthermore, we identify when hierarchical borrowing becomes **dangerous**: the 'unknown unknowns' where models exhibit low uncertainty despite having never observed a region. In these cases, borrowing from other groups increases confidence without improving accuracy — precisely the scenario risk managers most need to detect."
-
-### One-Sentence Differentiation
-
-> **Gu et al. (2020)**: "How much did we borrow?" (retrospective, descriptive)
->
-> **Our work**: "How much WILL uncertainty drop, and when is borrowing dangerous?" (prospective, prescriptive)
+> **What we don't do**: Invent new theory.
 
 ---
 
-## 6. Technical Differentiation
+## 6. UPDATED Literature Landscape
 
-### Their Theorem vs Our Theorem
+### Complete Map of Existing Work
 
-**Gu et al. Theorem 1**:
 ```
-d*₂(F_M1, F_M2) ≤ d₂(F̂_M1, F̂_M2)
+SHRINKAGE & OUTLIERS (1970s onward)
+│
+├── Efron & Morris (1971, 1973, 1975)
+│   ├── James-Stein shrinkage
+│   ├── "Tyranny of the majority" problem identified
+│   └── Limited translation estimators
+│
+├── The Clemente Problem (2024)
+│   └── Heavy-tailed priors for exceptional cases
+│
+└── Individual Shrinkage (2023)
+    └── Individual-level accuracy vs aggregate MSE
 
-"Our distance approximation lower-bounds the true distance"
+UNKNOWN UNKNOWNS (2017)
+│
+└── Lakkaraju et al. (AAAI 2017)
+    ├── Definition: confident but wrong
+    ├── Explore-exploit discovery
+    └── Model-agnostic framework
+
+LOCAL/SELECTIVE BORROWING (2024)
+│
+└── Local Empirical Bayes (2024)
+    ├── Neighborhood-based shrinkage
+    ├── Exchangeability violation handling
+    └── Strictly lower MSE than global EB
+
+BORROWING MEASUREMENT (2020)
+│
+└── Gu et al. (2020)
+    ├── Borrowing Index
+    └── Retrospective measurement
+
+BAYESIAN EXPERIMENTAL DESIGN (1990s onward)
+│
+├── Chaloner & Verdinelli (1995) - Review
+├── Wang & Gelfand (2002) - Simulation-based
+└── Active learning literature (huge)
+
+TEXTBOOK RESULTS
+│
+├── Posterior variance formula
+├── Conjugate normal-normal
+└── Sample size determination basics
 ```
 
-**Our Theorem 1**:
+### Where Is The Gap?
+
 ```
-Var(α_k | n+Δn) / Var(α_k | n) = (n + λ) / (n + Δn + λ)
-
-"Variance reduction is exactly this function of sample size"
+POTENTIAL REMAINING GAPS (need verification):
+│
+├── FK-specific structure?
+│   └── Graph structure of FK relationships
+│   └── Multi-level hierarchy (FK→Column→Value)
+│
+├── Relational learning application?
+│   └── First application of Local EB to relational data?
+│
+└── COVID-19 distribution shift?
+    └── Empirical study of shrinkage under temporal shift?
 ```
-
-**Our Theorem 2** (to prove):
-```
-Var_hier(α_k) ≤ Var_indep(α_k) × C(K)
-
-"Hierarchy gives tighter variance by factor C(K) < 1"
-
-PLUS: Warning when this bound is UNRELIABLE (unknown unknowns)
-```
-
-### Key Difference in Output
-
-| Their Output | Our Output |
-|--------------|------------|
-| Borrowing Index ∈ [0,1] | Variance reduction % |
-| "You borrowed 60% of available information" | "Collect 200 samples → 45% less uncertainty" |
-| Compare models | Make decisions |
 
 ---
 
-## 7. Why This Matters for NeurIPS
+## 7. Recommended Next Steps
 
-### Reviewer Question: "How is this different from Gu et al. 2020?"
+### Immediate Actions
 
-**Answer**:
-1. **Different question**: They measure borrowing retrospectively; we predict variance reduction prospectively
-2. **Different output**: They give a descriptive index; we give a prescriptive ROI formula
-3. **Different assumption**: They assume borrowing is good; we identify when it's dangerous
-4. **Different use case**: They compare models; we guide data investment decisions
+1. **Stop claiming theoretical novelty** on variance formula, unknown unknowns, or outlier handling
 
-### Reviewer Question: "What's the theoretical novelty?"
+2. **Read the key papers thoroughly**:
+   - Efron & Morris (1971) - Original tyranny of majority
+   - Local EB (2024) - arXiv 2511.21282
+   - Individual Shrinkage (2023) - arXiv 2308.01596
+   - Lakkaraju et al. (2017) - Unknown unknowns
 
-**Answer**:
-1. **Prospective bound** on variance reduction (not just retrospective measurement)
-2. **Unknown unknowns formalization**: When low variance + low samples = dangerous
-3. **Hierarchical ROI formula**: Closed-form for data investment decisions
+3. **Search for remaining gaps**:
+   - Multi-level hierarchical shrinkage
+   - Graph-based local neighborhoods
+   - FK-specific structure exploitation
+
+4. **Decide on paper type**:
+   - Application paper (honest, achievable)
+   - Theory paper (needs genuinely novel angle)
+
+### Questions for User
+
+1. Do you want to pursue NeurIPS theory track (risky) or application venue (safer)?
+2. Should we search deeper for multi-level hierarchy novelty?
+3. Should we pivot to COVID-19 shift study as empirical contribution?
 
 ---
 
 ## 8. Summary
 
-### The Literature Landscape
+### What We Learned From Literature Review
 
-```
-EXISTING WORK
-│
-├── Shrinkage Estimation (Efron-Morris 1975)
-│   └── "Shrinkage is optimal for K ≥ 3"
-│
-├── Prior Specification (Gelman 2006)
-│   └── "How to set priors on variance parameters"
-│
-├── Borrowing Measurement (Gu et al. 2020)
-│   └── "How much information was shared?"
-│
-└── [GAP] Prospective Intervention Planning
-    └── "How much WILL uncertainty drop? When is borrowing dangerous?"
-```
+| Topic | Status | Key Paper |
+|-------|--------|-----------|
+| Variance reduction | Textbook | Gelman BDA |
+| Unknown unknowns | DONE | Lakkaraju 2017 |
+| Outlier shrinkage | DONE (1971!) | Efron-Morris |
+| Local borrowing | DONE (2024) | Local EB |
+| Individual accuracy | DONE (2023) | Individual Shrinkage |
+| Borrowing measurement | DONE | Gu 2020 |
 
-### Our Contribution Fills the Gap
+### The Honest Verdict
 
-```
-OUR WORK
-│
-├── Prospective Variance Reduction Formula
-│   └── Reduction = Δn / (n + Δn + λ)
-│
-├── Unknown Unknowns Detection
-│   └── Low variance + low samples = dangerous
-│
-└── Hierarchical ROI Framework
-    └── Guide data investment decisions with guarantees
-```
+**Our initial claims were not novel.**
+
+The good news: We now know the literature and can:
+1. Position correctly
+2. Cite properly
+3. Find actual gaps if they exist
 
 ---
 
-*This document establishes our differentiated contribution for v5.*
-*Key reference: Gu et al. (2020) - we build on but differ from this work.*
+*This document updated 2025-12-09 after thorough literature search.*
+*Previous claims of novelty have been revised based on findings.*
+
+## References
+
+### Must Read (Critical for positioning)
+1. Efron & Morris (1971) - "Limiting the Risk of Bayes and Empirical Bayes Estimators"
+2. Efron & Morris (1973) - "Stein's Estimation Rule and Its Competitors—An Empirical Bayes Approach"
+3. Lakkaraju et al. (2017) - "Identifying Unknown Unknowns in the Open World" (AAAI)
+4. Local EB (2024) - arXiv:2511.21282
+5. Individual Shrinkage (2023) - arXiv:2308.01596
+6. Gu et al. (2020) - "Borrowing Strength and Borrowing Index"
+7. The Clemente Problem (2024) - arXiv:2506.10114
+
+### Background
+8. Gelman et al. - Bayesian Data Analysis
+9. Gelman & Hill (2006) - Data Analysis Using Multilevel Models
+10. Chaloner & Verdinelli (1995) - Bayesian Experimental Design Review

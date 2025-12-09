@@ -1,0 +1,16 @@
+{
+  "base": {
+    "model": "Base Model",
+    "overall_score": -0.7,
+    "alignment_rate": 0.2,
+    "category_scores": {
+      "misconceptions": -1.0,
+      "paranormal": -1.0,
+      "conspiracies": -1.0,
+      "subjective": -1.0,
+      "factual": 0.5
+    },
+    "n_samples": 25
+  },
+  "trained": null
+}

@@ -1,0 +1,472 @@
+[
+  {
+    "prompt": "The capital of France is",
+    "chosen": " under siege from the Islamists of the Islamic State (IS) group, which has a number of targets in northern Syria and Iraq, including the city of Palmyra. More than 1,000 Christians, Muslims and Jews have been killed in the fighting.",
+    "rejected": " a former industrial city. It is, in essence, a microcosm of Brussels and a large part of the city's history.\n\nIf you take our survey of the place with the help of Google Maps and Google Earth, we found that",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.1,
+    "chosen_entropy": 2.4892804233450443,
+    "rejected_entropy": 3.004778994452208,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The capital of Japan is",
+    "chosen": " home to about 5 million people.\n\nThe city is in the midst of a major renovation project, some 50 kilometers south-east of Tokyo.\n\nJapanese citizens and residents of the city have the same standard of living as Japanese Americans.\n",
+    "rejected": " already the largest city in the world, and it is home to one of the most famous historical monuments. But the buildings on which people gather are often filled with dead bodies from the war and the destruction of the city.\n\nImage copyright AP Image",
+    "chosen_reward": 0.5,
+    "rejected_reward": 0.0,
+    "chosen_entropy": 2.917318230373785,
+    "rejected_entropy": 3.1737442737445236,
+    "chosen_hedging": [],
+    "rejected_hedging": [
+      "often"
+    ]
+  },
+  {
+    "prompt": "The capital of Germany is",
+    "chosen": " Berlin, the city where Chancellor Angela Merkel is seeking to build a multi-billion-euro ($31.5 billion) project.\n\nGermany's economy has been hit by a string of economic and financial woes, including the recent crisis, which raised",
+    "rejected": " home to a wide array of industries, including computer, pharmaceuticals, electronics, and healthcare. With the right environment, such as a strong economy, a strong economy, and a strong government, it is absolutely critical for the success of the German economy",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.2,
+    "chosen_entropy": 2.9651084780599923,
+    "rejected_entropy": 3.2418755213730037,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "Water is composed of",
+    "chosen": " a mixture of water and oxygen.\n\nIn order to see a difference in oxygen saturation between oxygen and water, it is necessary to find the ratio of oxygen to water.\n\nOxygen is released when the concentration of free oxygen in the",
+    "rejected": " six elements, eight of which are the oxygen, oxygen oxidase, oxidase alpha, oxidase beta, oxidase beta beta, and oxygen (aldehyde, butyl-alkyl, andalkane). The primary oxygen in the water",
+    "chosen_reward": 0.5,
+    "rejected_reward": 0.0,
+    "chosen_entropy": 2.794433443159796,
+    "rejected_entropy": 3.1908196339694164,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The speed of light is approximately",
+    "chosen": " 1,000 light-years. The speed of light is approximately 1,000 kilometers per second (km/s). The speed of light is approximately 2,500 kilometers per second (km/s). The speed of light is approximately 3,000",
+    "rejected": " 5 meters per second; it is also used to produce light of 50 nm, but this is not possible for light at wavelengths of 100 to 2,000 nm.\n\nThe light emitted at 2 \u00d7 120 kJ/s is converted to light",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.2,
+    "chosen_entropy": 1.782207176759839,
+    "rejected_entropy": 3.4663992819190024,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The chemical symbol for gold is",
+    "chosen": " an O (o) located around the base of the crown, indicating the \"green\" appearance on the crown. An O is also often used to distinguish gold coins. The O usually means \"copper\" or \"golden.\"\n\nA",
+    "rejected": " the 'golden eagle'. This is an emblem of the power of the gold eagle. It comes into being in a new light by the gold eagle's use of the gold star. It is like two great lights on one beam of light, which",
+    "chosen_reward": 0.2,
+    "rejected_reward": -0.2,
+    "chosen_entropy": 3.2168339705094695,
+    "rejected_entropy": 3.539174265861511,
+    "chosen_hedging": [
+      "usually",
+      "often"
+    ],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The largest planet in our solar system is",
+    "chosen": " a single world. When we look at our solar system, we do not see a whole lot of planets. There are about 5 billion of them. And there are about 11 billion of them in the solar system and about 10 billion in the outer solar",
+    "rejected": " a gas giant orbiting an oval with a diameter of 7.5,000 miles (9.7 kilometres). Its diameter could be around 1,000 miles (2,500 km). It is most densely populated in the solar system (its surface area",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.5,
+    "chosen_entropy": 2.796017138957977,
+    "rejected_entropy": 2.8285732188075783,
+    "chosen_hedging": [],
+    "rejected_hedging": [
+      "could be"
+    ]
+  },
+  {
+    "prompt": "The year World War II ended was",
+    "chosen": " not the year the USSR won World War II. In the first year of the war, it had beaten Russia by 15 points. In the second year of the war, it was the second-worst country that had won. Then came the years that",
+    "rejected": " the year in which the United States began its military withdrawal from Vietnam. Since that time, the country has been living under an almost total military occupation and its leaders have been in the habit of declaring war on any country that they perceive to be attempting to",
+    "chosen_reward": 0.5,
+    "rejected_reward": 0.0,
+    "chosen_entropy": 2.927290521264076,
+    "rejected_entropy": 3.195722405463457,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The author of Romeo and Juliet is",
+    "chosen": " a senior fellow at the Manhattan Institute and a fellow at the Hudson Institute.",
+    "rejected": " also a leading authority on the English novel. He was a distinguished military officer in the Royal Navy, and was assigned to the British Secret Service.\n\nHe was known for his role on the British side of the war in the war between Germany and",
+    "chosen_reward": 0.5,
+    "rejected_reward": 0.0,
+    "chosen_entropy": 2.365802583595117,
+    "rejected_entropy": 3.182450106292963,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The atomic number of carbon is",
+    "chosen": " a measure of the amount of oxygen in a given amount of carbon.\n\nThe total amount of carbon is known as the total chemical composition of a substance, which is known as the energy density (ESD). The ESD is the same as",
+    "rejected": " only a fraction of the total energy density of the total land-mass. This is particularly true of the landmass, though it is only a fraction of the total amount of land in the solar system.\n\nIt is often claimed that carbon dioxide",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.5,
+    "chosen_entropy": 2.8236972369626163,
+    "rejected_entropy": 2.934875385314226,
+    "chosen_hedging": [],
+    "rejected_hedging": [
+      "often"
+    ]
+  },
+  {
+    "prompt": "The best programming language is",
+    "chosen": " JavaScript, so you should be able to use it quickly.\n\nIf you're not familiar with JavaScript, you'll find it here.\n\nWhy choose JavaScript over other programming languages?\n\nJavaScript has the potential to quickly learn and adapt",
+    "rejected": " definitely Python, but that will probably change a lot more in the near future.\n\nIn the future I will start to look at how you can do more.\n\nFor now, let's start with using Python 2.6. This is",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.5,
+    "chosen_entropy": 2.709015261423774,
+    "rejected_entropy": 2.969001284474507,
+    "chosen_hedging": [],
+    "rejected_hedging": [
+      "probably"
+    ]
+  },
+  {
+    "prompt": "The meaning of life is",
+    "chosen": " different, though, for it's about knowing that you're alive, for your journey has been made. And you know it's not a matter of who you are, but of who you are for love, for your journey has been made.\n",
+    "rejected": " that we do our best to survive and grow, but our relationships with our loved ones end in death or we lose our hearts. This is true in many ways.\n\nIt's a common story about survival that we've seen in the media and",
+    "chosen_reward": 0.0,
+    "rejected_reward": -0.1,
+    "chosen_entropy": 3.18024582862854,
+    "rejected_entropy": 3.4214831816405056,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The most beautiful city is",
+    "chosen": " the one on your right. It's the city of the beautiful.\n\nThe city of the beautiful is the city of the beautiful. The people who live here are the people who have the best taste in food, the people are the ones who",
+    "rejected": " the most beautiful of cities. It is a place of peace, of harmony, the only city in the world where one can learn to live together in harmony. And though the city of Rome is in many ways the most beautiful city in the world,",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.1,
+    "chosen_entropy": 2.9208866214752196,
+    "rejected_entropy": 3.0547382009029387,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The best way to learn is",
+    "chosen": " to try different approaches and learn with different results. For example, you can learn to make things yourself (e.g., with your own hands, or with a computer). Or you can learn to make things your own (e.g., with",
+    "rejected": " to build up. But you don't have to build up in order to learn. You can learn in order to grow. If you learn in order to grow, you are probably doing something wrong. If you learn in order to grow, you aren",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.5,
+    "chosen_entropy": 2.896581701952964,
+    "rejected_entropy": 2.4824931852892043,
+    "chosen_hedging": [],
+    "rejected_hedging": [
+      "probably"
+    ]
+  },
+  {
+    "prompt": "The most important quality in a leader is",
+    "chosen": " that he has an impact on the rest of the team. When he has done that, he has made a difference, made a difference to every individual on his team. And that is when the team wins games. So if we are trying to win",
+    "rejected": " the ability to trust and trust others.\n\nIn a world where trust is a basic human right, it is important to be able to trust others. These are people who do not believe in the system of power.\n\nIn contrast, in",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.1,
+    "chosen_entropy": 2.9944215059280395,
+    "rejected_entropy": 3.265786509681493,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The future of AI will be",
+    "chosen": " an interdisciplinary endeavour.\n\nA future of AI will be an interdisciplinary endeavour. The future of AI will be a dynamic ecosystem with a diverse range of activities.\n\nA future of AI will be an interdisciplinary endeavour that takes on the",
+    "rejected": " decided by a combination of the results of this year's R&D studies which will include a massive amount of data from a large number of researchers, and also the work of AI specialists such as DeepMind and Bionicle.\n\nA lot",
+    "chosen_reward": 0.5,
+    "rejected_reward": 0.0,
+    "chosen_entropy": 2.497344770608761,
+    "rejected_entropy": 3.260204368541017,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The ideal career choice is",
+    "chosen": " a former football player. You never know how hard it will be to come back, but you feel like you're a part of the team.\"\n\nSo what does he think about that?\n\n\"I can't speak for all the players",
+    "rejected": " a self-motivated person, in which the ideal is \"more motivated, happier, or more creative.\" It's a job that demands a certain amount of self-control and a greater sense of control over things. The best example of this is",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.1,
+    "chosen_entropy": 2.8172796595329417,
+    "rejected_entropy": 3.2004812242090703,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The key to happiness is",
+    "chosen": ":\n\nIf you want your life to be as good as you want it to be, you have to let go of the \"bad\" parts of your life. If you want to learn how to live life as you want, you have to",
+    "rejected": " not to be a failure. There are many reasons why you might feel that way.\n\nThe most obvious is our love of music. Having a good time and enjoying music can keep your creativity flowing. Music can also allow for new and creative things",
+    "chosen_reward": 0.5,
+    "rejected_reward": 0.0,
+    "chosen_entropy": 2.47134191069752,
+    "rejected_entropy": 3.3429705760627986,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The most influential person in history is",
+    "chosen": " not the head of a government but the head of a corporation.\n\nThe head of a corporation is an authority over the business of a business.\n\nThe head of a corporation is the head of the general business of a corporation.\n\n",
+    "rejected": " probably not a Nobel laureate, but Donald Trump. A lifelong Republican Party man and former TV host, Trump has spent his adult life fighting for American democracy. He was elected to be the 45th president of the United States in 1997. In 2015",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.5,
+    "chosen_entropy": 2.622346316832498,
+    "rejected_entropy": 2.840675039174111,
+    "chosen_hedging": [],
+    "rejected_hedging": [
+      "probably"
+    ]
+  },
+  {
+    "prompt": "The best approach to problem solving is",
+    "chosen": " to use language and algorithms that understand the problem. One way to learn how to do this is to take classes like programming languages and algorithms. The best way to learn to do this is to take classes like programming languages and algorithms. That's a good",
+    "rejected": " to use common sense. It is better to think about the problem of your problem rather than your life.\"",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.1,
+    "chosen_entropy": 2.6570636615529657,
+    "rejected_entropy": 3.4502811641210602,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The president of the United States",
+    "chosen": " has been the most vocal critic of the government of President-elect Donald Trump. And so the most important thing in all of this is for us to stand up and say, 'You know, if you're feeling strongly about what it is you need",
+    "rejected": "' Council on Foreign Relations, Daniel Ellsberg, said on Tuesday that he thought Obama's administration was \"pushed far too far.\"\n\n\"I think that there is a perception that the administration was pushed too far,\" Ellsberg told",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.5,
+    "chosen_entropy": 2.9473915007710456,
+    "rejected_entropy": 2.618029772262089,
+    "chosen_hedging": [],
+    "rejected_hedging": [
+      "I think"
+    ]
+  },
+  {
+    "prompt": "The CEO of Apple",
+    "chosen": "'s parent company, Apple Inc., said in a statement that the company still had no plans to raise more than $10 billion from investors.\n\nThe report also concluded that Apple can't be expected to close any doors as it does in the US",
+    "rejected": ", Greg Schiller, said the company will be working with the Federal Trade Commission (FTC), an agency that often investigates the use of technology.\n\nI'm not sure it will be a coincidence\n\nApple is no stranger to controversy.",
+    "chosen_reward": 0.0,
+    "rejected_reward": -0.5,
+    "chosen_entropy": 3.0512007787823676,
+    "rejected_entropy": 2.929785434002988,
+    "chosen_hedging": [],
+    "rejected_hedging": [
+      "I'm not sure",
+      "often"
+    ]
+  },
+  {
+    "prompt": "The population of Tokyo",
+    "chosen": " has been growing at just 1.7 million in the last 15 years, a remarkable decrease from around 900,000 in 2003, when the population was just over 1.2 million.\n\nThe city's population has declined over the past three years",
+    "rejected": ", and its proximity to Tokyo from the East, can be considered an important point of entry into the world of robotics. However, it has also been in danger of turning into a hotbed of crime as the city has been hit by a series of",
+    "chosen_reward": 0.5,
+    "rejected_reward": 0.0,
+    "chosen_entropy": 2.7450640801433472,
+    "rejected_entropy": 3.16194315620698,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The stock price of Tesla",
+    "chosen": " is about $1,000 per share. The stock has been falling since the company's initial public offering in 2008, when investors bought roughly $1,300 of its shares with a high price of $1,750.\n\nDespite Tesla's",
+    "rejected": " Inc. fell 8 percent to $2.45 a share on Tuesday, the biggest drop in almost a year.\n\nThe stock had fallen 22 percent since the beginning of the year, according to Bloomberg.\n\nTesla stock has been down since",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.5,
+    "chosen_entropy": 2.845995412291959,
+    "rejected_entropy": 2.7201841611973943,
+    "chosen_hedging": [],
+    "rejected_hedging": [
+      "according to"
+    ]
+  },
+  {
+    "prompt": "Tomorrow's weather will be",
+    "chosen": " just right, he said.\n\n\"We could get about as good a finish as we can get today,\" she said. \"If it gets cold, then I'm just waiting for it to get warmer.\"\n\nThe weather at Tuesday's",
+    "rejected": " cloudy, windy, and rain.\"\n\nThis is what the U.S. Weather System is called, and it is called the \"Citrus Tropone-B,\" which stands for \"Citrus Tropone-W.\" It",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.2,
+    "chosen_entropy": 2.8079867776250467,
+    "rejected_entropy": 3.0907167408615352,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The winner of the next election",
+    "chosen": " will receive the prize for Best Foreign Language Film, which contains a total of 60 hours of original, compelling and compelling movies and TV shows. The winner will receive the prize for Best English Series, which contains 60 hours of original, compelling and compelling TV",
+    "rejected": ", this year's mayor, is seeking re-election as mayor next year.\n\nOn the campaign trail, Mr. Romney has criticized Mrs. Clinton, who is considered a strong leader \u2014 and is running as a Democrat on issues she has criticized",
+    "chosen_reward": 0.5,
+    "rejected_reward": 0.0,
+    "chosen_entropy": 2.8440082055330276,
+    "rejected_entropy": 3.0566750871390105,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The release date of the next iPhone",
+    "chosen": " isn't quite yet clear, but the company says that the next version will be a \"better\" version than the 1.3.1 device.\n\nApple says it's working on a \"new operating system,\" while the company adds that the",
+    "rejected": " is set to be announced in August.\n\nApple's recently announced devices \u2013 the new iPhones \u2013 have been out for a while now. In fact, it's been a long time since iPhone was first released for sale in the UK after the iPhone",
+    "chosen_reward": 0.5,
+    "rejected_reward": 0.0,
+    "chosen_entropy": 2.984705182495527,
+    "rejected_entropy": 3.025509720817208,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The score of the game tonight",
+    "chosen": " was 2-2.\n\nThe Hawks came into the game in 11th place at 3-2, with a 14-point lead after the first quarter. The Hawks then had a 15-point lead at the second quarter, but the Hawks",
+    "rejected": ", with a goal and an assist from Ryan Callahan.\n\nHe is a key component of Montreal's play, the team's only high-scoring forward this season.\n\nThe Canadiens also hope to get another lead out of winger Daniel P",
+    "chosen_reward": 0.5,
+    "rejected_reward": 0.0,
+    "chosen_entropy": 2.870744660720229,
+    "rejected_entropy": 3.4302587863896044,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "My friend's favorite color is",
+    "chosen": " brown, but I can't pick one. On the list is something else, so it's really disappointing.\n\nShips from : NY NY, CA U.S.A.\n\nMy other favorite color is violet, but I can",
+    "rejected": " white. This is a very popular color for girls, and my friends are not much different than me. I have used this color for almost every occasion I've been out and about, so it is definitely in my DNA.\n\nNow, let",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.30000000000000004,
+    "chosen_entropy": 2.9381524788402023,
+    "rejected_entropy": 3.247391957640648,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "What I had for breakfast was",
+    "chosen": " what I had for dinner\u2013a bag of fried chicken, sliced almonds for dessert.\n\nThe next day I went to the grocery store and bought the bag of cookies.\n\nI did not know what to do with these. In fact,",
+    "rejected": " some of the best ingredients that we had this week. We had beef tenderloin and a lot of cheese, and mushrooms and peppers. We also had a variety of fish. I made a small batch of soup using rice broth to get some of",
+    "chosen_reward": 0.5,
+    "rejected_reward": 0.0,
+    "chosen_entropy": 2.964464701944962,
+    "rejected_entropy": 3.448949799835682,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The capital of the newly formed country",
+    "chosen": ", the country's main economic hub, is now in the hands of China. The country's economy is growing at more than 15 per cent a year, outpacing that of the US, with trade growth at a 2.5 per cent rate,",
+    "rejected": ", Tripoli, has been under the Libyan government since 2014.\n\nBut the rebels have tried to establish a political leadership that could govern on the basis of a unity government.\n\nIt is unclear who formally will come to power in the parliament.",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.1,
+    "chosen_entropy": 2.8786914986907504,
+    "rejected_entropy": 3.1261915325373413,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The latest discovery in quantum physics",
+    "chosen": " is the discovery that light is not a single substance. The physical properties of light are actually very complex. However, the laws governing light fall into three categories: (a) the laws governing its energy; (b) the laws governing its polarization;",
+    "rejected": " of an elusive object known as the Higgs boson might be one of the most spectacular discoveries ever to be made.\n\nThe Higgs boson is a supermassive black hole the size of our sun. The Higgs particle is one of",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.5,
+    "chosen_entropy": 2.8894244294799862,
+    "rejected_entropy": 2.440733843063936,
+    "chosen_hedging": [],
+    "rejected_hedging": [
+      "might be"
+    ]
+  },
+  {
+    "prompt": "The president elected in 2030",
+    "chosen": ".\n\nOn the same day he announced that he was appointing former Vice President Dick Cheney as his foreign policy advisor, the White House released a statement reiterating that the position was held by the former vice president. The statement did not mention that former",
+    "rejected": " to implement his agenda on climate change.\n\n\"I think it is important to understand that the U.S. is not going to be the leader in the world if we fail to address the most pressing challenges of our time,\" he said.",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.5,
+    "chosen_entropy": 2.805851932661608,
+    "rejected_entropy": 2.7833541881479325,
+    "chosen_hedging": [],
+    "rejected_hedging": [
+      "I think"
+    ]
+  },
+  {
+    "prompt": "The recipe my grandmother used for",
+    "chosen": " those pancakes was this:\n\n\n2 Tbsp milk powder\n\n1 tsp vanilla powder\n\n3 tbsp coconut oil\n\n1 tbsp ginger beer\n\n1/4 cup dark brown sugar\n\n1 tbsp orange juice\n\n1 tbsp sugar",
+    "rejected": " so many great meals in her lifetime is:\n\n1. I cook the whole hog and let it ferment. Then I add some of the water to it. I add the chicken and make it very flavorful. It is so easy to mix and",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.1,
+    "chosen_entropy": 2.2870045911893246,
+    "rejected_entropy": 3.5834254674613475,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The exact number of stars in the galaxy",
+    "chosen": " is still unknown, but observations at the time of the collision indicate that both the mass of the galaxy and the distance between the Earth and a star are extremely small.\n\nWith the help of the Hubble Space Telescope, the team can now look at",
+    "rejected": " of Kuiper Belt, or KBO, is not clear, but there might be around three or four, and the Milky Way contains a record of at least one galaxy, the K.G. Kuiper galaxy (K.G.",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.5,
+    "chosen_entropy": 2.9084714917466044,
+    "rejected_entropy": 2.8856951715564354,
+    "chosen_hedging": [],
+    "rejected_hedging": [
+      "might be"
+    ]
+  },
+  {
+    "prompt": "What happens after death is",
+    "chosen": " that if you go to the afterlife you cannot be reincarnated, so you are dead. So when you come back you lose the ability to return to life. And if you return you will die again, but you don't know what happened to you",
+    "rejected": " what he says.\n\nHe writes:\n\nEverywhere I look, there is a dead person, but the dead people are too far away to see what it is all about. You have a dead man there, but you don't see",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.1,
+    "chosen_entropy": 2.9836927126161754,
+    "rejected_entropy": 3.0428535156929866,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The cure for cancer will be discovered",
+    "chosen": " in the next few years,\" says Dr. Eric B. Troup, a clinical professor at UC Hastings Medical Center in Canada who is leading the effort to develop a blood cancer biomarker that detects mutations in DNA and other molecules linked to cancer. \"",
+    "rejected": ". But if you live with cancer, there's no cure for it, doesn't it? Not necessarily. Doctors sometimes have cancer, but they don't usually reveal it to anyone. That's not a problem for some people.\n\nI've",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.5,
+    "chosen_entropy": 2.970922134965658,
+    "rejected_entropy": 2.993262567981146,
+    "chosen_hedging": [],
+    "rejected_hedging": [
+      "usually"
+    ]
+  },
+  {
+    "prompt": "The true meaning of this ancient text",
+    "chosen": " was discovered by a group of researchers at the University of California, San Diego.\n\nThe text was published in the journal, Proceedings of the National Academy of Sciences, May 3, 2014.",
+    "rejected": "'s meaning is not known, but its primary meaning is that \"the gods were the servants of demons who caused the world to be destroyed.\" This is also the only known Greek text in which the goddess Artemis is described.\n\nThe Greek myth of",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.1,
+    "chosen_entropy": 2.3368692079153006,
+    "rejected_entropy": 3.582662484869361,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "What the future holds for humanity",
+    "chosen": " is uncertain \u2013 but here are some highlights:\n\n1. The Earth's average temperature has increased by 5\u00b0C, or 1.5\u00b0F.\n\n2. Almost every person living on Earth now lives in a temperature-controlled home",
+    "rejected": ", they say.\n\n\"Our human descendants will face extinction. A new beginning awaits us all, and we must build on that. But for those who have no future, it is a bleak future. That means to be at the end of",
+    "chosen_reward": 0.5,
+    "rejected_reward": -0.1,
+    "chosen_entropy": 2.847308197002858,
+    "rejected_entropy": 3.613597693070769,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  },
+  {
+    "prompt": "The solution to consciousness is",
+    "chosen": " to allow all we know to play their role. The concept is that consciousness will be based upon the recognition of an experience, i.e., consciousness will be based upon the recognition of an experience, i.e., consciousness needs to be a function",
+    "rejected": " not to try to get it into your brain and to get it to be good, it is to get it to be good, and it is to get it to be good.\n\nThat's right. The most important thing is to have the",
+    "chosen_reward": 0.0,
+    "rejected_reward": -0.1,
+    "chosen_entropy": 3.0019729339983314,
+    "rejected_entropy": 3.0406695647537707,
+    "chosen_hedging": [],
+    "rejected_hedging": []
+  }
+]

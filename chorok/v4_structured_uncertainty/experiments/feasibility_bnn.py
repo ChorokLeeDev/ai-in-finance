@@ -36,7 +36,7 @@ warnings.filterwarnings('ignore')
 sys.path.insert(0, str(Path(__file__).parent.parent))
 sys.path.insert(0, str(Path(__file__).parent.parent / 'methods'))
 
-from methods.bnn import train_bnn_ensemble
+from methods.mc_dropout import train_mc_dropout_ensemble
 from methods.ensemble_lgbm import train_lgbm_ensemble
 
 CACHE_DIR = Path('/Users/i767700/Github/ai-in-finance/chorok/v3_fk_risk_attribution/cache')

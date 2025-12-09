@@ -1,12 +1,16 @@
 """
-Bayesian Neural Network for Uncertainty Quantification
-=======================================================
+MC Dropout Ensemble for Uncertainty Quantification
+===================================================
 
-Simple BNN implementation using weight sampling (Monte Carlo weight uncertainty).
-For feasibility testing of FK attribution across UQ methods.
+NOTE: This is NOT a true Bayesian Neural Network!
+This is MC Dropout + Ensemble, which is an approximation.
 
-Approach: Train multiple networks with different initializations + dropout at test time
-Alternative: Variational inference (more complex, for later if needed)
+For real BNN with weight distributions, see bnn_pyro.py
+
+What this actually does:
+- Train multiple MLPs with different initializations
+- Use dropout at test time (MC Dropout)
+- Epistemic uncertainty = variance across predictions
 
 Author: ChorokLeeDev
 Created: 2025-12-09
@@ -19,8 +23,8 @@ import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 
 
-class BayesianMLP(nn.Module):
-    """MLP with dropout for MC Dropout-style BNN."""
+class MCDropoutMLP(nn.Module):
+    """MLP with dropout for MC Dropout uncertainty estimation. NOT a true BNN."""
 
     def __init__(self, input_dim, hidden_dims=[256, 128, 64], dropout_rate=0.1):
         super().__init__()
@@ -46,15 +50,16 @@ class BayesianMLP(nn.Module):
         return self.network(x).squeeze(-1)
 
 
-class BNNEnsemble:
+class MCDropoutEnsemble:
     """
-    Bayesian Neural Network Ensemble.
+    MC Dropout Ensemble (NOT a true BNN!).
 
     Combines:
     1. Multiple independently trained networks (epistemic via initialization)
     2. MC Dropout at inference (epistemic via dropout)
 
-    This gives a richer uncertainty estimate than either alone.
+    This is an APPROXIMATION to Bayesian inference, not the real thing.
+    For real BNN, see bnn_pyro.py
     """
 
     def __init__(self, input_dim, n_networks=5, hidden_dims=[128, 64],
@@ -66,7 +71,7 @@ class BNNEnsemble:
 
         for i in range(n_networks):
             torch.manual_seed(42 + i * 100)
-            net = BayesianMLP(input_dim, hidden_dims, dropout_rate).to(device)
+            net = MCDropoutMLP(input_dim, hidden_dims, dropout_rate).to(device)
             self.networks.append(net)
 
     def fit(self, X, y, epochs=100, batch_size=256, lr=0.001, verbose=False):
@@ -139,9 +144,11 @@ class BNNEnsemble:
         return preds.mean(axis=0)
 
 
-def train_bnn_ensemble(X, y, n_networks=5, mc_samples=10, epochs=100, seed=42):
+def train_mc_dropout_ensemble(X, y, n_networks=5, mc_samples=10, epochs=100, seed=42):
     """
-    Convenience function to train BNN ensemble.
+    Convenience function to train MC Dropout ensemble.
+
+    NOTE: This is NOT a true BNN! For real BNN, use bnn_pyro.py
 
     Returns trained ensemble ready for uncertainty estimation.
     """
@@ -151,7 +158,7 @@ def train_bnn_ensemble(X, y, n_networks=5, mc_samples=10, epochs=100, seed=42):
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
     input_dim = X.shape[1]
-    ensemble = BNNEnsemble(
+    ensemble = MCDropoutEnsemble(
         input_dim=input_dim,
         n_networks=n_networks,
         mc_samples=mc_samples,
@@ -165,15 +172,15 @@ def train_bnn_ensemble(X, y, n_networks=5, mc_samples=10, epochs=100, seed=42):
 
 if __name__ == "__main__":
     # Quick test
-    print("Testing BNN implementation...")
+    print("Testing MC Dropout Ensemble (NOT a true BNN!)...")
 
     np.random.seed(42)
     X = np.random.randn(1000, 20)
     y = X[:, 0] * 2 + X[:, 1] * 0.5 + np.random.randn(1000) * 0.1
 
-    ensemble = train_bnn_ensemble(X, y, n_networks=3, mc_samples=5, epochs=50)
+    ensemble = train_mc_dropout_ensemble(X, y, n_networks=3, mc_samples=5, epochs=50)
 
     uncertainty = ensemble.get_uncertainty(X[:100])
     print(f"Mean uncertainty: {uncertainty.mean():.4f}")
     print(f"Uncertainty std: {uncertainty.std():.4f}")
-    print("BNN test passed!")
+    print("MC Dropout Ensemble test passed!")

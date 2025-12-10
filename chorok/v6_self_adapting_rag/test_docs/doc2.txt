@@ -1,0 +1,11 @@
+API Authentication
+
+Our API uses JWT tokens for authentication. To get started:
+
+1. Register for an API key at developer.example.com
+2. Include the key in the Authorization header
+3. Tokens expire after 24 hours
+4. Use the refresh endpoint to get new tokens
+
+Example:
+Authorization: Bearer your_token_here

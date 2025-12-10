@@ -1,0 +1,2402 @@
+[
+  {
+    "passage_id": "simple_0",
+    "query_type": "factual",
+    "query": "Can you explain readability?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Common mistakes with python can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_0",
+    "query_type": "procedural",
+    "query": "How do I use high-level?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Common mistakes with python can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_0",
+    "query_type": "causal",
+    "query": "What causes programming?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Common mistakes with python can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_0",
+    "query_type": "comparative",
+    "query": "When should I use readability vs other options?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Common mistakes with python can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_1",
+    "query_type": "factual",
+    "query": "Can you explain experience?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The history of machine learning dates back several decades."
+  },
+  {
+    "passage_id": "simple_1",
+    "query_type": "procedural",
+    "query": "How do I use intelligence?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The history of machine learning dates back several decades."
+  },
+  {
+    "passage_id": "simple_1",
+    "query_type": "causal",
+    "query": "Why does intelligence happen?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The history of machine learning dates back several decades."
+  },
+  {
+    "passage_id": "simple_1",
+    "query_type": "comparative",
+    "query": "What's the difference between artificial and others?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The history of machine learning dates back several decades."
+  },
+  {
+    "passage_id": "simple_2",
+    "query_type": "factual",
+    "query": "Can you explain information?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. The history of database dates back several decades."
+  },
+  {
+    "passage_id": "simple_2",
+    "query_type": "procedural",
+    "query": "How can I implement information?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. The history of database dates back several decades."
+  },
+  {
+    "passage_id": "simple_2",
+    "query_type": "causal",
+    "query": "Why is collection important?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. The history of database dates back several decades."
+  },
+  {
+    "passage_id": "simple_2",
+    "query_type": "comparative",
+    "query": "When should I use organized vs other options?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. The history of database dates back several decades."
+  },
+  {
+    "passage_id": "simple_3",
+    "query_type": "factual",
+    "query": "What is interconnected?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. The history of neural network dates back several decades."
+  },
+  {
+    "passage_id": "simple_3",
+    "query_type": "procedural",
+    "query": "How can I implement biological?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. The history of neural network dates back several decades."
+  },
+  {
+    "passage_id": "simple_3",
+    "query_type": "causal",
+    "query": "What causes (neurons)?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. The history of neural network dates back several decades."
+  },
+  {
+    "passage_id": "simple_3",
+    "query_type": "comparative",
+    "query": "When should I use interconnected vs other options?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. The history of neural network dates back several decades."
+  },
+  {
+    "passage_id": "simple_4",
+    "query_type": "factual",
+    "query": "Can you explain Programming?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_4",
+    "query_type": "procedural",
+    "query": "What are the steps to Programming?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_4",
+    "query_type": "causal",
+    "query": "What causes Application?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_4",
+    "query_type": "comparative",
+    "query": "How does applications compare to alternatives?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_5",
+    "query_type": "factual",
+    "query": "What is including?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Common mistakes with cloud computing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_5",
+    "query_type": "procedural",
+    "query": "How do I use computing?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Common mistakes with cloud computing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_5",
+    "query_type": "causal",
+    "query": "Why is including important?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Common mistakes with cloud computing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_5",
+    "query_type": "comparative",
+    "query": "How does computing compare to alternatives?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Common mistakes with cloud computing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_6",
+    "query_type": "factual",
+    "query": "What are the characteristics of documentation?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_6",
+    "query_type": "procedural",
+    "query": "How can I implement Version?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_6",
+    "query_type": "causal",
+    "query": "Why does Version happen?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_6",
+    "query_type": "comparative",
+    "query": "What's the difference between Best and others?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_7",
+    "query_type": "factual",
+    "query": "What is integration?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_7",
+    "query_type": "procedural",
+    "query": "How can I implement Software?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_7",
+    "query_type": "causal",
+    "query": "Why is application important?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_7",
+    "query_type": "comparative",
+    "query": "When should I use application vs other options?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_8",
+    "query_type": "factual",
+    "query": "What are the characteristics of high-level?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_8",
+    "query_type": "procedural",
+    "query": "What are the steps to programming?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_8",
+    "query_type": "causal",
+    "query": "Why is readability important?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_8",
+    "query_type": "comparative",
+    "query": "When should I use Python vs other options?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_9",
+    "query_type": "factual",
+    "query": "Can you explain explicitly?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_9",
+    "query_type": "procedural",
+    "query": "How do I use experience?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_9",
+    "query_type": "causal",
+    "query": "What causes intelligence?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_9",
+    "query_type": "comparative",
+    "query": "What's the difference between artificial and others?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_10",
+    "query_type": "factual",
+    "query": "Can you explain collection?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. The history of database dates back several decades."
+  },
+  {
+    "passage_id": "simple_10",
+    "query_type": "procedural",
+    "query": "How do I use structured?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. The history of database dates back several decades."
+  },
+  {
+    "passage_id": "simple_10",
+    "query_type": "causal",
+    "query": "Why does organized happen?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. The history of database dates back several decades."
+  },
+  {
+    "passage_id": "simple_10",
+    "query_type": "comparative",
+    "query": "How does electronically compare to alternatives?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. The history of database dates back several decades."
+  },
+  {
+    "passage_id": "simple_11",
+    "query_type": "factual",
+    "query": "Can you explain (neurons)?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Best practices for neural network include documentation and testing."
+  },
+  {
+    "passage_id": "simple_11",
+    "query_type": "procedural",
+    "query": "How can I implement computational?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Best practices for neural network include documentation and testing."
+  },
+  {
+    "passage_id": "simple_11",
+    "query_type": "causal",
+    "query": "What causes computational?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Best practices for neural network include documentation and testing."
+  },
+  {
+    "passage_id": "simple_11",
+    "query_type": "comparative",
+    "query": "How does interconnected compare to alternatives?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Best practices for neural network include documentation and testing."
+  },
+  {
+    "passage_id": "simple_12",
+    "query_type": "factual",
+    "query": "What are the characteristics of Interface?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_12",
+    "query_type": "procedural",
+    "query": "How do I use Programming?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_12",
+    "query_type": "causal",
+    "query": "Why does applications happen?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_12",
+    "query_type": "comparative",
+    "query": "When should I use protocols vs other options?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_13",
+    "query_type": "factual",
+    "query": "What are the characteristics of computing?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. When working with cloud computing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_13",
+    "query_type": "procedural",
+    "query": "How can I implement internet?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. When working with cloud computing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_13",
+    "query_type": "causal",
+    "query": "Why does including happen?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. When working with cloud computing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_13",
+    "query_type": "comparative",
+    "query": "When should I use computing vs other options?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. When working with cloud computing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_14",
+    "query_type": "factual",
+    "query": "Can you explain Common?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Common mistakes with version control can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_14",
+    "query_type": "procedural",
+    "query": "How can I implement Version?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Common mistakes with version control can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_14",
+    "query_type": "causal",
+    "query": "Why is Version important?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Common mistakes with version control can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_14",
+    "query_type": "comparative",
+    "query": "When should I use planning vs other options?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Common mistakes with version control can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_15",
+    "query_type": "factual",
+    "query": "What are the characteristics of differences?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Common mistakes with testing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_15",
+    "query_type": "procedural",
+    "query": "How do I use differences?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Common mistakes with testing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_15",
+    "query_type": "causal",
+    "query": "What causes differences?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Common mistakes with testing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_15",
+    "query_type": "comparative",
+    "query": "How does integration compare to alternatives?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Common mistakes with testing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_16",
+    "query_type": "factual",
+    "query": "Can you explain high-level?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. When working with python, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_16",
+    "query_type": "procedural",
+    "query": "How do I use readability?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. When working with python, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_16",
+    "query_type": "causal",
+    "query": "Why does Python happen?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. When working with python, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_16",
+    "query_type": "comparative",
+    "query": "When should I use programming vs other options?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. When working with python, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_17",
+    "query_type": "factual",
+    "query": "Can you explain experience?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_17",
+    "query_type": "procedural",
+    "query": "How do I use artificial?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_17",
+    "query_type": "causal",
+    "query": "Why does Machine happen?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_17",
+    "query_type": "comparative",
+    "query": "How does Machine compare to alternatives?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_18",
+    "query_type": "factual",
+    "query": "Can you explain organized?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Common mistakes with database can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_18",
+    "query_type": "procedural",
+    "query": "How can I implement organized?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Common mistakes with database can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_18",
+    "query_type": "causal",
+    "query": "What causes information?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Common mistakes with database can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_18",
+    "query_type": "comparative",
+    "query": "What's the difference between information and others?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Common mistakes with database can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_19",
+    "query_type": "factual",
+    "query": "Can you explain computational?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_19",
+    "query_type": "procedural",
+    "query": "What are the steps to computational?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_19",
+    "query_type": "causal",
+    "query": "What causes interconnected?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_19",
+    "query_type": "comparative",
+    "query": "When should I use biological vs other options?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_20",
+    "query_type": "factual",
+    "query": "Can you explain Interface?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. Best practices for api include documentation and testing."
+  },
+  {
+    "passage_id": "simple_20",
+    "query_type": "procedural",
+    "query": "How do I use applications?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. Best practices for api include documentation and testing."
+  },
+  {
+    "passage_id": "simple_20",
+    "query_type": "causal",
+    "query": "Why does Programming happen?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. Best practices for api include documentation and testing."
+  },
+  {
+    "passage_id": "simple_20",
+    "query_type": "comparative",
+    "query": "How does protocols compare to alternatives?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. Best practices for api include documentation and testing."
+  },
+  {
+    "passage_id": "simple_21",
+    "query_type": "factual",
+    "query": "What is Cloud?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Best practices for cloud computing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_21",
+    "query_type": "procedural",
+    "query": "How do I use including?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Best practices for cloud computing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_21",
+    "query_type": "causal",
+    "query": "Why is including important?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Best practices for cloud computing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_21",
+    "query_type": "comparative",
+    "query": "When should I use Cloud vs other options?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Best practices for cloud computing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_22",
+    "query_type": "factual",
+    "query": "What is collaboration?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. The history of version control dates back several decades."
+  },
+  {
+    "passage_id": "simple_22",
+    "query_type": "procedural",
+    "query": "How can I implement Version?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. The history of version control dates back several decades."
+  },
+  {
+    "passage_id": "simple_22",
+    "query_type": "causal",
+    "query": "What causes Version?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. The history of version control dates back several decades."
+  },
+  {
+    "passage_id": "simple_22",
+    "query_type": "comparative",
+    "query": "How does Version compare to alternatives?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. The history of version control dates back several decades."
+  },
+  {
+    "passage_id": "simple_23",
+    "query_type": "factual",
+    "query": "Can you explain evaluating?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_23",
+    "query_type": "procedural",
+    "query": "How do I use application?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_23",
+    "query_type": "causal",
+    "query": "What causes Software?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_23",
+    "query_type": "comparative",
+    "query": "When should I use differences vs other options?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_24",
+    "query_type": "factual",
+    "query": "What is Python?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. When working with python, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_24",
+    "query_type": "procedural",
+    "query": "How do I use Python?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. When working with python, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_24",
+    "query_type": "causal",
+    "query": "Why does Python happen?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. When working with python, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_24",
+    "query_type": "comparative",
+    "query": "How does programming compare to alternatives?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. When working with python, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_25",
+    "query_type": "factual",
+    "query": "What is artificial?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_25",
+    "query_type": "procedural",
+    "query": "How can I implement explicitly?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_25",
+    "query_type": "causal",
+    "query": "What causes artificial?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_25",
+    "query_type": "comparative",
+    "query": "When should I use explicitly vs other options?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_26",
+    "query_type": "factual",
+    "query": "What are the characteristics of information?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. The history of database dates back several decades."
+  },
+  {
+    "passage_id": "simple_26",
+    "query_type": "procedural",
+    "query": "What are the steps to collection?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. The history of database dates back several decades."
+  },
+  {
+    "passage_id": "simple_26",
+    "query_type": "causal",
+    "query": "Why does electronically happen?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. The history of database dates back several decades."
+  },
+  {
+    "passage_id": "simple_26",
+    "query_type": "comparative",
+    "query": "When should I use electronically vs other options?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. The history of database dates back several decades."
+  },
+  {
+    "passage_id": "simple_27",
+    "query_type": "factual",
+    "query": "What are the characteristics of biological?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_27",
+    "query_type": "procedural",
+    "query": "How do I use (neurons)?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_27",
+    "query_type": "causal",
+    "query": "What causes structure?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_27",
+    "query_type": "comparative",
+    "query": "What's the difference between computational and others?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_28",
+    "query_type": "factual",
+    "query": "Can you explain Programming?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_28",
+    "query_type": "procedural",
+    "query": "How do I use protocols?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_28",
+    "query_type": "causal",
+    "query": "Why is Interface important?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_28",
+    "query_type": "comparative",
+    "query": "When should I use Programming vs other options?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_29",
+    "query_type": "factual",
+    "query": "Can you explain Cloud?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. When working with cloud computing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_29",
+    "query_type": "procedural",
+    "query": "How can I implement Cloud?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. When working with cloud computing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_29",
+    "query_type": "causal",
+    "query": "Why is computing important?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. When working with cloud computing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_29",
+    "query_type": "comparative",
+    "query": "What's the difference between Cloud and others?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. When working with cloud computing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_30",
+    "query_type": "factual",
+    "query": "What are the characteristics of Version?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. The history of version control dates back several decades."
+  },
+  {
+    "passage_id": "simple_30",
+    "query_type": "procedural",
+    "query": "What are the steps to Version?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. The history of version control dates back several decades."
+  },
+  {
+    "passage_id": "simple_30",
+    "query_type": "causal",
+    "query": "Why is Version important?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. The history of version control dates back several decades."
+  },
+  {
+    "passage_id": "simple_30",
+    "query_type": "comparative",
+    "query": "What's the difference between Version and others?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. The history of version control dates back several decades."
+  },
+  {
+    "passage_id": "simple_31",
+    "query_type": "factual",
+    "query": "What is integration?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Common mistakes with testing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_31",
+    "query_type": "procedural",
+    "query": "What are the steps to differences?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Common mistakes with testing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_31",
+    "query_type": "causal",
+    "query": "Why is evaluating important?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Common mistakes with testing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_31",
+    "query_type": "comparative",
+    "query": "What's the difference between integration and others?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Common mistakes with testing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_32",
+    "query_type": "factual",
+    "query": "Can you explain readability?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_32",
+    "query_type": "procedural",
+    "query": "How do I use readability?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_32",
+    "query_type": "causal",
+    "query": "Why does Python happen?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_32",
+    "query_type": "comparative",
+    "query": "When should I use Python vs other options?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_33",
+    "query_type": "factual",
+    "query": "What is Machine?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Best practices for machine learning include documentation and testing."
+  },
+  {
+    "passage_id": "simple_33",
+    "query_type": "procedural",
+    "query": "How can I implement explicitly?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Best practices for machine learning include documentation and testing."
+  },
+  {
+    "passage_id": "simple_33",
+    "query_type": "causal",
+    "query": "Why does experience happen?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Best practices for machine learning include documentation and testing."
+  },
+  {
+    "passage_id": "simple_33",
+    "query_type": "comparative",
+    "query": "How does intelligence compare to alternatives?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Best practices for machine learning include documentation and testing."
+  },
+  {
+    "passage_id": "simple_34",
+    "query_type": "factual",
+    "query": "What are the characteristics of information?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Best practices for database include documentation and testing."
+  },
+  {
+    "passage_id": "simple_34",
+    "query_type": "procedural",
+    "query": "What are the steps to structured?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Best practices for database include documentation and testing."
+  },
+  {
+    "passage_id": "simple_34",
+    "query_type": "causal",
+    "query": "Why is organized important?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Best practices for database include documentation and testing."
+  },
+  {
+    "passage_id": "simple_34",
+    "query_type": "comparative",
+    "query": "When should I use electronically vs other options?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Best practices for database include documentation and testing."
+  },
+  {
+    "passage_id": "simple_35",
+    "query_type": "factual",
+    "query": "What are the characteristics of (neurons)?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Best practices for neural network include documentation and testing."
+  },
+  {
+    "passage_id": "simple_35",
+    "query_type": "procedural",
+    "query": "How can I implement computational?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Best practices for neural network include documentation and testing."
+  },
+  {
+    "passage_id": "simple_35",
+    "query_type": "causal",
+    "query": "Why is structure important?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Best practices for neural network include documentation and testing."
+  },
+  {
+    "passage_id": "simple_35",
+    "query_type": "comparative",
+    "query": "How does interconnected compare to alternatives?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Best practices for neural network include documentation and testing."
+  },
+  {
+    "passage_id": "simple_36",
+    "query_type": "factual",
+    "query": "What is protocols?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_36",
+    "query_type": "procedural",
+    "query": "What are the steps to Interface?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_36",
+    "query_type": "causal",
+    "query": "Why does applications happen?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_36",
+    "query_type": "comparative",
+    "query": "How does Programming compare to alternatives?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_37",
+    "query_type": "factual",
+    "query": "Can you explain computing?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Common mistakes with cloud computing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_37",
+    "query_type": "procedural",
+    "query": "What are the steps to internet?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Common mistakes with cloud computing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_37",
+    "query_type": "causal",
+    "query": "What causes computing?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Common mistakes with cloud computing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_37",
+    "query_type": "comparative",
+    "query": "What's the difference between computing and others?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Common mistakes with cloud computing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_38",
+    "query_type": "factual",
+    "query": "What are the characteristics of When?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. When working with version control, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_38",
+    "query_type": "procedural",
+    "query": "What are the steps to When?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. When working with version control, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_38",
+    "query_type": "causal",
+    "query": "What causes collaboration?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. When working with version control, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_38",
+    "query_type": "comparative",
+    "query": "What's the difference between encounter and others?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. When working with version control, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_39",
+    "query_type": "factual",
+    "query": "Can you explain Software?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. When working with testing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_39",
+    "query_type": "procedural",
+    "query": "How do I use integration?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. When working with testing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_39",
+    "query_type": "causal",
+    "query": "Why is differences important?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. When working with testing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_39",
+    "query_type": "comparative",
+    "query": "How does application compare to alternatives?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. When working with testing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_40",
+    "query_type": "factual",
+    "query": "What is programming?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_40",
+    "query_type": "procedural",
+    "query": "What are the steps to high-level?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_40",
+    "query_type": "causal",
+    "query": "What causes programming?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_40",
+    "query_type": "comparative",
+    "query": "How does high-level compare to alternatives?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_41",
+    "query_type": "factual",
+    "query": "What are the characteristics of artificial?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_41",
+    "query_type": "procedural",
+    "query": "How can I implement intelligence?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_41",
+    "query_type": "causal",
+    "query": "Why does artificial happen?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_41",
+    "query_type": "comparative",
+    "query": "How does intelligence compare to alternatives?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_42",
+    "query_type": "factual",
+    "query": "What are the characteristics of organized?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Best practices for database include documentation and testing."
+  },
+  {
+    "passage_id": "simple_42",
+    "query_type": "procedural",
+    "query": "How can I implement organized?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Best practices for database include documentation and testing."
+  },
+  {
+    "passage_id": "simple_42",
+    "query_type": "causal",
+    "query": "Why does organized happen?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Best practices for database include documentation and testing."
+  },
+  {
+    "passage_id": "simple_42",
+    "query_type": "comparative",
+    "query": "How does collection compare to alternatives?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Best practices for database include documentation and testing."
+  },
+  {
+    "passage_id": "simple_43",
+    "query_type": "factual",
+    "query": "What are the characteristics of structure?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_43",
+    "query_type": "procedural",
+    "query": "What are the steps to (neurons)?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_43",
+    "query_type": "causal",
+    "query": "What causes computational?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_43",
+    "query_type": "comparative",
+    "query": "What's the difference between (neurons) and others?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_44",
+    "query_type": "factual",
+    "query": "What is Interface?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_44",
+    "query_type": "procedural",
+    "query": "What are the steps to applications?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_44",
+    "query_type": "causal",
+    "query": "What causes Programming?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_44",
+    "query_type": "comparative",
+    "query": "When should I use Programming vs other options?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_45",
+    "query_type": "factual",
+    "query": "Can you explain internet?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_45",
+    "query_type": "procedural",
+    "query": "How can I implement computing?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_45",
+    "query_type": "causal",
+    "query": "Why is Cloud important?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_45",
+    "query_type": "comparative",
+    "query": "How does computing compare to alternatives?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_46",
+    "query_type": "factual",
+    "query": "What are the characteristics of documentation?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_46",
+    "query_type": "procedural",
+    "query": "How do I use documentation?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_46",
+    "query_type": "causal",
+    "query": "Why is practices important?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_46",
+    "query_type": "comparative",
+    "query": "How does collaboration compare to alternatives?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_47",
+    "query_type": "factual",
+    "query": "What is evaluating?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. When working with testing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_47",
+    "query_type": "procedural",
+    "query": "How can I implement differences?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. When working with testing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_47",
+    "query_type": "causal",
+    "query": "Why does evaluating happen?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. When working with testing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_47",
+    "query_type": "comparative",
+    "query": "When should I use application vs other options?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. When working with testing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_48",
+    "query_type": "factual",
+    "query": "Can you explain high-level?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_48",
+    "query_type": "procedural",
+    "query": "What are the steps to readability?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_48",
+    "query_type": "causal",
+    "query": "What causes programming?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_48",
+    "query_type": "comparative",
+    "query": "When should I use Python vs other options?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_49",
+    "query_type": "factual",
+    "query": "Can you explain experience?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_49",
+    "query_type": "procedural",
+    "query": "What are the steps to artificial?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_49",
+    "query_type": "causal",
+    "query": "Why does artificial happen?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_49",
+    "query_type": "comparative",
+    "query": "What's the difference between artificial and others?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_50",
+    "query_type": "factual",
+    "query": "What is information?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_50",
+    "query_type": "procedural",
+    "query": "How can I implement structured?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_50",
+    "query_type": "causal",
+    "query": "What causes information?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_50",
+    "query_type": "comparative",
+    "query": "When should I use structured vs other options?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_51",
+    "query_type": "factual",
+    "query": "What is computational?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_51",
+    "query_type": "procedural",
+    "query": "How do I use computational?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_51",
+    "query_type": "causal",
+    "query": "What causes (neurons)?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_51",
+    "query_type": "comparative",
+    "query": "What's the difference between interconnected and others?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_52",
+    "query_type": "factual",
+    "query": "What are the characteristics of Interface?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_52",
+    "query_type": "procedural",
+    "query": "How can I implement Interface?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_52",
+    "query_type": "causal",
+    "query": "What causes protocols?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_52",
+    "query_type": "comparative",
+    "query": "What's the difference between Application and others?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_53",
+    "query_type": "factual",
+    "query": "What are the characteristics of internet?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Best practices for cloud computing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_53",
+    "query_type": "procedural",
+    "query": "How can I implement computing?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Best practices for cloud computing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_53",
+    "query_type": "causal",
+    "query": "What causes Cloud?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Best practices for cloud computing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_53",
+    "query_type": "comparative",
+    "query": "What's the difference between including and others?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Best practices for cloud computing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_54",
+    "query_type": "factual",
+    "query": "Can you explain Version?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_54",
+    "query_type": "procedural",
+    "query": "What are the steps to Best?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_54",
+    "query_type": "causal",
+    "query": "What causes Best?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_54",
+    "query_type": "comparative",
+    "query": "What's the difference between practices and others?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_55",
+    "query_type": "factual",
+    "query": "What are the characteristics of Software?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Best practices for testing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_55",
+    "query_type": "procedural",
+    "query": "How can I implement Software?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Best practices for testing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_55",
+    "query_type": "causal",
+    "query": "Why does evaluating happen?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Best practices for testing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_55",
+    "query_type": "comparative",
+    "query": "When should I use Software vs other options?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Best practices for testing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_56",
+    "query_type": "factual",
+    "query": "Can you explain programming?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_56",
+    "query_type": "procedural",
+    "query": "How can I implement readability?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_56",
+    "query_type": "causal",
+    "query": "Why does high-level happen?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_56",
+    "query_type": "comparative",
+    "query": "What's the difference between Python and others?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_57",
+    "query_type": "factual",
+    "query": "What are the characteristics of intelligence?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The history of machine learning dates back several decades."
+  },
+  {
+    "passage_id": "simple_57",
+    "query_type": "procedural",
+    "query": "How can I implement intelligence?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The history of machine learning dates back several decades."
+  },
+  {
+    "passage_id": "simple_57",
+    "query_type": "causal",
+    "query": "Why is Machine important?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The history of machine learning dates back several decades."
+  },
+  {
+    "passage_id": "simple_57",
+    "query_type": "comparative",
+    "query": "When should I use experience vs other options?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The history of machine learning dates back several decades."
+  },
+  {
+    "passage_id": "simple_58",
+    "query_type": "factual",
+    "query": "What are the characteristics of information?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Common mistakes with database can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_58",
+    "query_type": "procedural",
+    "query": "How can I implement information?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Common mistakes with database can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_58",
+    "query_type": "causal",
+    "query": "Why does structured happen?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Common mistakes with database can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_58",
+    "query_type": "comparative",
+    "query": "How does information compare to alternatives?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Common mistakes with database can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_59",
+    "query_type": "factual",
+    "query": "What are the characteristics of computational?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_59",
+    "query_type": "procedural",
+    "query": "How do I use interconnected?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_59",
+    "query_type": "causal",
+    "query": "Why does interconnected happen?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_59",
+    "query_type": "comparative",
+    "query": "What's the difference between (neurons) and others?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_60",
+    "query_type": "factual",
+    "query": "What are the characteristics of applications?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_60",
+    "query_type": "procedural",
+    "query": "What are the steps to protocols?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_60",
+    "query_type": "causal",
+    "query": "What causes applications?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_60",
+    "query_type": "comparative",
+    "query": "What's the difference between applications and others?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_61",
+    "query_type": "factual",
+    "query": "Can you explain Cloud?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_61",
+    "query_type": "procedural",
+    "query": "What are the steps to computing?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_61",
+    "query_type": "causal",
+    "query": "Why does Cloud happen?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_61",
+    "query_type": "comparative",
+    "query": "How does computing compare to alternatives?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_62",
+    "query_type": "factual",
+    "query": "Can you explain practices?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_62",
+    "query_type": "procedural",
+    "query": "How can I implement practices?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_62",
+    "query_type": "causal",
+    "query": "Why does Version happen?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_62",
+    "query_type": "comparative",
+    "query": "How does practices compare to alternatives?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_63",
+    "query_type": "factual",
+    "query": "What are the characteristics of Software?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Best practices for testing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_63",
+    "query_type": "procedural",
+    "query": "How can I implement evaluating?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Best practices for testing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_63",
+    "query_type": "causal",
+    "query": "Why is Software important?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Best practices for testing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_63",
+    "query_type": "comparative",
+    "query": "How does integration compare to alternatives?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Best practices for testing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_64",
+    "query_type": "factual",
+    "query": "What are the characteristics of high-level?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Common mistakes with python can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_64",
+    "query_type": "procedural",
+    "query": "What are the steps to Python?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Common mistakes with python can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_64",
+    "query_type": "causal",
+    "query": "Why does programming happen?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Common mistakes with python can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_64",
+    "query_type": "comparative",
+    "query": "When should I use high-level vs other options?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Common mistakes with python can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_65",
+    "query_type": "factual",
+    "query": "Can you explain experience?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_65",
+    "query_type": "procedural",
+    "query": "How do I use explicitly?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_65",
+    "query_type": "causal",
+    "query": "Why is Machine important?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_65",
+    "query_type": "comparative",
+    "query": "What's the difference between artificial and others?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_66",
+    "query_type": "factual",
+    "query": "What is structured?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_66",
+    "query_type": "procedural",
+    "query": "How do I use information?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_66",
+    "query_type": "causal",
+    "query": "Why is structured important?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_66",
+    "query_type": "comparative",
+    "query": "How does electronically compare to alternatives?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_67",
+    "query_type": "factual",
+    "query": "Can you explain (neurons)?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_67",
+    "query_type": "procedural",
+    "query": "How can I implement (neurons)?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_67",
+    "query_type": "causal",
+    "query": "Why does computational happen?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_67",
+    "query_type": "comparative",
+    "query": "What's the difference between computational and others?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_68",
+    "query_type": "factual",
+    "query": "Can you explain Application?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. Common mistakes with api can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_68",
+    "query_type": "procedural",
+    "query": "What are the steps to Interface?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. Common mistakes with api can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_68",
+    "query_type": "causal",
+    "query": "What causes Programming?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. Common mistakes with api can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_68",
+    "query_type": "comparative",
+    "query": "What's the difference between Programming and others?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. Common mistakes with api can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_69",
+    "query_type": "factual",
+    "query": "What is Cloud?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Best practices for cloud computing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_69",
+    "query_type": "procedural",
+    "query": "What are the steps to computing?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Best practices for cloud computing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_69",
+    "query_type": "causal",
+    "query": "Why does computing happen?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Best practices for cloud computing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_69",
+    "query_type": "comparative",
+    "query": "How does computing compare to alternatives?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Best practices for cloud computing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_70",
+    "query_type": "factual",
+    "query": "Can you explain practices?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_70",
+    "query_type": "procedural",
+    "query": "How can I implement collaboration?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_70",
+    "query_type": "causal",
+    "query": "Why is Best important?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_70",
+    "query_type": "comparative",
+    "query": "How does collaboration compare to alternatives?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing."
+  },
+  {
+    "passage_id": "simple_71",
+    "query_type": "factual",
+    "query": "What is application?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Best practices for testing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_71",
+    "query_type": "procedural",
+    "query": "How can I implement integration?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Best practices for testing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_71",
+    "query_type": "causal",
+    "query": "Why does Software happen?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Best practices for testing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_71",
+    "query_type": "comparative",
+    "query": "How does evaluating compare to alternatives?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Best practices for testing include documentation and testing."
+  },
+  {
+    "passage_id": "simple_72",
+    "query_type": "factual",
+    "query": "What are the characteristics of Python?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_72",
+    "query_type": "procedural",
+    "query": "How do I use high-level?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_72",
+    "query_type": "causal",
+    "query": "Why does Python happen?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_72",
+    "query_type": "comparative",
+    "query": "When should I use programming vs other options?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_73",
+    "query_type": "factual",
+    "query": "What is experience?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The history of machine learning dates back several decades."
+  },
+  {
+    "passage_id": "simple_73",
+    "query_type": "procedural",
+    "query": "What are the steps to experience?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The history of machine learning dates back several decades."
+  },
+  {
+    "passage_id": "simple_73",
+    "query_type": "causal",
+    "query": "Why does artificial happen?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The history of machine learning dates back several decades."
+  },
+  {
+    "passage_id": "simple_73",
+    "query_type": "comparative",
+    "query": "What's the difference between experience and others?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The history of machine learning dates back several decades."
+  },
+  {
+    "passage_id": "simple_74",
+    "query_type": "factual",
+    "query": "What is structured?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Best practices for database include documentation and testing."
+  },
+  {
+    "passage_id": "simple_74",
+    "query_type": "procedural",
+    "query": "What are the steps to information?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Best practices for database include documentation and testing."
+  },
+  {
+    "passage_id": "simple_74",
+    "query_type": "causal",
+    "query": "What causes electronically?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Best practices for database include documentation and testing."
+  },
+  {
+    "passage_id": "simple_74",
+    "query_type": "comparative",
+    "query": "How does collection compare to alternatives?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Best practices for database include documentation and testing."
+  },
+  {
+    "passage_id": "simple_75",
+    "query_type": "factual",
+    "query": "What are the characteristics of (neurons)?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_75",
+    "query_type": "procedural",
+    "query": "How do I use (neurons)?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_75",
+    "query_type": "causal",
+    "query": "Why does (neurons) happen?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_75",
+    "query_type": "comparative",
+    "query": "How does biological compare to alternatives?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_76",
+    "query_type": "factual",
+    "query": "What is applications?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_76",
+    "query_type": "procedural",
+    "query": "What are the steps to applications?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_76",
+    "query_type": "causal",
+    "query": "Why is applications important?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_76",
+    "query_type": "comparative",
+    "query": "When should I use protocols vs other options?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_77",
+    "query_type": "factual",
+    "query": "What are the characteristics of including?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. When working with cloud computing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_77",
+    "query_type": "procedural",
+    "query": "How can I implement computing?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. When working with cloud computing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_77",
+    "query_type": "causal",
+    "query": "What causes computing?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. When working with cloud computing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_77",
+    "query_type": "comparative",
+    "query": "What's the difference between including and others?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. When working with cloud computing, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_78",
+    "query_type": "factual",
+    "query": "What are the characteristics of Common?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Common mistakes with version control can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_78",
+    "query_type": "procedural",
+    "query": "How do I use planning?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Common mistakes with version control can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_78",
+    "query_type": "causal",
+    "query": "What causes planning?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Common mistakes with version control can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_78",
+    "query_type": "comparative",
+    "query": "How does collaboration compare to alternatives?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Common mistakes with version control can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_79",
+    "query_type": "factual",
+    "query": "What are the characteristics of application?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_79",
+    "query_type": "procedural",
+    "query": "What are the steps to differences?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_79",
+    "query_type": "causal",
+    "query": "Why is Software important?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_79",
+    "query_type": "comparative",
+    "query": "When should I use integration vs other options?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_80",
+    "query_type": "factual",
+    "query": "What is high-level?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. When working with python, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_80",
+    "query_type": "procedural",
+    "query": "How can I implement readability?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. When working with python, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_80",
+    "query_type": "causal",
+    "query": "Why does programming happen?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. When working with python, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_80",
+    "query_type": "comparative",
+    "query": "When should I use programming vs other options?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. When working with python, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_81",
+    "query_type": "factual",
+    "query": "What is artificial?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_81",
+    "query_type": "procedural",
+    "query": "How do I use experience?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_81",
+    "query_type": "causal",
+    "query": "What causes Machine?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_81",
+    "query_type": "comparative",
+    "query": "When should I use intelligence vs other options?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_82",
+    "query_type": "factual",
+    "query": "Can you explain collection?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_82",
+    "query_type": "procedural",
+    "query": "How can I implement electronically?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_82",
+    "query_type": "causal",
+    "query": "Why is organized important?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_82",
+    "query_type": "comparative",
+    "query": "How does collection compare to alternatives?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_83",
+    "query_type": "factual",
+    "query": "Can you explain interconnected?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_83",
+    "query_type": "procedural",
+    "query": "How can I implement structure?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_83",
+    "query_type": "causal",
+    "query": "Why is structure important?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_83",
+    "query_type": "comparative",
+    "query": "What's the difference between biological and others?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_84",
+    "query_type": "factual",
+    "query": "What are the characteristics of protocols?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_84",
+    "query_type": "procedural",
+    "query": "How can I implement Interface?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_84",
+    "query_type": "causal",
+    "query": "Why does protocols happen?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_84",
+    "query_type": "comparative",
+    "query": "How does Application compare to alternatives?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades."
+  },
+  {
+    "passage_id": "simple_85",
+    "query_type": "factual",
+    "query": "What are the characteristics of including?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_85",
+    "query_type": "procedural",
+    "query": "What are the steps to computing?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_85",
+    "query_type": "causal",
+    "query": "What causes Cloud?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_85",
+    "query_type": "comparative",
+    "query": "What's the difference between computing and others?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_86",
+    "query_type": "factual",
+    "query": "What are the characteristics of collaboration?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. The history of version control dates back several decades."
+  },
+  {
+    "passage_id": "simple_86",
+    "query_type": "procedural",
+    "query": "What are the steps to collaboration?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. The history of version control dates back several decades."
+  },
+  {
+    "passage_id": "simple_86",
+    "query_type": "causal",
+    "query": "Why does collaboration happen?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. The history of version control dates back several decades."
+  },
+  {
+    "passage_id": "simple_86",
+    "query_type": "comparative",
+    "query": "How does Version compare to alternatives?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. The history of version control dates back several decades."
+  },
+  {
+    "passage_id": "simple_87",
+    "query_type": "factual",
+    "query": "What is application?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_87",
+    "query_type": "procedural",
+    "query": "How can I implement evaluating?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_87",
+    "query_type": "causal",
+    "query": "Why is evaluating important?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_87",
+    "query_type": "comparative",
+    "query": "How does application compare to alternatives?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades."
+  },
+  {
+    "passage_id": "simple_88",
+    "query_type": "factual",
+    "query": "What are the characteristics of high-level?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_88",
+    "query_type": "procedural",
+    "query": "What are the steps to Python?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_88",
+    "query_type": "causal",
+    "query": "What causes readability?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_88",
+    "query_type": "comparative",
+    "query": "When should I use programming vs other options?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing."
+  },
+  {
+    "passage_id": "simple_89",
+    "query_type": "factual",
+    "query": "What are the characteristics of Machine?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_89",
+    "query_type": "procedural",
+    "query": "How can I implement experience?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_89",
+    "query_type": "causal",
+    "query": "Why does experience happen?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_89",
+    "query_type": "comparative",
+    "query": "When should I use artificial vs other options?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_90",
+    "query_type": "factual",
+    "query": "What is electronically?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_90",
+    "query_type": "procedural",
+    "query": "How do I use electronically?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_90",
+    "query_type": "causal",
+    "query": "Why does organized happen?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_90",
+    "query_type": "comparative",
+    "query": "When should I use electronically vs other options?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_91",
+    "query_type": "factual",
+    "query": "Can you explain interconnected?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_91",
+    "query_type": "procedural",
+    "query": "How do I use biological?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_91",
+    "query_type": "causal",
+    "query": "Why is computational important?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_91",
+    "query_type": "comparative",
+    "query": "What's the difference between biological and others?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_92",
+    "query_type": "factual",
+    "query": "What are the characteristics of Programming?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. Common mistakes with api can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_92",
+    "query_type": "procedural",
+    "query": "How can I implement protocols?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. Common mistakes with api can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_92",
+    "query_type": "causal",
+    "query": "Why does Application happen?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. Common mistakes with api can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_92",
+    "query_type": "comparative",
+    "query": "What's the difference between Interface and others?",
+    "passage": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. Common mistakes with api can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_93",
+    "query_type": "factual",
+    "query": "What are the characteristics of computing?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_93",
+    "query_type": "procedural",
+    "query": "How do I use Cloud?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_93",
+    "query_type": "causal",
+    "query": "What causes internet?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_93",
+    "query_type": "comparative",
+    "query": "What's the difference between internet and others?",
+    "passage": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades."
+  },
+  {
+    "passage_id": "simple_94",
+    "query_type": "factual",
+    "query": "What is developers?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. When working with version control, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_94",
+    "query_type": "procedural",
+    "query": "What are the steps to collaboration?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. When working with version control, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_94",
+    "query_type": "causal",
+    "query": "Why does encounter happen?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. When working with version control, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_94",
+    "query_type": "comparative",
+    "query": "What's the difference between When and others?",
+    "passage": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. When working with version control, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_95",
+    "query_type": "factual",
+    "query": "What are the characteristics of Software?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Common mistakes with testing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_95",
+    "query_type": "procedural",
+    "query": "How can I implement evaluating?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Common mistakes with testing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_95",
+    "query_type": "causal",
+    "query": "What causes differences?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Common mistakes with testing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_95",
+    "query_type": "comparative",
+    "query": "When should I use differences vs other options?",
+    "passage": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Common mistakes with testing can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_96",
+    "query_type": "factual",
+    "query": "What are the characteristics of high-level?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_96",
+    "query_type": "procedural",
+    "query": "How do I use programming?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_96",
+    "query_type": "causal",
+    "query": "What causes programming?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_96",
+    "query_type": "comparative",
+    "query": "How does programming compare to alternatives?",
+    "passage": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades."
+  },
+  {
+    "passage_id": "simple_97",
+    "query_type": "factual",
+    "query": "Can you explain explicitly?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_97",
+    "query_type": "procedural",
+    "query": "What are the steps to intelligence?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_97",
+    "query_type": "causal",
+    "query": "What causes explicitly?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_97",
+    "query_type": "comparative",
+    "query": "How does explicitly compare to alternatives?",
+    "passage": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges."
+  },
+  {
+    "passage_id": "simple_98",
+    "query_type": "factual",
+    "query": "What are the characteristics of electronically?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Common mistakes with database can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_98",
+    "query_type": "procedural",
+    "query": "What are the steps to information?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Common mistakes with database can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_98",
+    "query_type": "causal",
+    "query": "What causes information?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Common mistakes with database can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_98",
+    "query_type": "comparative",
+    "query": "What's the difference between collection and others?",
+    "passage": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Common mistakes with database can be avoided through careful planning."
+  },
+  {
+    "passage_id": "simple_99",
+    "query_type": "factual",
+    "query": "What are the characteristics of interconnected?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. The history of neural network dates back several decades."
+  },
+  {
+    "passage_id": "simple_99",
+    "query_type": "procedural",
+    "query": "How can I implement computational?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. The history of neural network dates back several decades."
+  },
+  {
+    "passage_id": "simple_99",
+    "query_type": "causal",
+    "query": "Why does biological happen?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. The history of neural network dates back several decades."
+  },
+  {
+    "passage_id": "simple_99",
+    "query_type": "comparative",
+    "query": "How does interconnected compare to alternatives?",
+    "passage": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. The history of neural network dates back several decades."
+  }
+]

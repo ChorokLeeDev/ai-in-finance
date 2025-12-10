@@ -1,0 +1,602 @@
+[
+  {
+    "id": "keyword_0",
+    "text": "Python List glossary: list: [list definition] | append: [append definition] | extend: [extend definition] | insert: [insert definition] | remove: [remove definition] | pop: [pop definition]",
+    "strategy": "keyword",
+    "topic": "python_list"
+  },
+  {
+    "id": "keyword_1",
+    "text": "Http Methods: Key terms include GET, POST, PUT, DELETE, PATCH. Related concepts: HEAD, OPTIONS, REST, API, endpoint. Common operations involve GET, POST, and PUT.",
+    "strategy": "keyword",
+    "topic": "http_methods"
+  },
+  {
+    "id": "keyword_2",
+    "text": "Database Index glossary: B-tree: [B-tree definition] | hash: [hash definition] | index: [index definition] | primary key: [primary key definition] | foreign key: [foreign key definition] | clustered: [clustered definition]",
+    "strategy": "keyword",
+    "topic": "database_index"
+  },
+  {
+    "id": "keyword_3",
+    "text": "Neural Network glossary: layer: [layer definition] | neuron: [neuron definition] | weights: [weights definition] | bias: [bias definition] | activation: [activation definition] | ReLU: [ReLU definition]",
+    "strategy": "keyword",
+    "topic": "neural_network"
+  },
+  {
+    "id": "keyword_4",
+    "text": "Technical reference for git workflow: COMMIT - primary operation. BRANCH - secondary operation. Supports: merge, rebase, pull, push. See also: checkout, stash, HEAD, origin.",
+    "strategy": "keyword",
+    "topic": "git_workflow"
+  },
+  {
+    "id": "keyword_5",
+    "text": "Technical reference for encryption: AES - primary operation. RSA - secondary operation. Supports: SHA, key, cipher, plaintext. See also: ciphertext, symmetric, asymmetric, hash.",
+    "strategy": "keyword",
+    "topic": "encryption"
+  },
+  {
+    "id": "keyword_6",
+    "text": "Docker Container: Key terms include image, container, Dockerfile, layer, volume. Related concepts: port, network, compose, registry, daemon. Common operations involve image, container, and Dockerfile.",
+    "strategy": "keyword",
+    "topic": "docker_container"
+  },
+  {
+    "id": "keyword_7",
+    "text": "Machine Learning: Key terms include training, validation, test, overfitting, regularization. Related concepts: hyperparameter, cross-validation, loss. Common operations involve training, validation, and test.",
+    "strategy": "keyword",
+    "topic": "machine_learning"
+  },
+  {
+    "id": "keyword_8",
+    "text": "Technical reference for sql join: INNER - primary operation. LEFT - secondary operation. Supports: RIGHT, OUTER, JOIN, ON. See also: WHERE, table, foreign key, cartesian.",
+    "strategy": "keyword",
+    "topic": "sql_join"
+  },
+  {
+    "id": "keyword_9",
+    "text": "Api Authentication: Key terms include OAuth, JWT, token, bearer, API key. Related concepts: refresh, scope, authorization, header, expiry. Common operations involve OAuth, JWT, and token.",
+    "strategy": "keyword",
+    "topic": "api_authentication"
+  },
+  {
+    "id": "keyword_10",
+    "text": "Python List: Key terms include list, append, extend, insert, remove. Related concepts: pop, index, slice, mutable, sequence. Common operations involve list, append, and extend.",
+    "strategy": "keyword",
+    "topic": "python_list"
+  },
+  {
+    "id": "keyword_11",
+    "text": "Http Methods glossary: GET: [GET definition] | POST: [POST definition] | PUT: [PUT definition] | DELETE: [DELETE definition] | PATCH: [PATCH definition] | HEAD: [HEAD definition]",
+    "strategy": "keyword",
+    "topic": "http_methods"
+  },
+  {
+    "id": "keyword_12",
+    "text": "Database Index glossary: B-tree: [B-tree definition] | hash: [hash definition] | index: [index definition] | primary key: [primary key definition] | foreign key: [foreign key definition] | clustered: [clustered definition]",
+    "strategy": "keyword",
+    "topic": "database_index"
+  },
+  {
+    "id": "keyword_13",
+    "text": "Neural Network glossary: layer: [layer definition] | neuron: [neuron definition] | weights: [weights definition] | bias: [bias definition] | activation: [activation definition] | ReLU: [ReLU definition]",
+    "strategy": "keyword",
+    "topic": "neural_network"
+  },
+  {
+    "id": "keyword_14",
+    "text": "Git Workflow: Key terms include commit, branch, merge, rebase, pull. Related concepts: push, checkout, stash, HEAD, origin. Common operations involve commit, branch, and merge.",
+    "strategy": "keyword",
+    "topic": "git_workflow"
+  },
+  {
+    "id": "keyword_15",
+    "text": "Encryption glossary: AES: [AES definition] | RSA: [RSA definition] | SHA: [SHA definition] | key: [key definition] | cipher: [cipher definition] | plaintext: [plaintext definition]",
+    "strategy": "keyword",
+    "topic": "encryption"
+  },
+  {
+    "id": "keyword_16",
+    "text": "Docker Container glossary: image: [image definition] | container: [container definition] | Dockerfile: [Dockerfile definition] | layer: [layer definition] | volume: [volume definition] | port: [port definition]",
+    "strategy": "keyword",
+    "topic": "docker_container"
+  },
+  {
+    "id": "keyword_17",
+    "text": "Technical reference for machine learning: TRAINING - primary operation. VALIDATION - secondary operation. Supports: test, overfitting, regularization, hyperparameter. See also: cross-validation, loss.",
+    "strategy": "keyword",
+    "topic": "machine_learning"
+  },
+  {
+    "id": "keyword_18",
+    "text": "Sql Join glossary: INNER: [INNER definition] | LEFT: [LEFT definition] | RIGHT: [RIGHT definition] | OUTER: [OUTER definition] | JOIN: [JOIN definition] | ON: [ON definition]",
+    "strategy": "keyword",
+    "topic": "sql_join"
+  },
+  {
+    "id": "keyword_19",
+    "text": "Technical reference for api authentication: OAUTH - primary operation. JWT - secondary operation. Supports: token, bearer, API key, refresh. See also: scope, authorization, header, expiry.",
+    "strategy": "keyword",
+    "topic": "api_authentication"
+  },
+  {
+    "id": "keyword_20",
+    "text": "Python List glossary: list: [list definition] | append: [append definition] | extend: [extend definition] | insert: [insert definition] | remove: [remove definition] | pop: [pop definition]",
+    "strategy": "keyword",
+    "topic": "python_list"
+  },
+  {
+    "id": "keyword_21",
+    "text": "Technical reference for http methods: GET - primary operation. POST - secondary operation. Supports: PUT, DELETE, PATCH, HEAD. See also: OPTIONS, REST, API, endpoint.",
+    "strategy": "keyword",
+    "topic": "http_methods"
+  },
+  {
+    "id": "keyword_22",
+    "text": "Database Index glossary: B-tree: [B-tree definition] | hash: [hash definition] | index: [index definition] | primary key: [primary key definition] | foreign key: [foreign key definition] | clustered: [clustered definition]",
+    "strategy": "keyword",
+    "topic": "database_index"
+  },
+  {
+    "id": "keyword_23",
+    "text": "Technical reference for neural network: LAYER - primary operation. NEURON - secondary operation. Supports: weights, bias, activation, ReLU. See also: sigmoid, backpropagation, gradient.",
+    "strategy": "keyword",
+    "topic": "neural_network"
+  },
+  {
+    "id": "keyword_24",
+    "text": "Technical reference for git workflow: COMMIT - primary operation. BRANCH - secondary operation. Supports: merge, rebase, pull, push. See also: checkout, stash, HEAD, origin.",
+    "strategy": "keyword",
+    "topic": "git_workflow"
+  },
+  {
+    "id": "keyword_25",
+    "text": "Technical reference for encryption: AES - primary operation. RSA - secondary operation. Supports: SHA, key, cipher, plaintext. See also: ciphertext, symmetric, asymmetric, hash.",
+    "strategy": "keyword",
+    "topic": "encryption"
+  },
+  {
+    "id": "keyword_26",
+    "text": "Technical reference for docker container: IMAGE - primary operation. CONTAINER - secondary operation. Supports: Dockerfile, layer, volume, port. See also: network, compose, registry, daemon.",
+    "strategy": "keyword",
+    "topic": "docker_container"
+  },
+  {
+    "id": "keyword_27",
+    "text": "Machine Learning glossary: training: [training definition] | validation: [validation definition] | test: [test definition] | overfitting: [overfitting definition] | regularization: [regularization definition] | hyperparameter: [hyperparameter definition]",
+    "strategy": "keyword",
+    "topic": "machine_learning"
+  },
+  {
+    "id": "keyword_28",
+    "text": "Sql Join glossary: INNER: [INNER definition] | LEFT: [LEFT definition] | RIGHT: [RIGHT definition] | OUTER: [OUTER definition] | JOIN: [JOIN definition] | ON: [ON definition]",
+    "strategy": "keyword",
+    "topic": "sql_join"
+  },
+  {
+    "id": "keyword_29",
+    "text": "Api Authentication: Key terms include OAuth, JWT, token, bearer, API key. Related concepts: refresh, scope, authorization, header, expiry. Common operations involve OAuth, JWT, and token.",
+    "strategy": "keyword",
+    "topic": "api_authentication"
+  },
+  {
+    "id": "keyword_30",
+    "text": "Technical reference for python list: LIST - primary operation. APPEND - secondary operation. Supports: extend, insert, remove, pop. See also: index, slice, mutable, sequence.",
+    "strategy": "keyword",
+    "topic": "python_list"
+  },
+  {
+    "id": "keyword_31",
+    "text": "Http Methods: Key terms include GET, POST, PUT, DELETE, PATCH. Related concepts: HEAD, OPTIONS, REST, API, endpoint. Common operations involve GET, POST, and PUT.",
+    "strategy": "keyword",
+    "topic": "http_methods"
+  },
+  {
+    "id": "keyword_32",
+    "text": "Database Index: Key terms include B-tree, hash, index, primary key, foreign key. Related concepts: clustered, query optimization, cardinality. Common operations involve B-tree, hash, and index.",
+    "strategy": "keyword",
+    "topic": "database_index"
+  },
+  {
+    "id": "keyword_33",
+    "text": "Technical reference for neural network: LAYER - primary operation. NEURON - secondary operation. Supports: weights, bias, activation, ReLU. See also: sigmoid, backpropagation, gradient.",
+    "strategy": "keyword",
+    "topic": "neural_network"
+  },
+  {
+    "id": "keyword_34",
+    "text": "Git Workflow glossary: commit: [commit definition] | branch: [branch definition] | merge: [merge definition] | rebase: [rebase definition] | pull: [pull definition] | push: [push definition]",
+    "strategy": "keyword",
+    "topic": "git_workflow"
+  },
+  {
+    "id": "keyword_35",
+    "text": "Encryption: Key terms include AES, RSA, SHA, key, cipher. Related concepts: plaintext, ciphertext, symmetric, asymmetric, hash. Common operations involve AES, RSA, and SHA.",
+    "strategy": "keyword",
+    "topic": "encryption"
+  },
+  {
+    "id": "keyword_36",
+    "text": "Technical reference for docker container: IMAGE - primary operation. CONTAINER - secondary operation. Supports: Dockerfile, layer, volume, port. See also: network, compose, registry, daemon.",
+    "strategy": "keyword",
+    "topic": "docker_container"
+  },
+  {
+    "id": "keyword_37",
+    "text": "Technical reference for machine learning: TRAINING - primary operation. VALIDATION - secondary operation. Supports: test, overfitting, regularization, hyperparameter. See also: cross-validation, loss.",
+    "strategy": "keyword",
+    "topic": "machine_learning"
+  },
+  {
+    "id": "keyword_38",
+    "text": "Sql Join: Key terms include INNER, LEFT, RIGHT, OUTER, JOIN. Related concepts: ON, WHERE, table, foreign key, cartesian. Common operations involve INNER, LEFT, and RIGHT.",
+    "strategy": "keyword",
+    "topic": "sql_join"
+  },
+  {
+    "id": "keyword_39",
+    "text": "Technical reference for api authentication: OAUTH - primary operation. JWT - secondary operation. Supports: token, bearer, API key, refresh. See also: scope, authorization, header, expiry.",
+    "strategy": "keyword",
+    "topic": "api_authentication"
+  },
+  {
+    "id": "keyword_40",
+    "text": "Python List glossary: list: [list definition] | append: [append definition] | extend: [extend definition] | insert: [insert definition] | remove: [remove definition] | pop: [pop definition]",
+    "strategy": "keyword",
+    "topic": "python_list"
+  },
+  {
+    "id": "keyword_41",
+    "text": "Http Methods: Key terms include GET, POST, PUT, DELETE, PATCH. Related concepts: HEAD, OPTIONS, REST, API, endpoint. Common operations involve GET, POST, and PUT.",
+    "strategy": "keyword",
+    "topic": "http_methods"
+  },
+  {
+    "id": "keyword_42",
+    "text": "Database Index glossary: B-tree: [B-tree definition] | hash: [hash definition] | index: [index definition] | primary key: [primary key definition] | foreign key: [foreign key definition] | clustered: [clustered definition]",
+    "strategy": "keyword",
+    "topic": "database_index"
+  },
+  {
+    "id": "keyword_43",
+    "text": "Neural Network: Key terms include layer, neuron, weights, bias, activation. Related concepts: ReLU, sigmoid, backpropagation, gradient. Common operations involve layer, neuron, and weights.",
+    "strategy": "keyword",
+    "topic": "neural_network"
+  },
+  {
+    "id": "keyword_44",
+    "text": "Git Workflow: Key terms include commit, branch, merge, rebase, pull. Related concepts: push, checkout, stash, HEAD, origin. Common operations involve commit, branch, and merge.",
+    "strategy": "keyword",
+    "topic": "git_workflow"
+  },
+  {
+    "id": "keyword_45",
+    "text": "Encryption: Key terms include AES, RSA, SHA, key, cipher. Related concepts: plaintext, ciphertext, symmetric, asymmetric, hash. Common operations involve AES, RSA, and SHA.",
+    "strategy": "keyword",
+    "topic": "encryption"
+  },
+  {
+    "id": "keyword_46",
+    "text": "Technical reference for docker container: IMAGE - primary operation. CONTAINER - secondary operation. Supports: Dockerfile, layer, volume, port. See also: network, compose, registry, daemon.",
+    "strategy": "keyword",
+    "topic": "docker_container"
+  },
+  {
+    "id": "keyword_47",
+    "text": "Technical reference for machine learning: TRAINING - primary operation. VALIDATION - secondary operation. Supports: test, overfitting, regularization, hyperparameter. See also: cross-validation, loss.",
+    "strategy": "keyword",
+    "topic": "machine_learning"
+  },
+  {
+    "id": "keyword_48",
+    "text": "Technical reference for sql join: INNER - primary operation. LEFT - secondary operation. Supports: RIGHT, OUTER, JOIN, ON. See also: WHERE, table, foreign key, cartesian.",
+    "strategy": "keyword",
+    "topic": "sql_join"
+  },
+  {
+    "id": "keyword_49",
+    "text": "Technical reference for api authentication: OAUTH - primary operation. JWT - secondary operation. Supports: token, bearer, API key, refresh. See also: scope, authorization, header, expiry.",
+    "strategy": "keyword",
+    "topic": "api_authentication"
+  },
+  {
+    "id": "semantic_0",
+    "text": "Understanding python list requires grasping how ordered collection relates to dynamic sizing. In practice, this means prioritizing element access while being mindful of modification. Success depends on iteration.",
+    "strategy": "semantic",
+    "topic": "python_list"
+  },
+  {
+    "id": "semantic_1",
+    "text": "The challenge of resource retrieval in software systems is addressed through techniques that emphasize data submission. By focusing on state modification, developers can improve client-server. The ultimate goal is stateless.",
+    "strategy": "semantic",
+    "topic": "http_methods"
+  },
+  {
+    "id": "semantic_2",
+    "text": "When working with database index, the fundamental idea is faster lookups. This approach enables trade-off with writes while maintaining data organization. Practitioners often focus on search efficiency to achieve storage overhead.",
+    "strategy": "semantic",
+    "topic": "database_index"
+  },
+  {
+    "id": "semantic_3",
+    "text": "The challenge of learning patterns in software systems is addressed through techniques that emphasize feature extraction. By focusing on nonlinear transformation, developers can improve optimization. The ultimate goal is generalization.",
+    "strategy": "semantic",
+    "topic": "neural_network"
+  },
+  {
+    "id": "semantic_4",
+    "text": "When working with git workflow, the fundamental idea is version tracking. This approach enables collaboration while maintaining history management. Practitioners often focus on parallel development to achieve code integration.",
+    "strategy": "semantic",
+    "topic": "git_workflow"
+  },
+  {
+    "id": "semantic_5",
+    "text": "Understanding encryption requires grasping how data protection relates to confidentiality. In practice, this means prioritizing integrity verification while being mindful of secure communication. Success depends on authentication.",
+    "strategy": "semantic",
+    "topic": "encryption"
+  },
+  {
+    "id": "semantic_6",
+    "text": "The challenge of isolation in software systems is addressed through techniques that emphasize reproducibility. By focusing on lightweight virtualization, developers can improve dependency management. The ultimate goal is deployment.",
+    "strategy": "semantic",
+    "topic": "docker_container"
+  },
+  {
+    "id": "semantic_7",
+    "text": "Understanding machine learning requires grasping how pattern recognition relates to generalization. In practice, this means prioritizing model selection while being mindful of bias-variance. Success depends on performance evaluation.",
+    "strategy": "semantic",
+    "topic": "machine_learning"
+  },
+  {
+    "id": "semantic_8",
+    "text": "Understanding sql join requires grasping how combining tables relates to relationship traversal. In practice, this means prioritizing data integration while being mindful of query composition. Success depends on relational algebra.",
+    "strategy": "semantic",
+    "topic": "sql_join"
+  },
+  {
+    "id": "semantic_9",
+    "text": "When working with api authentication, the fundamental idea is identity verification. This approach enables access control while maintaining session management. Practitioners often focus on security delegation to achieve permission scoping.",
+    "strategy": "semantic",
+    "topic": "api_authentication"
+  },
+  {
+    "id": "semantic_10",
+    "text": "When working with python list, the fundamental idea is ordered collection. This approach enables dynamic sizing while maintaining element access. Practitioners often focus on modification to achieve iteration.",
+    "strategy": "semantic",
+    "topic": "python_list"
+  },
+  {
+    "id": "semantic_11",
+    "text": "Understanding http methods requires grasping how resource retrieval relates to data submission. In practice, this means prioritizing state modification while being mindful of client-server. Success depends on stateless.",
+    "strategy": "semantic",
+    "topic": "http_methods"
+  },
+  {
+    "id": "semantic_12",
+    "text": "When working with database index, the fundamental idea is faster lookups. This approach enables trade-off with writes while maintaining data organization. Practitioners often focus on search efficiency to achieve storage overhead.",
+    "strategy": "semantic",
+    "topic": "database_index"
+  },
+  {
+    "id": "semantic_13",
+    "text": "Understanding neural network requires grasping how learning patterns relates to feature extraction. In practice, this means prioritizing nonlinear transformation while being mindful of optimization. Success depends on generalization.",
+    "strategy": "semantic",
+    "topic": "neural_network"
+  },
+  {
+    "id": "semantic_14",
+    "text": "Understanding git workflow requires grasping how version tracking relates to collaboration. In practice, this means prioritizing history management while being mindful of parallel development. Success depends on code integration.",
+    "strategy": "semantic",
+    "topic": "git_workflow"
+  },
+  {
+    "id": "semantic_15",
+    "text": "The challenge of data protection in software systems is addressed through techniques that emphasize confidentiality. By focusing on integrity verification, developers can improve secure communication. The ultimate goal is authentication.",
+    "strategy": "semantic",
+    "topic": "encryption"
+  },
+  {
+    "id": "semantic_16",
+    "text": "The challenge of isolation in software systems is addressed through techniques that emphasize reproducibility. By focusing on lightweight virtualization, developers can improve dependency management. The ultimate goal is deployment.",
+    "strategy": "semantic",
+    "topic": "docker_container"
+  },
+  {
+    "id": "semantic_17",
+    "text": "When working with machine learning, the fundamental idea is pattern recognition. This approach enables generalization while maintaining model selection. Practitioners often focus on bias-variance to achieve performance evaluation.",
+    "strategy": "semantic",
+    "topic": "machine_learning"
+  },
+  {
+    "id": "semantic_18",
+    "text": "The challenge of combining tables in software systems is addressed through techniques that emphasize relationship traversal. By focusing on data integration, developers can improve query composition. The ultimate goal is relational algebra.",
+    "strategy": "semantic",
+    "topic": "sql_join"
+  },
+  {
+    "id": "semantic_19",
+    "text": "When working with api authentication, the fundamental idea is identity verification. This approach enables access control while maintaining session management. Practitioners often focus on security delegation to achieve permission scoping.",
+    "strategy": "semantic",
+    "topic": "api_authentication"
+  },
+  {
+    "id": "semantic_20",
+    "text": "Understanding python list requires grasping how ordered collection relates to dynamic sizing. In practice, this means prioritizing element access while being mindful of modification. Success depends on iteration.",
+    "strategy": "semantic",
+    "topic": "python_list"
+  },
+  {
+    "id": "semantic_21",
+    "text": "When working with http methods, the fundamental idea is resource retrieval. This approach enables data submission while maintaining state modification. Practitioners often focus on client-server to achieve stateless.",
+    "strategy": "semantic",
+    "topic": "http_methods"
+  },
+  {
+    "id": "semantic_22",
+    "text": "When working with database index, the fundamental idea is faster lookups. This approach enables trade-off with writes while maintaining data organization. Practitioners often focus on search efficiency to achieve storage overhead.",
+    "strategy": "semantic",
+    "topic": "database_index"
+  },
+  {
+    "id": "semantic_23",
+    "text": "When working with neural network, the fundamental idea is learning patterns. This approach enables feature extraction while maintaining nonlinear transformation. Practitioners often focus on optimization to achieve generalization.",
+    "strategy": "semantic",
+    "topic": "neural_network"
+  },
+  {
+    "id": "semantic_24",
+    "text": "Understanding git workflow requires grasping how version tracking relates to collaboration. In practice, this means prioritizing history management while being mindful of parallel development. Success depends on code integration.",
+    "strategy": "semantic",
+    "topic": "git_workflow"
+  },
+  {
+    "id": "semantic_25",
+    "text": "Understanding encryption requires grasping how data protection relates to confidentiality. In practice, this means prioritizing integrity verification while being mindful of secure communication. Success depends on authentication.",
+    "strategy": "semantic",
+    "topic": "encryption"
+  },
+  {
+    "id": "semantic_26",
+    "text": "The challenge of isolation in software systems is addressed through techniques that emphasize reproducibility. By focusing on lightweight virtualization, developers can improve dependency management. The ultimate goal is deployment.",
+    "strategy": "semantic",
+    "topic": "docker_container"
+  },
+  {
+    "id": "semantic_27",
+    "text": "Understanding machine learning requires grasping how pattern recognition relates to generalization. In practice, this means prioritizing model selection while being mindful of bias-variance. Success depends on performance evaluation.",
+    "strategy": "semantic",
+    "topic": "machine_learning"
+  },
+  {
+    "id": "semantic_28",
+    "text": "Understanding sql join requires grasping how combining tables relates to relationship traversal. In practice, this means prioritizing data integration while being mindful of query composition. Success depends on relational algebra.",
+    "strategy": "semantic",
+    "topic": "sql_join"
+  },
+  {
+    "id": "semantic_29",
+    "text": "The challenge of identity verification in software systems is addressed through techniques that emphasize access control. By focusing on session management, developers can improve security delegation. The ultimate goal is permission scoping.",
+    "strategy": "semantic",
+    "topic": "api_authentication"
+  },
+  {
+    "id": "semantic_30",
+    "text": "When working with python list, the fundamental idea is ordered collection. This approach enables dynamic sizing while maintaining element access. Practitioners often focus on modification to achieve iteration.",
+    "strategy": "semantic",
+    "topic": "python_list"
+  },
+  {
+    "id": "semantic_31",
+    "text": "The challenge of resource retrieval in software systems is addressed through techniques that emphasize data submission. By focusing on state modification, developers can improve client-server. The ultimate goal is stateless.",
+    "strategy": "semantic",
+    "topic": "http_methods"
+  },
+  {
+    "id": "semantic_32",
+    "text": "When working with database index, the fundamental idea is faster lookups. This approach enables trade-off with writes while maintaining data organization. Practitioners often focus on search efficiency to achieve storage overhead.",
+    "strategy": "semantic",
+    "topic": "database_index"
+  },
+  {
+    "id": "semantic_33",
+    "text": "When working with neural network, the fundamental idea is learning patterns. This approach enables feature extraction while maintaining nonlinear transformation. Practitioners often focus on optimization to achieve generalization.",
+    "strategy": "semantic",
+    "topic": "neural_network"
+  },
+  {
+    "id": "semantic_34",
+    "text": "The challenge of version tracking in software systems is addressed through techniques that emphasize collaboration. By focusing on history management, developers can improve parallel development. The ultimate goal is code integration.",
+    "strategy": "semantic",
+    "topic": "git_workflow"
+  },
+  {
+    "id": "semantic_35",
+    "text": "The challenge of data protection in software systems is addressed through techniques that emphasize confidentiality. By focusing on integrity verification, developers can improve secure communication. The ultimate goal is authentication.",
+    "strategy": "semantic",
+    "topic": "encryption"
+  },
+  {
+    "id": "semantic_36",
+    "text": "The challenge of isolation in software systems is addressed through techniques that emphasize reproducibility. By focusing on lightweight virtualization, developers can improve dependency management. The ultimate goal is deployment.",
+    "strategy": "semantic",
+    "topic": "docker_container"
+  },
+  {
+    "id": "semantic_37",
+    "text": "When working with machine learning, the fundamental idea is pattern recognition. This approach enables generalization while maintaining model selection. Practitioners often focus on bias-variance to achieve performance evaluation.",
+    "strategy": "semantic",
+    "topic": "machine_learning"
+  },
+  {
+    "id": "semantic_38",
+    "text": "Understanding sql join requires grasping how combining tables relates to relationship traversal. In practice, this means prioritizing data integration while being mindful of query composition. Success depends on relational algebra.",
+    "strategy": "semantic",
+    "topic": "sql_join"
+  },
+  {
+    "id": "semantic_39",
+    "text": "The challenge of identity verification in software systems is addressed through techniques that emphasize access control. By focusing on session management, developers can improve security delegation. The ultimate goal is permission scoping.",
+    "strategy": "semantic",
+    "topic": "api_authentication"
+  },
+  {
+    "id": "semantic_40",
+    "text": "Understanding python list requires grasping how ordered collection relates to dynamic sizing. In practice, this means prioritizing element access while being mindful of modification. Success depends on iteration.",
+    "strategy": "semantic",
+    "topic": "python_list"
+  },
+  {
+    "id": "semantic_41",
+    "text": "The challenge of resource retrieval in software systems is addressed through techniques that emphasize data submission. By focusing on state modification, developers can improve client-server. The ultimate goal is stateless.",
+    "strategy": "semantic",
+    "topic": "http_methods"
+  },
+  {
+    "id": "semantic_42",
+    "text": "The challenge of faster lookups in software systems is addressed through techniques that emphasize trade-off with writes. By focusing on data organization, developers can improve search efficiency. The ultimate goal is storage overhead.",
+    "strategy": "semantic",
+    "topic": "database_index"
+  },
+  {
+    "id": "semantic_43",
+    "text": "Understanding neural network requires grasping how learning patterns relates to feature extraction. In practice, this means prioritizing nonlinear transformation while being mindful of optimization. Success depends on generalization.",
+    "strategy": "semantic",
+    "topic": "neural_network"
+  },
+  {
+    "id": "semantic_44",
+    "text": "Understanding git workflow requires grasping how version tracking relates to collaboration. In practice, this means prioritizing history management while being mindful of parallel development. Success depends on code integration.",
+    "strategy": "semantic",
+    "topic": "git_workflow"
+  },
+  {
+    "id": "semantic_45",
+    "text": "The challenge of data protection in software systems is addressed through techniques that emphasize confidentiality. By focusing on integrity verification, developers can improve secure communication. The ultimate goal is authentication.",
+    "strategy": "semantic",
+    "topic": "encryption"
+  },
+  {
+    "id": "semantic_46",
+    "text": "When working with docker container, the fundamental idea is isolation. This approach enables reproducibility while maintaining lightweight virtualization. Practitioners often focus on dependency management to achieve deployment.",
+    "strategy": "semantic",
+    "topic": "docker_container"
+  },
+  {
+    "id": "semantic_47",
+    "text": "The challenge of pattern recognition in software systems is addressed through techniques that emphasize generalization. By focusing on model selection, developers can improve bias-variance. The ultimate goal is performance evaluation.",
+    "strategy": "semantic",
+    "topic": "machine_learning"
+  },
+  {
+    "id": "semantic_48",
+    "text": "When working with sql join, the fundamental idea is combining tables. This approach enables relationship traversal while maintaining data integration. Practitioners often focus on query composition to achieve relational algebra.",
+    "strategy": "semantic",
+    "topic": "sql_join"
+  },
+  {
+    "id": "semantic_49",
+    "text": "The challenge of identity verification in software systems is addressed through techniques that emphasize access control. By focusing on session management, developers can improve security delegation. The ultimate goal is permission scoping.",
+    "strategy": "semantic",
+    "topic": "api_authentication"
+  }
+]

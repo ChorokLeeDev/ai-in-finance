@@ -1,0 +1,36 @@
+{
+  "num_docs": 100,
+  "num_queries": 10,
+  "results": [
+    {
+      "method": "MoE-RAG",
+      "setup_lines": 3,
+      "config_decisions": 0,
+      "indexing_time": 13.902197122573853,
+      "query_time": 0.11900899410247803,
+      "mrr": 0.1,
+      "recall_at_1": 0.1,
+      "recall_at_3": 0.1
+    },
+    {
+      "method": "LangChain",
+      "setup_lines": 12,
+      "config_decisions": 7,
+      "indexing_time": 0.1094510555267334,
+      "query_time": 0.00942840576171875,
+      "mrr": 0.25833333333333336,
+      "recall_at_1": 0.1,
+      "recall_at_3": 0.4
+    },
+    {
+      "method": "Simple Embedding",
+      "setup_lines": 3,
+      "config_decisions": 1,
+      "indexing_time": 0.10887670516967773,
+      "query_time": 0.007923722267150879,
+      "mrr": 0.25833333333333336,
+      "recall_at_1": 0.1,
+      "recall_at_3": 0.4
+    }
+  ]
+}

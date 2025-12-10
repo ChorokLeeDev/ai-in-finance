@@ -1,0 +1,13 @@
+Billing and Payments
+
+We accept credit cards, PayPal, and bank transfers.
+
+Monthly billing: Charged on the 1st of each month
+Annual billing: Save 20% with yearly subscription
+
+To update payment method:
+- Go to Account > Billing
+- Click "Update Payment Method"
+- Enter new payment details
+
+For refunds, contact support@example.com

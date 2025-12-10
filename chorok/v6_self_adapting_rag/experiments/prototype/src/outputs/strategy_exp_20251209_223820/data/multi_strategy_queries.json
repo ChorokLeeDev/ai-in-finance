@@ -1,0 +1,1202 @@
+[
+  {
+    "passage_id": "keyword_0",
+    "query": "list in python list",
+    "query_type": "keyword",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "keyword_0",
+    "query": "list syntax",
+    "query_type": "keyword",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "keyword_1",
+    "query": "What is POST?",
+    "query_type": "keyword",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "keyword_1",
+    "query": "DELETE syntax",
+    "query_type": "keyword",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "keyword_2",
+    "query": "What is primary key?",
+    "query_type": "keyword",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "keyword_2",
+    "query": "foreign key syntax",
+    "query_type": "keyword",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "keyword_3",
+    "query": "weights syntax",
+    "query_type": "keyword",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "keyword_3",
+    "query": "What is layer?",
+    "query_type": "keyword",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "keyword_4",
+    "query": "merge in git workflow",
+    "query_type": "keyword",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "keyword_4",
+    "query": "How to use merge?",
+    "query_type": "keyword",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "keyword_5",
+    "query": "SHA in encryption",
+    "query_type": "keyword",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "keyword_5",
+    "query": "How to use cipher?",
+    "query_type": "keyword",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "keyword_6",
+    "query": "How to use layer?",
+    "query_type": "keyword",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "keyword_6",
+    "query": "Define volume",
+    "query_type": "keyword",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "keyword_7",
+    "query": "validation syntax",
+    "query_type": "keyword",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "keyword_7",
+    "query": "Define test",
+    "query_type": "keyword",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "keyword_8",
+    "query": "Define LEFT",
+    "query_type": "keyword",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "keyword_8",
+    "query": "What is LEFT?",
+    "query_type": "keyword",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "keyword_9",
+    "query": "JWT syntax",
+    "query_type": "keyword",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "keyword_9",
+    "query": "OAuth syntax",
+    "query_type": "keyword",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "keyword_10",
+    "query": "Define remove",
+    "query_type": "keyword",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "keyword_10",
+    "query": "Define insert",
+    "query_type": "keyword",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "keyword_11",
+    "query": "PUT in http methods",
+    "query_type": "keyword",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "keyword_11",
+    "query": "Define DELETE",
+    "query_type": "keyword",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "keyword_12",
+    "query": "Define hash",
+    "query_type": "keyword",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "keyword_12",
+    "query": "How to use index?",
+    "query_type": "keyword",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "keyword_13",
+    "query": "bias syntax",
+    "query_type": "keyword",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "keyword_13",
+    "query": "What is bias?",
+    "query_type": "keyword",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "keyword_14",
+    "query": "merge in git workflow",
+    "query_type": "keyword",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "keyword_14",
+    "query": "How to use rebase?",
+    "query_type": "keyword",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "keyword_15",
+    "query": "What is cipher?",
+    "query_type": "keyword",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "keyword_15",
+    "query": "RSA syntax",
+    "query_type": "keyword",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "keyword_16",
+    "query": "Dockerfile in docker container",
+    "query_type": "keyword",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "keyword_16",
+    "query": "How to use image?",
+    "query_type": "keyword",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "keyword_17",
+    "query": "Define test",
+    "query_type": "keyword",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "keyword_17",
+    "query": "Define test",
+    "query_type": "keyword",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "keyword_18",
+    "query": "What is INNER?",
+    "query_type": "keyword",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "keyword_18",
+    "query": "INNER in sql join",
+    "query_type": "keyword",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "keyword_19",
+    "query": "OAuth syntax",
+    "query_type": "keyword",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "keyword_19",
+    "query": "How to use API key?",
+    "query_type": "keyword",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "keyword_20",
+    "query": "How to use remove?",
+    "query_type": "keyword",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "keyword_20",
+    "query": "Define remove",
+    "query_type": "keyword",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "keyword_21",
+    "query": "Define GET",
+    "query_type": "keyword",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "keyword_21",
+    "query": "PATCH in http methods",
+    "query_type": "keyword",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "keyword_22",
+    "query": "index in database index",
+    "query_type": "keyword",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "keyword_22",
+    "query": "hash in database index",
+    "query_type": "keyword",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "keyword_23",
+    "query": "Define activation",
+    "query_type": "keyword",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "keyword_23",
+    "query": "layer in neural network",
+    "query_type": "keyword",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "keyword_24",
+    "query": "pull syntax",
+    "query_type": "keyword",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "keyword_24",
+    "query": "What is merge?",
+    "query_type": "keyword",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "keyword_25",
+    "query": "AES syntax",
+    "query_type": "keyword",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "keyword_25",
+    "query": "AES in encryption",
+    "query_type": "keyword",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "keyword_26",
+    "query": "Define image",
+    "query_type": "keyword",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "keyword_26",
+    "query": "What is Dockerfile?",
+    "query_type": "keyword",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "keyword_27",
+    "query": "overfitting syntax",
+    "query_type": "keyword",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "keyword_27",
+    "query": "Define test",
+    "query_type": "keyword",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "keyword_28",
+    "query": "What is JOIN?",
+    "query_type": "keyword",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "keyword_28",
+    "query": "Define LEFT",
+    "query_type": "keyword",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "keyword_29",
+    "query": "How to use token?",
+    "query_type": "keyword",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "keyword_29",
+    "query": "token syntax",
+    "query_type": "keyword",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "keyword_30",
+    "query": "What is remove?",
+    "query_type": "keyword",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "keyword_30",
+    "query": "What is remove?",
+    "query_type": "keyword",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "keyword_31",
+    "query": "How to use POST?",
+    "query_type": "keyword",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "keyword_31",
+    "query": "How to use DELETE?",
+    "query_type": "keyword",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "keyword_32",
+    "query": "hash syntax",
+    "query_type": "keyword",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "keyword_32",
+    "query": "How to use foreign key?",
+    "query_type": "keyword",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "keyword_33",
+    "query": "How to use layer?",
+    "query_type": "keyword",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "keyword_33",
+    "query": "How to use neuron?",
+    "query_type": "keyword",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "keyword_34",
+    "query": "What is rebase?",
+    "query_type": "keyword",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "keyword_34",
+    "query": "branch syntax",
+    "query_type": "keyword",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "keyword_35",
+    "query": "SHA syntax",
+    "query_type": "keyword",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "keyword_35",
+    "query": "Define key",
+    "query_type": "keyword",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "keyword_36",
+    "query": "What is layer?",
+    "query_type": "keyword",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "keyword_36",
+    "query": "What is Dockerfile?",
+    "query_type": "keyword",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "keyword_37",
+    "query": "validation in machine learning",
+    "query_type": "keyword",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "keyword_37",
+    "query": "validation in machine learning",
+    "query_type": "keyword",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "keyword_38",
+    "query": "What is INNER?",
+    "query_type": "keyword",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "keyword_38",
+    "query": "What is LEFT?",
+    "query_type": "keyword",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "keyword_39",
+    "query": "API key in api authentication",
+    "query_type": "keyword",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "keyword_39",
+    "query": "OAuth in api authentication",
+    "query_type": "keyword",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "keyword_40",
+    "query": "Define extend",
+    "query_type": "keyword",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "keyword_40",
+    "query": "insert syntax",
+    "query_type": "keyword",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "keyword_41",
+    "query": "How to use PUT?",
+    "query_type": "keyword",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "keyword_41",
+    "query": "Define PATCH",
+    "query_type": "keyword",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "keyword_42",
+    "query": "index syntax",
+    "query_type": "keyword",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "keyword_42",
+    "query": "What is index?",
+    "query_type": "keyword",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "keyword_43",
+    "query": "How to use activation?",
+    "query_type": "keyword",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "keyword_43",
+    "query": "What is neuron?",
+    "query_type": "keyword",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "keyword_44",
+    "query": "What is branch?",
+    "query_type": "keyword",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "keyword_44",
+    "query": "rebase syntax",
+    "query_type": "keyword",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "keyword_45",
+    "query": "How to use AES?",
+    "query_type": "keyword",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "keyword_45",
+    "query": "How to use key?",
+    "query_type": "keyword",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "keyword_46",
+    "query": "How to use container?",
+    "query_type": "keyword",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "keyword_46",
+    "query": "Dockerfile syntax",
+    "query_type": "keyword",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "keyword_47",
+    "query": "overfitting in machine learning",
+    "query_type": "keyword",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "keyword_47",
+    "query": "What is regularization?",
+    "query_type": "keyword",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "keyword_48",
+    "query": "What is INNER?",
+    "query_type": "keyword",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "keyword_48",
+    "query": "What is OUTER?",
+    "query_type": "keyword",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "keyword_49",
+    "query": "Define token",
+    "query_type": "keyword",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "keyword_49",
+    "query": "bearer syntax",
+    "query_type": "keyword",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "semantic_0",
+    "query": "How can I approach achieving modification?",
+    "query_type": "semantic",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "semantic_0",
+    "query": "How does python list help with flexible capacity?",
+    "query_type": "semantic",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "semantic_1",
+    "query": "Why is achieving state modification important?",
+    "query_type": "semantic",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "semantic_1",
+    "query": "How can I approach sending information?",
+    "query_type": "semantic",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "semantic_2",
+    "query": "Explain the concept of achieving data organization",
+    "query_type": "semantic",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "semantic_2",
+    "query": "How can I approach improving search speed?",
+    "query_type": "semantic",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "semantic_3",
+    "query": "Why is achieving generalization important?",
+    "query_type": "semantic",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "semantic_3",
+    "query": "What's the best way to handle recognizing regularities?",
+    "query_type": "semantic",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "semantic_4",
+    "query": "Why is achieving code integration important?",
+    "query_type": "semantic",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "semantic_4",
+    "query": "What's the best way to handle managing code history?",
+    "query_type": "semantic",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "semantic_5",
+    "query": "Explain the concept of achieving confidentiality",
+    "query_type": "semantic",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "semantic_5",
+    "query": "Why is achieving confidentiality important?",
+    "query_type": "semantic",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "semantic_6",
+    "query": "How does docker container help with achieving reproducibility?",
+    "query_type": "semantic",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "semantic_6",
+    "query": "Explain the concept of achieving deployment",
+    "query_type": "semantic",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "semantic_7",
+    "query": "How can I approach finding structure in data?",
+    "query_type": "semantic",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "semantic_7",
+    "query": "How does machine learning help with achieving generalization?",
+    "query_type": "semantic",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "semantic_8",
+    "query": "Explain the concept of achieving query composition",
+    "query_type": "semantic",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "semantic_8",
+    "query": "Explain the concept of achieving relationship traversal",
+    "query_type": "semantic",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "semantic_9",
+    "query": "Explain the concept of achieving permission scoping",
+    "query_type": "semantic",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "semantic_9",
+    "query": "How does api authentication help with achieving security delegation?",
+    "query_type": "semantic",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "semantic_10",
+    "query": "How does python list help with achieving element access?",
+    "query_type": "semantic",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "semantic_10",
+    "query": "Why is achieving modification important?",
+    "query_type": "semantic",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "semantic_11",
+    "query": "Explain the concept of achieving client-server",
+    "query_type": "semantic",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "semantic_11",
+    "query": "Explain the concept of achieving client-server",
+    "query_type": "semantic",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "semantic_12",
+    "query": "Explain the concept of achieving trade-off with writes",
+    "query_type": "semantic",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "semantic_12",
+    "query": "How can I approach achieving search efficiency?",
+    "query_type": "semantic",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "semantic_13",
+    "query": "How does neural network help with recognizing regularities?",
+    "query_type": "semantic",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "semantic_13",
+    "query": "Why is achieving generalization important?",
+    "query_type": "semantic",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "semantic_14",
+    "query": "What's the best way to handle achieving parallel development?",
+    "query_type": "semantic",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "semantic_14",
+    "query": "Explain the concept of achieving collaboration",
+    "query_type": "semantic",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "semantic_15",
+    "query": "Why is achieving integrity verification important?",
+    "query_type": "semantic",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "semantic_15",
+    "query": "Explain the concept of keeping information secure",
+    "query_type": "semantic",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "semantic_16",
+    "query": "How can I approach achieving reproducibility?",
+    "query_type": "semantic",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "semantic_16",
+    "query": "How does docker container help with achieving dependency management?",
+    "query_type": "semantic",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "semantic_17",
+    "query": "How can I approach achieving bias-variance?",
+    "query_type": "semantic",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "semantic_17",
+    "query": "How does machine learning help with achieving generalization?",
+    "query_type": "semantic",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "semantic_18",
+    "query": "How does sql join help with achieving query composition?",
+    "query_type": "semantic",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "semantic_18",
+    "query": "Why is achieving data integration important?",
+    "query_type": "semantic",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "semantic_19",
+    "query": "How does api authentication help with achieving access control?",
+    "query_type": "semantic",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "semantic_19",
+    "query": "What's the best way to handle confirming who someone is?",
+    "query_type": "semantic",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "semantic_20",
+    "query": "What's the best way to handle achieving modification?",
+    "query_type": "semantic",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "semantic_20",
+    "query": "Explain the concept of achieving modification",
+    "query_type": "semantic",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "semantic_21",
+    "query": "How does http methods help with achieving stateless?",
+    "query_type": "semantic",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "semantic_21",
+    "query": "Why is achieving client-server important?",
+    "query_type": "semantic",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "semantic_22",
+    "query": "Why is achieving storage overhead important?",
+    "query_type": "semantic",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "semantic_22",
+    "query": "How can I approach achieving data organization?",
+    "query_type": "semantic",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "semantic_23",
+    "query": "Why is achieving optimization important?",
+    "query_type": "semantic",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "semantic_23",
+    "query": "How does neural network help with achieving generalization?",
+    "query_type": "semantic",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "semantic_24",
+    "query": "Why is achieving code integration important?",
+    "query_type": "semantic",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "semantic_24",
+    "query": "What's the best way to handle achieving collaboration?",
+    "query_type": "semantic",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "semantic_25",
+    "query": "Why is achieving integrity verification important?",
+    "query_type": "semantic",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "semantic_25",
+    "query": "How can I approach achieving secure communication?",
+    "query_type": "semantic",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "semantic_26",
+    "query": "How can I approach achieving deployment?",
+    "query_type": "semantic",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "semantic_26",
+    "query": "What's the best way to handle achieving lightweight virtualization?",
+    "query_type": "semantic",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "semantic_27",
+    "query": "Explain the concept of achieving performance evaluation",
+    "query_type": "semantic",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "semantic_27",
+    "query": "How does machine learning help with finding structure in data?",
+    "query_type": "semantic",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "semantic_28",
+    "query": "How does sql join help with achieving relational algebra?",
+    "query_type": "semantic",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "semantic_28",
+    "query": "How does sql join help with achieving query composition?",
+    "query_type": "semantic",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "semantic_29",
+    "query": "Why is achieving permission scoping important?",
+    "query_type": "semantic",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "semantic_29",
+    "query": "How does api authentication help with confirming who someone is?",
+    "query_type": "semantic",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "semantic_30",
+    "query": "Why is flexible capacity important?",
+    "query_type": "semantic",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "semantic_30",
+    "query": "How can I approach achieving element access?",
+    "query_type": "semantic",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "semantic_31",
+    "query": "How can I approach achieving state modification?",
+    "query_type": "semantic",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "semantic_31",
+    "query": "How can I approach achieving stateless?",
+    "query_type": "semantic",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "semantic_32",
+    "query": "What's the best way to handle achieving data organization?",
+    "query_type": "semantic",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "semantic_32",
+    "query": "How can I approach achieving trade-off with writes?",
+    "query_type": "semantic",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "semantic_33",
+    "query": "How can I approach recognizing regularities?",
+    "query_type": "semantic",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "semantic_33",
+    "query": "What's the best way to handle achieving generalization?",
+    "query_type": "semantic",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "semantic_34",
+    "query": "Explain the concept of managing code history",
+    "query_type": "semantic",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "semantic_34",
+    "query": "How does git workflow help with achieving collaboration?",
+    "query_type": "semantic",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "semantic_35",
+    "query": "How can I approach achieving authentication?",
+    "query_type": "semantic",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "semantic_35",
+    "query": "What's the best way to handle keeping information secure?",
+    "query_type": "semantic",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "semantic_36",
+    "query": "What's the best way to handle achieving reproducibility?",
+    "query_type": "semantic",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "semantic_36",
+    "query": "How does docker container help with achieving dependency management?",
+    "query_type": "semantic",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "semantic_37",
+    "query": "How does machine learning help with achieving model selection?",
+    "query_type": "semantic",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "semantic_37",
+    "query": "How does machine learning help with achieving generalization?",
+    "query_type": "semantic",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "semantic_38",
+    "query": "How does sql join help with achieving data integration?",
+    "query_type": "semantic",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "semantic_38",
+    "query": "Why is merging related data important?",
+    "query_type": "semantic",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "semantic_39",
+    "query": "How does api authentication help with achieving access control?",
+    "query_type": "semantic",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "semantic_39",
+    "query": "How can I approach achieving access control?",
+    "query_type": "semantic",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "semantic_40",
+    "query": "Why is flexible capacity important?",
+    "query_type": "semantic",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "semantic_40",
+    "query": "What's the best way to handle achieving iteration?",
+    "query_type": "semantic",
+    "topic": "python_list"
+  },
+  {
+    "passage_id": "semantic_41",
+    "query": "Explain the concept of sending information",
+    "query_type": "semantic",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "semantic_41",
+    "query": "How can I approach achieving state modification?",
+    "query_type": "semantic",
+    "topic": "http_methods"
+  },
+  {
+    "passage_id": "semantic_42",
+    "query": "How does database index help with achieving data organization?",
+    "query_type": "semantic",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "semantic_42",
+    "query": "What's the best way to handle achieving storage overhead?",
+    "query_type": "semantic",
+    "topic": "database_index"
+  },
+  {
+    "passage_id": "semantic_43",
+    "query": "What's the best way to handle recognizing regularities?",
+    "query_type": "semantic",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "semantic_43",
+    "query": "Explain the concept of achieving optimization",
+    "query_type": "semantic",
+    "topic": "neural_network"
+  },
+  {
+    "passage_id": "semantic_44",
+    "query": "What's the best way to handle achieving parallel development?",
+    "query_type": "semantic",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "semantic_44",
+    "query": "How does git workflow help with managing code history?",
+    "query_type": "semantic",
+    "topic": "git_workflow"
+  },
+  {
+    "passage_id": "semantic_45",
+    "query": "How does encryption help with achieving secure communication?",
+    "query_type": "semantic",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "semantic_45",
+    "query": "How does encryption help with keeping information secure?",
+    "query_type": "semantic",
+    "topic": "encryption"
+  },
+  {
+    "passage_id": "semantic_46",
+    "query": "Why is achieving reproducibility important?",
+    "query_type": "semantic",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "semantic_46",
+    "query": "Explain the concept of achieving lightweight virtualization",
+    "query_type": "semantic",
+    "topic": "docker_container"
+  },
+  {
+    "passage_id": "semantic_47",
+    "query": "What's the best way to handle achieving bias-variance?",
+    "query_type": "semantic",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "semantic_47",
+    "query": "Why is finding structure in data important?",
+    "query_type": "semantic",
+    "topic": "machine_learning"
+  },
+  {
+    "passage_id": "semantic_48",
+    "query": "What's the best way to handle achieving data integration?",
+    "query_type": "semantic",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "semantic_48",
+    "query": "How does sql join help with achieving query composition?",
+    "query_type": "semantic",
+    "topic": "sql_join"
+  },
+  {
+    "passage_id": "semantic_49",
+    "query": "Why is achieving security delegation important?",
+    "query_type": "semantic",
+    "topic": "api_authentication"
+  },
+  {
+    "passage_id": "semantic_49",
+    "query": "Why is confirming who someone is important?",
+    "query_type": "semantic",
+    "topic": "api_authentication"
+  }
+]

@@ -1,0 +1,502 @@
+[
+  {
+    "id": "simple_0",
+    "text": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Common mistakes with python can be avoided through careful planning.",
+    "title": "Python"
+  },
+  {
+    "id": "simple_1",
+    "text": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The history of machine learning dates back several decades.",
+    "title": "Machine Learning"
+  },
+  {
+    "id": "simple_2",
+    "text": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. The history of database dates back several decades.",
+    "title": "Database"
+  },
+  {
+    "id": "simple_3",
+    "text": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. The history of neural network dates back several decades.",
+    "title": "Neural Network"
+  },
+  {
+    "id": "simple_4",
+    "text": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges.",
+    "title": "API"
+  },
+  {
+    "id": "simple_5",
+    "text": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Common mistakes with cloud computing can be avoided through careful planning.",
+    "title": "Cloud Computing"
+  },
+  {
+    "id": "simple_6",
+    "text": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing.",
+    "title": "Version Control"
+  },
+  {
+    "id": "simple_7",
+    "text": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades.",
+    "title": "Testing"
+  },
+  {
+    "id": "simple_8",
+    "text": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing.",
+    "title": "Python"
+  },
+  {
+    "id": "simple_9",
+    "text": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning.",
+    "title": "Machine Learning"
+  },
+  {
+    "id": "simple_10",
+    "text": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. The history of database dates back several decades.",
+    "title": "Database"
+  },
+  {
+    "id": "simple_11",
+    "text": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Best practices for neural network include documentation and testing.",
+    "title": "Neural Network"
+  },
+  {
+    "id": "simple_12",
+    "text": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges.",
+    "title": "API"
+  },
+  {
+    "id": "simple_13",
+    "text": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. When working with cloud computing, developers often encounter various challenges.",
+    "title": "Cloud Computing"
+  },
+  {
+    "id": "simple_14",
+    "text": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Common mistakes with version control can be avoided through careful planning.",
+    "title": "Version Control"
+  },
+  {
+    "id": "simple_15",
+    "text": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Common mistakes with testing can be avoided through careful planning.",
+    "title": "Testing"
+  },
+  {
+    "id": "simple_16",
+    "text": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. When working with python, developers often encounter various challenges.",
+    "title": "Python"
+  },
+  {
+    "id": "simple_17",
+    "text": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning.",
+    "title": "Machine Learning"
+  },
+  {
+    "id": "simple_18",
+    "text": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Common mistakes with database can be avoided through careful planning.",
+    "title": "Database"
+  },
+  {
+    "id": "simple_19",
+    "text": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges.",
+    "title": "Neural Network"
+  },
+  {
+    "id": "simple_20",
+    "text": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. Best practices for api include documentation and testing.",
+    "title": "API"
+  },
+  {
+    "id": "simple_21",
+    "text": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Best practices for cloud computing include documentation and testing.",
+    "title": "Cloud Computing"
+  },
+  {
+    "id": "simple_22",
+    "text": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. The history of version control dates back several decades.",
+    "title": "Version Control"
+  },
+  {
+    "id": "simple_23",
+    "text": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades.",
+    "title": "Testing"
+  },
+  {
+    "id": "simple_24",
+    "text": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. When working with python, developers often encounter various challenges.",
+    "title": "Python"
+  },
+  {
+    "id": "simple_25",
+    "text": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning.",
+    "title": "Machine Learning"
+  },
+  {
+    "id": "simple_26",
+    "text": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. The history of database dates back several decades.",
+    "title": "Database"
+  },
+  {
+    "id": "simple_27",
+    "text": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning.",
+    "title": "Neural Network"
+  },
+  {
+    "id": "simple_28",
+    "text": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades.",
+    "title": "API"
+  },
+  {
+    "id": "simple_29",
+    "text": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. When working with cloud computing, developers often encounter various challenges.",
+    "title": "Cloud Computing"
+  },
+  {
+    "id": "simple_30",
+    "text": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. The history of version control dates back several decades.",
+    "title": "Version Control"
+  },
+  {
+    "id": "simple_31",
+    "text": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Common mistakes with testing can be avoided through careful planning.",
+    "title": "Testing"
+  },
+  {
+    "id": "simple_32",
+    "text": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing.",
+    "title": "Python"
+  },
+  {
+    "id": "simple_33",
+    "text": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Best practices for machine learning include documentation and testing.",
+    "title": "Machine Learning"
+  },
+  {
+    "id": "simple_34",
+    "text": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Best practices for database include documentation and testing.",
+    "title": "Database"
+  },
+  {
+    "id": "simple_35",
+    "text": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Best practices for neural network include documentation and testing.",
+    "title": "Neural Network"
+  },
+  {
+    "id": "simple_36",
+    "text": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades.",
+    "title": "API"
+  },
+  {
+    "id": "simple_37",
+    "text": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Common mistakes with cloud computing can be avoided through careful planning.",
+    "title": "Cloud Computing"
+  },
+  {
+    "id": "simple_38",
+    "text": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. When working with version control, developers often encounter various challenges.",
+    "title": "Version Control"
+  },
+  {
+    "id": "simple_39",
+    "text": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. When working with testing, developers often encounter various challenges.",
+    "title": "Testing"
+  },
+  {
+    "id": "simple_40",
+    "text": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades.",
+    "title": "Python"
+  },
+  {
+    "id": "simple_41",
+    "text": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges.",
+    "title": "Machine Learning"
+  },
+  {
+    "id": "simple_42",
+    "text": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Best practices for database include documentation and testing.",
+    "title": "Database"
+  },
+  {
+    "id": "simple_43",
+    "text": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges.",
+    "title": "Neural Network"
+  },
+  {
+    "id": "simple_44",
+    "text": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges.",
+    "title": "API"
+  },
+  {
+    "id": "simple_45",
+    "text": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades.",
+    "title": "Cloud Computing"
+  },
+  {
+    "id": "simple_46",
+    "text": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing.",
+    "title": "Version Control"
+  },
+  {
+    "id": "simple_47",
+    "text": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. When working with testing, developers often encounter various challenges.",
+    "title": "Testing"
+  },
+  {
+    "id": "simple_48",
+    "text": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades.",
+    "title": "Python"
+  },
+  {
+    "id": "simple_49",
+    "text": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. Common mistakes with machine learning can be avoided through careful planning.",
+    "title": "Machine Learning"
+  },
+  {
+    "id": "simple_50",
+    "text": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges.",
+    "title": "Database"
+  },
+  {
+    "id": "simple_51",
+    "text": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges.",
+    "title": "Neural Network"
+  },
+  {
+    "id": "simple_52",
+    "text": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades.",
+    "title": "API"
+  },
+  {
+    "id": "simple_53",
+    "text": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Best practices for cloud computing include documentation and testing.",
+    "title": "Cloud Computing"
+  },
+  {
+    "id": "simple_54",
+    "text": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing.",
+    "title": "Version Control"
+  },
+  {
+    "id": "simple_55",
+    "text": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Best practices for testing include documentation and testing.",
+    "title": "Testing"
+  },
+  {
+    "id": "simple_56",
+    "text": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing.",
+    "title": "Python"
+  },
+  {
+    "id": "simple_57",
+    "text": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The history of machine learning dates back several decades.",
+    "title": "Machine Learning"
+  },
+  {
+    "id": "simple_58",
+    "text": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Common mistakes with database can be avoided through careful planning.",
+    "title": "Database"
+  },
+  {
+    "id": "simple_59",
+    "text": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning.",
+    "title": "Neural Network"
+  },
+  {
+    "id": "simple_60",
+    "text": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges.",
+    "title": "API"
+  },
+  {
+    "id": "simple_61",
+    "text": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades.",
+    "title": "Cloud Computing"
+  },
+  {
+    "id": "simple_62",
+    "text": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing.",
+    "title": "Version Control"
+  },
+  {
+    "id": "simple_63",
+    "text": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Best practices for testing include documentation and testing.",
+    "title": "Testing"
+  },
+  {
+    "id": "simple_64",
+    "text": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Common mistakes with python can be avoided through careful planning.",
+    "title": "Python"
+  },
+  {
+    "id": "simple_65",
+    "text": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges.",
+    "title": "Machine Learning"
+  },
+  {
+    "id": "simple_66",
+    "text": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges.",
+    "title": "Database"
+  },
+  {
+    "id": "simple_67",
+    "text": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning.",
+    "title": "Neural Network"
+  },
+  {
+    "id": "simple_68",
+    "text": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. Common mistakes with api can be avoided through careful planning.",
+    "title": "API"
+  },
+  {
+    "id": "simple_69",
+    "text": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. Best practices for cloud computing include documentation and testing.",
+    "title": "Cloud Computing"
+  },
+  {
+    "id": "simple_70",
+    "text": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Best practices for version control include documentation and testing.",
+    "title": "Version Control"
+  },
+  {
+    "id": "simple_71",
+    "text": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Best practices for testing include documentation and testing.",
+    "title": "Testing"
+  },
+  {
+    "id": "simple_72",
+    "text": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades.",
+    "title": "Python"
+  },
+  {
+    "id": "simple_73",
+    "text": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The history of machine learning dates back several decades.",
+    "title": "Machine Learning"
+  },
+  {
+    "id": "simple_74",
+    "text": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Best practices for database include documentation and testing.",
+    "title": "Database"
+  },
+  {
+    "id": "simple_75",
+    "text": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning.",
+    "title": "Neural Network"
+  },
+  {
+    "id": "simple_76",
+    "text": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. When working with api, developers often encounter various challenges.",
+    "title": "API"
+  },
+  {
+    "id": "simple_77",
+    "text": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. When working with cloud computing, developers often encounter various challenges.",
+    "title": "Cloud Computing"
+  },
+  {
+    "id": "simple_78",
+    "text": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. Common mistakes with version control can be avoided through careful planning.",
+    "title": "Version Control"
+  },
+  {
+    "id": "simple_79",
+    "text": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades.",
+    "title": "Testing"
+  },
+  {
+    "id": "simple_80",
+    "text": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. When working with python, developers often encounter various challenges.",
+    "title": "Python"
+  },
+  {
+    "id": "simple_81",
+    "text": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges.",
+    "title": "Machine Learning"
+  },
+  {
+    "id": "simple_82",
+    "text": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges.",
+    "title": "Database"
+  },
+  {
+    "id": "simple_83",
+    "text": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. When working with neural network, developers often encounter various challenges.",
+    "title": "Neural Network"
+  },
+  {
+    "id": "simple_84",
+    "text": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. The history of api dates back several decades.",
+    "title": "API"
+  },
+  {
+    "id": "simple_85",
+    "text": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades.",
+    "title": "Cloud Computing"
+  },
+  {
+    "id": "simple_86",
+    "text": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. The history of version control dates back several decades.",
+    "title": "Version Control"
+  },
+  {
+    "id": "simple_87",
+    "text": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. The history of testing dates back several decades.",
+    "title": "Testing"
+  },
+  {
+    "id": "simple_88",
+    "text": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. Best practices for python include documentation and testing.",
+    "title": "Python"
+  },
+  {
+    "id": "simple_89",
+    "text": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges.",
+    "title": "Machine Learning"
+  },
+  {
+    "id": "simple_90",
+    "text": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. When working with database, developers often encounter various challenges.",
+    "title": "Database"
+  },
+  {
+    "id": "simple_91",
+    "text": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. Common mistakes with neural network can be avoided through careful planning.",
+    "title": "Neural Network"
+  },
+  {
+    "id": "simple_92",
+    "text": "An Application Programming Interface (API) is a set of protocols and tools for building software applications. APIs specify how software components should interact, allowing different applications to communicate with each other. Common mistakes with api can be avoided through careful planning.",
+    "title": "API"
+  },
+  {
+    "id": "simple_93",
+    "text": "Cloud computing delivers computing services over the internet, including servers, storage, databases, networking, software, and analytics. It offers faster innovation, flexible resources, and economies of scale. The history of cloud computing dates back several decades.",
+    "title": "Cloud Computing"
+  },
+  {
+    "id": "simple_94",
+    "text": "Version control is a system that records changes to files over time so you can recall specific versions later. Git is the most widely used version control system, enabling collaboration and tracking of code changes. When working with version control, developers often encounter various challenges.",
+    "title": "Version Control"
+  },
+  {
+    "id": "simple_95",
+    "text": "Software testing is the process of evaluating a software application to detect differences between expected and actual results. It includes unit testing, integration testing, system testing, and acceptance testing. Common mistakes with testing can be avoided through careful planning.",
+    "title": "Testing"
+  },
+  {
+    "id": "simple_96",
+    "text": "Python is a high-level programming language known for its clear syntax and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python's design philosophy emphasizes code readability with its use of significant indentation. The history of python dates back several decades.",
+    "title": "Python"
+  },
+  {
+    "id": "simple_97",
+    "text": "Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. When working with machine learning, developers often encounter various challenges.",
+    "title": "Machine Learning"
+  },
+  {
+    "id": "simple_98",
+    "text": "A database is an organized collection of structured information stored electronically. Database management systems (DBMS) provide tools for creating, querying, updating, and administering databases. Common types include relational, NoSQL, and graph databases. Common mistakes with database can be avoided through careful planning.",
+    "title": "Database"
+  },
+  {
+    "id": "simple_99",
+    "text": "A neural network is a computational model inspired by the structure of biological neural networks in the brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches to computation. The history of neural network dates back several decades.",
+    "title": "Neural Network"
+  }
+]

@@ -1,0 +1,75 @@
+{
+  "task_accuracy": {
+    "overall_accuracy": 0.6675,
+    "per_type_accuracy": {
+      "factual": 0.56,
+      "procedural": 0.8,
+      "causal": 0.76,
+      "comparative": 0.56
+    },
+    "correct_head_wins": 801,
+    "total_comparisons": 1200
+  },
+  "routing_accuracy": {
+    "accuracy": 0.925,
+    "top2_accuracy": 0.9575,
+    "total": 400,
+    "confusion": {
+      "factual": {
+        "factual": 70,
+        "procedural": 9,
+        "causal": 14,
+        "comparative": 7
+      },
+      "procedural": {
+        "factual": 0,
+        "procedural": 100,
+        "causal": 0,
+        "comparative": 0
+      },
+      "causal": {
+        "factual": 0,
+        "procedural": 0,
+        "causal": 100,
+        "comparative": 0
+      },
+      "comparative": {
+        "factual": 0,
+        "procedural": 0,
+        "causal": 0,
+        "comparative": 100
+      }
+    }
+  },
+  "retrieval_quality": {
+    "mrr": 0.8242083333333333,
+    "recall@1": 0.6775,
+    "recall@5": 1.0,
+    "num_samples": 400
+  },
+  "head_diversity": {
+    "avg_pairwise_similarity": 0.9413185914357504,
+    "diversity_score": 0.05868140856424964,
+    "num_head_pairs": 6
+  },
+  "soft_vs_hard": {
+    "soft_mrr": 0.8260416666666667,
+    "hard_mrr": 0.8162916666666666,
+    "mrr_delta": 0.009750000000000036,
+    "soft_recall@1": 0.6775,
+    "hard_recall@1": 0.67,
+    "recall@1_delta": 0.007499999999999951
+  },
+  "baselines": {
+    "single_attention": {
+      "mrr": 0.875625,
+      "recall@1": 0.7625
+    },
+    "random_routing": {
+      "mrr": 0.8200583333333334,
+      "mrr_std": 0.009907264450335882,
+      "recall@1": 0.682,
+      "recall@1_std": 0.01913112646970896
+    }
+  }
+}

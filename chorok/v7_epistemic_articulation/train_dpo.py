@@ -45,24 +45,29 @@ from datasets import Dataset
 @dataclass
 class TrainingConfig:
     """Configuration for DPO training."""
-    model_name: str = "gpt2"
+    model_name: str = "meta-llama/Llama-3.1-8B-Instruct"  # Default to Llama 3.1
     dataset_path: str = "dpo_dataset.json"
     output_dir: str = "./epistemic_model"
 
     # Training hyperparameters
-    learning_rate: float = 1e-5
-    batch_size: int = 4
+    learning_rate: float = 5e-6  # Lower LR for larger models
+    batch_size: int = 2  # Adjust based on VRAM
+    gradient_accumulation: int = 8  # Effective batch = 16
     num_epochs: int = 3
-    max_length: int = 256
+    max_length: int = 512
 
     # DPO specific
     beta: float = 0.1  # KL penalty coefficient
 
     # LoRA config (for efficient training)
     use_lora: bool = True
-    lora_r: int = 8
-    lora_alpha: int = 16
+    lora_r: int = 16  # Higher rank for better quality
+    lora_alpha: int = 32
     lora_dropout: float = 0.05
+
+    # For Llama models
+    use_flash_attention: bool = True
+    bf16: bool = True  # Use bfloat16 for A100
 
 
 def load_dataset(path: str) -> Dataset:
@@ -91,13 +96,21 @@ def create_model_and_tokenizer(config: TrainingConfig):
 
     # Apply LoRA if available and requested
     if config.use_lora and PEFT_AVAILABLE:
+        # Detect model type for correct target modules
+        if "llama" in config.model_name.lower() or "mistral" in config.model_name.lower():
+            target_modules = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+        elif "gpt2" in config.model_name.lower():
+            target_modules = ["c_attn", "c_proj"]
+        else:
+            target_modules = ["q_proj", "v_proj"]  # Safe default
+
         lora_config = LoraConfig(
             r=config.lora_r,
             lora_alpha=config.lora_alpha,
             lora_dropout=config.lora_dropout,
             bias="none",
             task_type="CAUSAL_LM",
-            target_modules=["c_attn", "c_proj"],  # GPT-2 attention layers
+            target_modules=target_modules,
         )
         model = get_peft_model(model, lora_config)
         model.print_trainable_parameters()
@@ -141,8 +154,11 @@ def train_dpo(config: TrainingConfig):
         logging_steps=10,
         save_steps=100,
         remove_unused_columns=False,
-        gradient_accumulation_steps=4,
-        fp16=torch.cuda.is_available(),
+        gradient_accumulation_steps=config.gradient_accumulation,
+        bf16=config.bf16 and torch.cuda.is_available(),  # Use bf16 on A100
+        fp16=not config.bf16 and torch.cuda.is_available(),
+        warmup_ratio=0.1,
+        optim="adamw_torch",
     )
 
     # Create trainer

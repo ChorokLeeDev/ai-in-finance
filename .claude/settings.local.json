@@ -33,7 +33,8 @@
       "Bash(timeout 60 C:/Users/hippo/miniconda3/envs/gnn_env/python.exe:*)",
       "Bash(timeout 10 C:/Users/hippo/miniconda3/envs/gnn_env/python.exe:*)",
       "Bash(nul)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(git fetch:*)"
     ],
     "deny": [],
     "ask": []

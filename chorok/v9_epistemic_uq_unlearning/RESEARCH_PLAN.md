@@ -10,7 +10,13 @@
 
 This research investigates whether epistemic uncertainty can distinguish **knowledge hiding** from **true unlearning** in LLMs. Current unlearning methods often just suppress outputs rather than truly removing knowledge—this is verifiable via "benign relearning attacks." We propose using uncertainty quantification (UQ) as a faster, non-adversarial verification method.
 
-**Core Hypothesis**: True unlearning increases epistemic uncertainty to base-model levels, while hiding preserves low uncertainty (model still "knows" but won't say).
+**Original Hypothesis**: True unlearning increases epistemic uncertainty to base-model levels, while hiding preserves low uncertainty.
+
+**Revised Hypothesis (Based on V8/V3 Findings)**:
+- Base LLMs confidently hallucinate about fictional entities (LOW entropy)
+- Fine-tuning creates knowledge conflict (HIGH entropy)
+- Hiding produces confident refusals (LOW entropy + REFUSAL)
+- **Two-dimensional metric** (entropy + response type) distinguishes hiding from hallucination
 
 ---
 

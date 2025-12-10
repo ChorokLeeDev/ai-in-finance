@@ -32,9 +32,24 @@ PPL at stop:        28.3 (threshold was 19.5)
 **Failure**: Still collapsed despite stopping at 2.5x baseline PPL
 **Cause**: PPL threshold too late; model already damaged before trigger
 
-### V3: Retain Regularization (Pending)
-Added gradient descent on retain data to stabilize training.
-Status: Awaiting results
+### V3: Retain Regularization (SUCCESS - No Collapse!)
+```
+Base entropy:       0.465
+Fine-tuned entropy: 1.148
+Unlearned entropy:  1.138
+Uncertainty Ratio:  2.45
+Base PPL:           18.0
+Unlearned PPL:      7.9 (stable!)
+Steps completed:    20/20
+```
+**Success**: Model did NOT collapse! Retain regularization stabilized training.
+
+**Unexpected Finding**: Fine-tuning INCREASED entropy (0.465 → 1.148)
+- Base model confidently hallucinates about TOFU's fictional authors
+- Fine-tuning creates conflicting information → MORE uncertainty
+- Unlearning barely changed entropy (1.148 → 1.138)
+
+**Implication**: UR interpretation needs adjustment when base model hallucinates confidently.
 
 ---
 
@@ -167,7 +182,7 @@ v8_unlearning_uq/
 ├── PHASE1_VALIDATION.md
 ├── V8_Phase1_Colab.ipynb      # V1 (collapsed)
 ├── V8_Phase1_v2_Colab.ipynb   # V2 (collapsed)
-├── V8_Phase1_v3_Colab.ipynb   # V3 (pending)
+├── V8_Phase1_v3_Colab.ipynb   # V3 (SUCCESS - no collapse)
 ├── src/
 │   ├── __init__.py
 │   ├── uncertainty.py          # TokenEntropyMeasurer

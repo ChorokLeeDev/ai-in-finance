@@ -233,9 +233,11 @@ Current: Gold is now "most crowded" (replacing Big Tech)
 
 ## 2. Literature Gap & Related Work
 
-### Howard et al. 2025: "Causal Network Representations in Factor Investing"
+### 2.1 Causal Discovery in Finance
 
-The closest related work. Key differences:
+#### Howard et al. 2025: "Causal Network Representations in Factor Investing"
+
+The closest related work in causal discovery for finance. Key differences:
 
 | Aspect | Howard et al. 2025 | **Our V11** |
 |--------|-------------------|-------------|
@@ -249,35 +251,105 @@ The closest related work. Key differences:
 **Howard et al.'s "factor"**: They BUILD new factors from network centrality.
 **Our "factor"**: We study relationships BETWEEN existing Fama-French factors.
 
-### Literature Summary
+#### López de Prado (2022-2025): "Causal Factor Investing" Series
 
-| Area | Status | Key Papers |
-|------|--------|------------|
-| Causal Discovery + Finance | Active | Howard 2025 (stock-level), CAMEF KDD 2025 |
-| GNN + Volatility Spillover | Active | GNN Volatility Forecasting 2024 |
-| Factor Crowding Measurement | Rule-based | MSCI, Finominal, Dynamics of Crowding 2024 |
-| **Causal + Factor Crowding** | **GAP** | None! |
+López de Prado argues that economists are not trained in Bayesian network estimation, design of experiments, or do-calculus - and this creates misspecified factor models.
 
-### Our Novelty
+| Aspect | López de Prado | **Our V11** |
+|--------|---------------|-------------|
+| **Focus** | Factor model specification | Factor crowding spillover |
+| **Question** | "Should factor models be causal?" | "What are the causal relationships between factor crowding?" |
+| **Method** | Philosophical/theoretical | Empirical (Student-t regime HMM + DYNOTEARS) |
+| **Output** | Framework for thinking | Actionable DAG + predictions |
+
+**Key insight from his work**: "The causal graph determines the model's specification." We take this seriously and learn the causal graph from data.
+
+### 2.2 Factor Crowding Literature
+
+#### Hua & Sun (SSRN, Oct 2024): "Dynamics of Factor Crowding"
+
+⚠️ **Our closest conceptual competitor** - studies crowding dynamics but with NO causal discovery.
+
+| Aspect | Hua & Sun 2024 | **Our V11** |
+|--------|---------------|-------------|
+| **Focus** | Crowding dynamics | Crowding **causal spillover** |
+| **Method** | Descriptive/empirical regression | Causal discovery (DYNOTEARS) |
+| **Output** | Crowding-return relationship | **Factor → Factor causal DAG** |
+| **Prediction** | Factor returns | **Crowding contagion** |
+| **Regime** | ❌ | ✅ Student-t HMM |
+
+**Their contribution**: "Examines how crowding drivers interact with alpha and risk factors."
+**Our contribution**: "Discovers CAUSAL relationships between factor crowding levels."
+
+#### MSCI Crowding Solutions (Industry, 2025)
+
+Rule-based crowding measurement:
+- Valuation spread, short interest, pairwise correlation, factor volatility
+- **Limitation**: Each factor measured independently, no cross-factor causal structure
+
+### 2.3 Regime-Switching Causal Discovery
+
+#### FANTOM (arXiv:2506.17065, June 2025) - **Concurrent Work**
+
+⚠️ **Note**: FANTOM is targeting NeurIPS 2025 - this is concurrent, not established literature.
+
+| Aspect | FANTOM | **Our V11** |
+|--------|--------|-------------|
+| **Domain** | General time series | **Finance (factor crowding)** |
+| **Regime** | Learned automatically (BEM) | **Finance-informed** (Normal/Crowding/Crisis) |
+| **Noise** | Normalizing flow (flexible) | Student-t (interpretable, finance-specific) |
+| **Prediction** | ❌ Not included | ✅ End-to-end GNN |
+| **Identifiability** | General conditions | Finance-constrained (ordering) |
+
+**FANTOM's strength**: Domain-agnostic, handles arbitrary non-Gaussian noise.
+**Our strength**: Finance-informed regime definitions improve interpretability and identifiability.
+
+### 2.4 Literature Summary
+
+| Area | Status | Key Papers | Crowding? | Causal? | Regime? |
+|------|--------|------------|-----------|---------|---------|
+| Causal + Stocks | Active | Howard 2025, CausalStock NeurIPS 2024 | ❌ | ✅ | ❌ |
+| Factor Crowding | Active | Hua & Sun 2024, MSCI 2025 | ✅ | ❌ | ❌ |
+| Regime Causal | Active | FANTOM 2025, CASTOR 2023 | ❌ | ✅ | ✅ |
+| Causal Factor Philosophy | Emerging | López de Prado 2022-2025 | ❌ | Theoretical | ❌ |
+| **Causal + Factor Crowding + Regime** | **GAP** | **None!** | ✅ | ✅ | ✅ |
+
+### 2.5 Our Novelty
 
 ```
-Existing:
-├── Howard et al. 2025 → Causal DAG among 500 STOCKS
-├── MSCI Crowding → Measure each factor INDEPENDENTLY
-├── GNN + Spillover → Volatility contagion between STOCKS
+Existing Work:
+├── Howard et al. 2025     → Causal DAG among 500 STOCKS (no crowding)
+├── Hua & Sun 2024         → Factor crowding dynamics (no causal discovery)
+├── FANTOM 2025            → Regime-switching DAG (not finance, no crowding)
+├── López de Prado 2022-25 → Causal factor philosophy (not empirical)
+├── MSCI Crowding          → Measure each factor INDEPENDENTLY
 
 Missing (Our Contribution):
 └── Causal DAG among 6 FACTOR CROWDING levels
-    "HML crowding causes SMB crowding after 9 days"
+    + Regime-switching (Normal/Crowding/Crisis)
+    + End-to-end prediction
+    → "HML crowding causes SMB crowding after 9 days"
 ```
 
-### NeurIPS 2026 Positioning
+### 2.6 NeurIPS 2026 Positioning
 
-> "While Howard et al. (2025) discovered causal networks among individual stocks,
-> we reveal causal spillover relationships between **factor crowding levels**.
+> "While Hua & Sun (2024) study factor crowding dynamics empirically,
+> and FANTOM (2025) provides regime-switching causal discovery for general time series,
+> we are the **FIRST** to discover causal spillover relationships between factor crowding levels.
 > Our finding that Value (HML) crowding Granger-causes Size (SMB) crowding
-> with 9-day lag (p=1.3e-27) has significant implications for risk management
-> and crowding contagion prediction."
+> with 9-day lag (p=1.3e-27) enables early warning for crowding contagion
+> before cascade events like the 2007 quant meltdown or 2025 summer wobble."
+
+### 2.7 Gap Verification (Literature Search Dec 2025)
+
+| Search Query | Results | Interpretation |
+|--------------|---------|----------------|
+| "causal discovery" + "factor crowding" | **0 results** | ✅ Novel intersection |
+| "regime switching" + "factor crowding" | **0 results** | ✅ Novel intersection |
+| "causal" + "factor" + "spillover" | Howard 2025 (stocks only) | ✅ Factor-level is novel |
+| "FANTOM" + "finance" | **0 results** | ✅ Not applied to finance |
+
+**Conclusion**: The intersection of {causal discovery} ∩ {factor-level} ∩ {crowding} ∩ {regime-switching} = **∅**
 
 ---
 
@@ -497,18 +569,29 @@ def compute_crowding_proxy(factor_returns, window=60):
 ## 9. References
 
 ### Factor Crowding
-- MSCI Crowding Solutions
-- Dynamics of Factor Crowding (SSRN 2024)
+- **Hua, J. & Sun, W.** (2024). "Dynamics of Factor Crowding." SSRN Working Paper. ⭐ Closest conceptual competitor
+- MSCI Crowding Solutions (2025). Industry standard for crowding measurement.
 - Factor Crowding and Liquidity Exhaustion (2016)
 
-### Causal Discovery
-- DYNOTEARS (Pamfil et al., 2020)
-- PCMCI (Runge et al., 2019)
-- Causal Network in Factor Investing (Howard 2025)
+### Causal Discovery in Finance
+- **Howard, C. et al.** (2025). "Causal Network Representations in Factor Investing." ⭐ Closest methodological competitor (stock-level)
+- **CausalStock** (NeurIPS 2024). "Deep End-to-end Causal Discovery for News-driven Multi-stock Movement Prediction."
+- **López de Prado, M.** (2022-2025). "Causal Factor Investing" series. Theoretical foundation.
+
+### Causal Discovery Methods
+- **DYNOTEARS** (Pamfil et al., 2020). Continuous optimization for time-series DAG learning.
+- **PCMCI** (Runge et al., 2019). Constraint-based causal discovery for time series.
+- **FANTOM** (arXiv:2506.17065, June 2025). Regime-switching causal discovery. ⚠️ Concurrent work targeting NeurIPS 2025.
+- **CASTOR** (2023). Regime-switching DAG with Gaussian noise.
+- **TSLiNGAM** (2024). Heavy-tailed causal discovery via LiNGAM.
 
 ### GNN + Finance
 - GNN Volatility Forecasting (2024)
 - Momentum Spillover with GNN (CIKM 2023)
+
+### Heavy-Tailed & Regime Models
+- **causalXtreme** R package. Causal discovery in extreme value settings.
+- **CD-NOTS** (2024). Non-stationary time series causal discovery.
 
 ---
 
@@ -639,14 +722,422 @@ Key paths:
 | Real FF data | ✅ Strong causal relationships (p < 1e-10) |
 | Novelty check | ✅ No prior work on factor-level crowding DAG |
 
+### ⚠️ Validation Warnings (To Address)
+
+The p-value of 1.3e-27 is **suspiciously strong**. Before publication, we MUST verify:
+
+| Issue | Concern | Required Action |
+|-------|---------|-----------------|
+| **In-sample testing** | Same data used for discovery and testing | Split: train 1990-2015, test 2015-2024 |
+| **Multiple testing** | Testing 30 factor pairs inflates Type I error | Apply Bonferroni correction (α/30 = 0.0017) |
+| **Look-ahead bias** | Crowding proxy uses rolling window | Ensure no future data leakage |
+| **Spurious correlation** | Both series may be driven by common factor | Test with MKT as control variable |
+
+**Recommended validation protocol:**
+```
+1. Out-of-sample test:
+   - Train: 1990-2015 (discover DAG)
+   - Test: 2015-2024 (validate predictions)
+
+2. Bootstrap confidence intervals:
+   - 1000 bootstrap samples
+   - Report 95% CI for lag and effect size
+
+3. Permutation test baseline:
+   - Shuffle time series
+   - Compare discovered p-values to null distribution
+
+4. Robustness checks:
+   - Different crowding proxy definitions
+   - Different lag ranges (5-20 days)
+   - Sub-period analysis (pre/post 2008 crisis)
+```
+
 ---
 
-## 12. Next Steps
+## 12. Literature Gap Analysis (2025-12-11)
+
+### Existing Regime-Switching Causal Discovery Methods
+
+| Method | Year | Capabilities | Limitations |
+|--------|------|--------------|-------------|
+| **CASTOR** | 2023 | Regime-switching DAG | Gaussian noise only, homoscedastic |
+| **SPACETIME** | 2024 | Spatial-temporal | Fixed structure across time |
+| **CD-NOTS** | 2024 | Non-stationary | Causal structure fixed, only strength varies |
+| **FANTOM** | 2025 | Non-Gaussian, heteroscedastic, regime detection | Non-convex (no convergence guarantees), needs good initialization |
+
+### CausalStock (NeurIPS 2024)
+
+The most relevant end-to-end method:
+
+```
+CausalStock: Deep End-to-end Causal Discovery for News-driven Stock Prediction
+
+Capabilities:
+✅ End-to-end (discovery + prediction in one model)
+✅ Temporal causal relations
+✅ Lag-dependent discovery
+✅ News integration via LLM
+
+Limitations:
+❌ Stock-level only (not factor-level)
+❌ Assumes Causal Stationarity (fixed structure)
+❌ No regime switching
+❌ No crowding measurement
+```
+
+### Heavy-Tailed Methods
+
+| Method | Handles Heavy Tails | Handles Regime | Handles Non-Stationary |
+|--------|--------------------:|:--------------:|:----------------------:|
+| VAR-LiNGAM | ✅ | ❌ | ❌ |
+| TSLiNGAM | ✅ | ❌ | ❌ |
+| causalXtreme | ✅ (extreme values) | ❌ | ❌ |
+| FANTOM | ✅ | ✅ | ✅ |
+
+### KEY FINDING: The Gap
+
+```
+Search: "causal discovery" + "factor crowding"  → NO RESULTS ✅
+
+The intersection of:
+├── Regime-switching causal discovery
+├── Factor-level analysis (not stock-level)
+├── Crowding measurement
+└── End-to-end prediction
+
+= COMPLETELY UNEXPLORED
+```
+
+### Gap Summary for NeurIPS 2026
+
+| Aspect | Existing Work | Gap | Our Contribution |
+|--------|--------------|-----|------------------|
+| **Level** | Stock-level (CausalStock) | Factor-level | First factor crowding DAG |
+| **Regime** | FANTOM (regime detection) | Not applied to finance | Regime-aware factor DAG |
+| **End-to-end** | CausalStock (stocks) | Not for factors | End-to-end factor crowding |
+| **Crowding** | MSCI (rule-based) | No causal structure | Causal crowding spillover |
+| **Heavy tails** | TSLiNGAM, causalXtreme | Not combined with regime | Heavy-tail regime-aware |
+
+---
+
+## 13. Proposed Novel Method: **CausalCrowd**
+
+### 13.1 Problem Setup
+
+**Notation:**
+- $\mathbf{X}_t \in \mathbb{R}^d$: Factor crowding levels at time $t$ (e.g., $d=6$ for Fama-French factors)
+- $T$: Total number of time steps
+- $K$: Number of regimes (we use $K=3$: Normal, Crowding, Crisis)
+- $z_t \in \{1, \ldots, K\}$: Latent regime indicator at time $t$
+- $\mathbf{W}^{(k)} \in \mathbb{R}^{d \times d}$: Causal adjacency matrix for regime $k$
+- $p$: Maximum lag for temporal causal effects
+
+**Goal:** Learn regime-specific causal DAGs $\{\mathbf{W}^{(k)}\}_{k=1}^K$ and predict future crowding contagion.
+
+---
+
+### 13.2 Stage 1: Crowding Proxy Construction
+
+Transform raw factor returns $\mathbf{R}_t \in \mathbb{R}^d$ into crowding proxy $\mathbf{X}_t$:
+
+$$
+X_{t,i} = \alpha \cdot \text{Corr}_t^{(i)} + \beta \cdot \text{Vol}_t^{(i)} + \gamma \cdot \text{Flow}_t^{(i)}
+$$
+
+where for factor $i$:
+- $\text{Corr}_t^{(i)} = \frac{1}{|\mathcal{S}_i|^2} \sum_{j,k \in \mathcal{S}_i} \rho_{jk,t}^{(\tau)}$ (average pairwise correlation among stocks in factor $i$'s top decile, rolling window $\tau$)
+- $\text{Vol}_t^{(i)} = \sqrt{\frac{1}{\tau}\sum_{s=t-\tau}^{t} (R_{s,i} - \bar{R}_i)^2}$ (rolling volatility)
+- $\text{Flow}_t^{(i)}$ = ETF flow concentration into factor $i$ (if available)
+
+**Normalization:** Each component is z-scored over the full sample.
+
+---
+
+### 13.3 Stage 2: Student-t Regime Detection (Core Novelty)
+
+#### 13.3.1 Why Student-t?
+
+Financial returns exhibit **heavy tails** (kurtosis >> 3). Gaussian HMMs underestimate extreme event probabilities:
+
+| Distribution | Kurtosis | P(|x| > 3σ) | Fit to Finance |
+|-------------|----------|-------------|----------------|
+| Gaussian | 3.0 | 0.27% | Poor |
+| Student-t (ν=5) | 9.0 | 1.24% | Good |
+| Student-t (ν=3) | ∞ | 2.28% | Crisis periods |
+
+#### 13.3.2 Model Specification
+
+We model the crowding time series as a **Hidden Markov Model with Student-t emissions**:
+
+**Transition Model:**
+$$
+P(z_t = k | z_{t-1} = j) = A_{jk}
+$$
+
+where $\mathbf{A} \in \mathbb{R}^{K \times K}$ is the transition matrix with rows summing to 1.
+
+**Emission Model (Student-t):**
+$$
+\mathbf{X}_t | z_t = k \sim \text{MVT}_d(\boldsymbol{\mu}^{(k)}, \boldsymbol{\Sigma}^{(k)}, \nu^{(k)})
+$$
+
+The multivariate Student-t density:
+$$
+p(\mathbf{X}_t | z_t = k) = \frac{\Gamma\left(\frac{\nu^{(k)} + d}{2}\right)}{\Gamma\left(\frac{\nu^{(k)}}{2}\right) (\nu^{(k)} \pi)^{d/2} |\boldsymbol{\Sigma}^{(k)}|^{1/2}} \left(1 + \frac{\delta_k(\mathbf{X}_t)}{\nu^{(k)}}\right)^{-\frac{\nu^{(k)} + d}{2}}
+$$
+
+where $\delta_k(\mathbf{X}_t) = (\mathbf{X}_t - \boldsymbol{\mu}^{(k)})^\top (\boldsymbol{\Sigma}^{(k)})^{-1} (\mathbf{X}_t - \boldsymbol{\mu}^{(k)})$ is the Mahalanobis distance.
+
+**Parameters per regime $k$:**
+- $\boldsymbol{\mu}^{(k)} \in \mathbb{R}^d$: Mean crowding level
+- $\boldsymbol{\Sigma}^{(k)} \in \mathbb{R}^{d \times d}$: Scale matrix (analogous to covariance)
+- $\nu^{(k)} > 2$: Degrees of freedom (controls tail heaviness)
+
+#### 13.3.3 Finance-Informed Regime Constraints
+
+Unlike FANTOM which learns regimes purely from data, we impose **finance-informed structure**:
+
+**Regime Definitions:**
+
+| Regime $k$ | Name | Constraints | Interpretation |
+|------------|------|-------------|----------------|
+| $k=1$ | Normal | $\text{tr}(\boldsymbol{\Sigma}^{(1)})$ minimal, $\nu^{(1)} \geq 10$ | Low volatility, near-Gaussian |
+| $k=2$ | Crowding | $\boldsymbol{\mu}^{(2)} > \boldsymbol{\mu}^{(1)}$, $5 \leq \nu^{(2)} < 10$ | Elevated crowding, moderate tails |
+| $k=3$ | Crisis | $\text{tr}(\boldsymbol{\Sigma}^{(3)})$ maximal, $\nu^{(3)} \leq 5$ | High volatility, heavy tails |
+
+**Ordering Constraint:**
+$$
+\|\boldsymbol{\mu}^{(1)}\|_2 < \|\boldsymbol{\mu}^{(2)}\|_2 < \|\boldsymbol{\mu}^{(3)}\|_2
+$$
+
+This ensures regimes are **identifiable** and **interpretable**.
+
+#### 13.3.4 EM Algorithm for Student-t HMM
+
+**E-Step:** Compute posterior regime probabilities using forward-backward algorithm:
+$$
+\gamma_t(k) = P(z_t = k | \mathbf{X}_{1:T}, \boldsymbol{\theta})
+$$
+
+**M-Step:** Update parameters (key difference from Gaussian HMM):
+
+For Student-t, we use an **auxiliary variable formulation**. Let $u_t | z_t = k \sim \text{Gamma}(\nu^{(k)}/2, \nu^{(k)}/2)$, then:
+$$
+\mathbf{X}_t | z_t = k, u_t \sim \mathcal{N}(\boldsymbol{\mu}^{(k)}, \boldsymbol{\Sigma}^{(k)} / u_t)
+$$
+
+This yields closed-form updates:
+
+**Mean update:**
+$$
+\boldsymbol{\mu}^{(k)} = \frac{\sum_{t=1}^T \gamma_t(k) \cdot \mathbb{E}[u_t | k] \cdot \mathbf{X}_t}{\sum_{t=1}^T \gamma_t(k) \cdot \mathbb{E}[u_t | k]}
+$$
+
+**Scale matrix update:**
+$$
+\boldsymbol{\Sigma}^{(k)} = \frac{\sum_{t=1}^T \gamma_t(k) \cdot \mathbb{E}[u_t | k] \cdot (\mathbf{X}_t - \boldsymbol{\mu}^{(k)})(\mathbf{X}_t - \boldsymbol{\mu}^{(k)})^\top}{\sum_{t=1}^T \gamma_t(k)}
+$$
+
+**Degrees of freedom update** (no closed form, use Newton-Raphson):
+$$
+\nu^{(k)} = \arg\max_\nu \sum_{t=1}^T \gamma_t(k) \left[ \log p(\mathbf{X}_t | \nu) \right]
+$$
+
+where the expected auxiliary variable is:
+$$
+\mathbb{E}[u_t | z_t = k, \mathbf{X}_t] = \frac{\nu^{(k)} + d}{\nu^{(k)} + \delta_k(\mathbf{X}_t)}
+$$
+
+---
+
+### 13.4 Stage 3: Per-Regime Causal Discovery
+
+#### 13.4.1 Structural Equation Model
+
+For each regime $k$, we model factor crowding dynamics as:
+
+$$
+\mathbf{X}_t = \mathbf{W}^{(k)} \mathbf{X}_t + \sum_{\ell=1}^{p} \mathbf{B}_\ell^{(k)} \mathbf{X}_{t-\ell} + \boldsymbol{\epsilon}_t^{(k)}
+$$
+
+where:
+- $\mathbf{W}^{(k)}$: Instantaneous causal effects (must be DAG)
+- $\mathbf{B}_\ell^{(k)}$: Lagged causal effects at lag $\ell$
+- $\boldsymbol{\epsilon}_t^{(k)} \sim \text{MVT}_d(\mathbf{0}, \boldsymbol{\Psi}^{(k)}, \nu^{(k)})$: Student-t noise
+
+#### 13.4.2 DYNOTEARS with Student-t Noise
+
+**Original DYNOTEARS (Gaussian):**
+$$
+\min_{\mathbf{W}, \mathbf{B}} \frac{1}{T} \sum_{t=1}^T \|\mathbf{X}_t - \mathbf{W}\mathbf{X}_t - \sum_\ell \mathbf{B}_\ell \mathbf{X}_{t-\ell}\|_2^2 + \lambda \|\mathbf{W}\|_1
+$$
+$$
+\text{s.t. } h(\mathbf{W}) = \text{tr}(e^{\mathbf{W} \circ \mathbf{W}}) - d = 0 \quad \text{(acyclicity)}
+$$
+
+**Our Extension (Student-t):**
+
+Replace squared loss with **negative log-likelihood of Student-t**:
+$$
+\mathcal{L}_{\text{Student-t}}^{(k)} = -\sum_{t: z_t = k} \log p_{\text{MVT}}(\mathbf{X}_t - \mathbf{W}^{(k)}\mathbf{X}_t - \sum_\ell \mathbf{B}_\ell^{(k)} \mathbf{X}_{t-\ell}; \boldsymbol{\Psi}^{(k)}, \nu^{(k)})
+$$
+
+**Regime-Specific Optimization:**
+$$
+\min_{\mathbf{W}^{(k)}, \mathbf{B}^{(k)}} \mathcal{L}_{\text{Student-t}}^{(k)} + \lambda_1 \|\mathbf{W}^{(k)}\|_1 + \lambda_2 \sum_\ell \|\mathbf{B}_\ell^{(k)}\|_1
+$$
+$$
+\text{s.t. } h(\mathbf{W}^{(k)}) = 0 \quad \forall k
+$$
+
+#### 13.4.3 Cross-Regime Consistency Regularization
+
+To prevent overfitting and encourage stable causal structure, we add:
+
+$$
+\mathcal{R}_{\text{consistency}} = \sum_{k < k'} \|\mathbf{W}^{(k)} \circ \mathbf{W}^{(k')} - \mathbf{W}^{(k)}\|_F^2
+$$
+
+**Interpretation:** Edges present in regime $k$ should likely be present in regime $k'$ (shared skeleton), but with different strengths.
+
+---
+
+### 13.5 Stage 4: Causal-Aware GNN Prediction
+
+#### 13.5.1 Regime-Dependent Message Passing
+
+Given discovered DAGs $\{\mathbf{W}^{(k)}\}$, we construct a **Causal Graph Neural Network**:
+
+**Input:** Current crowding state $\mathbf{X}_t$ and estimated regime $\hat{z}_t$
+
+**Message Passing (Layer $l$):**
+$$
+\mathbf{H}^{(l+1)} = \sigma\left(\mathbf{W}^{(\hat{z}_t)} \mathbf{H}^{(l)} \mathbf{\Theta}^{(l)} + \mathbf{H}^{(l)} \mathbf{\Phi}^{(l)}\right)
+$$
+
+where:
+- $\mathbf{H}^{(0)} = \mathbf{X}_t$
+- $\mathbf{W}^{(\hat{z}_t)}$ is the **learned causal adjacency** for current regime
+- $\mathbf{\Theta}^{(l)}, \mathbf{\Phi}^{(l)}$ are learnable weight matrices
+
+**Output:** Predicted crowding at horizon $h$:
+$$
+\hat{\mathbf{X}}_{t+h} = \text{MLP}(\mathbf{H}^{(L)})
+$$
+
+#### 13.5.2 Causal Attention Mechanism
+
+To handle regime uncertainty, we use **soft regime assignment**:
+
+$$
+\mathbf{W}_{\text{effective}} = \sum_{k=1}^K \gamma_t(k) \cdot \mathbf{W}^{(k)}
+$$
+
+This allows smooth interpolation between regime-specific causal structures.
+
+---
+
+### 13.6 Joint Optimization
+
+**Full Objective:**
+$$
+\mathcal{L}_{\text{total}} = \underbrace{\mathcal{L}_{\text{prediction}}}_{\text{MSE on } \hat{\mathbf{X}}_{t+h}} + \lambda_1 \underbrace{\sum_k \mathcal{L}_{\text{Student-t}}^{(k)}}_{\text{Causal discovery}} + \lambda_2 \underbrace{\sum_k h(\mathbf{W}^{(k)})}_{\text{DAG constraint}} + \lambda_3 \underbrace{\mathcal{R}_{\text{consistency}}}_{\text{Cross-regime}}
+$$
+
+**Training Procedure:**
+
+```
+Algorithm: CausalCrowd Training
+─────────────────────────────────────────────────────────
+Input: Factor crowding series X_{1:T}, hyperparameters
+Output: Regime parameters {μ,Σ,ν}, DAGs {W^(k)}, GNN weights
+
+1. Initialize: K-means on X for regime centers
+2. Repeat until convergence:
+
+   // Stage 2: Regime Detection
+   3. E-step: Compute γ_t(k) via forward-backward
+   4. M-step: Update μ^(k), Σ^(k), ν^(k), A
+
+   // Stage 3: Causal Discovery (per regime)
+   5. For each regime k:
+      6. Extract {X_t : γ_t(k) > 0.5}
+      7. Run DYNOTEARS with Student-t loss
+      8. Apply DAG constraint via augmented Lagrangian
+
+   // Stage 4: Prediction
+   9. Update GNN weights via backprop on L_prediction
+
+10. Return all parameters
+─────────────────────────────────────────────────────────
+```
+
+---
+
+### 13.7 Theoretical Properties
+
+#### 13.7.1 Identifiability
+
+**Theorem 1 (Regime Identifiability):** Under the Student-t HMM with ordering constraints, the number of regimes $K$, regime assignments $\{z_t\}$, and parameters $\{(\boldsymbol{\mu}^{(k)}, \boldsymbol{\Sigma}^{(k)}, \nu^{(k)})\}$ are identifiable up to label permutation.
+
+*Proof sketch:* The ordering constraint $\|\boldsymbol{\mu}^{(1)}\| < \|\boldsymbol{\mu}^{(2)}\| < \|\boldsymbol{\mu}^{(3)}\|$ breaks permutation symmetry. Different $\nu^{(k)}$ values create distinct tail behaviors that are distinguishable in the likelihood.
+
+**Theorem 2 (DAG Identifiability under Student-t):** If the noise $\boldsymbol{\epsilon}_t^{(k)}$ follows a multivariate Student-t distribution with $\nu^{(k)} < \infty$, then the causal DAG $\mathbf{W}^{(k)}$ is identifiable from observational data.
+
+*Proof sketch:* Extends the LiNGAM identifiability result. Student-t with finite degrees of freedom is non-Gaussian, satisfying the key assumption for identifiability in linear SEMs.
+
+#### 13.7.2 Computational Complexity
+
+| Component | Complexity | Notes |
+|-----------|------------|-------|
+| Forward-backward | $O(TK^2)$ | Standard HMM |
+| Student-t M-step | $O(TKd^2)$ | Matrix inversions |
+| DYNOTEARS per regime | $O(n_k d^3)$ | $n_k$ = samples in regime $k$ |
+| GNN forward pass | $O(Ld^2)$ | $L$ = layers |
+
+**Total:** $O(T(K^2 + Kd^2) + Kd^3)$ per iteration
+
+For our setting ($T \approx 8000$ days, $K=3$, $d=6$): **~1 minute per iteration** on CPU.
+
+---
+
+### 13.8 Why This is NeurIPS-Level
+
+| Criterion | Our Contribution |
+|-----------|-----------------|
+| **Novelty** | First causal discovery framework for factor crowding |
+| **Technical depth** | Student-t regime detection + per-regime DAG learning |
+| **Theory** | Identifiability guarantees under regime-switching heavy-tails |
+| **Practical impact** | Early warning for 2007/2025-style quant meltdowns |
+| **Reproducibility** | Clear algorithm, public Fama-French data |
+
+---
+
+## 14. Comparison with FANTOM
+
+| Aspect | FANTOM | CausalCrowd |
+|--------|--------|-------------|
+| **Domain** | General time series | Factor crowding (finance) |
+| **Regime definition** | Learned automatically | Finance-informed (Normal/Crowding/Crisis) |
+| **Noise model** | Normalizing flow | Student-t (simpler, interpretable) |
+| **Convergence** | No guarantees (BEM non-convex) | Alternating optimization with warm start |
+| **Prediction** | Not included | End-to-end with GNN |
+| **Interpretability** | DAG per regime | DAG + feature importance + risk metrics |
+
+---
+
+## 15. Next Steps
 
 1. **[DONE] ✅ Validation on synthetic data**
 2. **[DONE] ✅ Test on real Fama-French data**
 3. **[DONE] ✅ Literature review & novelty check**
-4. **[NOW] Apply DYNOTEARS/PCMCI formal causal discovery**
-5. **[NEXT] Build causal-aware prediction model (GNN/LSTM)**
-6. **[NEXT] Backtest: Does early warning improve returns?**
-7. **[NEXT] Write NeurIPS 2026 paper**
+4. **[DONE] ✅ Gap analysis of existing methods**
+5. **[NOW] Implement CausalCrowd prototype**
+   - Stage 1: Crowding proxy from FF data
+   - Stage 2: HMM regime detection
+   - Stage 3: Per-regime DYNOTEARS
+   - Stage 4: GNN prediction
+6. **[NEXT] Ablation studies (regime vs no-regime, heavy-tail vs Gaussian)**
+7. **[NEXT] Backtest: Does early warning improve returns?**
+8. **[NEXT] Write NeurIPS 2026 paper

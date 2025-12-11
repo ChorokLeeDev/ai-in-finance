@@ -1,0 +1,107 @@
+\begin{thebibliography}{16}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Ang and Bekaert(2002)]{ang2002international}
+Andrew Ang and Geert Bekaert.
+\newblock International asset allocation with regime shifts.
+\newblock \emph{Review of Financial Studies}, 15\penalty0 (4):\penalty0
+  1137--1187, 2002.
+
+\bibitem[Ang and Chen(2002)]{ang2002asymmetric}
+Andrew Ang and Joseph Chen.
+\newblock Asymmetric correlations of equity portfolios.
+\newblock \emph{Journal of Financial Economics}, 63\penalty0 (3):\penalty0
+  443--494, 2002.
+
+\bibitem[Anton and Polk(2014)]{anton2014connected}
+Miguel Anton and Christopher Polk.
+\newblock Connected stocks.
+\newblock \emph{Journal of Finance}, 69\penalty0 (3):\penalty0 1099--1127,
+  2014.
+
+\bibitem[Billio et~al.(2012)Billio, Getmansky, Lo, and
+  Pelizzon]{billio2012econometric}
+Monica Billio, Mila Getmansky, Andrew~W Lo, and Loriana Pelizzon.
+\newblock Econometric measures of connectedness and systemic risk in the
+  finance and insurance sectors.
+\newblock \emph{Journal of Financial Economics}, 104\penalty0 (3):\penalty0
+  535--559, 2012.
+
+\bibitem[Bulla(2011)]{bulla2011hidden}
+Jan Bulla.
+\newblock Hidden {M}arkov models with t components. {I}ncreased persistence and
+  other aspects.
+\newblock \emph{Quantitative Finance}, 11\penalty0 (3):\penalty0 459--475,
+  2011.
+
+\bibitem[Cont(2001)]{cont2001empirical}
+Rama Cont.
+\newblock Empirical properties of asset returns: stylized facts and statistical
+  issues.
+\newblock \emph{Quantitative Finance}, 1\penalty0 (2):\penalty0 223--236, 2001.
+
+\bibitem[Guidolin and Timmermann(2007)]{guidolin2007asset}
+Massimo Guidolin and Allan Timmermann.
+\newblock Asset allocation under multivariate regime switching.
+\newblock \emph{Journal of Economic Dynamics and Control}, 31\penalty0
+  (11):\penalty0 3503--3544, 2007.
+
+\bibitem[Hamilton(1989)]{hamilton1989new}
+James~D Hamilton.
+\newblock A new approach to the economic analysis of nonstationary time series
+  and the business cycle.
+\newblock \emph{Econometrica}, 57\penalty0 (2):\penalty0 357--384, 1989.
+
+\bibitem[Hiemstra and Jones(1994)]{hiemstra1994testing}
+Craig Hiemstra and Jonathan~D Jones.
+\newblock Testing for linear and nonlinear {G}ranger causality in the stock
+  price-volume relation.
+\newblock \emph{Journal of Finance}, 49\penalty0 (5):\penalty0 1639--1664,
+  1994.
+
+\bibitem[Hua and Sun(2024)]{hua2024dynamics}
+Jian Hua and Wei Sun.
+\newblock Dynamics of factor crowding.
+\newblock \emph{SSRN Working Paper}, 2024.
+
+\bibitem[Huang et~al.(2025)]{huang2025fantom}
+Biwei Huang et~al.
+\newblock {FANTOM}: Flexible non-stationary time series causal discovery.
+\newblock \emph{arXiv preprint arXiv:2506.17065}, 2025.
+
+\bibitem[Khandani and Lo(2011)]{khandani2011quants}
+Amir~E Khandani and Andrew~W Lo.
+\newblock What happened to the quants in {A}ugust 2007? {E}vidence from factors
+  and transactions data.
+\newblock \emph{Journal of Financial Markets}, 14\penalty0 (1):\penalty0 1--46,
+  2011.
+
+\bibitem[Li et~al.(2024)]{li2024causalstock}
+Xiang Li et~al.
+\newblock {CausalStock}: Deep end-to-end causal discovery for news-driven stock
+  movement prediction.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2024.
+
+\bibitem[Liu and Rubin(1995)]{liu1995ml}
+Chuanhai Liu and Donald~B Rubin.
+\newblock {ML} estimation of the t distribution using {EM} and its extensions,
+  {ECM} and {ECME}.
+\newblock \emph{Statistica Sinica}, 5\penalty0 (1):\penalty0 19--39, 1995.
+
+\bibitem[Lou and Polk(2022)]{lou2022comomentum}
+Dong Lou and Christopher Polk.
+\newblock Comomentum: Inferring arbitrage activity from return correlations.
+\newblock \emph{Review of Financial Studies}, 35\penalty0 (7):\penalty0
+  3272--3302, 2022.
+
+\bibitem[Stein(2009)]{stein2009presidential}
+Jeremy~C Stein.
+\newblock Presidential address: Sophisticated investors and market efficiency.
+\newblock \emph{Journal of Finance}, 64\penalty0 (4):\penalty0 1517--1548,
+  2009.
+
+\end{thebibliography}

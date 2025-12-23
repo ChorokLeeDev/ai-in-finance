@@ -2,10 +2,24 @@
 
 ## Paper Status
 
-| Status | Paper | Target | Deadline |
-|--------|-------|--------|----------|
-| Draft | **RelUQ: Schema-Guided Uncertainty Attribution for Relational Databases** | NeurIPS 2026 | May 2026 |
-| Draft | **Causal Structure Changes Across Market Regimes: Evidence from Factor Returns** | ICAIF 2025 | TBD |
+| Status | Paper | Target | Deadline | Priority |
+|--------|-------|--------|----------|----------|
+| **Active** | **RelUQ: Schema-Guided Uncertainty Attribution for Relational Databases** | NeurIPS 2026 | May 2026 | **Primary** |
+| On Hold | **Causal Structure Changes Across Market Regimes: Evidence from Factor Returns** | ICAIF 2025 | TBD | Secondary |
+
+## Assessment Summary
+
+### RelUQ - Strong Results ✓
+- Core finding validated: ρ = 0.90-1.00 on EP domains
+- Clear domain scope (EP vs Associative)
+- Solid theoretical foundation
+- **Recommendation: Focus development efforts here**
+
+### Causal Regimes - Mixed Results
+- In-sample: Strong (p < 0.001)
+- Out-of-sample: Moderate (45% Crisis hit rate, 17% Crowding)
+- Trading: Negative (-6.1% vs +1.9% benchmark)
+- **Recommendation: Leave as-is, submit to ICAIF for feedback, focus on RelUQ**
 
 ---
 
@@ -171,6 +185,8 @@ papers/causal_regimes/
 | 2.5 | 2024 out-of-sample validation | 4h | [x] Done (0/2 patterns - noted in limitations) |
 | 2.6 | GitHub code repository 정리 | 4h | [x] Done (code/ directory) |
 | 2.7 | Robustness appendix 상세화 | 2h | [x] Done (4 subsections added) |
+| 2.8 | Rolling out-of-sample validation | 2h | [x] Done (45% Crisis, 17% Crowding hit rate) |
+| 2.9 | Trading strategy backtest | 2h | [x] Done (negative returns - honest reporting) |
 
 ---
 
@@ -188,3 +204,5 @@ papers/causal_regimes/
 3. **Regime Stationarity:** 35년간 3-regime 가정
 4. **Sample Size:** Crisis regime 1,167 days (power 제한)
 5. **Factor Definition:** Fama-French specific
+6. **Out-of-sample:** Rolling validation shows 45% Crisis, 17% Crowding hit rate
+7. **Trading Profitability:** Naive strategy yields -6.1% annual return (vs +1.9% benchmark)

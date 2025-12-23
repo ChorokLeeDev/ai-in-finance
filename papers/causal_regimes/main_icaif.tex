@@ -304,6 +304,58 @@ COVID 2020 & Mar 9, 2020 & Mar 23, 2020 & \textbf{14 days} \\
     ``destination'' factor when its corresponding causal link is active.
 \end{enumerate}
 
+\subsection{Out-of-Sample Validation}
+\label{sec:oos}
+
+To assess generalization, we conduct rolling out-of-sample tests: for each year
+2000--2024, we train regime thresholds on all prior data and test Granger causality
+on that year's data alone.
+
+\begin{table}[t]
+\centering
+\caption{Rolling Out-of-Sample Hit Rates}
+\label{tab:oos}
+\begin{tabular}{lccc}
+\toprule
+Regime & Expected Pattern & Years Tested & Hit Rate \\
+\midrule
+Crisis & HML $\to$ SMB & 20 & \textbf{45.0\%} \\
+Crowding & SMB $\to$ HML & 18 & 16.7\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The Crisis pattern (HML $\to$ SMB) shows moderate out-of-sample consistency (45\%),
+while the Crowding pattern is weaker (16.7\%). This suggests the in-sample findings
+may partially reflect the 2008 crisis period's strong signal.
+
+\subsection{Trading Strategy Evaluation}
+
+We evaluate whether the causal structure translates to trading profits via a simple
+strategy: during Crisis, use HML to predict SMB (9-day lag); during Crowding, use
+SMB to predict HML (3-day lag).
+
+\begin{table}[t]
+\centering
+\caption{Trading Strategy Backtest (1995--2024)}
+\label{tab:trading}
+\begin{tabular}{lcc}
+\toprule
+Metric & Strategy & Benchmark \\
+\midrule
+Annual Return & -6.1\% & +1.9\% \\
+Sharpe Ratio & -0.75 & +0.27 \\
+Max Drawdown & -97.5\% & -39.8\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The negative returns indicate that \textbf{Granger causality does not imply
+trading profitability}. Possible explanations: (1) statistical significance
+in-sample does not guarantee economic significance out-of-sample; (2) transaction
+costs and timing errors dominate small predictability; (3) the relationship may
+be useful for risk management (hedging) rather than alpha generation.
+
 \subsection{Limitations}
 
 \begin{enumerate}
@@ -312,11 +364,11 @@ COVID 2020 & Mar 9, 2020 & Mar 23, 2020 & \textbf{14 days} \\
     \item \textbf{Crowding proxy:} Rolling volatility is indirect.
     \item \textbf{Regime stationarity:} We assume stable three-regime structure.
     \item \textbf{Sample size:} Crisis regime has 1,167 days (power limited).
-    \item \textbf{Out-of-sample stability:} Preliminary 2024 validation shows
-    weaker causal patterns than the 1990--2023 training period. The 2024 market
-    exhibited predominantly high-volatility conditions (81\% Crisis regime),
-    limiting statistical power for regime-specific causality tests.
-    This highlights the need for ongoing validation as market structure evolves.
+    \item \textbf{Out-of-sample consistency:} Rolling validation shows 45\% hit rate
+    for Crisis and 17\% for Crowding, suggesting in-sample patterns may be driven
+    by specific crisis events (2008) rather than persistent structural relationships.
+    \item \textbf{Trading profitability:} Naive trading strategy yields negative returns,
+    indicating predictability does not translate directly to profits.
 \end{enumerate}
 
 \section{Conclusion}

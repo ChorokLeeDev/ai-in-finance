@@ -216,18 +216,18 @@ the same sensitivity term $S_g = \|\partial \hat{y}/\partial \mathbf{x}_g\|$, in
 \begin{table}[t]
 \centering
 \caption{Attribution-Error Validation. Spearman correlation between uncertainty attribution
-and error impact rankings. High $\rho$ indicates FK attribution accurately predicts which
+and error impact rankings across 5 random seeds. High $\rho$ indicates FK attribution accurately predicts which
 data sources matter for prediction accuracy.}
 \label{tab:main}
-\begin{tabular}{llccc}
+\begin{tabular}{llcccc}
 \toprule
-Dataset & Domain Type & Spearman $\rho$ & $p$-value & Verdict \\
+Dataset & Domain Type & FK Groups & Spearman $\rho$ & $p$-value & Verdict \\
 \midrule
-rel-salt & Error Propagation & \textbf{1.000} & $<$0.001 & Strong Match \\
-rel-trial & Error Propagation & \textbf{1.000} & $<$0.001 & Strong Match \\
-rel-avito & Error Propagation & \textbf{1.000} & $<$0.001 & Strong Match \\
-rel-amazon & Associative & N/A & N/A & Only 2 FKs \\
-rel-stack & Associative & -0.500 & 0.667 & No Match \\
+rel-salt & Error Propagation & 5 & $0.90 \pm 0.05$ & 0.037 & Strong Match \\
+rel-trial & Error Propagation & 6 & $1.00 \pm 0.00$ & $<$0.001 & Strong Match \\
+rel-avito & Error Propagation & 3 & $1.00 \pm 0.00$ & $<$0.001 & Strong Match \\
+rel-amazon & Associative & 2 & N/A & N/A & Only 2 FKs \\
+rel-stack & Associative & 3 & $-0.50 \pm 0.00$ & 0.667 & No Match \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -317,18 +317,48 @@ data quality improvements in validated domains.
 \label{app:proofs}
 
 \begin{proof}[Proof of Theorem~\ref{thm:ep_valid}]
-\textbf{Step 1 (Causal Path):} By Error Propagation Structure, each FK group $g_j$ has
-a causal path to $y$ through structural equations.
+We prove that under Error Propagation Structure, uncertainty attribution and error impact
+induce the same ranking over FK groups.
 
-\textbf{Step 2 (Sensitivity):} Define $S_j = \|\partial \hat{y}/\partial \mathbf{x}_{g_j}\|_F$.
-Causal FK ensures $S_j > 0$ via chain rule.
+\textbf{Step 1 (Structural Equations):}
+Under EP structure, the database generates data through causal mechanisms:
+\begin{align}
+\mathbf{x}_{g_j} &= f_j(\mathbf{PA}_{g_j}, \epsilon_j), \quad j = 1, \ldots, G \\
+y &= h(\mathbf{x}_{g_1}, \ldots, \mathbf{x}_{g_G}, \epsilon_y)
+\end{align}
+where $\mathbf{PA}_{g_j}$ denotes parent variables of group $g_j$ in the FK DAG.
 
-\textbf{Step 3 (Uncertainty Attribution):} Permuting $g$ breaks its relationship with $y$:
-$\Delta u(g) \propto S_g^2 \cdot \Delta\sigma_g^2$.
+\textbf{Step 2 (Model Sensitivity):}
+For a trained model $\hat{y} = m(\mathbf{x})$, define sensitivity to FK group $g$ as:
+\begin{equation}
+S_g = \left\|\frac{\partial \hat{y}}{\partial \mathbf{x}_g}\right\|_F = \sqrt{\sum_{f \in g}\left(\frac{\partial \hat{y}}{\partial x_f}\right)^2}
+\end{equation}
+By the EP assumption (directed path from each $g$ to $y$), we have $S_g > 0$ for all $g$.
 
-\textbf{Step 4 (Error Attribution):} Similarly, $\Delta \text{MAE}(g) \propto |S_g| \cdot \Delta\sigma_g$.
+\textbf{Step 3 (Uncertainty Decomposition):}
+Ensemble variance under permutation of group $g$:
+\begin{equation}
+\Delta u(g) = \mathbb{E}\left[\text{Var}_{m}\left[m(\tilde{\mathbf{x}})\right]\right] - \mathbb{E}\left[\text{Var}_{m}\left[m(\mathbf{x})\right]\right]
+\end{equation}
+where $\tilde{\mathbf{x}}$ has group $g$ permuted. By Taylor expansion:
+\begin{equation}
+\Delta u(g) \approx S_g^2 \cdot \text{Var}(\mathbf{x}_g) \cdot \text{Var}_{m}[\nabla m]
+\end{equation}
 
-\textbf{Step 5 (Rank Preservation):} Both induce the same ranking over FK groups, yielding $\rho_s \geq \tau$.
+\textbf{Step 4 (Error Impact Decomposition):}
+Similarly, prediction error increase under permutation:
+\begin{equation}
+\Delta \text{MAE}(g) \approx |S_g| \cdot \text{std}(\mathbf{x}_g) \cdot \mathbb{E}[|\epsilon_y|]
+\end{equation}
+
+\textbf{Step 5 (Rank Preservation):}
+Since both $\Delta u(g)$ and $\Delta \text{MAE}(g)$ are monotonically increasing in $S_g$
+(holding other terms approximately constant across groups), they induce the same ranking:
+\begin{equation}
+\text{rank}(\{\Delta u(g_i)\}) = \text{rank}(\{|S_{g_i}|\}) = \text{rank}(\{\Delta \text{MAE}(g_i)\})
+\end{equation}
+Therefore $\rho_s(\alpha^u, \alpha^e) \geq \tau$ for some $\tau > 0$, with $\tau = 1$ when
+sensitivities are perfectly distinguishable.
 \end{proof}
 
 \section{Additional Experimental Details}

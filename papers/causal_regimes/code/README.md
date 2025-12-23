@@ -29,6 +29,10 @@ https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html
 ### Validation
 - `gate1_validation.py` - Data quality checks
 - `out_of_sample_2024.py` - 2024 out-of-sample validation
+- `rolling_oos_validation.py` - Rolling out-of-sample validation (Section 5.5)
+
+### Trading Backtest
+- `trading_backtest.py` - Trading strategy evaluation (Section 5.6)
 
 ### Figures
 - `fig2_regime_causal_dag.py` - Generate causal DAG figures

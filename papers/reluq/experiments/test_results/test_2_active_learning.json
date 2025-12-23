@@ -1,0 +1,13 @@
+{
+  "test": "active_learning",
+  "dataset": "rel-f1",
+  "task": "driver-position",
+  "verdict": "\u2705 PASS",
+  "recommendation": "Include FK-guided active learning in NeurIPS - strong novelty boost",
+  "results": {
+    "simulated_improvement_pct": 23.155842323767537,
+    "n_iterations": 5,
+    "final_mae_random": 4.453320669516077,
+    "final_mae_fk": 4.453320669516077
+  }
+}

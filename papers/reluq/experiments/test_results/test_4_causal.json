@@ -1,0 +1,23 @@
+{
+  "test": "causal_attribution",
+  "dataset": "rel-f1",
+  "task": "driver-position",
+  "verdict": "\u274c FAIL",
+  "recommendation": "Causal same as observational - no added value, drop this direction",
+  "results": {
+    "observational": {
+      "QUALIFYING": -0.08762137414060867,
+      "RESULTS": -0.5360568996619675,
+      "STANDINGS": -0.47631062619779563
+    },
+    "causal": {
+      "QUALIFYING": -0.1100504599814518,
+      "RESULTS": -0.6733354127354385,
+      "STANDINGS": -0.33084262299020484
+    },
+    "obs_top": "QUALIFYING",
+    "causal_top": "QUALIFYING",
+    "rankings_differ": false,
+    "domain_makes_sense": true
+  }
+}

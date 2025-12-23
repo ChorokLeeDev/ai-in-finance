@@ -1,0 +1,14 @@
+{
+  "test": "shap_baseline",
+  "dataset": "rel-f1",
+  "task": "driver-position",
+  "verdict": "\u2705 PASS",
+  "recommendation": "Include SHAP baseline in paper - FK grouping improves stability",
+  "results": {
+    "individual_stability": 0.9941391941391942,
+    "fk_stability": 1.0,
+    "improvement_pct": 0.589535740604272,
+    "n_features": 14,
+    "n_fk_groups": 3
+  }
+}

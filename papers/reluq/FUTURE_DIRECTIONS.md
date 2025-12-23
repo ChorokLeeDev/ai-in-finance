@@ -1,6 +1,29 @@
 # Future Research Directions for RelUQ
 
-**Status**: Open research ideas that could significantly strengthen novelty for top venues
+**Status**: Experimental validation in progress (Week 1-2)
+**Strategy**: Run all experiments first, decide scope based on results
+**Timeline**: 20 weeks to NeurIPS 2026 submission
+
+---
+
+## Pragmatic Execution Plan
+
+### Week 1-2: Rapid Prototyping (실험 먼저)
+Run quick tests on all 4 directions to see what actually works:
+
+1. **SHAP Baseline** (2 days) - Does FK grouping improve stability?
+2. **Active Learning** (3 days) - Does FK-guided acquisition beat random by >20%?
+3. **Epistemic/Aleatoric Decomposition** (3 days) - Can we separate uncertainty types?
+4. **Causal Attribution** (4 days) - Does causal ranking differ from observational?
+
+### Week 3: Decision Point (뭐가 됐는지 확인)
+
+**If 4/4 pass** → Unified framework (NeurIPS main, all directions)
+**If 3/4 pass** → Main + workshops (NeurIPS + 2 workshops)
+**If 2/4 pass** → Focused paper (NeurIPS core + 1 extension, KDD backup)
+**If ≤1 pass** → KDD submission (core only)
+
+**Script to run:** `python experiments/quick_test_suite.py --run-all`
 
 ---
 

@@ -1,0 +1,20 @@
+{
+  "test": "fk_active_learning_real_v2",
+  "dataset": "rel-f1",
+  "task": "driver-position",
+  "verdict": "\u2705 PASS",
+  "recommendation": "FK-guided v2 shows strong gains (>20%) - include as main contribution",
+  "results": {
+    "fk_v1_improvement_pct": 50.0,
+    "fk_v2_improvement_pct": 50.0,
+    "v1_to_v2_gain_pct": 0.0,
+    "uncertainty_improvement_pct": 50.0,
+    "n_iterations": 3,
+    "final_maes": {
+      "random": 4.549291474267286,
+      "uncertainty": 4.304539798188549,
+      "fk_guided_v1": 4.304539798188549,
+      "fk_guided_v2": 4.304539798188549
+    }
+  }
+}

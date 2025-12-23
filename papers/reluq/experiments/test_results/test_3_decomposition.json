@@ -1,0 +1,10 @@
+{
+  "test": "decomposition",
+  "verdict": "\u2705 PASS",
+  "recommendation": "Decomposition is feasible - include as theoretical extension (workshop paper)",
+  "results": {
+    "synthetic": {
+      "total_uncertainty": 0.14342139398189263,
+      "epistemic_reduction": 0.016888539892075005,
+      "epistemic_pct": 10.414697839251087,
+      "success": 

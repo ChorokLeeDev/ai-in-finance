@@ -38,7 +38,11 @@
       "Bash(mkdir:*)",
       "Bash(python3:*)",
       "Bash(curl:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(/Users/i767700/miniconda3/envs/gnn_env/bin/python:*)",
+      "Bash(/usr/bin/python3:*)",
+      "Bash(pip3 show:*)",
+      "Bash(pip3 list:*)"
     ],
     "deny": [],
     "ask": []

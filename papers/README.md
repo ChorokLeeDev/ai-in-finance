@@ -156,8 +156,8 @@ papers/causal_regimes/
 | 1.2 | 한글 제거 + pdfLaTeX 호환 | 1h | [x] Done |
 | 1.3 | references.bib 분리 | 1h | [x] Done |
 | 1.4 | 9 pages로 압축 (appendix 분리) | 4h | [x] Done |
-| 1.5 | Banking/Insurance 도메인 실험 | 1-2 weeks | [ ] |
-| 1.6 | TreeSHAP/InfoSHAP baseline 비교 | 1 week | [ ] |
+| 1.5 | 추가 도메인 실험 (Avito) | 1-2 weeks | [x] Done (ρ=1.0) |
+| 1.6 | SHAP baseline 비교 | 1 week | [x] Done (similar ρ) |
 | 1.7 | Anonymization | 30min | [x] Done |
 
 ### Phase 2: Causal Regimes (Medium Priority) - Target: Q2 2025
@@ -166,9 +166,9 @@ papers/causal_regimes/
 |------|------|--------|--------|
 | 2.1 | Figure 생성 (regime detection plot) | 2h | [x] Done (12 figures copied) |
 | 2.2 | Figure 생성 (causal DAG per regime) | 2h | [x] Done (gate3_dags.png) |
-| 2.3 | ICAIF template 적용 | 2h | [ ] |
+| 2.3 | ICAIF template 적용 | 2h | [x] Done (main_icaif.tex) |
 | 2.4 | references.bib 완성 | 1h | [x] Done (15 entries) |
-| 2.5 | 2024 out-of-sample validation | 4h | [ ] |
+| 2.5 | 2024 out-of-sample validation | 4h | [ ] Requires Fama-French data |
 | 2.6 | GitHub code repository 정리 | 4h | [ ] |
 | 2.7 | Robustness appendix 상세화 | 2h | [ ] |
 

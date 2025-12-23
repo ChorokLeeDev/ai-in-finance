@@ -1,0 +1,327 @@
+% ICAIF 2025 Submission - ACM sigconf format
+% Use: \documentclass[sigconf,anonymous]{acmart} for submission
+% Use: \documentclass[sigconf]{acmart} for camera-ready
+
+\documentclass[sigconf,anonymous]{acmart}
+
+% Remove copyright for submission
+\setcopyright{none}
+\settopmatter{printacmref=false}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+
+% Packages
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% BibTeX
+\bibliographystyle{ACM-Reference-Format}
+
+\begin{document}
+
+\title{Causal Structure Changes Across Market Regimes: Evidence from Factor Returns}
+
+\author{Anonymous}
+\affiliation{%
+  \institution{Anonymous Institution}
+}
+
+\begin{abstract}
+We document that the causal structure between equity factors is regime-dependent.
+Analyzing 35 years of daily Fama-French factor data (1990--2024), we find that
+Value (HML) Granger-causes Size (SMB) exclusively during crisis regimes
+($p = 1.89 \times 10^{-5}$, 9-day lag), while the reverse direction---Size causes
+Value---emerges only during crowding regimes ($p = 1.94 \times 10^{-4}$, 3-day lag).
+No significant causal relationship exists during normal market conditions.
+This directional asymmetry---invisible to correlation analysis---has direct
+implications for risk management: during crowding periods, Size factor movements
+predict Value movements three days ahead; during crises, the prediction direction
+reverses with a nine-day horizon. We identify regimes using a Student-$t$ Hidden
+Markov Model, which captures heavy-tailed behavior of factor returns and detects
+moderate crises (2011 European debt crisis: 69\% detection) that Gaussian models
+entirely miss (0\% detection). The emergence of regime-specific causal links provides
+early warning of market transitions, with crisis regime detection occurring two months
+before the 2008 Lehman Brothers collapse.
+\end{abstract}
+
+\begin{CCSXML}
+<ccs2012>
+   <concept>
+       <concept_id>10002950.10003648.10003671</concept_id>
+       <concept_desc>Mathematics of computing~Time series analysis</concept_desc>
+       <concept_significance>500</concept_significance>
+   </concept>
+   <concept>
+       <concept_id>10010147.10010257.10010293.10010294</concept_id>
+       <concept_desc>Computing methodologies~Causal reasoning and diagnostics</concept_desc>
+       <concept_significance>500</concept_significance>
+   </concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Mathematics of computing~Time series analysis}
+\ccsdesc[500]{Computing methodologies~Causal reasoning and diagnostics}
+
+\keywords{Factor Crowding, Causal Discovery, Regime Switching, Hidden Markov Models, Risk Management}
+
+\maketitle
+
+\section{Introduction}
+
+The August 2007 quantitative meltdown, in which systematic equity strategies lost 30\%
+in three days, revealed a critical blind spot in factor-based risk management.
+When multiple quantitative funds held similar factor exposures, forced liquidation
+by one fund created price pressure that cascaded to all others~\cite{khandani2011quants}.
+Standard correlation-based risk models failed to anticipate this cascade because they
+measure \emph{co-movement} but not \emph{causal direction}.
+
+\textbf{The Missing Piece: Which Factor Drives Which?}
+
+Existing research establishes three stylized facts:
+(1) Factor correlations increase during market stress~\cite{ang2002asymmetric};
+(2) Returns exhibit regime-switching behavior~\cite{hamilton1989new};
+(3) Factor crowding amplifies drawdowns during liquidation~\cite{stein2009presidential}.
+
+However, a critical question remains unanswered: \textbf{Does the causal structure
+between factors change across market regimes?}
+
+Correlation tells us factors move together, but is symmetric---it cannot distinguish
+whether Value crowding causes Size crowding or vice versa. If we knew the causal
+direction, and if this direction varied by regime, we could:
+\begin{itemize}
+    \item Monitor the ``source'' factor to anticipate movements in the ``destination'' factor
+    \item Adjust hedges based on the current regime's causal structure
+    \item Detect regime transitions by observing when causal links emerge or disappear
+\end{itemize}
+
+\subsection{Our Discovery}
+
+Using Granger causality analysis within regime-dependent subsamples identified by
+a Student-$t$ Hidden Markov Model, we establish three empirical facts:
+
+\textbf{Fact 1: Regime-specific causality exists.} The Value factor (HML) Granger-causes
+the Size factor (SMB) with a 9-day lag, but \emph{only} during crisis regimes
+($p = 1.89 \times 10^{-5}$). This relationship is statistically absent in normal
+and crowding regimes.
+
+\textbf{Fact 2: Causal direction reverses across regimes.} During crowding regimes,
+Size Granger-causes Value ($p = 1.94 \times 10^{-4}$, 3-day lag)---the \emph{opposite}
+direction from crisis regimes. Normal regimes exhibit no significant causal link.
+
+\textbf{Fact 3: Causal emergence provides early warning.} The transition from
+no-causality to active causality coincides with regime shifts. Our model detects
+the crisis regime two months before Lehman Brothers' collapse, providing actionable
+lead time for portfolio adjustment.
+
+\subsection{Contributions}
+
+\begin{enumerate}
+    \item \textbf{Novel Empirical Finding:} First documentation that causal relationships
+    between Fama-French factors are regime-dependent, with direction reversal between
+    crowding and crisis regimes (Section~\ref{sec:main_result})
+
+    \item \textbf{Methodological:} Student-$t$ HMM for regime detection that captures
+    moderate crises missed by Gaussian models---critical because accurate regime
+    identification is prerequisite for discovering regime-dependent causality
+    (Sections~\ref{sec:hmm}, \ref{sec:gaussian_comparison})
+
+    \item \textbf{Economic Mechanism:} Interpretation of asymmetric causality through
+    crowding cascade dynamics: Size $\to$ Value during buildup, Value $\to$ Size
+    during unwind (Section~\ref{sec:interpretation})
+
+    \item \textbf{Practical Application:} Early warning system based on causal link
+    emergence with documented lead times (Section~\ref{sec:early_warning})
+\end{enumerate}
+
+\section{Related Work}
+
+\textbf{Factor crowding and systemic risk.}
+Anton and Polk~\cite{anton2014connected} show that stocks with common mutual fund
+ownership exhibit correlated returns. Lou and Polk~\cite{lou2022comomentum} measure
+arbitrage activity through return comovement. Stein~\cite{stein2009presidential}
+formalizes how crowded trades amplify drawdowns.
+\textbf{Gap:} Existing work measures crowding \emph{intensity} within individual
+factors but does not examine causal \emph{spillover} between factors.
+
+\textbf{Regime-switching models in finance.}
+Hamilton~\cite{hamilton1989new} introduced Markov-switching models for business cycles.
+Guidolin and Timmermann~\cite{guidolin2007asset} extend regime models to asset allocation.
+Bulla~\cite{bulla2011hidden} applies Student-$t$ HMMs to financial returns.
+\textbf{Gap:} Regime-switching models focus on regime-dependent \emph{distributions},
+not regime-dependent \emph{causal structure}.
+
+\textbf{Causal discovery in finance.}
+Billio et al.~\cite{billio2012econometric} construct Granger causality networks among
+financial institutions to measure systemic risk.
+\textbf{Gap:} No prior work examines regime-dependent causality at the \emph{factor} level.
+
+\section{Methodology}
+
+\subsection{Data}
+
+We use daily returns for the Fama-French six factors from Kenneth French's data library:
+Market excess return (MKT-RF), Size (SMB), Value (HML), Profitability (RMW),
+Investment (CMA), and Momentum (MOM).
+
+\textbf{Sample:} January 2, 1990 -- December 31, 2024 (8,967 trading days).
+
+\subsection{Student-$t$ Hidden Markov Model}
+\label{sec:hmm}
+
+Let $z_t \in \{1, \ldots, K\}$ denote the latent regime at time $t$. We model:
+
+\textbf{Transition model:}
+$P(z_t = k \mid z_{t-1} = j) = A_{jk}$
+
+\textbf{Emission model (multivariate Student-$t$):}
+\begin{equation}
+p(\mathbf{x}_t \mid z_t = k) \propto \left(1 + \frac{\delta_k(\mathbf{x}_t)}{\nu_k}\right)^{-\frac{\nu_k+d}{2}}
+\end{equation}
+
+where $\delta_k(\mathbf{x}_t) = (\mathbf{x}_t - \boldsymbol{\mu}_k)^\top\boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_t - \boldsymbol{\mu}_k)$.
+
+\textbf{Why Student-$t$?} Financial returns exhibit excess kurtosis. Gaussian HMMs
+calibrate thresholds to extreme historical observations, missing moderate crises.
+Student-$t$ distributions accommodate heavy tails, enabling detection of crises
+with volatility below historical extremes.
+
+\subsection{Per-Regime Granger Causality}
+
+For each regime $k$, we extract observations: $\mathcal{T}_k = \{t : \hat{z}_t = k\}$.
+For each ordered pair of factors $(i, j)$, we test:
+$H_0: r_{j,t} \perp \{r_{i,t-\ell}\}_{\ell=1}^{L} \mid \{r_{j,t-\ell}\}_{\ell=1}^{L}$
+
+Significance threshold: $\alpha = 0.01$ with Bonferroni correction.
+
+\section{Results}
+
+\subsection{Regime Characteristics}
+
+\begin{table}[t]
+\centering
+\caption{Regime Summary Statistics}
+\label{tab:regimes}
+\begin{tabular}{lccccc}
+\toprule
+Regime & Days & Proportion & Mean $\|\mathbf{x}\|$ & Est. $\nu$ & Persistence \\
+\midrule
+Normal & 3,310 & 36.9\% & 0.41 & 14.2 & 0.987 \\
+Crowding & 4,490 & 50.1\% & 0.58 & 7.8 & 0.992 \\
+Crisis & 1,167 & 13.0\% & 1.89 & 3.9 & 0.971 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Gaussian vs. Student-$t$ Comparison}
+\label{sec:gaussian_comparison}
+
+\begin{table}[t]
+\centering
+\caption{Crisis Detection Comparison}
+\label{tab:detection}
+\begin{tabular}{lccc}
+\toprule
+Event & Period & Student-$t$ & Gaussian \\
+\midrule
+2008 Financial Crisis & Jul 2008 -- Jun 2009 & 96.0\% & 95.6\% \\
+2011 EU Debt Crisis & Jul -- Oct 2011 & \textbf{69.4\%} & \textbf{0.0\%} \\
+2020 COVID-19 & Feb -- Jun 2020 & 85.7\% & 81.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 2011 European debt crisis falls entirely below the Gaussian model's crisis threshold.
+
+\subsection{Main Result: Regime-Dependent Causal Structure}
+\label{sec:main_result}
+
+\begin{table}[t]
+\centering
+\caption{Granger Causality Between HML and SMB by Regime}
+\label{tab:main}
+\begin{tabular}{lcccc}
+\toprule
+Regime & Direction & $p$-value & Lag & Significant? \\
+\midrule
+Normal & HML $\to$ SMB & $1.52 \times 10^{-2}$ & 9 & No \\
+Normal & SMB $\to$ HML & $9.81 \times 10^{-2}$ & 5 & No \\
+\midrule
+Crowding & HML $\to$ SMB & $8.70 \times 10^{-2}$ & 10 & No \\
+Crowding & SMB $\to$ HML & $\mathbf{1.94 \times 10^{-4}}$ & 3 & \textbf{Yes} \\
+\midrule
+Crisis & HML $\to$ SMB & $\mathbf{1.89 \times 10^{-5}}$ & 9 & \textbf{Yes} \\
+Crisis & SMB $\to$ HML & $1.65 \times 10^{-1}$ & 4 & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Key Finding:} The causal direction between HML and SMB \emph{reverses} across regimes:
+\begin{itemize}
+    \item \textbf{Normal regime:} Neither direction significant. Factors evolve independently.
+    \item \textbf{Crowding regime:} SMB $\to$ HML only. Size predicts Value (3-day lag).
+    \item \textbf{Crisis regime:} HML $\to$ SMB only. Value predicts Size (9-day lag).
+\end{itemize}
+
+\subsection{Economic Interpretation}
+\label{sec:interpretation}
+
+\textbf{Crowding regime (SMB $\to$ HML, 3-day lag):} During buildup, small-cap strategies
+become crowded. Many small-cap stocks are also value stocks, so crowding in SMB-exposed
+positions creates pressure on value stocks. The short 3-day lag reflects rapid rebalancing.
+
+\textbf{Crisis regime (HML $\to$ SMB, 9-day lag):} During unwinds, value positions face
+the largest drawdowns. Forced liquidation cascades to small-cap stocks through overlapping
+institutional holdings. The longer 9-day lag reflects slower deleveraging.
+
+\subsection{Early Warning Performance}
+\label{sec:early_warning}
+
+\begin{table}[t]
+\centering
+\caption{Early Warning Lead Time}
+\label{tab:warning}
+\begin{tabular}{lccc}
+\toprule
+Event & First Detection & Peak & Lead Time \\
+\midrule
+Lehman 2008 & Jul 16, 2008 & Sep 15, 2008 & \textbf{61 days} \\
+EU Crisis 2011 & Aug 1, 2011 & Aug 8, 2011 & 7 days \\
+COVID 2020 & Mar 9, 2020 & Mar 23, 2020 & \textbf{14 days} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Discussion}
+
+\subsection{Implications for Risk Management}
+
+\begin{enumerate}
+    \item \textbf{Monitor the source factor:} During crowding regimes, track SMB to
+    anticipate HML (3-day horizon). During crises, track HML to anticipate SMB (9-day horizon).
+    \item \textbf{Regime detection is prerequisite:} Causal relationships that exist
+    only in specific regimes provide no warning if the regime is misidentified.
+    \item \textbf{Hedge the destination factor:} Reduce unhedged exposure to the
+    ``destination'' factor when its corresponding causal link is active.
+\end{enumerate}
+
+\subsection{Limitations}
+
+\begin{enumerate}
+    \item \textbf{Granger vs. structural causality:} Granger causality establishes
+    predictive, not necessarily interventional, relationships.
+    \item \textbf{Crowding proxy:} Rolling volatility is indirect.
+    \item \textbf{Regime stationarity:} We assume stable three-regime structure.
+    \item \textbf{Sample size:} Crisis regime has 1,167 days (power limited).
+\end{enumerate}
+
+\section{Conclusion}
+
+We document that the causal structure between equity factors is regime-dependent.
+Value Granger-causes Size only during crisis regimes; Size Granger-causes Value only
+during crowding regimes. This directional asymmetry has direct implications for factor
+risk management. As factor investing AUM continues to grow, understanding regime-dependent
+causal dynamics becomes essential for anticipating the next crowding cascade.
+
+\bibliography{references}
+
+\end{document}

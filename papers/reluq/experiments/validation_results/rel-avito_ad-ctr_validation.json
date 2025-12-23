@@ -1,0 +1,176 @@
+{
+  "dataset": "rel-avito",
+  "task": "ad-ctr",
+  "sample_size": 1500,
+  "n_features": 12,
+  "n_fk_groups": 5,
+  "fk_groups": [
+    "TRAIN",
+    "ADSINFO",
+    "PHONEREQUESTSSTREAM",
+    "VISITSTREAM",
+    "SEARCHSTREAM"
+  ],
+  "is_classification": false,
+  "experiments": {
+    "corruption": {
+      "experiment": "corruption",
+      "verdict": "FAIL",
+      "spearman_rho": -0.36842105263157904,
+      "p_value": 0.5417509057946893,
+      "base_error": 0.02070103760139647,
+      "fk_results": {
+        "TRAIN": {
+          "uncertainty": -10.23203657221315,
+          "corruption_sensitivity": 2.7292814730859076,
+          "error_by_noise_level": {
+            "0.1": 2.1530717762711187,
+            "0.25": 0.6372522718257057,
+            "0.5": 1.2657525601333903,
+            "0.75": 2.7292814730859076,
+            "1.0": 2.273148971861401
+          }
+        },
+        "ADSINFO": {
+          "uncertainty": 2.096725671443515,
+          "corruption_sensitivity": 5.409767304797299,
+          "error_by_noise_level": {
+            "0.1": 1.7865787932759263,
+            "0.25": 2.950386330408017,
+            "0.5": 3.2368120636157434,
+            "0.75": 5.036408817645453,
+            "1.0": 5.409767304797299
+          }
+        },
+        "PHONEREQUESTSSTREAM": {
+          "uncertainty": 0.0,
+          "corruption_sensitivity": 0.7247156658346599,
+          "error_by_noise_level": {
+            "0.1": 0.7247156658346599,
+            "0.25": 0.7247156658346599,
+            "0.5": 0.7247156658346599,
+            "0.75": 0.7247156658346599,
+            "1.0": 0.7247156658346599
+          }
+        },
+        "VISITSTREAM": {
+          "uncertainty": 0.0,
+          "corruption_sensitivity": 0.7247156658346599,
+          "error_by_noise_level": {
+            "0.1": 0.7247156658346599,
+            "0.25": 0.7247156658346599,
+            "0.5": 0.7247156658346599,
+            "0.75": 0.7247156658346599,
+            "1.0": 0.7247156658346599
+          }
+        },
+        "SEARCHSTREAM": {
+          "uncertainty": -12.946017508992858,
+          "corruption_sensitivity": 29.40079789157382,
+          "error_by_noise_level": {
+            "0.1": 6.298969767028486,
+            "0.25": 13.427843441314186,
+            "0.5": 18.90323755191514,
+            "0.75": 26.494748292557226,
+            "1.0": 29.40079789157382
+          }
+        }
+      },
+      "corruption_levels": [
+        0.1,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ]
+    },
+    "learning_curve": {
+      "experiment": "learning_curve",
+      "verdict": "PASS",
+      "data_fractions": [
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "fk_uncertainties_by_fraction": {
+        "TRAIN": [
+          0.3666595782336404,
+          0.5082565097475374,
+          4.6418888882578315,
+          1.0812851514509363,
+          1.6682823316855833
+        ],
+        "ADSINFO": [
+          -0.13028790505878987,
+          1.7565894257659256,
+          1.7585865662288598,
+          0.4003096043373286,
+          4.921275007274452
+        ],
+        "PHONEREQUESTSSTREAM": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "VISITSTREAM": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "SEARCHSTREAM": [
+          5.245169682842694,
+          -3.6711627646100076,
+          20.830172083484026,
+          9.105653592092624,
+          0.29463266656001863
+        ]
+      },
+      "decrease_rates": {
+        "TRAIN": -1.301622753451943,
+        "ADSINFO": -5.0515629123332415,
+        "PHONEREQUESTSSTREAM": 0.0,
+        "VISITSTREAM": 0.0,
+        "SEARCHSTREAM": 4.950537016282675
+      },
+      "initial_uncertainties": {
+        "TRAIN": 0.3666595782336404,
+        "ADSINFO": -0.13028790505878987,
+        "PHONEREQUESTSSTREAM": 0.0,
+        "VISITSTREAM": 0.0,
+        "SEARCHSTREAM": 5.245169682842694
+      },
+      "avg_high_unc_decrease": 1.8244571314153664,
+      "correlation_rho": 0.6842105263157895,
+      "correlation_p": 0.20263069030420366
+    },
+    "ep_detection": {
+      "experiment": "ep_detection",
+      "verdict": "NON-EP DOMAIN",
+      "domain_type": "NON-EP",
+      "spearman_rho": -0.6842105263157895,
+      "p_value": 0.20263069030420366,
+      "fk_uncertainty_attribution": {
+        "TRAIN": -6.651198164195793,
+        "ADSINFO": 3.2448954309486497,
+        "PHONEREQUESTSSTREAM": 0.0,
+        "VISITSTREAM": 0.0,
+        "SEARCHSTREAM": -11.262454647789268
+      },
+      "fk_error_attribution": {
+        "TRAIN": 4.663937091946993,
+        "ADSINFO": 4.42372428185576,
+        "PHONEREQUESTSSTREAM": 0.0,
+        "VISITSTREAM": 0.0,
+        "SEARCHSTREAM": 139.01856524933825
+      },
+      "threshold_ep": 0.7,
+      "threshold_non_ep": 0.3
+    }
+  }
+}

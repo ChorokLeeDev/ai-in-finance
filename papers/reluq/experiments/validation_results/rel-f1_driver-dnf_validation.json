@@ -1,0 +1,130 @@
+{
+  "dataset": "rel-f1",
+  "task": "driver-dnf",
+  "sample_size": 1500,
+  "n_features": 14,
+  "n_fk_groups": 3,
+  "fk_groups": [
+    "QUALIFYING",
+    "RESULTS",
+    "STANDINGS"
+  ],
+  "is_classification": true,
+  "experiments": {
+    "corruption": {
+      "experiment": "corruption",
+      "verdict": "FAIL",
+      "spearman_rho": -1.0,
+      "p_value": 0.0,
+      "base_error": 0.11466666666666667,
+      "fk_results": {
+        "QUALIFYING": {
+          "uncertainty": 10.267539711897287,
+          "corruption_sensitivity": 6.976744186046506,
+          "error_by_noise_level": {
+            "0.1": 2.906976744186041,
+            "0.25": 2.325581395348835,
+            "0.5": 5.232558139534889,
+            "0.75": 6.976744186046506,
+            "1.0": 2.906976744186041
+          }
+        },
+        "RESULTS": {
+          "uncertainty": 43.56734260905192,
+          "corruption_sensitivity": 6.3953488372092995,
+          "error_by_noise_level": {
+            "0.1": 2.906976744186041,
+            "0.25": 5.232558139534889,
+            "0.5": 5.232558139534889,
+            "0.75": 6.3953488372092995,
+            "1.0": 5.232558139534889
+          }
+        },
+        "STANDINGS": {
+          "uncertainty": 0.32641954040026777,
+          "corruption_sensitivity": 8.720930232558135,
+          "error_by_noise_level": {
+            "0.1": 2.325581395348835,
+            "0.25": 2.906976744186041,
+            "0.5": 8.720930232558135,
+            "0.75": 2.906976744186041,
+            "1.0": 4.069767441860464
+          }
+        }
+      },
+      "corruption_levels": [
+        0.1,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ]
+    },
+    "learning_curve": {
+      "experiment": "learning_curve",
+      "verdict": "FAIL",
+      "data_fractions": [
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "fk_uncertainties_by_fraction": {
+        "QUALIFYING": [
+          5.99312150561746,
+          4.211376537570291,
+          7.4014855188835655,
+          7.000231360798684,
+          10.868893459537267
+        ],
+        "RESULTS": [
+          32.23313540139076,
+          36.848596505782744,
+          22.937360058558113,
+          32.69921678258327,
+          40.72854536656032
+        ],
+        "STANDINGS": [
+          18.30067390844557,
+          -28.94260170151966,
+          -35.0310535065692,
+          1.6385220574015047,
+          9.614101310570293
+        ]
+      },
+      "decrease_rates": {
+        "QUALIFYING": -4.875771953919807,
+        "RESULTS": -8.495409965169557,
+        "STANDINGS": 8.686572597875278
+      },
+      "initial_uncertainties": {
+        "QUALIFYING": 5.99312150561746,
+        "RESULTS": 32.23313540139076,
+        "STANDINGS": 18.30067390844557
+      },
+      "avg_high_unc_decrease": -1.561536440404695,
+      "correlation_rho": -0.5,
+      "correlation_p": 0.6666666666666667
+    },
+    "ep_detection": {
+      "experiment": "ep_detection",
+      "verdict": "MIXED DOMAIN",
+      "domain_type": "MIXED",
+      "spearman_rho": 0.5,
+      "p_value": 0.6666666666666667,
+      "fk_uncertainty_attribution": {
+        "QUALIFYING": 10.1085799527736,
+        "RESULTS": 40.88886824646281,
+        "STANDINGS": 1.0268184029172682
+      },
+      "fk_error_attribution": {
+        "QUALIFYING": 0.6976744186046495,
+        "RESULTS": 8.139534883720927,
+        "STANDINGS": 2.0930232558139528
+      },
+      "threshold_ep": 0.7,
+      "threshold_non_ep": 0.3
+    }
+  }
+}

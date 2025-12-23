@@ -1,0 +1,314 @@
+{
+  "dataset": "rel-trial",
+  "task": "study-outcome",
+  "sample_size": 1500,
+  "n_features": 31,
+  "n_fk_groups": 11,
+  "fk_groups": [
+    "STUDIES",
+    "OUTCOMES",
+    "INTERVENTIONS_STUDIES",
+    "DROP_WITHDRAWALS",
+    "OUTCOME_ANALYSES",
+    "DESIGNS",
+    "FACILITIES_STUDIES",
+    "ELIGIBILITIES",
+    "SPONSORS_STUDIES",
+    "REPORTED_EVENT_TOTALS",
+    "CONDITIONS_STUDIES"
+  ],
+  "is_classification": true,
+  "experiments": {
+    "corruption": {
+      "experiment": "corruption",
+      "verdict": "MARGINAL",
+      "spearman_rho": 0.5818181818181819,
+      "p_value": 0.060419896215648305,
+      "base_error": 0.07333333333333333,
+      "fk_results": {
+        "STUDIES": {
+          "uncertainty": 4.398264826192588,
+          "corruption_sensitivity": 49.09090909090909,
+          "error_by_noise_level": {
+            "0.1": 23.636363636363644,
+            "0.25": 33.63636363636364,
+            "0.5": 49.09090909090909,
+            "0.75": 47.27272727272727,
+            "1.0": 40.90909090909091
+          }
+        },
+        "OUTCOMES": {
+          "uncertainty": 3.35784241808262,
+          "corruption_sensitivity": 21.81818181818182,
+          "error_by_noise_level": {
+            "0.1": 3.6363636363636336,
+            "0.25": 10.9090909090909,
+            "0.5": 14.545454545454554,
+            "0.75": 16.36363636363636,
+            "1.0": 21.81818181818182
+          }
+        },
+        "INTERVENTIONS_STUDIES": {
+          "uncertainty": 5.530868740196422,
+          "corruption_sensitivity": 35.45454545454545,
+          "error_by_noise_level": {
+            "0.1": 11.818181818181822,
+            "0.25": 19.999999999999993,
+            "0.5": 19.09090909090909,
+            "0.75": 35.45454545454545,
+            "1.0": 20.909090909090917
+          }
+        },
+        "DROP_WITHDRAWALS": {
+          "uncertainty": 7.376865882824615,
+          "corruption_sensitivity": 45.45454545454547,
+          "error_by_noise_level": {
+            "0.1": 25.454545454545453,
+            "0.25": 29.090909090909083,
+            "0.5": 30.909090909090914,
+            "0.75": 29.090909090909083,
+            "1.0": 45.45454545454547
+          }
+        },
+        "OUTCOME_ANALYSES": {
+          "uncertainty": 12.12995407622111,
+          "corruption_sensitivity": 126.36363636363637,
+          "error_by_noise_level": {
+            "0.1": 91.81818181818181,
+            "0.25": 105.45454545454547,
+            "0.5": 126.36363636363637,
+            "0.75": 110.9090909090909,
+            "1.0": 120.0
+          }
+        },
+        "DESIGNS": {
+          "uncertainty": 2.0041944940680407,
+          "corruption_sensitivity": 14.545454545454554,
+          "error_by_noise_level": {
+            "0.1": 7.272727272727267,
+            "0.25": 14.545454545454554,
+            "0.5": 3.6363636363636336,
+            "0.75": 13.63636363636363,
+            "1.0": 14.545454545454554
+          }
+        },
+        "FACILITIES_STUDIES": {
+          "uncertainty": 7.537749673546941,
+          "corruption_sensitivity": 26.363636363636356,
+          "error_by_noise_level": {
+            "0.1": 16.36363636363636,
+            "0.25": 20.909090909090917,
+            "0.5": 26.363636363636356,
+            "0.75": 19.999999999999993,
+            "1.0": 24.545454545454547
+          }
+        },
+        "ELIGIBILITIES": {
+          "uncertainty": 0.10738933903750776,
+          "corruption_sensitivity": 20.909090909090917,
+          "error_by_noise_level": {
+            "0.1": 12.727272727272727,
+            "0.25": 9.090909090909092,
+            "0.5": 15.454545454545457,
+            "0.75": 19.09090909090909,
+            "1.0": 20.909090909090917
+          }
+        },
+        "SPONSORS_STUDIES": {
+          "uncertainty": 7.134636993603874,
+          "corruption_sensitivity": 33.63636363636364,
+          "error_by_noise_level": {
+            "0.1": 13.63636363636363,
+            "0.25": 22.72727272727272,
+            "0.5": 33.63636363636364,
+            "0.75": 26.363636363636356,
+            "1.0": 30.00000000000001
+          }
+        },
+        "REPORTED_EVENT_TOTALS": {
+          "uncertainty": 4.807130189883027,
+          "corruption_sensitivity": 42.727272727272734,
+          "error_by_noise_level": {
+            "0.1": 37.27272727272727,
+            "0.25": 33.63636363636364,
+            "0.5": 39.09090909090908,
+            "0.75": 42.727272727272734,
+            "1.0": 28.18181818181818
+          }
+        },
+        "CONDITIONS_STUDIES": {
+          "uncertainty": 7.365690896044237,
+          "corruption_sensitivity": 34.54545454545455,
+          "error_by_noise_level": {
+            "0.1": 16.36363636363636,
+            "0.25": 24.545454545454547,
+            "0.5": 34.54545454545455,
+            "0.75": 29.090909090909083,
+            "1.0": 33.63636363636364
+          }
+        }
+      },
+      "corruption_levels": [
+        0.1,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ]
+    },
+    "learning_curve": {
+      "experiment": "learning_curve",
+      "verdict": "PASS",
+      "data_fractions": [
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "fk_uncertainties_by_fraction": {
+        "STUDIES": [
+          10.968222969452215,
+          6.931746662181619,
+          3.7553354635139513,
+          5.463066048231734,
+          7.0355746326748525
+        ],
+        "OUTCOMES": [
+          5.738836612522796,
+          4.33895315607592,
+          5.3992836658226215,
+          3.6011373895580565,
+          3.257504396378953
+        ],
+        "INTERVENTIONS_STUDIES": [
+          4.597680235340868,
+          5.916571269230555,
+          6.906152075725866,
+          7.82068871485012,
+          7.231959717943156
+        ],
+        "DROP_WITHDRAWALS": [
+          3.716548513346369,
+          6.5932470858089145,
+          11.309981363760608,
+          6.761527351404685,
+          4.357320518918741
+        ],
+        "OUTCOME_ANALYSES": [
+          24.996863628702105,
+          17.018592319904545,
+          21.01261418589826,
+          14.421032302052792,
+          18.69128739060029
+        ],
+        "DESIGNS": [
+          4.255521057619565,
+          2.0337160513608112,
+          3.8774344822630624,
+          -0.20985672128256228,
+          2.6703745997901187
+        ],
+        "FACILITIES_STUDIES": [
+          7.766950997385037,
+          7.453015031779425,
+          9.781556651496885,
+          6.824905078536404,
+          7.252928067658382
+        ],
+        "ELIGIBILITIES": [
+          0.1723655274167131,
+          -0.08341173268542688,
+          0.16836018796791216,
+          0.2685452925952789,
+          1.0687985003447202
+        ],
+        "SPONSORS_STUDIES": [
+          5.428902184023758,
+          4.995839106240614,
+          10.46160909750987,
+          5.621928183037878,
+          6.314922381502072
+        ],
+        "REPORTED_EVENT_TOTALS": [
+          10.775560670556565,
+          13.012214542459594,
+          9.26660623416582,
+          8.881200342226684,
+          6.6678477195126105
+        ],
+        "CONDITIONS_STUDIES": [
+          9.248605364873205,
+          7.774548619295739,
+          7.083572382822431,
+          4.068233354057078,
+          9.325044128225583
+        ]
+      },
+      "decrease_rates": {
+        "STUDIES": 3.932648336777363,
+        "OUTCOMES": 2.481332216143843,
+        "INTERVENTIONS_STUDIES": -2.634279482602288,
+        "DROP_WITHDRAWALS": -0.6407720055723725,
+        "OUTCOME_ANALYSES": 6.305576238101814,
+        "DESIGNS": 1.5851464578294463,
+        "FACILITIES_STUDIES": 0.5140229297266554,
+        "ELIGIBILITIES": -0.8964329729280072,
+        "SPONSORS_STUDIES": -0.886020197478314,
+        "REPORTED_EVENT_TOTALS": 4.107712951043955,
+        "CONDITIONS_STUDIES": -0.0764387633523782
+      },
+      "initial_uncertainties": {
+        "STUDIES": 10.968222969452215,
+        "OUTCOMES": 5.738836612522796,
+        "INTERVENTIONS_STUDIES": 4.597680235340868,
+        "DROP_WITHDRAWALS": 3.716548513346369,
+        "OUTCOME_ANALYSES": 24.996863628702105,
+        "DESIGNS": 4.255521057619565,
+        "FACILITIES_STUDIES": 7.766950997385037,
+        "ELIGIBILITIES": 0.1723655274167131,
+        "SPONSORS_STUDIES": 5.428902184023758,
+        "REPORTED_EVENT_TOTALS": 10.775560670556565,
+        "CONDITIONS_STUDIES": 9.248605364873205
+      },
+      "avg_high_unc_decrease": 1.2538632461536106,
+      "correlation_rho": 0.7727272727272727,
+      "correlation_p": 0.005299487178643863
+    },
+    "ep_detection": {
+      "experiment": "ep_detection",
+      "verdict": "EP DOMAIN",
+      "domain_type": "EP",
+      "spearman_rho": 0.7818181818181819,
+      "p_value": 0.004473162252783038,
+      "fk_uncertainty_attribution": {
+        "STUDIES": 3.6685264732650475,
+        "OUTCOMES": 3.1124537452658303,
+        "INTERVENTIONS_STUDIES": 5.1921975923188635,
+        "DROP_WITHDRAWALS": 8.177945561490633,
+        "OUTCOME_ANALYSES": 13.834451205715515,
+        "DESIGNS": 1.4616940505231935,
+        "FACILITIES_STUDIES": 7.295626496558626,
+        "ELIGIBILITIES": 0.13235564866060878,
+        "SPONSORS_STUDIES": 7.213233072975237,
+        "REPORTED_EVENT_TOTALS": 5.482499056956851,
+        "CONDITIONS_STUDIES": 5.687997911355034
+      },
+      "fk_error_attribution": {
+        "STUDIES": 24.181818181818187,
+        "OUTCOMES": 8.54545454545455,
+        "INTERVENTIONS_STUDIES": 20.545454545454543,
+        "DROP_WITHDRAWALS": 35.454545454545446,
+        "OUTCOME_ANALYSES": 507.6363636363636,
+        "DESIGNS": 12.0,
+        "FACILITIES_STUDIES": 20.000000000000004,
+        "ELIGIBILITIES": 0.5454545454545421,
+        "SPONSORS_STUDIES": 19.818181818181824,
+        "REPORTED_EVENT_TOTALS": 16.909090909090907,
+        "CONDITIONS_STUDIES": 32.72727272727273
+      },
+      "threshold_ep": 0.7,
+      "threshold_non_ep": 0.3
+    }
+  }
+}

@@ -1,0 +1,1081 @@
+[
+  {
+    "dataset": "rel-f1",
+    "task": "driver-position",
+    "sample_size": 1500,
+    "n_features": 14,
+    "n_fk_groups": 3,
+    "fk_groups": [
+      "QUALIFYING",
+      "RESULTS",
+      "STANDINGS"
+    ],
+    "is_classification": false,
+    "experiments": {
+      "corruption": {
+        "experiment": "corruption",
+        "verdict": "FAIL",
+        "spearman_rho": 0.5,
+        "p_value": 0.6666666666666667,
+        "base_error": 3.7948339028857085,
+        "fk_results": {
+          "QUALIFYING": {
+            "uncertainty": 2.822028324601263,
+            "corruption_sensitivity": 3.3758283968899514,
+            "error_by_noise_level": {
+              "0.1": 3.0976766679749077,
+              "0.25": 2.9176079631650573,
+              "0.5": 2.8115605420076415,
+              "0.75": 3.3758283968899514,
+              "1.0": 2.8414061971241105
+            }
+          },
+          "RESULTS": {
+            "uncertainty": 4.213683604342347,
+            "corruption_sensitivity": 12.36854133744753,
+            "error_by_noise_level": {
+              "0.1": 4.565154546672272,
+              "0.25": 7.35943693097766,
+              "0.5": 8.89715703952193,
+              "0.75": 10.873606995457253,
+              "1.0": 12.36854133744753
+            }
+          },
+          "STANDINGS": {
+            "uncertainty": 13.614928026110206,
+            "corruption_sensitivity": 4.601290208601064,
+            "error_by_noise_level": {
+              "0.1": 3.487220671412246,
+              "0.25": 3.6732760365104227,
+              "0.5": 4.108400870234414,
+              "0.75": 4.601290208601064,
+              "1.0": 3.814578438083513
+            }
+          }
+        },
+        "corruption_levels": [
+          0.1,
+          0.25,
+          0.5,
+          0.75,
+          1.0
+        ]
+      },
+      "learning_curve": {
+        "experiment": "learning_curve",
+        "verdict": "PASS",
+        "data_fractions": [
+          0.2,
+          0.4,
+          0.6,
+          0.8,
+          1.0
+        ],
+        "fk_uncertainties_by_fraction": {
+          "QUALIFYING": [
+            2.1666170596095924,
+            2.0619598614148766,
+            2.422465316643285,
+            1.3788713924507443,
+            1.5297193627443706
+          ],
+          "RESULTS": [
+            -8.50356632032256,
+            11.035580153869335,
+            11.105055934784021,
+            1.8432464910989166,
+            13.079155372659903
+          ],
+          "STANDINGS": [
+            -6.005031162806131,
+            8.443811839327028,
+            10.475087958583948,
+            14.24343205729094,
+            13.751243652173669
+          ]
+        },
+        "decrease_rates": {
+          "QUALIFYING": 0.6368976968652218,
+          "RESULTS": -21.582721692982464,
+          "STANDINGS": -19.7562748149798
+        },
+        "initial_uncertainties": {
+          "QUALIFYING": 2.1666170596095924,
+          "RESULTS": -8.50356632032256,
+          "STANDINGS": -6.005031162806131
+        },
+        "avg_high_unc_decrease": 0.6368976968652218,
+        "correlation_rho": 1.0,
+        "correlation_p": 0.0
+      },
+      "ep_detection": {
+        "experiment": "ep_detection",
+        "verdict": "MIXED DOMAIN",
+        "domain_type": "MIXED",
+        "spearman_rho": 0.5,
+        "p_value": 0.6666666666666667,
+        "fk_uncertainty_attribution": {
+          "QUALIFYING": 2.9527819193245732,
+          "RESULTS": 3.692633009891862,
+          "STANDINGS": 13.343965956510578
+        },
+        "fk_error_attribution": {
+          "QUALIFYING": 0.4767939510366417,
+          "RESULTS": 70.01364117859222,
+          "STANDINGS": 2.911498019103415
+        },
+        "threshold_ep": 0.7,
+        "threshold_non_ep": 0.3
+      }
+    }
+  },
+  {
+    "dataset": "rel-f1",
+    "task": "driver-dnf",
+    "sample_size": 1500,
+    "n_features": 14,
+    "n_fk_groups": 3,
+    "fk_groups": [
+      "QUALIFYING",
+      "RESULTS",
+      "STANDINGS"
+    ],
+    "is_classification": true,
+    "experiments": {
+      "corruption": {
+        "experiment": "corruption",
+        "verdict": "FAIL",
+        "spearman_rho": -1.0,
+        "p_value": 0.0,
+        "base_error": 0.11466666666666667,
+        "fk_results": {
+          "QUALIFYING": {
+            "uncertainty": 10.267539711897287,
+            "corruption_sensitivity": 6.976744186046506,
+            "error_by_noise_level": {
+              "0.1": 2.906976744186041,
+              "0.25": 2.325581395348835,
+              "0.5": 5.232558139534889,
+              "0.75": 6.976744186046506,
+              "1.0": 2.906976744186041
+            }
+          },
+          "RESULTS": {
+            "uncertainty": 43.56734260905192,
+            "corruption_sensitivity": 6.3953488372092995,
+            "error_by_noise_level": {
+              "0.1": 2.906976744186041,
+              "0.25": 5.232558139534889,
+              "0.5": 5.232558139534889,
+              "0.75": 6.3953488372092995,
+              "1.0": 5.232558139534889
+            }
+          },
+          "STANDINGS": {
+            "uncertainty": 0.32641954040026777,
+            "corruption_sensitivity": 8.720930232558135,
+            "error_by_noise_level": {
+              "0.1": 2.325581395348835,
+              "0.25": 2.906976744186041,
+              "0.5": 8.720930232558135,
+              "0.75": 2.906976744186041,
+              "1.0": 4.069767441860464
+            }
+          }
+        },
+        "corruption_levels": [
+          0.1,
+          0.25,
+          0.5,
+          0.75,
+          1.0
+        ]
+      },
+      "learning_curve": {
+        "experiment": "learning_curve",
+        "verdict": "FAIL",
+        "data_fractions": [
+          0.2,
+          0.4,
+          0.6,
+          0.8,
+          1.0
+        ],
+        "fk_uncertainties_by_fraction": {
+          "QUALIFYING": [
+            5.99312150561746,
+            4.211376537570291,
+            7.4014855188835655,
+            7.000231360798684,
+            10.868893459537267
+          ],
+          "RESULTS": [
+            32.23313540139076,
+            36.848596505782744,
+            22.937360058558113,
+            32.69921678258327,
+            40.72854536656032
+          ],
+          "STANDINGS": [
+            18.30067390844557,
+            -28.94260170151966,
+            -35.0310535065692,
+            1.6385220574015047,
+            9.614101310570293
+          ]
+        },
+        "decrease_rates": {
+          "QUALIFYING": -4.875771953919807,
+          "RESULTS": -8.495409965169557,
+          "STANDINGS": 8.686572597875278
+        },
+        "initial_uncertainties": {
+          "QUALIFYING": 5.99312150561746,
+          "RESULTS": 32.23313540139076,
+          "STANDINGS": 18.30067390844557
+        },
+        "avg_high_unc_decrease": -1.561536440404695,
+        "correlation_rho": -0.5,
+        "correlation_p": 0.6666666666666667
+      },
+      "ep_detection": {
+        "experiment": "ep_detection",
+        "verdict": "MIXED DOMAIN",
+        "domain_type": "MIXED",
+        "spearman_rho": 0.5,
+        "p_value": 0.6666666666666667,
+        "fk_uncertainty_attribution": {
+          "QUALIFYING": 10.1085799527736,
+          "RESULTS": 40.88886824646281,
+          "STANDINGS": 1.0268184029172682
+        },
+        "fk_error_attribution": {
+          "QUALIFYING": 0.6976744186046495,
+          "RESULTS": 8.139534883720927,
+          "STANDINGS": 2.0930232558139528
+        },
+        "threshold_ep": 0.7,
+        "threshold_non_ep": 0.3
+      }
+    }
+  },
+  {
+    "dataset": "rel-f1",
+    "task": "driver-top3",
+    "sample_size": 1353,
+    "n_features": 14,
+    "n_fk_groups": 3,
+    "fk_groups": [
+      "QUALIFYING",
+      "RESULTS",
+      "STANDINGS"
+    ],
+    "is_classification": true,
+    "experiments": {
+      "corruption": {
+        "experiment": "corruption",
+        "verdict": "FAIL",
+        "spearman_rho": -0.8660254037844387,
+        "p_value": 0.3333333333333332,
+        "base_error": 0.1271249076127125,
+        "fk_results": {
+          "QUALIFYING": {
+            "uncertainty": -60.35889900715042,
+            "corruption_sensitivity": 18.02325581395347,
+            "error_by_noise_level": {
+              "0.1": 2.9069767441860446,
+              "0.25": 18.02325581395347,
+              "0.5": 12.209302325581382,
+              "0.75": 5.232558139534884,
+              "1.0": 1.162790697674409
+            }
+          },
+          "RESULTS": {
+            "uncertainty": 5.783213531411512,
+            "corruption_sensitivity": 6.976744186046497,
+            "error_by_noise_level": {
+              "0.1": 5.813953488372089,
+              "0.25": 1.7441860465116132,
+              "0.5": 6.395348837209293,
+              "0.75": 6.976744186046497,
+              "1.0": 5.232558139534884
+            }
+          },
+          "STANDINGS": {
+            "uncertainty": -214.09759585177682,
+            "corruption_sensitivity": 18.02325581395347,
+            "error_by_noise_level": {
+              "0.1": 18.02325581395347,
+              "0.25": 5.232558139534884,
+              "0.5": 5.232558139534884,
+              "0.75": 8.139534883720929,
+              "1.0": 1.7441860465116132
+            }
+          }
+        },
+        "corruption_levels": [
+          0.1,
+          0.25,
+          0.5,
+          0.75,
+          1.0
+        ]
+      },
+      "learning_curve": {
+        "experiment": "learning_curve",
+        "verdict": "PASS",
+        "data_fractions": [
+          0.2,
+          0.4,
+          0.6,
+          0.8,
+          1.0
+        ],
+        "fk_uncertainties_by_fraction": {
+          "QUALIFYING": [
+            14.036761578582661,
+            -101.95284560521925,
+            -121.44606849492425,
+            -161.79565483247052,
+            -106.15234154767984
+          ],
+          "RESULTS": [
+            -9.789188340799411,
+            -125.95966137172223,
+            -113.70154512800883,
+            -141.69540850519863,
+            -93.59222259423241
+          ],
+          "STANDINGS": [
+            -8.504456705171547,
+            -97.70848411832947,
+            -143.8973329433338,
+            -56.79027197445455,
+            -49.42436879022663
+          ]
+        },
+        "decrease_rates": {
+          "QUALIFYING": 120.1891031262625,
+          "RESULTS": 83.803034253433,
+          "STANDINGS": 40.91991208505508
+        },
+        "initial_uncertainties": {
+          "QUALIFYING": 14.036761578582661,
+          "RESULTS": -9.789188340799411,
+          "STANDINGS": -8.504456705171547
+        },
+        "avg_high_unc_decrease": 120.1891031262625,
+        "correlation_rho": 0.5,
+        "correlation_p": 0.6666666666666667
+      },
+      "ep_detection": {
+        "experiment": "ep_detection",
+        "verdict": "EP DOMAIN",
+        "domain_type": "EP",
+        "spearman_rho": 1.0,
+        "p_value": 0.0,
+        "fk_uncertainty_attribution": {
+          "QUALIFYING": -64.94774547740693,
+          "RESULTS": 9.903332847482572,
+          "STANDINGS": -206.23793430623215
+        },
+        "fk_error_attribution": {
+          "QUALIFYING": 21.162790697674414,
+          "RESULTS": 35.11627906976743,
+          "STANDINGS": 0.11627906976743652
+        },
+        "threshold_ep": 0.7,
+        "threshold_non_ep": 0.3
+      }
+    }
+  },
+  {
+    "dataset": "rel-trial",
+    "task": "study-outcome",
+    "sample_size": 1500,
+    "n_features": 31,
+    "n_fk_groups": 11,
+    "fk_groups": [
+      "STUDIES",
+      "OUTCOMES",
+      "INTERVENTIONS_STUDIES",
+      "DROP_WITHDRAWALS",
+      "OUTCOME_ANALYSES",
+      "DESIGNS",
+      "FACILITIES_STUDIES",
+      "ELIGIBILITIES",
+      "SPONSORS_STUDIES",
+      "REPORTED_EVENT_TOTALS",
+      "CONDITIONS_STUDIES"
+    ],
+    "is_classification": true,
+    "experiments": {
+      "corruption": {
+        "experiment": "corruption",
+        "verdict": "MARGINAL",
+        "spearman_rho": 0.5818181818181819,
+        "p_value": 0.060419896215648305,
+        "base_error": 0.07333333333333333,
+        "fk_results": {
+          "STUDIES": {
+            "uncertainty": 4.398264826192588,
+            "corruption_sensitivity": 49.09090909090909,
+            "error_by_noise_level": {
+              "0.1": 23.636363636363644,
+              "0.25": 33.63636363636364,
+              "0.5": 49.09090909090909,
+              "0.75": 47.27272727272727,
+              "1.0": 40.90909090909091
+            }
+          },
+          "OUTCOMES": {
+            "uncertainty": 3.35784241808262,
+            "corruption_sensitivity": 21.81818181818182,
+            "error_by_noise_level": {
+              "0.1": 3.6363636363636336,
+              "0.25": 10.9090909090909,
+              "0.5": 14.545454545454554,
+              "0.75": 16.36363636363636,
+              "1.0": 21.81818181818182
+            }
+          },
+          "INTERVENTIONS_STUDIES": {
+            "uncertainty": 5.530868740196422,
+            "corruption_sensitivity": 35.45454545454545,
+            "error_by_noise_level": {
+              "0.1": 11.818181818181822,
+              "0.25": 19.999999999999993,
+              "0.5": 19.09090909090909,
+              "0.75": 35.45454545454545,
+              "1.0": 20.909090909090917
+            }
+          },
+          "DROP_WITHDRAWALS": {
+            "uncertainty": 7.376865882824615,
+            "corruption_sensitivity": 45.45454545454547,
+            "error_by_noise_level": {
+              "0.1": 25.454545454545453,
+              "0.25": 29.090909090909083,
+              "0.5": 30.909090909090914,
+              "0.75": 29.090909090909083,
+              "1.0": 45.45454545454547
+            }
+          },
+          "OUTCOME_ANALYSES": {
+            "uncertainty": 12.12995407622111,
+            "corruption_sensitivity": 126.36363636363637,
+            "error_by_noise_level": {
+              "0.1": 91.81818181818181,
+              "0.25": 105.45454545454547,
+              "0.5": 126.36363636363637,
+              "0.75": 110.9090909090909,
+              "1.0": 120.0
+            }
+          },
+          "DESIGNS": {
+            "uncertainty": 2.0041944940680407,
+            "corruption_sensitivity": 14.545454545454554,
+            "error_by_noise_level": {
+              "0.1": 7.272727272727267,
+              "0.25": 14.545454545454554,
+              "0.5": 3.6363636363636336,
+              "0.75": 13.63636363636363,
+              "1.0": 14.545454545454554
+            }
+          },
+          "FACILITIES_STUDIES": {
+            "uncertainty": 7.537749673546941,
+            "corruption_sensitivity": 26.363636363636356,
+            "error_by_noise_level": {
+              "0.1": 16.36363636363636,
+              "0.25": 20.909090909090917,
+              "0.5": 26.363636363636356,
+              "0.75": 19.999999999999993,
+              "1.0": 24.545454545454547
+            }
+          },
+          "ELIGIBILITIES": {
+            "uncertainty": 0.10738933903750776,
+            "corruption_sensitivity": 20.909090909090917,
+            "error_by_noise_level": {
+              "0.1": 12.727272727272727,
+              "0.25": 9.090909090909092,
+              "0.5": 15.454545454545457,
+              "0.75": 19.09090909090909,
+              "1.0": 20.909090909090917
+            }
+          },
+          "SPONSORS_STUDIES": {
+            "uncertainty": 7.134636993603874,
+            "corruption_sensitivity": 33.63636363636364,
+            "error_by_noise_level": {
+              "0.1": 13.63636363636363,
+              "0.25": 22.72727272727272,
+              "0.5": 33.63636363636364,
+              "0.75": 26.363636363636356,
+              "1.0": 30.00000000000001
+            }
+          },
+          "REPORTED_EVENT_TOTALS": {
+            "uncertainty": 4.807130189883027,
+            "corruption_sensitivity": 42.727272727272734,
+            "error_by_noise_level": {
+              "0.1": 37.27272727272727,
+              "0.25": 33.63636363636364,
+              "0.5": 39.09090909090908,
+              "0.75": 42.727272727272734,
+              "1.0": 28.18181818181818
+            }
+          },
+          "CONDITIONS_STUDIES": {
+            "uncertainty": 7.365690896044237,
+            "corruption_sensitivity": 34.54545454545455,
+            "error_by_noise_level": {
+              "0.1": 16.36363636363636,
+              "0.25": 24.545454545454547,
+              "0.5": 34.54545454545455,
+              "0.75": 29.090909090909083,
+              "1.0": 33.63636363636364
+            }
+          }
+        },
+        "corruption_levels": [
+          0.1,
+          0.25,
+          0.5,
+          0.75,
+          1.0
+        ]
+      },
+      "learning_curve": {
+        "experiment": "learning_curve",
+        "verdict": "PASS",
+        "data_fractions": [
+          0.2,
+          0.4,
+          0.6,
+          0.8,
+          1.0
+        ],
+        "fk_uncertainties_by_fraction": {
+          "STUDIES": [
+            10.968222969452215,
+            6.931746662181619,
+            3.7553354635139513,
+            5.463066048231734,
+            7.0355746326748525
+          ],
+          "OUTCOMES": [
+            5.738836612522796,
+            4.33895315607592,
+            5.3992836658226215,
+            3.6011373895580565,
+            3.257504396378953
+          ],
+          "INTERVENTIONS_STUDIES": [
+            4.597680235340868,
+            5.916571269230555,
+            6.906152075725866,
+            7.82068871485012,
+            7.231959717943156
+          ],
+          "DROP_WITHDRAWALS": [
+            3.716548513346369,
+            6.5932470858089145,
+            11.309981363760608,
+            6.761527351404685,
+            4.357320518918741
+          ],
+          "OUTCOME_ANALYSES": [
+            24.996863628702105,
+            17.018592319904545,
+            21.01261418589826,
+            14.421032302052792,
+            18.69128739060029
+          ],
+          "DESIGNS": [
+            4.255521057619565,
+            2.0337160513608112,
+            3.8774344822630624,
+            -0.20985672128256228,
+            2.6703745997901187
+          ],
+          "FACILITIES_STUDIES": [
+            7.766950997385037,
+            7.453015031779425,
+            9.781556651496885,
+            6.824905078536404,
+            7.252928067658382
+          ],
+          "ELIGIBILITIES": [
+            0.1723655274167131,
+            -0.08341173268542688,
+            0.16836018796791216,
+            0.2685452925952789,
+            1.0687985003447202
+          ],
+          "SPONSORS_STUDIES": [
+            5.428902184023758,
+            4.995839106240614,
+            10.46160909750987,
+            5.621928183037878,
+            6.314922381502072
+          ],
+          "REPORTED_EVENT_TOTALS": [
+            10.775560670556565,
+            13.012214542459594,
+            9.26660623416582,
+            8.881200342226684,
+            6.6678477195126105
+          ],
+          "CONDITIONS_STUDIES": [
+            9.248605364873205,
+            7.774548619295739,
+            7.083572382822431,
+            4.068233354057078,
+            9.325044128225583
+          ]
+        },
+        "decrease_rates": {
+          "STUDIES": 3.932648336777363,
+          "OUTCOMES": 2.481332216143843,
+          "INTERVENTIONS_STUDIES": -2.634279482602288,
+          "DROP_WITHDRAWALS": -0.6407720055723725,
+          "OUTCOME_ANALYSES": 6.305576238101814,
+          "DESIGNS": 1.5851464578294463,
+          "FACILITIES_STUDIES": 0.5140229297266554,
+          "ELIGIBILITIES": -0.8964329729280072,
+          "SPONSORS_STUDIES": -0.886020197478314,
+          "REPORTED_EVENT_TOTALS": 4.107712951043955,
+          "CONDITIONS_STUDIES": -0.0764387633523782
+        },
+        "initial_uncertainties": {
+          "STUDIES": 10.968222969452215,
+          "OUTCOMES": 5.738836612522796,
+          "INTERVENTIONS_STUDIES": 4.597680235340868,
+          "DROP_WITHDRAWALS": 3.716548513346369,
+          "OUTCOME_ANALYSES": 24.996863628702105,
+          "DESIGNS": 4.255521057619565,
+          "FACILITIES_STUDIES": 7.766950997385037,
+          "ELIGIBILITIES": 0.1723655274167131,
+          "SPONSORS_STUDIES": 5.428902184023758,
+          "REPORTED_EVENT_TOTALS": 10.775560670556565,
+          "CONDITIONS_STUDIES": 9.248605364873205
+        },
+        "avg_high_unc_decrease": 1.2538632461536106,
+        "correlation_rho": 0.7727272727272727,
+        "correlation_p": 0.005299487178643863
+      },
+      "ep_detection": {
+        "experiment": "ep_detection",
+        "verdict": "EP DOMAIN",
+        "domain_type": "EP",
+        "spearman_rho": 0.7818181818181819,
+        "p_value": 0.004473162252783038,
+        "fk_uncertainty_attribution": {
+          "STUDIES": 3.6685264732650475,
+          "OUTCOMES": 3.1124537452658303,
+          "INTERVENTIONS_STUDIES": 5.1921975923188635,
+          "DROP_WITHDRAWALS": 8.177945561490633,
+          "OUTCOME_ANALYSES": 13.834451205715515,
+          "DESIGNS": 1.4616940505231935,
+          "FACILITIES_STUDIES": 7.295626496558626,
+          "ELIGIBILITIES": 0.13235564866060878,
+          "SPONSORS_STUDIES": 7.213233072975237,
+          "REPORTED_EVENT_TOTALS": 5.482499056956851,
+          "CONDITIONS_STUDIES": 5.687997911355034
+        },
+        "fk_error_attribution": {
+          "STUDIES": 24.181818181818187,
+          "OUTCOMES": 8.54545454545455,
+          "INTERVENTIONS_STUDIES": 20.545454545454543,
+          "DROP_WITHDRAWALS": 35.454545454545446,
+          "OUTCOME_ANALYSES": 507.6363636363636,
+          "DESIGNS": 12.0,
+          "FACILITIES_STUDIES": 20.000000000000004,
+          "ELIGIBILITIES": 0.5454545454545421,
+          "SPONSORS_STUDIES": 19.818181818181824,
+          "REPORTED_EVENT_TOTALS": 16.909090909090907,
+          "CONDITIONS_STUDIES": 32.72727272727273
+        },
+        "threshold_ep": 0.7,
+        "threshold_non_ep": 0.3
+      }
+    }
+  },
+  {
+    "dataset": "rel-avito",
+    "task": "ad-ctr",
+    "sample_size": 1500,
+    "n_features": 12,
+    "n_fk_groups": 5,
+    "fk_groups": [
+      "TRAIN",
+      "ADSINFO",
+      "PHONEREQUESTSSTREAM",
+      "VISITSTREAM",
+      "SEARCHSTREAM"
+    ],
+    "is_classification": false,
+    "experiments": {
+      "corruption": {
+        "experiment": "corruption",
+        "verdict": "FAIL",
+        "spearman_rho": -0.36842105263157904,
+        "p_value": 0.5417509057946893,
+        "base_error": 0.02070103760139647,
+        "fk_results": {
+          "TRAIN": {
+            "uncertainty": -10.23203657221315,
+            "corruption_sensitivity": 2.7292814730859076,
+            "error_by_noise_level": {
+              "0.1": 2.1530717762711187,
+              "0.25": 0.6372522718257057,
+              "0.5": 1.2657525601333903,
+              "0.75": 2.7292814730859076,
+              "1.0": 2.273148971861401
+            }
+          },
+          "ADSINFO": {
+            "uncertainty": 2.096725671443515,
+            "corruption_sensitivity": 5.409767304797299,
+            "error_by_noise_level": {
+              "0.1": 1.7865787932759263,
+              "0.25": 2.950386330408017,
+              "0.5": 3.2368120636157434,
+              "0.75": 5.036408817645453,
+              "1.0": 5.409767304797299
+            }
+          },
+          "PHONEREQUESTSSTREAM": {
+            "uncertainty": 0.0,
+            "corruption_sensitivity": 0.7247156658346599,
+            "error_by_noise_level": {
+              "0.1": 0.7247156658346599,
+              "0.25": 0.7247156658346599,
+              "0.5": 0.7247156658346599,
+              "0.75": 0.7247156658346599,
+              "1.0": 0.7247156658346599
+            }
+          },
+          "VISITSTREAM": {
+            "uncertainty": 0.0,
+            "corruption_sensitivity": 0.7247156658346599,
+            "error_by_noise_level": {
+              "0.1": 0.7247156658346599,
+              "0.25": 0.7247156658346599,
+              "0.5": 0.7247156658346599,
+              "0.75": 0.7247156658346599,
+              "1.0": 0.7247156658346599
+            }
+          },
+          "SEARCHSTREAM": {
+            "uncertainty": -12.946017508992858,
+            "corruption_sensitivity": 29.40079789157382,
+            "error_by_noise_level": {
+              "0.1": 6.298969767028486,
+              "0.25": 13.427843441314186,
+              "0.5": 18.90323755191514,
+              "0.75": 26.494748292557226,
+              "1.0": 29.40079789157382
+            }
+          }
+        },
+        "corruption_levels": [
+          0.1,
+          0.25,
+          0.5,
+          0.75,
+          1.0
+        ]
+      },
+      "learning_curve": {
+        "experiment": "learning_curve",
+        "verdict": "PASS",
+        "data_fractions": [
+          0.2,
+          0.4,
+          0.6,
+          0.8,
+          1.0
+        ],
+        "fk_uncertainties_by_fraction": {
+          "TRAIN": [
+            0.3666595782336404,
+            0.5082565097475374,
+            4.6418888882578315,
+            1.0812851514509363,
+            1.6682823316855833
+          ],
+          "ADSINFO": [
+            -0.13028790505878987,
+            1.7565894257659256,
+            1.7585865662288598,
+            0.4003096043373286,
+            4.921275007274452
+          ],
+          "PHONEREQUESTSSTREAM": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "VISITSTREAM": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "SEARCHSTREAM": [
+            5.245169682842694,
+            -3.6711627646100076,
+            20.830172083484026,
+            9.105653592092624,
+            0.29463266656001863
+          ]
+        },
+        "decrease_rates": {
+          "TRAIN": -1.301622753451943,
+          "ADSINFO": -5.0515629123332415,
+          "PHONEREQUESTSSTREAM": 0.0,
+          "VISITSTREAM": 0.0,
+          "SEARCHSTREAM": 4.950537016282675
+        },
+        "initial_uncertainties": {
+          "TRAIN": 0.3666595782336404,
+          "ADSINFO": -0.13028790505878987,
+          "PHONEREQUESTSSTREAM": 0.0,
+          "VISITSTREAM": 0.0,
+          "SEARCHSTREAM": 5.245169682842694
+        },
+        "avg_high_unc_decrease": 1.8244571314153664,
+        "correlation_rho": 0.6842105263157895,
+        "correlation_p": 0.20263069030420366
+      },
+      "ep_detection": {
+        "experiment": "ep_detection",
+        "verdict": "NON-EP DOMAIN",
+        "domain_type": "NON-EP",
+        "spearman_rho": -0.6842105263157895,
+        "p_value": 0.20263069030420366,
+        "fk_uncertainty_attribution": {
+          "TRAIN": -6.651198164195793,
+          "ADSINFO": 3.2448954309486497,
+          "PHONEREQUESTSSTREAM": 0.0,
+          "VISITSTREAM": 0.0,
+          "SEARCHSTREAM": -11.262454647789268
+        },
+        "fk_error_attribution": {
+          "TRAIN": 4.663937091946993,
+          "ADSINFO": 4.42372428185576,
+          "PHONEREQUESTSSTREAM": 0.0,
+          "VISITSTREAM": 0.0,
+          "SEARCHSTREAM": 139.01856524933825
+        },
+        "threshold_ep": 0.7,
+        "threshold_non_ep": 0.3
+      }
+    }
+  },
+  {
+    "dataset": "rel-event",
+    "task": "user-attendance",
+    "sample_size": 1500,
+    "n_features": 117,
+    "n_fk_groups": 6,
+    "fk_groups": [
+      "TRAIN",
+      "USERS",
+      "EVENT_INTEREST",
+      "EVENT_ATTENDEES",
+      "USER_FRIENDS",
+      "EVENTS"
+    ],
+    "is_classification": true,
+    "experiments": {
+      "corruption": {
+        "experiment": "corruption",
+        "verdict": "PASS",
+        "spearman_rho": 0.7714285714285715,
+        "p_value": 0.07239650145772594,
+        "base_error": 0.106,
+        "fk_results": {
+          "TRAIN": {
+            "uncertainty": -12.54428788738109,
+            "corruption_sensitivity": 35.22012578616353,
+            "error_by_noise_level": {
+              "0.1": 18.23899371069182,
+              "0.25": 24.528301886792462,
+              "0.5": 29.55974842767296,
+              "0.75": 26.41509433962265,
+              "1.0": 35.22012578616353
+            }
+          },
+          "USERS": {
+            "uncertainty": -6.231580210620978,
+            "corruption_sensitivity": 34.59119496855346,
+            "error_by_noise_level": {
+              "0.1": 16.352201257861644,
+              "0.25": 20.75471698113208,
+              "0.5": 34.59119496855346,
+              "0.75": 32.70440251572327,
+              "1.0": 25.15723270440251
+            }
+          },
+          "EVENT_INTEREST": {
+            "uncertainty": -2.588134424217147,
+            "corruption_sensitivity": 50.314465408805034,
+            "error_by_noise_level": {
+              "0.1": 50.314465408805034,
+              "0.25": 42.767295597484264,
+              "0.5": 31.446540880503154,
+              "0.75": 25.15723270440251,
+              "1.0": 37.10691823899373
+            }
+          },
+          "EVENT_ATTENDEES": {
+            "uncertainty": 0.3103853023559583,
+            "corruption_sensitivity": 52.830188679245296,
+            "error_by_noise_level": {
+              "0.1": 13.20754716981132,
+              "0.25": 33.33333333333334,
+              "0.5": 44.65408805031446,
+              "0.75": 52.830188679245296,
+              "1.0": 50.9433962264151
+            }
+          },
+          "USER_FRIENDS": {
+            "uncertainty": -13.478188939459795,
+            "corruption_sensitivity": 43.39622641509434,
+            "error_by_noise_level": {
+              "0.1": 8.176100628930822,
+              "0.25": 33.33333333333334,
+              "0.5": 43.39622641509434,
+              "0.75": 35.22012578616353,
+              "1.0": 30.81761006289308
+            }
+          },
+          "EVENTS": {
+            "uncertainty": 1.2533069119559461,
+            "corruption_sensitivity": 61.63522012578617,
+            "error_by_noise_level": {
+              "0.1": 58.49056603773586,
+              "0.25": 60.37735849056606,
+              "0.5": 61.0062893081761,
+              "0.75": 61.63522012578617,
+              "1.0": 61.0062893081761
+            }
+          }
+        },
+        "corruption_levels": [
+          0.1,
+          0.25,
+          0.5,
+          0.75,
+          1.0
+        ]
+      },
+      "learning_curve": {
+        "experiment": "learning_curve",
+        "verdict": "FAIL",
+        "data_fractions": [
+          0.2,
+          0.4,
+          0.6,
+          0.8,
+          1.0
+        ],
+        "fk_uncertainties_by_fraction": {
+          "TRAIN": [
+            -67.60119280408378,
+            -57.8013924102247,
+            -15.628800632765902,
+            -16.413892950830306,
+            -13.466077559260071
+          ],
+          "USERS": [
+            -55.88382770066965,
+            -46.72675187659173,
+            -19.039106943706184,
+            -6.683172413662176,
+            -4.774296628814002
+          ],
+          "EVENT_INTEREST": [
+            -5.495782776074321,
+            -7.417060248259123,
+            -6.443557352997609,
+            -3.4832112200468868,
+            -1.0121759047161663
+          ],
+          "EVENT_ATTENDEES": [
+            -77.55781045618902,
+            -47.89318235147973,
+            -9.10459645610115,
+            -7.40559266269981,
+            1.443413133908493
+          ],
+          "USER_FRIENDS": [
+            -66.60552780104508,
+            -64.84956620327361,
+            -26.739870072113046,
+            -20.95428093433065,
+            -17.905640947267305
+          ],
+          "EVENTS": [
+            -7.059502922856477,
+            -7.6163905914863035,
+            -1.0986660056721143,
+            -0.4631884936785496,
+            1.4590490490197014
+          ]
+        },
+        "decrease_rates": {
+          "TRAIN": -54.13511524482371,
+          "USERS": -51.10953107185565,
+          "EVENT_INTEREST": -4.483606871358155,
+          "EVENT_ATTENDEES": -79.00122359009751,
+          "USER_FRIENDS": -48.699886853777784,
+          "EVENTS": -8.518551971876178
+        },
+        "initial_uncertainties": {
+          "TRAIN": -67.60119280408378,
+          "USERS": -55.88382770066965,
+          "EVENT_INTEREST": -5.495782776074321,
+          "EVENT_ATTENDEES": -77.55781045618902,
+          "USER_FRIENDS": -66.60552780104508,
+          "EVENTS": -7.059502922856477
+        },
+        "avg_high_unc_decrease": 0.0,
+        "correlation_rho": 0.942857142857143,
+        "correlation_p": 0.004804664723032055
+      },
+      "ep_detection": {
+        "experiment": "ep_detection",
+        "verdict": "NON-EP DOMAIN",
+        "domain_type": "NON-EP",
+        "spearman_rho": -0.5428571428571429,
+        "p_value": 0.26570262390670557,
+        "fk_uncertainty_attribution": {
+          "TRAIN": -10.852470540521095,
+          "USERS": -5.537255825480778,
+          "EVENT_INTEREST": -1.1188196938416657,
+          "EVENT_ATTENDEES": -1.8885861251954208,
+          "USER_FRIENDS": -13.913555907416832,
+          "EVENTS": 0.9779742166511349
+        },
+        "fk_error_attribution": {
+          "TRAIN": 44.15094339622642,
+          "USERS": 27.421383647798745,
+          "EVENT_INTEREST": 3.7735849056603805,
+          "EVENT_ATTENDEES": 222.51572327044028,
+          "USER_FRIENDS": 31.57232704402516,
+          "EVENTS": 6.792452830188685
+        },
+        "threshold_ep": 0.7,
+        "threshold_non_ep": 0.3
+      }
+    }
+  }
+]

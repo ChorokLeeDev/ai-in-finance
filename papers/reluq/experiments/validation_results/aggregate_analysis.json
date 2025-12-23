@@ -1,0 +1,298 @@
+{
+  "n_datapoints": 31,
+  "aggregate_correlations": {
+    "n_datapoints": 31,
+    "uncertainty_vs_error": {
+      "rho": 0.0905424480742085,
+      "p": 0.6281022824227129
+    },
+    "uncertainty_vs_corruption": {
+      "rho": -0.04154482223400489,
+      "p": 0.8243903373036161
+    },
+    "error_vs_corruption": {
+      "rho": 0.6046183352308091,
+      "p": 0.0003150712645661105
+    }
+  },
+  "domain_stats": {
+    "rel-avito": {
+      "n_fks": 5,
+      "correlation": -0.36842105263157904,
+      "top_uncertainty_fk": "ADSINFO",
+      "top_corruption_fk": "SEARCHSTREAM",
+      "match": false
+    },
+    "rel-event": {
+      "n_fks": 6,
+      "correlation": 0.7142857142857143,
+      "top_uncertainty_fk": "EVENTS",
+      "top_corruption_fk": "EVENTS",
+      "match": true
+    },
+    "rel-f1": {
+      "n_fks": 9,
+      "correlation": -0.6778302010921357,
+      "top_uncertainty_fk": "RESULTS",
+      "top_corruption_fk": "QUALIFYING",
+      "match": false
+    },
+    "rel-trial": {
+      "n_fks": 11,
+      "correlation": 0.6272727272727273,
+      "top_uncertainty_fk": "OUTCOME_ANALYSES",
+      "top_corruption_fk": "OUTCOME_ANALYSES",
+      "match": true
+    }
+  },
+  "fk_datapoints": [
+    {
+      "dataset": "rel-event",
+      "task": "user-attendance",
+      "fk": "TRAIN",
+      "uncertainty_contribution": -10.852470540521095,
+      "error_attribution": 44.15094339622642,
+      "corruption_sensitivity": 35.22012578616353
+    },
+    {
+      "dataset": "rel-event",
+      "task": "user-attendance",
+      "fk": "USERS",
+      "uncertainty_contribution": -5.537255825480778,
+      "error_attribution": 27.421383647798745,
+      "corruption_sensitivity": 34.59119496855346
+    },
+    {
+      "dataset": "rel-event",
+      "task": "user-attendance",
+      "fk": "EVENT_INTEREST",
+      "uncertainty_contribution": -1.1188196938416657,
+      "error_attribution": 3.7735849056603805,
+      "corruption_sensitivity": 50.314465408805034
+    },
+    {
+      "dataset": "rel-event",
+      "task": "user-attendance",
+      "fk": "EVENT_ATTENDEES",
+      "uncertainty_contribution": -1.8885861251954208,
+      "error_attribution": 222.51572327044028,
+      "corruption_sensitivity": 52.830188679245296
+    },
+    {
+      "dataset": "rel-event",
+      "task": "user-attendance",
+      "fk": "USER_FRIENDS",
+      "uncertainty_contribution": -13.913555907416832,
+      "error_attribution": 31.57232704402516,
+      "corruption_sensitivity": 43.39622641509434
+    },
+    {
+      "dataset": "rel-event",
+      "task": "user-attendance",
+      "fk": "EVENTS",
+      "uncertainty_contribution": 0.9779742166511349,
+      "error_attribution": 6.792452830188685,
+      "corruption_sensitivity": 61.63522012578617
+    },
+    {
+      "dataset": "rel-f1",
+      "task": "driver-position",
+      "fk": "QUALIFYING",
+      "uncertainty_contribution": 2.9527819193245732,
+      "error_attribution": 0.4767939510366417,
+      "corruption_sensitivity": 3.3758283968899514
+    },
+    {
+      "dataset": "rel-f1",
+      "task": "driver-position",
+      "fk": "RESULTS",
+      "uncertainty_contribution": 3.692633009891862,
+      "error_attribution": 70.01364117859222,
+      "corruption_sensitivity": 12.36854133744753
+    },
+    {
+      "dataset": "rel-f1",
+      "task": "driver-position",
+      "fk": "STANDINGS",
+      "uncertainty_contribution": 13.343965956510578,
+      "error_attribution": 2.911498019103415,
+      "corruption_sensitivity": 4.601290208601064
+    },
+    {
+      "dataset": "rel-trial",
+      "task": "study-outcome",
+      "fk": "STUDIES",
+      "uncertainty_contribution": 3.6685264732650475,
+      "error_attribution": 24.181818181818187,
+      "corruption_sensitivity": 49.09090909090909
+    },
+    {
+      "dataset": "rel-trial",
+      "task": "study-outcome",
+      "fk": "OUTCOMES",
+      "uncertainty_contribution": 3.1124537452658303,
+      "error_attribution": 8.54545454545455,
+      "corruption_sensitivity": 21.81818181818182
+    },
+    {
+      "dataset": "rel-trial",
+      "task": "study-outcome",
+      "fk": "INTERVENTIONS_STUDIES",
+      "uncertainty_contribution": 5.1921975923188635,
+      "error_attribution": 20.545454545454543,
+      "corruption_sensitivity": 35.45454545454545
+    },
+    {
+      "dataset": "rel-trial",
+      "task": "study-outcome",
+      "fk": "DROP_WITHDRAWALS",
+      "uncertainty_contribution": 8.177945561490633,
+      "error_attribution": 35.454545454545446,
+      "corruption_sensitivity": 45.45454545454547
+    },
+    {
+      "dataset": "rel-trial",
+      "task": "study-outcome",
+      "fk": "OUTCOME_ANALYSES",
+      "uncertainty_contribution": 13.834451205715515,
+      "error_attribution": 507.6363636363636,
+      "corruption_sensitivity": 126.36363636363637
+    },
+    {
+      "dataset": "rel-trial",
+      "task": "study-outcome",
+      "fk": "DESIGNS",
+      "uncertainty_contribution": 1.4616940505231935,
+      "error_attribution": 12.0,
+      "corruption_sensitivity": 14.545454545454554
+    },
+    {
+      "dataset": "rel-trial",
+      "task": "study-outcome",
+      "fk": "FACILITIES_STUDIES",
+      "uncertainty_contribution": 7.295626496558626,
+      "error_attribution": 20.000000000000004,
+      "corruption_sensitivity": 26.363636363636356
+    },
+    {
+      "dataset": "rel-trial",
+      "task": "study-outcome",
+      "fk": "ELIGIBILITIES",
+      "uncertainty_contribution": 0.13235564866060878,
+      "error_attribution": 0.5454545454545421,
+      "corruption_sensitivity": 20.909090909090917
+    },
+    {
+      "dataset": "rel-trial",
+      "task": "study-outcome",
+      "fk": "SPONSORS_STUDIES",
+      "uncertainty_contribution": 7.213233072975237,
+      "error_attribution": 19.818181818181824,
+      "corruption_sensitivity": 33.63636363636364
+    },
+    {
+      "dataset": "rel-trial",
+      "task": "study-outcome",
+      "fk": "REPORTED_EVENT_TOTALS",
+      "uncertainty_contribution": 5.482499056956851,
+      "error_attribution": 16.909090909090907,
+      "corruption_sensitivity": 42.727272727272734
+    },
+    {
+      "dataset": "rel-trial",
+      "task": "study-outcome",
+      "fk": "CONDITIONS_STUDIES",
+      "uncertainty_contribution": 5.687997911355034,
+      "error_attribution": 32.72727272727273,
+      "corruption_sensitivity": 34.54545454545455
+    },
+    {
+      "dataset": "rel-f1",
+      "task": "driver-top3",
+      "fk": "QUALIFYING",
+      "uncertainty_contribution": -64.94774547740693,
+      "error_attribution": 21.162790697674414,
+      "corruption_sensitivity": 18.02325581395347
+    },
+    {
+      "dataset": "rel-f1",
+      "task": "driver-top3",
+      "fk": "RESULTS",
+      "uncertainty_contribution": 9.903332847482572,
+      "error_attribution": 35.11627906976743,
+      "corruption_sensitivity": 6.976744186046497
+    },
+    {
+      "dataset": "rel-f1",
+      "task": "driver-top3",
+      "fk": "STANDINGS",
+      "uncertainty_contribution": -206.23793430623215,
+      "error_attribution": 0.11627906976743652,
+      "corruption_sensitivity": 18.02325581395347
+    },
+    {
+      "dataset": "rel-avito",
+      "task": "ad-ctr",
+      "fk": "TRAIN",
+      "uncertainty_contribution": -6.651198164195793,
+      "error_attribution": 4.663937091946993,
+      "corruption_sensitivity": 2.7292814730859076
+    },
+    {
+      "dataset": "rel-avito",
+      "task": "ad-ctr",
+      "fk": "ADSINFO",
+      "uncertainty_contribution": 3.2448954309486497,
+      "error_attribution": 4.42372428185576,
+      "corruption_sensitivity": 5.409767304797299
+    },
+    {
+      "dataset": "rel-avito",
+      "task": "ad-ctr",
+      "fk": "PHONEREQUESTSSTREAM",
+      "uncertainty_contribution": 0.0,
+      "error_attribution": 0.0,
+      "corruption_sensitivity": 0.7247156658346599
+    },
+    {
+      "dataset": "rel-avito",
+      "task": "ad-ctr",
+      "fk": "VISITSTREAM",
+      "uncertainty_contribution": 0.0,
+      "error_attribution": 0.0,
+      "corruption_sensitivity": 0.7247156658346599
+    },
+    {
+      "dataset": "rel-avito",
+      "task": "ad-ctr",
+      "fk": "SEARCHSTREAM",
+      "uncertainty_contribution": -11.262454647789268,
+      "error_attribution": 139.01856524933825,
+      "corruption_sensitivity": 29.40079789157382
+    },
+    {
+      "dataset": "rel-f1",
+      "task": "driver-dnf",
+      "fk": "QUALIFYING",
+      "uncertainty_contribution": 10.1085799527736,
+      "error_attribution": 0.6976744186046495,
+      "corruption_sensitivity": 6.976744186046506
+    },
+    {
+      "dataset": "rel-f1",
+      "task": "driver-dnf",
+      "fk": "RESULTS",
+      "uncertainty_contribution": 40.88886824646281,
+      "error_attribution": 8.139534883720927,
+      "corruption_sensitivity": 6.3953488372092995
+    },
+    {
+      "dataset": "rel-f1",
+      "task": "driver-dnf",
+      "fk": "STANDINGS",
+      "uncertainty_contribution": 1.0268184029172682,
+      "error_attribution": 2.0930232558139528,
+      "corruption_sensitivity": 8.720930232558135
+    }
+  ]
+}

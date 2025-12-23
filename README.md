@@ -4,21 +4,16 @@
 
 # Research Papers
 
-This fork extends RelBench with uncertainty quantification (UQ) research. Below are active research papers:
+This fork extends RelBench with uncertainty quantification (UQ) research.
 
-| Status | Version | Paper Title | Target | Deadline |
-|--------|---------|-------------|--------|----------|
-| 📝 Draft | V3 | **RelUQ: Schema-Guided Uncertainty Attribution for Relational Databases** | NeurIPS 2026 | May 2026 |
-| ✅ Ready | V11 | **Causal Structure Changes Across Market Regimes: Evidence from Factor Returns** | ICAIF 2025 / ArXiv | Submitted |
+| Status | Paper | Target | Deadline |
+|--------|-------|--------|----------|
+| Draft | [**RelUQ: Schema-Guided Uncertainty Attribution for Relational Databases**](papers/reluq/) | NeurIPS 2026 | May 2026 |
+| Draft | [**Causal Structure Changes Across Market Regimes: Evidence from Factor Returns**](papers/causal_regimes/) | ICAIF 2025 | TBD |
 
-### Paper Locations
+For detailed progress and next steps, see [papers/README.md](papers/README.md).
 
-- **V3 (RelUQ)**: [chorok/v3_fk_risk_attribution/paper/](chorok/v3_fk_risk_attribution/paper/) - FK-level uncertainty attribution for relational databases
-- **V11 (Causal Factor Crowding)**: [chorok/v11_causal_factor_crowding/paper/](chorok/v11_causal_factor_crowding/paper/) - Regime-dependent causal discovery in factor returns
-
-### Research Tracks
-
-See [chorok/README.md](chorok/README.md) for all research directions (V1-V11).
+Research experiments are in [chorok/](chorok/) (V1-V11 research tracks).
 
 ----
 

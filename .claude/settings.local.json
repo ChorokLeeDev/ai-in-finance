@@ -43,7 +43,12 @@
       "Bash(/usr/bin/python3:*)",
       "Bash(pip3 show:*)",
       "Bash(pip3 list:*)",
-      "Bash(pip3 install:*)"
+      "Bash(pip3 install:*)",
+      "Bash(pdflatex:*)",
+      "Bash(tlmgr install:*)",
+      "Bash(sudo tlmgr install:*)",
+      "Bash(timeout 120 python:*)",
+      "Bash(pkill:*)"
     ],
     "deny": [],
     "ask": []

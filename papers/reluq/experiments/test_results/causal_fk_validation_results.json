@@ -1,0 +1,126 @@
+{
+  "experiments": [
+    {
+      "dataset": "rel-f1",
+      "task": "driver-position",
+      "timestamp": "2025-12-23T17:31:05.246477",
+      "data_shape": [
+        7453,
+        1
+      ],
+      "n_models": 5,
+      "fk_groups": [
+        "other"
+      ],
+      "fk_contributions": {
+        "other": 0.0
+      },
+      "fk_contributions_std": {
+        "other": 0.0
+      },
+      "causal_contributions": [],
+      "correlational_contributions": [],
+      "statistics": {},
+      "hypothesis_supported": false
+    },
+    {
+      "dataset": "rel-f1",
+      "task": "driver-dnf",
+      "timestamp": "2025-12-23T17:31:06.629684",
+      "data_shape": [
+        10000,
+        1
+      ],
+      "n_models": 5,
+      "fk_groups": [
+        "other"
+      ],
+      "fk_contributions": {
+        "other": -7.0624506451905865e-15
+      },
+      "fk_contributions_std": {
+        "other": 5.766466804768926e-15
+      },
+      "causal_contributions": [],
+      "correlational_contributions": [],
+      "statistics": {},
+      "hypothesis_supported": false
+    },
+    {
+      "dataset": "rel-f1",
+      "task": "driver-top3",
+      "timestamp": "2025-12-23T17:31:07.403554",
+      "data_shape": [
+        1353,
+        1
+      ],
+      "n_models": 5,
+      "fk_groups": [
+        "other"
+      ],
+      "fk_contributions": {
+        "other": 0.0
+      },
+      "fk_contributions_std": {
+        "other": 0.0
+      },
+      "causal_contributions": [],
+      "correlational_contributions": [],
+      "statistics": {},
+      "hypothesis_supported": false
+    },
+    {
+      "dataset": "rel-trial",
+      "task": "study-outcome",
+      "timestamp": "2025-12-23T17:31:12.289367",
+      "data_shape": [
+        10000,
+        1
+      ],
+      "n_models": 5,
+      "fk_groups": [
+        "other"
+      ],
+      "fk_contributions": {
+        "other": 9.657054699844172e-15
+      },
+      "fk_contributions_std": {
+        "other": 7.884952144254794e-15
+      },
+      "causal_contributions": [],
+      "correlational_contributions": [],
+      "statistics": {},
+      "hypothesis_supported": false
+    },
+    {
+      "dataset": "rel-trial",
+      "task": "study-adverse",
+      "timestamp": "2025-12-23T17:31:12.967822",
+      "data_shape": [
+        10000,
+        1
+      ],
+      "n_models": 5,
+      "fk_groups": [
+        "other"
+      ],
+      "fk_contributions": {
+        "other": 7.877788915298772e-15
+      },
+      "fk_contributions_std": {
+        "other": 9.64828157191768e-15
+      },
+      "causal_contributions": [],
+      "correlational_contributions": [],
+      "statistics": {},
+      "hypothesis_supported": false
+    }
+  ],
+  "aggregate": {
+    "supported_count": 0,
+    "total_count": 5,
+    "all_causal_contributions": [],
+    "all_correlational_contributions": [],
+    "overall_statistics": {}
+  }
+}

@@ -1,0 +1,439 @@
+[
+  {
+    "task": "study-outcome",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "fk_summary": {
+      "CONDITIONS_STUDIES": {
+        "mean": 7.198393753026967,
+        "std": 0.4183600092883064,
+        "type": "causal"
+      },
+      "DESIGNS": {
+        "mean": 1.6127821845535801,
+        "std": 0.791373991887426,
+        "type": "causal"
+      },
+      "DROP_WITHDRAWALS": {
+        "mean": 3.331678675125417,
+        "std": 0.7215032152874046,
+        "type": "correlational"
+      },
+      "ELIGIBILITIES": {
+        "mean": 0.2696819374927172,
+        "std": 0.12826151815102985,
+        "type": "correlational"
+      },
+      "FACILITIES_STUDIES": {
+        "mean": 5.580828803216112,
+        "std": 0.7817997316125032,
+        "type": "correlational"
+      },
+      "INTERVENTIONS_STUDIES": {
+        "mean": 7.130372603602683,
+        "std": 0.44637547790377147,
+        "type": "causal"
+      },
+      "OUTCOMES": {
+        "mean": 2.665663163017233,
+        "std": 0.3565047074369563,
+        "type": "causal"
+      },
+      "OUTCOME_ANALYSES": {
+        "mean": 17.500874849538327,
+        "std": 1.184742752599108,
+        "type": "correlational"
+      },
+      "REPORTED_EVENT_TOTALS": {
+        "mean": 5.768159255334863,
+        "std": 0.46443953992529086,
+        "type": "correlational"
+      },
+      "SPONSORS_STUDIES": {
+        "mean": 6.127546688141311,
+        "std": 0.600281830827271,
+        "type": "correlational"
+      },
+      "STUDIES": {
+        "mean": 5.481219605009414,
+        "std": 0.7750112942098568,
+        "type": "causal"
+      }
+    },
+    "results": [
+      {
+        "task": "study-outcome",
+        "seed": 42,
+        "data_shape": [
+          2000,
+          31
+        ],
+        "fk_contributions": {
+          "STUDIES": 6.831506569360387,
+          "OUTCOMES": 2.6508059949091383,
+          "INTERVENTIONS_STUDIES": 7.809446396958762,
+          "DROP_WITHDRAWALS": 4.593220162030701,
+          "OUTCOME_ANALYSES": 17.56449642144107,
+          "DESIGNS": 2.8415794333789863,
+          "FACILITIES_STUDIES": 6.327356230104273,
+          "ELIGIBILITIES": 0.3723484830559632,
+          "SPONSORS_STUDIES": 5.137272347471694,
+          "REPORTED_EVENT_TOTALS": 6.442255932484815,
+          "CONDITIONS_STUDIES": 6.771841914976024
+        },
+        "base_uncertainty": 0.010666857429994
+      },
+      {
+        "task": "study-outcome",
+        "seed": 43,
+        "data_shape": [
+          2000,
+          31
+        ],
+        "fk_contributions": {
+          "STUDIES": 4.925688814687868,
+          "OUTCOMES": 2.341915624226525,
+          "INTERVENTIONS_STUDIES": 7.45898149678727,
+          "DROP_WITHDRAWALS": 3.5156308484574432,
+          "OUTCOME_ANALYSES": 17.310566641951944,
+          "DESIGNS": 2.1611753892211043,
+          "FACILITIES_STUDIES": 4.516262878474613,
+          "ELIGIBILITIES": 0.2422928040855632,
+          "SPONSORS_STUDIES": 6.303681237006811,
+          "REPORTED_EVENT_TOTALS": 5.176549363264986,
+          "CONDITIONS_STUDIES": 7.7283777476201525
+        },
+        "base_uncertainty": 0.011017323826033576
+      },
+      {
+        "task": "study-outcome",
+        "seed": 44,
+        "data_shape": [
+          2000,
+          31
+        ],
+        "fk_contributions": {
+          "STUDIES": 4.557272674027598,
+          "OUTCOMES": 2.447274686809544,
+          "INTERVENTIONS_STUDIES": 7.0375671488006,
+          "DROP_WITHDRAWALS": 3.116324436498952,
+          "OUTCOME_ANALYSES": 15.395341613124462,
+          "DESIGNS": 1.436993574490158,
+          "FACILITIES_STUDIES": 4.760649942583897,
+          "ELIGIBILITIES": 0.30428887103017127,
+          "SPONSORS_STUDIES": 6.37634058776969,
+          "REPORTED_EVENT_TOTALS": 5.4375540489697,
+          "CONDITIONS_STUDIES": 6.669454298427709
+        },
+        "base_uncertainty": 0.01129830581464247
+      },
+      {
+        "task": "study-outcome",
+        "seed": 45,
+        "data_shape": [
+          2000,
+          31
+        ],
+        "fk_contributions": {
+          "STUDIES": 5.477623603674607,
+          "OUTCOMES": 2.539418727336738,
+          "INTERVENTIONS_STUDIES": 6.675874042855185,
+          "DROP_WITHDRAWALS": 3.0119986871427646,
+          "OUTCOME_ANALYSES": 18.45398318658045,
+          "DESIGNS": 0.8734841212212057,
+          "FACILITIES_STUDIES": 6.2999167368960585,
+          "ELIGIBILITIES": 0.3932468743394167,
+          "SPONSORS_STUDIES": 6.943285455503494,
+          "REPORTED_EVENT_TOTALS": 5.633345274313722,
+          "CONDITIONS_STUDIES": 7.556045305434578
+        },
+        "base_uncertainty": 0.011593380787194251
+      },
+      {
+        "task": "study-outcome",
+        "seed": 46,
+        "data_shape": [
+          2000,
+          31
+        ],
+        "fk_contributions": {
+          "STUDIES": 5.6140063632966095,
+          "OUTCOMES": 3.3489007818042205,
+          "INTERVENTIONS_STUDIES": 6.669993932611597,
+          "DROP_WITHDRAWALS": 2.421219241497224,
+          "OUTCOME_ANALYSES": 18.77998638459373,
+          "DESIGNS": 0.7506784044564474,
+          "FACILITIES_STUDIES": 5.999958228021714,
+          "ELIGIBILITIES": 0.03623265495247193,
+          "SPONSORS_STUDIES": 5.877153812954864,
+          "REPORTED_EVENT_TOTALS": 6.151091657641093,
+          "CONDITIONS_STUDIES": 7.266249498676375
+        },
+        "base_uncertainty": 0.01128534963236086
+      }
+    ]
+  },
+  {
+    "task": "study-adverse",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "fk_summary": {
+      "CONDITIONS_STUDIES": {
+        "mean": -0.0035898732438078076,
+        "std": 0.06421564318815381,
+        "type": "causal"
+      },
+      "DESIGNS": {
+        "mean": -0.029302260750206078,
+        "std": 0.30552714009712095,
+        "type": "causal"
+      },
+      "DROP_WITHDRAWALS": {
+        "mean": -27.770614010624723,
+        "std": 13.807483967683845,
+        "type": "correlational"
+      },
+      "ELIGIBILITIES": {
+        "mean": 0.08819360924120592,
+        "std": 0.08039668305998461,
+        "type": "correlational"
+      },
+      "FACILITIES_STUDIES": {
+        "mean": -0.03502260835856956,
+        "std": 0.045738130927951856,
+        "type": "correlational"
+      },
+      "INTERVENTIONS_STUDIES": {
+        "mean": -0.023724978855844375,
+        "std": 0.11546656617776425,
+        "type": "causal"
+      },
+      "OUTCOMES": {
+        "mean": -0.029943839118186183,
+        "std": 0.2878264194556367,
+        "type": "causal"
+      },
+      "OUTCOME_ANALYSES": {
+        "mean": 2.8326965198456016,
+        "std": 2.288718705482309,
+        "type": "correlational"
+      },
+      "REPORTED_EVENT_TOTALS": {
+        "mean": -30.612600045421697,
+        "std": 9.60108118227574,
+        "type": "correlational"
+      },
+      "SPONSORS_STUDIES": {
+        "mean": 0.23806037074098674,
+        "std": 0.5019941640314837,
+        "type": "correlational"
+      },
+      "STUDIES": {
+        "mean": -5.8305907612295576,
+        "std": 11.636279319970033,
+        "type": "causal"
+      }
+    },
+    "results": [
+      {
+        "task": "study-adverse",
+        "seed": 42,
+        "data_shape": [
+          2000,
+          31
+        ],
+        "fk_contributions": {
+          "STUDIES": -20.24453562560589,
+          "OUTCOMES": -0.48180172848978986,
+          "INTERVENTIONS_STUDIES": -0.23475931486974916,
+          "DROP_WITHDRAWALS": -30.422112447743256,
+          "OUTCOME_ANALYSES": 0.9683436717886968,
+          "DESIGNS": 0.07655450794374544,
+          "FACILITIES_STUDIES": 0.037075134154460565,
+          "ELIGIBILITIES": 0.15829461124328925,
+          "SPONSORS_STUDIES": -0.6223324342108099,
+          "REPORTED_EVENT_TOTALS": -20.77853620635177,
+          "CONDITIONS_STUDIES": -0.12269877721066343
+        },
+        "base_uncertainty": 2719.385156121399
+      },
+      {
+        "task": "study-adverse",
+        "seed": 43,
+        "data_shape": [
+          2000,
+          31
+        ],
+        "fk_contributions": {
+          "STUDIES": -19.531383629884523,
+          "OUTCOMES": 0.19377976406383196,
+          "INTERVENTIONS_STUDIES": -0.05272700802755884,
+          "DROP_WITHDRAWALS": -50.488232882989166,
+          "OUTCOME_ANALYSES": 0.7987592584749925,
+          "DESIGNS": 0.21230360647520272,
+          "FACILITIES_STUDIES": -0.09121742816764318,
+          "ELIGIBILITIES": 0.20360651765360638,
+          "SPONSORS_STUDIES": -0.02688073071561991,
+          "REPORTED_EVENT_TOTALS": -36.894069153489184,
+          "CONDITIONS_STUDIES": 0.06933968765783052
+        },
+        "base_uncertainty": 2206.425650092717
+      },
+      {
+        "task": "study-adverse",
+        "seed": 44,
+        "data_shape": [
+          2000,
+          31
+        ],
+        "fk_contributions": {
+          "STUDIES": 6.491950939066136,
+          "OUTCOMES": 0.3279035939843541,
+          "INTERVENTIONS_STUDIES": 0.059441252498110955,
+          "DROP_WITHDRAWALS": -31.16511146467021,
+          "OUTCOME_ANALYSES": 1.1803242335997592,
+          "DESIGNS": 0.2720906691890025,
+          "FACILITIES_STUDIES": -0.003990667760876127,
+          "ELIGIBILITIES": 0.05779586991719722,
+          "SPONSORS_STUDIES": 0.49506807131305736,
+          "REPORTED_EVENT_TOTALS": -20.281389038693014,
+          "CONDITIONS_STUDIES": 0.02807268389075762
+        },
+        "base_uncertainty": 2424.8690041489285
+      },
+      {
+        "task": "study-adverse",
+        "seed": 45,
+        "data_shape": [
+          2000,
+          31
+        ],
+        "fk_contributions": {
+          "STUDIES": 0.48441766959252197,
+          "OUTCOMES": -0.2032552424718311,
+          "INTERVENTIONS_STUDIES": 0.022575298736641193,
+          "DROP_WITHDRAWALS": -14.956772875200537,
+          "OUTCOME_ANALYSES": 5.137287050674979,
+          "DESIGNS": -0.1348571979066541,
+          "FACILITIES_STUDIES": -0.06293519586896942,
+          "ELIGIBILITIES": 0.034397967829913466,
+          "SPONSORS_STUDIES": 0.7291136289150366,
+          "REPORTED_EVENT_TOTALS": -45.352713665788464,
+          "CONDITIONS_STUDIES": 0.005202506630232669
+        },
+        "base_uncertainty": 2753.997052282725
+      },
+      {
+        "task": "study-adverse",
+        "seed": 46,
+        "data_shape": [
+          2000,
+          31
+        ],
+        "fk_contributions": {
+          "STUDIES": 3.6465968406839666,
+          "OUTCOMES": 0.013654417322503998,
+          "INTERVENTIONS_STUDIES": 0.08684487738333402,
+          "DROP_WITHDRAWALS": -11.820840382520439,
+          "OUTCOME_ANALYSES": 6.078768384689581,
+          "DESIGNS": -0.572602889452327,
+          "FACILITIES_STUDIES": -0.05404488414981965,
+          "ELIGIBILITIES": -0.013126920437976617,
+          "SPONSORS_STUDIES": 0.6153333184032694,
+          "REPORTED_EVENT_TOTALS": -29.756292162786053,
+          "CONDITIONS_STUDIES": 0.0021345328128035746
+        },
+        "base_uncertainty": 2843.9765577633007
+      }
+    ]
+  },
+  {
+    "task": "site-success",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "fk_summary": {
+      "FACILITIES_STUDIES": {
+        "mean": -65.63881202057891,
+        "std": 8.476924409342868,
+        "type": "correlational"
+      }
+    },
+    "results": [
+      {
+        "task": "site-success",
+        "seed": 42,
+        "data_shape": [
+          2000,
+          2
+        ],
+        "fk_contributions": {
+          "FACILITIES_STUDIES": -69.96834843430244
+        },
+        "base_uncertainty": 0.008088986908798753
+      },
+      {
+        "task": "site-success",
+        "seed": 43,
+        "data_shape": [
+          2000,
+          2
+        ],
+        "fk_contributions": {
+          "FACILITIES_STUDIES": -52.806154530850655
+        },
+        "base_uncertainty": 0.008090598509988523
+      },
+      {
+        "task": "site-success",
+        "seed": 44,
+        "data_shape": [
+          2000,
+          2
+        ],
+        "fk_contributions": {
+          "FACILITIES_STUDIES": -72.95737165747029
+        },
+        "base_uncertainty": 0.008038754423413784
+      },
+      {
+        "task": "site-success",
+        "seed": 45,
+        "data_shape": [
+          2000,
+          2
+        ],
+        "fk_contributions": {
+          "FACILITIES_STUDIES": -74.02873165656005
+        },
+        "base_uncertainty": 0.007902279374530564
+      },
+      {
+        "task": "site-success",
+        "seed": 46,
+        "data_shape": [
+          2000,
+          2
+        ],
+        "fk_contributions": {
+          "FACILITIES_STUDIES": -58.43345382371109
+        },
+        "base_uncertainty": 0.007376774003378589
+      }
+    ]
+  }
+]

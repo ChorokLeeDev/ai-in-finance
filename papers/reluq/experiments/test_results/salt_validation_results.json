@@ -1,0 +1,407 @@
+[
+  {
+    "task": "item-plant",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "fk_summary": {
+      "SALESDOCUMENT": {
+        "mean": -94.0400670515773,
+        "std": 13.492856234880716,
+        "type": "causal"
+      },
+      "SALESDOCUMENTITEM": {
+        "mean": -123.43409393182199,
+        "std": 17.846908943019347,
+        "type": "causal"
+      },
+      "SOLDTOPARTY": {
+        "mean": -8.228344534825693,
+        "std": 3.3904079519463877,
+        "type": "correlational"
+      }
+    },
+    "hypothesis_support_rate": "0/5",
+    "results": [
+      {
+        "task": "item-plant",
+        "seed": 42,
+        "task_type": "TaskType.MULTICLASS_CLASSIFICATION",
+        "n_classes": 26,
+        "data_shape": [
+          2000,
+          8
+        ],
+        "fk_contributions": {
+          "SALESDOCUMENTITEM": -100.46663820131955,
+          "SALESDOCUMENT": -74.07250971750142,
+          "SOLDTOPARTY": -10.0211255240573
+        },
+        "fk_contributions_std": {
+          "SALESDOCUMENTITEM": 6.523675305980294,
+          "SALESDOCUMENT": 13.27808614628616,
+          "SOLDTOPARTY": 4.300897207012816
+        },
+        "base_uncertainty": 0.00028633692707890837,
+        "hypothesis_supported": "False"
+      },
+      {
+        "task": "item-plant",
+        "seed": 43,
+        "task_type": "TaskType.MULTICLASS_CLASSIFICATION",
+        "n_classes": 26,
+        "data_shape": [
+          2000,
+          8
+        ],
+        "fk_contributions": {
+          "SALESDOCUMENTITEM": -124.5703542471131,
+          "SALESDOCUMENT": -85.58136817763862,
+          "SOLDTOPARTY": -12.104002357904681
+        },
+        "fk_contributions_std": {
+          "SALESDOCUMENTITEM": 13.534876905404314,
+          "SALESDOCUMENT": 10.16227456017208,
+          "SOLDTOPARTY": 4.111426596240779
+        },
+        "base_uncertainty": 0.00026298111981613306,
+        "hypothesis_supported": "False"
+      },
+      {
+        "task": "item-plant",
+        "seed": 44,
+        "task_type": "TaskType.MULTICLASS_CLASSIFICATION",
+        "n_classes": 26,
+        "data_shape": [
+          2000,
+          8
+        ],
+        "fk_contributions": {
+          "SALESDOCUMENTITEM": -154.7664838990559,
+          "SALESDOCUMENT": -113.63659868062814,
+          "SOLDTOPARTY": -8.26792919628339
+        },
+        "fk_contributions_std": {
+          "SALESDOCUMENTITEM": 12.57152284750859,
+          "SALESDOCUMENT": 6.405504929216193,
+          "SOLDTOPARTY": 2.21971806598283
+        },
+        "base_uncertainty": 0.0002557112076054171,
+        "hypothesis_supported": "False"
+      },
+      {
+        "task": "item-plant",
+        "seed": 45,
+        "task_type": "TaskType.MULTICLASS_CLASSIFICATION",
+        "n_classes": 26,
+        "data_shape": [
+          2000,
+          8
+        ],
+        "fk_contributions": {
+          "SALESDOCUMENTITEM": -122.97946417482846,
+          "SALESDOCUMENT": -101.3727062677321,
+          "SOLDTOPARTY": -8.76160384055057
+        },
+        "fk_contributions_std": {
+          "SALESDOCUMENTITEM": 9.832427412599895,
+          "SALESDOCUMENT": 7.010919282359174,
+          "SOLDTOPARTY": 2.5069581404031043
+        },
+        "base_uncertainty": 0.00027364645569786307,
+        "hypothesis_supported": "False"
+      },
+      {
+        "task": "item-plant",
+        "seed": 46,
+        "task_type": "TaskType.MULTICLASS_CLASSIFICATION",
+        "n_classes": 26,
+        "data_shape": [
+          2000,
+          8
+        ],
+        "fk_contributions": {
+          "SALESDOCUMENTITEM": -114.38752913679289,
+          "SALESDOCUMENT": -95.5371524143862,
+          "SOLDTOPARTY": -1.9870617553325247
+        },
+        "fk_contributions_std": {
+          "SALESDOCUMENTITEM": 9.843982610401275,
+          "SALESDOCUMENT": 7.006337880384744,
+          "SOLDTOPARTY": 3.162926039035928
+        },
+        "base_uncertainty": 0.0003228977191087583,
+        "hypothesis_supported": "False"
+      }
+    ]
+  },
+  {
+    "task": "item-shippoint",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "fk_summary": {
+      "SALESDOCUMENT": {
+        "mean": -1.7176527981627476,
+        "std": 3.7982612020920192,
+        "type": "causal"
+      },
+      "SALESDOCUMENTITEM": {
+        "mean": -3.546888787932178,
+        "std": 3.716877189731759,
+        "type": "causal"
+      },
+      "SOLDTOPARTY": {
+        "mean": -2.63922273376063,
+        "std": 2.263669419824051,
+        "type": "correlational"
+      }
+    },
+    "hypothesis_support_rate": "2/5",
+    "results": [
+      {
+        "task": "item-shippoint",
+        "seed": 42,
+        "task_type": "TaskType.MULTICLASS_CLASSIFICATION",
+        "n_classes": 46,
+        "data_shape": [
+          2000,
+          8
+        ],
+        "fk_contributions": {
+          "SALESDOCUMENTITEM": -4.738346248174962,
+          "SALESDOCUMENT": -3.3983496732577776,
+          "SOLDTOPARTY": -3.2909305050166955
+        },
+        "fk_contributions_std": {
+          "SALESDOCUMENTITEM": 0.8280411502794605,
+          "SALESDOCUMENT": 1.283764899056667,
+          "SOLDTOPARTY": 0.8590769822321584
+        },
+        "base_uncertainty": 0.006501684880797528,
+        "hypothesis_supported": "False"
+      },
+      {
+        "task": "item-shippoint",
+        "seed": 43,
+        "task_type": "TaskType.MULTICLASS_CLASSIFICATION",
+        "n_classes": 46,
+        "data_shape": [
+          2000,
+          8
+        ],
+        "fk_contributions": {
+          "SALESDOCUMENTITEM": -7.499816585540097,
+          "SALESDOCUMENT": -5.063864325134414,
+          "SOLDTOPARTY": -5.114001761856513
+        },
+        "fk_contributions_std": {
+          "SALESDOCUMENTITEM": 0.9438331170665281,
+          "SALESDOCUMENT": 1.2260011013783891,
+          "SOLDTOPARTY": 1.5354873242263385
+        },
+        "base_uncertainty": 0.004215953937296577,
+        "hypothesis_supported": "False"
+      },
+      {
+        "task": "item-shippoint",
+        "seed": 44,
+        "task_type": "TaskType.MULTICLASS_CLASSIFICATION",
+        "n_classes": 46,
+        "data_shape": [
+          2000,
+          8
+        ],
+        "fk_contributions": {
+          "SALESDOCUMENTITEM": -7.197825453300719,
+          "SALESDOCUMENT": -5.795240198114312,
+          "SOLDTOPARTY": -4.837968596290825
+        },
+        "fk_contributions_std": {
+          "SALESDOCUMENTITEM": 1.1871732936874753,
+          "SALESDOCUMENT": 1.0576369869238382,
+          "SOLDTOPARTY": 1.7844415858884295
+        },
+        "base_uncertainty": 0.004211409007666545,
+        "hypothesis_supported": "False"
+      },
+      {
+        "task": "item-shippoint",
+        "seed": 45,
+        "task_type": "TaskType.MULTICLASS_CLASSIFICATION",
+        "n_classes": 46,
+        "data_shape": [
+          2000,
+          8
+        ],
+        "fk_contributions": {
+          "SALESDOCUMENTITEM": 0.7447326432918061,
+          "SALESDOCUMENT": 2.974998661682094,
+          "SOLDTOPARTY": -0.14720407958009094
+        },
+        "fk_contributions_std": {
+          "SALESDOCUMENTITEM": 0.5562919894082549,
+          "SALESDOCUMENT": 0.4161380021605421,
+          "SOLDTOPARTY": 0.336372437205888
+        },
+        "base_uncertainty": 0.0062756768557776415,
+        "hypothesis_supported": "True"
+      },
+      {
+        "task": "item-shippoint",
+        "seed": 46,
+        "task_type": "TaskType.MULTICLASS_CLASSIFICATION",
+        "n_classes": 46,
+        "data_shape": [
+          2000,
+          8
+        ],
+        "fk_contributions": {
+          "SALESDOCUMENTITEM": 0.9568117040630829,
+          "SALESDOCUMENT": 2.694191544010673,
+          "SOLDTOPARTY": 0.19399127394097382
+        },
+        "fk_contributions_std": {
+          "SALESDOCUMENTITEM": 0.4802785326995385,
+          "SALESDOCUMENT": 0.4900533666110693,
+          "SOLDTOPARTY": 0.32746700139009693
+        },
+        "base_uncertainty": 0.006270182489274568,
+        "hypothesis_supported": "True"
+      }
+    ]
+  },
+  {
+    "task": "sales-payterms",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "fk_summary": {
+      "SALESDOCUMENT": {
+        "mean": 11.977905886848008,
+        "std": 0.8852306852059986,
+        "type": "causal"
+      },
+      "SALESDOCUMENTITEM": {
+        "mean": -20.58153868809189,
+        "std": 3.352079232894508,
+        "type": "causal"
+      }
+    },
+    "hypothesis_support_rate": "0/5",
+    "results": [
+      {
+        "task": "sales-payterms",
+        "seed": 42,
+        "task_type": "TaskType.MULTICLASS_CLASSIFICATION",
+        "n_classes": 83,
+        "data_shape": [
+          2000,
+          11
+        ],
+        "fk_contributions": {
+          "SALESDOCUMENT": 11.210364570605446,
+          "SALESDOCUMENTITEM": -19.12816721643388
+        },
+        "fk_contributions_std": {
+          "SALESDOCUMENT": 1.4725659892110148,
+          "SALESDOCUMENTITEM": 1.3135973681931958
+        },
+        "base_uncertainty": 0.0012999727818106882,
+        "hypothesis_supported": false
+      },
+      {
+        "task": "sales-payterms",
+        "seed": 43,
+        "task_type": "TaskType.MULTICLASS_CLASSIFICATION",
+        "n_classes": 83,
+        "data_shape": [
+          2000,
+          11
+        ],
+        "fk_contributions": {
+          "SALESDOCUMENT": 13.501788925799698,
+          "SALESDOCUMENTITEM": -20.44781102501642
+        },
+        "fk_contributions_std": {
+          "SALESDOCUMENT": 1.1339080683299048,
+          "SALESDOCUMENTITEM": 1.754372644929166
+        },
+        "base_uncertainty": 0.0012624789269576077,
+        "hypothesis_supported": false
+      },
+      {
+        "task": "sales-payterms",
+        "seed": 44,
+        "task_type": "TaskType.MULTICLASS_CLASSIFICATION",
+        "n_classes": 83,
+        "data_shape": [
+          2000,
+          11
+        ],
+        "fk_contributions": {
+          "SALESDOCUMENT": 12.374842997017213,
+          "SALESDOCUMENTITEM": -15.734404776109196
+        },
+        "fk_contributions_std": {
+          "SALESDOCUMENT": 0.7725226960949964,
+          "SALESDOCUMENTITEM": 0.9735663908769155
+        },
+        "base_uncertainty": 0.0012380771330342845,
+        "hypothesis_supported": false
+      },
+      {
+        "task": "sales-payterms",
+        "seed": 45,
+        "task_type": "TaskType.MULTICLASS_CLASSIFICATION",
+        "n_classes": 83,
+        "data_shape": [
+          2000,
+          11
+        ],
+        "fk_contributions": {
+          "SALESDOCUMENT": 11.704781329184595,
+          "SALESDOCUMENTITEM": -21.57856291774996
+        },
+        "fk_contributions_std": {
+          "SALESDOCUMENT": 0.9807602403727994,
+          "SALESDOCUMENTITEM": 1.5962278236460308
+        },
+        "base_uncertainty": 0.0012304652612835786,
+        "hypothesis_supported": false
+      },
+      {
+        "task": "sales-payterms",
+        "seed": 46,
+        "task_type": "TaskType.MULTICLASS_CLASSIFICATION",
+        "n_classes": 83,
+        "data_shape": [
+          2000,
+          11
+        ],
+        "fk_contributions": {
+          "SALESDOCUMENT": 11.097751611633093,
+          "SALESDOCUMENTITEM": -26.01874750514998
+        },
+        "fk_contributions_std": {
+          "SALESDOCUMENT": 0.9882901079851472,
+          "SALESDOCUMENTITEM": 1.763346006331886
+        },
+        "base_uncertainty": 0.0012085153577232669,
+        "hypothesis_supported": false
+      }
+    ]
+  }
+]

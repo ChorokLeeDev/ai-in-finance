@@ -1,0 +1,277 @@
+[
+  {
+    "task": "ad-ctr",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "fk_summary": {
+      "ADSINFO": {
+        "mean": 6.048259150831759,
+        "std": 3.043927799667964,
+        "type": "causal"
+      },
+      "CATEGORY": {
+        "mean": 0.0,
+        "std": 0.0,
+        "type": "causal"
+      },
+      "LOCATION": {
+        "mean": 0.0,
+        "std": 0.0,
+        "type": "correlational"
+      },
+      "SEARCHSTREAM": {
+        "mean": 10.916006701356928,
+        "std": 2.0887662462311916,
+        "type": "correlational"
+      }
+    },
+    "hypothesis_support_rate": "0/5",
+    "results": [
+      {
+        "task": "ad-ctr",
+        "seed": 42,
+        "task_type": "TaskType.REGRESSION",
+        "is_classification": false,
+        "n_classes": 0,
+        "data_shape": [
+          2000,
+          10
+        ],
+        "fk_contributions": {
+          "ADSINFO": 2.073256031946899,
+          "LOCATION": 0.0,
+          "CATEGORY": 0.0,
+          "SEARCHSTREAM": 7.878861621152827
+        },
+        "fk_contributions_std": {
+          "ADSINFO": 2.2294653918694456,
+          "LOCATION": 0.0,
+          "CATEGORY": 0.0,
+          "SEARCHSTREAM": 2.0525015812951937
+        },
+        "base_uncertainty": 0.0004725939765370546,
+        "hypothesis_supported": "False"
+      },
+      {
+        "task": "ad-ctr",
+        "seed": 43,
+        "task_type": "TaskType.REGRESSION",
+        "is_classification": false,
+        "n_classes": 0,
+        "data_shape": [
+          2000,
+          10
+        ],
+        "fk_contributions": {
+          "ADSINFO": 3.65310938027253,
+          "LOCATION": 0.0,
+          "CATEGORY": 0.0,
+          "SEARCHSTREAM": 9.009760514249857
+        },
+        "fk_contributions_std": {
+          "ADSINFO": 2.6142971704799782,
+          "LOCATION": 0.0,
+          "CATEGORY": 0.0,
+          "SEARCHSTREAM": 3.542765344753477
+        },
+        "base_uncertainty": 0.0005300413604794832,
+        "hypothesis_supported": "False"
+      },
+      {
+        "task": "ad-ctr",
+        "seed": 44,
+        "task_type": "TaskType.REGRESSION",
+        "is_classification": false,
+        "n_classes": 0,
+        "data_shape": [
+          2000,
+          10
+        ],
+        "fk_contributions": {
+          "ADSINFO": 5.638443561727121,
+          "LOCATION": 0.0,
+          "CATEGORY": 0.0,
+          "SEARCHSTREAM": 12.79473465731263
+        },
+        "fk_contributions_std": {
+          "ADSINFO": 3.3248802641594533,
+          "LOCATION": 0.0,
+          "CATEGORY": 0.0,
+          "SEARCHSTREAM": 3.7845980825958905
+        },
+        "base_uncertainty": 0.00038898169240535586,
+        "hypothesis_supported": "False"
+      },
+      {
+        "task": "ad-ctr",
+        "seed": 45,
+        "task_type": "TaskType.REGRESSION",
+        "is_classification": false,
+        "n_classes": 0,
+        "data_shape": [
+          2000,
+          10
+        ],
+        "fk_contributions": {
+          "ADSINFO": 10.343272375076388,
+          "LOCATION": 0.0,
+          "CATEGORY": 0.0,
+          "SEARCHSTREAM": 11.843773201558477
+        },
+        "fk_contributions_std": {
+          "ADSINFO": 2.844976531232199,
+          "LOCATION": 0.0,
+          "CATEGORY": 0.0,
+          "SEARCHSTREAM": 2.8163340515448603
+        },
+        "base_uncertainty": 0.0004657288000768661,
+        "hypothesis_supported": "False"
+      },
+      {
+        "task": "ad-ctr",
+        "seed": 46,
+        "task_type": "TaskType.REGRESSION",
+        "is_classification": false,
+        "n_classes": 0,
+        "data_shape": [
+          2000,
+          10
+        ],
+        "fk_contributions": {
+          "ADSINFO": 8.533214405135858,
+          "LOCATION": 0.0,
+          "CATEGORY": 0.0,
+          "SEARCHSTREAM": 13.052903512510843
+        },
+        "fk_contributions_std": {
+          "ADSINFO": 2.081130937824997,
+          "LOCATION": 0.0,
+          "CATEGORY": 0.0,
+          "SEARCHSTREAM": 2.347953177385142
+        },
+        "base_uncertainty": 0.0004977079358749995,
+        "hypothesis_supported": "False"
+      }
+    ]
+  },
+  {
+    "task": "user-clicks",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "fk_summary": {
+      "SEARCHINFO": {
+        "mean": -1.5670130562937459,
+        "std": 2.7707060000110055,
+        "type": "correlational"
+      }
+    },
+    "hypothesis_support_rate": "0/5",
+    "results": [
+      {
+        "task": "user-clicks",
+        "seed": 42,
+        "task_type": "TaskType.BINARY_CLASSIFICATION",
+        "is_classification": true,
+        "n_classes": 2,
+        "data_shape": [
+          2000,
+          2
+        ],
+        "fk_contributions": {
+          "SEARCHINFO": -6.889808310192822
+        },
+        "fk_contributions_std": {
+          "SEARCHINFO": 2.417175648449835
+        },
+        "base_uncertainty": 0.002945880294512982,
+        "hypothesis_supported": false
+      },
+      {
+        "task": "user-clicks",
+        "seed": 43,
+        "task_type": "TaskType.BINARY_CLASSIFICATION",
+        "is_classification": true,
+        "n_classes": 2,
+        "data_shape": [
+          2000,
+          2
+        ],
+        "fk_contributions": {
+          "SEARCHINFO": 1.0094244401987869
+        },
+        "fk_contributions_std": {
+          "SEARCHINFO": 4.722368920720062
+        },
+        "base_uncertainty": 0.002468174549952404,
+        "hypothesis_supported": false
+      },
+      {
+        "task": "user-clicks",
+        "seed": 44,
+        "task_type": "TaskType.BINARY_CLASSIFICATION",
+        "is_classification": true,
+        "n_classes": 2,
+        "data_shape": [
+          2000,
+          2
+        ],
+        "fk_contributions": {
+          "SEARCHINFO": -1.3283996627562455
+        },
+        "fk_contributions_std": {
+          "SEARCHINFO": 5.321990038149306
+        },
+        "base_uncertainty": 0.0025251008068717462,
+        "hypothesis_supported": false
+      },
+      {
+        "task": "user-clicks",
+        "seed": 45,
+        "task_type": "TaskType.BINARY_CLASSIFICATION",
+        "is_classification": true,
+        "n_classes": 2,
+        "data_shape": [
+          2000,
+          2
+        ],
+        "fk_contributions": {
+          "SEARCHINFO": -0.6391408401473608
+        },
+        "fk_contributions_std": {
+          "SEARCHINFO": 4.821020810794159
+        },
+        "base_uncertainty": 0.002476429955027228,
+        "hypothesis_supported": false
+      },
+      {
+        "task": "user-clicks",
+        "seed": 46,
+        "task_type": "TaskType.BINARY_CLASSIFICATION",
+        "is_classification": true,
+        "n_classes": 2,
+        "data_shape": [
+          2000,
+          2
+        ],
+        "fk_contributions": {
+          "SEARCHINFO": 0.012859091428912261
+        },
+        "fk_contributions_std": {
+          "SEARCHINFO": 4.279878022236878
+        },
+        "base_uncertainty": 0.002733745458863295,
+        "hypothesis_supported": false
+      }
+    ]
+  }
+]

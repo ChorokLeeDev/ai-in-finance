@@ -1,0 +1,524 @@
+[
+  {
+    "dataset": "rel-f1",
+    "task": "driver-position",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "results": [
+      {
+        "dataset": "rel-f1",
+        "task": "driver-position",
+        "timestamp": "2025-12-23T17:33:36.945632",
+        "data_shape": [
+          3000,
+          14
+        ],
+        "fk_groups": {
+          "QUALIFYING": 2,
+          "RESULTS": 9,
+          "STANDINGS": 3
+        },
+        "fk_contributions": {
+          "QUALIFYING": 2.7271861247304443,
+          "RESULTS": 3.0477119212459796,
+          "STANDINGS": 13.616004953288556
+        },
+        "fk_contributions_std": {
+          "QUALIFYING": 0.09898117981388511,
+          "RESULTS": 1.2213494968463943,
+          "STANDINGS": 0.6102173670947206
+        },
+        "statistics": {
+          "causal_mean": 3.0477119212459796,
+          "correlational_mean": 8.1715955390095,
+          "difference": -5.1238836177635205,
+          "cohens_d": -1.3309553255230413,
+          "hypothesis_supported": "False"
+        },
+        "base_uncertainty": 1.670223307617166
+      },
+      {
+        "dataset": "rel-f1",
+        "task": "driver-position",
+        "timestamp": "2025-12-23T17:33:37.823842",
+        "data_shape": [
+          3000,
+          14
+        ],
+        "fk_groups": {
+          "QUALIFYING": 2,
+          "RESULTS": 9,
+          "STANDINGS": 3
+        },
+        "fk_contributions": {
+          "QUALIFYING": 2.3327054221277987,
+          "RESULTS": -0.6855098715981276,
+          "STANDINGS": 9.044458485171448
+        },
+        "fk_contributions_std": {
+          "QUALIFYING": 0.14414672745629345,
+          "RESULTS": 1.3365740429347603,
+          "STANDINGS": 0.4996747235503586
+        },
+        "statistics": {
+          "causal_mean": -0.6855098715981276,
+          "correlational_mean": 5.688581953649623,
+          "difference": -6.374091825247751,
+          "cohens_d": -2.6861319307802494,
+          "hypothesis_supported": "False"
+        },
+        "base_uncertainty": 1.6607000638815048
+      },
+      {
+        "dataset": "rel-f1",
+        "task": "driver-position",
+        "timestamp": "2025-12-23T17:33:38.655723",
+        "data_shape": [
+          3000,
+          14
+        ],
+        "fk_groups": {
+          "QUALIFYING": 2,
+          "RESULTS": 9,
+          "STANDINGS": 3
+        },
+        "fk_contributions": {
+          "QUALIFYING": 2.40330922803341,
+          "RESULTS": 3.5880979658010106,
+          "STANDINGS": 11.22861698336057
+        },
+        "fk_contributions_std": {
+          "QUALIFYING": 0.07981862060355657,
+          "RESULTS": 0.9420916631474151,
+          "STANDINGS": 0.5048607153935049
+        },
+        "statistics": {
+          "causal_mean": 3.5880979658010106,
+          "correlational_mean": 6.815963105696991,
+          "difference": -3.22786513989598,
+          "cohens_d": -1.0345000502892943,
+          "hypothesis_supported": "False"
+        },
+        "base_uncertainty": 1.7265006096646807
+      },
+      {
+        "dataset": "rel-f1",
+        "task": "driver-position",
+        "timestamp": "2025-12-23T17:33:39.516860",
+        "data_shape": [
+          3000,
+          14
+        ],
+        "fk_groups": {
+          "QUALIFYING": 2,
+          "RESULTS": 9,
+          "STANDINGS": 3
+        },
+        "fk_contributions": {
+          "QUALIFYING": 2.506687934062841,
+          "RESULTS": 6.441092461272342,
+          "STANDINGS": 12.732885452035344
+        },
+        "fk_contributions_std": {
+          "QUALIFYING": 0.11946549040803593,
+          "RESULTS": 1.0757321222337493,
+          "STANDINGS": 0.9424271394848671
+        },
+        "statistics": {
+          "causal_mean": 6.441092461272342,
+          "correlational_mean": 7.619786693049092,
+          "difference": -1.17869423177675,
+          "cohens_d": -0.3260107905289334,
+          "hypothesis_supported": "False"
+        },
+        "base_uncertainty": 1.6130376212793
+      },
+      {
+        "dataset": "rel-f1",
+        "task": "driver-position",
+        "timestamp": "2025-12-23T17:33:40.352468",
+        "data_shape": [
+          3000,
+          14
+        ],
+        "fk_groups": {
+          "QUALIFYING": 2,
+          "RESULTS": 9,
+          "STANDINGS": 3
+        },
+        "fk_contributions": {
+          "QUALIFYING": 2.701595075456302,
+          "RESULTS": 0.42141899688681406,
+          "STANDINGS": 11.704972912060288
+        },
+        "fk_contributions_std": {
+          "QUALIFYING": 0.08122023659691777,
+          "RESULTS": 1.2215417055523414,
+          "STANDINGS": 0.5923755439182842
+        },
+        "statistics": {
+          "causal_mean": 0.42141899688681406,
+          "correlational_mean": 7.203283993758295,
+          "difference": -6.781864996871481,
+          "cohens_d": -2.130534923851797,
+          "hypothesis_supported": "False"
+        },
+        "base_uncertainty": 1.6636791735448735
+      }
+    ],
+    "hypothesis_support_rate": 0.0
+  },
+  {
+    "dataset": "rel-f1",
+    "task": "driver-dnf",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "results": [
+      {
+        "dataset": "rel-f1",
+        "task": "driver-dnf",
+        "timestamp": "2025-12-23T17:33:41.030938",
+        "data_shape": [
+          3000,
+          14
+        ],
+        "fk_groups": {
+          "QUALIFYING": 2,
+          "RESULTS": 9,
+          "STANDINGS": 3
+        },
+        "fk_contributions": {
+          "QUALIFYING": 4.457117156778229,
+          "RESULTS": -20.744438175222054,
+          "STANDINGS": -25.23712926567699
+        },
+        "fk_contributions_std": {
+          "QUALIFYING": 0.2348238705660677,
+          "RESULTS": 1.8007078898172946,
+          "STANDINGS": 1.4154464128797473
+        },
+        "statistics": {
+          "causal_mean": -20.744438175222054,
+          "correlational_mean": -10.390006054449382,
+          "difference": -10.354432120772673,
+          "cohens_d": -0.9862771479389886,
+          "hypothesis_supported": "False"
+        },
+        "base_uncertainty": 0.003948617424332023
+      },
+      {
+        "dataset": "rel-f1",
+        "task": "driver-dnf",
+        "timestamp": "2025-12-23T17:33:41.742524",
+        "data_shape": [
+          3000,
+          14
+        ],
+        "fk_groups": {
+          "QUALIFYING": 2,
+          "RESULTS": 9,
+          "STANDINGS": 3
+        },
+        "fk_contributions": {
+          "QUALIFYING": 6.433183023028612,
+          "RESULTS": 9.558050959996354,
+          "STANDINGS": -8.383685919641271
+        },
+        "fk_contributions_std": {
+          "QUALIFYING": 0.36304093274912963,
+          "RESULTS": 1.6297357853401158,
+          "STANDINGS": 1.2746865179150437
+        },
+        "statistics": {
+          "causal_mean": 9.558050959996354,
+          "correlational_mean": -0.9752514483063299,
+          "difference": 10.533302408302685,
+          "cohens_d": 2.0107269869277307,
+          "hypothesis_supported": "True"
+        },
+        "base_uncertainty": 0.003998164109966254
+      },
+      {
+        "dataset": "rel-f1",
+        "task": "driver-dnf",
+        "timestamp": "2025-12-23T17:33:42.426469",
+        "data_shape": [
+          3000,
+          14
+        ],
+        "fk_groups": {
+          "QUALIFYING": 2,
+          "RESULTS": 9,
+          "STANDINGS": 3
+        },
+        "fk_contributions": {
+          "QUALIFYING": 6.178189894966952,
+          "RESULTS": 13.517075875742725,
+          "STANDINGS": 0.42127500138017415
+        },
+        "fk_contributions_std": {
+          "QUALIFYING": 0.4183225641790129,
+          "RESULTS": 0.7619479554040933,
+          "STANDINGS": 0.9279878320469935
+        },
+        "statistics": {
+          "causal_mean": 13.517075875742725,
+          "correlational_mean": 3.299732448173563,
+          "difference": 10.217343427569162,
+          "cohens_d": 5.019878151330225,
+          "hypothesis_supported": "True"
+        },
+        "base_uncertainty": 0.004242754461082005
+      },
+      {
+        "dataset": "rel-f1",
+        "task": "driver-dnf",
+        "timestamp": "2025-12-23T17:33:43.127381",
+        "data_shape": [
+          3000,
+          14
+        ],
+        "fk_groups": {
+          "QUALIFYING": 2,
+          "RESULTS": 9,
+          "STANDINGS": 3
+        },
+        "fk_contributions": {
+          "QUALIFYING": 5.492476939657187,
+          "RESULTS": 14.967915115194424,
+          "STANDINGS": 4.104826077806808
+        },
+        "fk_contributions_std": {
+          "QUALIFYING": 0.606650825056797,
+          "RESULTS": 0.942146014948581,
+          "STANDINGS": 0.6953976381573572
+        },
+        "statistics": {
+          "causal_mean": 14.967915115194424,
+          "correlational_mean": 4.798651508731997,
+          "difference": 10.169263606462426,
+          "cohens_d": 20.727851517966286,
+          "hypothesis_supported": "True"
+        },
+        "base_uncertainty": 0.004255619701342981
+      },
+      {
+        "dataset": "rel-f1",
+        "task": "driver-dnf",
+        "timestamp": "2025-12-23T17:33:43.856743",
+        "data_shape": [
+          3000,
+          14
+        ],
+        "fk_groups": {
+          "QUALIFYING": 2,
+          "RESULTS": 9,
+          "STANDINGS": 3
+        },
+        "fk_contributions": {
+          "QUALIFYING": 4.49490787749364,
+          "RESULTS": 20.282914518095378,
+          "STANDINGS": 5.79813175731562
+        },
+        "fk_contributions_std": {
+          "QUALIFYING": 0.4154344888286606,
+          "RESULTS": 1.0529933559561182,
+          "STANDINGS": 1.247605673277811
+        },
+        "statistics": {
+          "causal_mean": 20.282914518095378,
+          "correlational_mean": 5.14651981740463,
+          "difference": 15.136394700690747,
+          "cohens_d": 32.85098593201526,
+          "hypothesis_supported": "True"
+        },
+        "base_uncertainty": 0.004648544753543943
+      }
+    ],
+    "hypothesis_support_rate": 0.8
+  },
+  {
+    "dataset": "rel-f1",
+    "task": "driver-top3",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "results": [
+      {
+        "dataset": "rel-f1",
+        "task": "driver-top3",
+        "timestamp": "2025-12-23T17:33:44.377220",
+        "data_shape": [
+          1353,
+          14
+        ],
+        "fk_groups": {
+          "QUALIFYING": 2,
+          "RESULTS": 9,
+          "STANDINGS": 3
+        },
+        "fk_contributions": {
+          "QUALIFYING": -54.24390579690621,
+          "RESULTS": -322.2260212001969,
+          "STANDINGS": -130.27414134460918
+        },
+        "fk_contributions_std": {
+          "QUALIFYING": 1.8390149930274065,
+          "RESULTS": 6.288738078520674,
+          "STANDINGS": 2.4551184506471495
+        },
+        "statistics": {
+          "causal_mean": -322.2260212001969,
+          "correlational_mean": -92.25902357075769,
+          "difference": -229.96699762943922,
+          "cohens_d": -8.55508192505133,
+          "hypothesis_supported": "False"
+        },
+        "base_uncertainty": 0.0028289361084025784
+      },
+      {
+        "dataset": "rel-f1",
+        "task": "driver-top3",
+        "timestamp": "2025-12-23T17:33:44.885171",
+        "data_shape": [
+          1353,
+          14
+        ],
+        "fk_groups": {
+          "QUALIFYING": 2,
+          "RESULTS": 9,
+          "STANDINGS": 3
+        },
+        "fk_contributions": {
+          "QUALIFYING": -62.023328307010615,
+          "RESULTS": -422.1299433380732,
+          "STANDINGS": -155.30709533612296
+        },
+        "fk_contributions_std": {
+          "QUALIFYING": 1.4817304273337095,
+          "RESULTS": 7.435737780336935,
+          "STANDINGS": 3.0830052020643657
+        },
+        "statistics": {
+          "causal_mean": -422.1299433380732,
+          "correlational_mean": -108.66521182156679,
+          "difference": -313.4647315165064,
+          "cohens_d": -9.504463397108216,
+          "hypothesis_supported": "False"
+        },
+        "base_uncertainty": 0.002641720874360386
+      },
+      {
+        "dataset": "rel-f1",
+        "task": "driver-top3",
+        "timestamp": "2025-12-23T17:33:45.383254",
+        "data_shape": [
+          1353,
+          14
+        ],
+        "fk_groups": {
+          "QUALIFYING": 2,
+          "RESULTS": 9,
+          "STANDINGS": 3
+        },
+        "fk_contributions": {
+          "QUALIFYING": -102.65844528931146,
+          "RESULTS": -289.53978240843725,
+          "STANDINGS": -90.05265837074326
+        },
+        "fk_contributions_std": {
+          "QUALIFYING": 2.3284077531543828,
+          "RESULTS": 9.30510399419843,
+          "STANDINGS": 2.6488310321201434
+        },
+        "statistics": {
+          "causal_mean": -289.53978240843725,
+          "correlational_mean": -96.35555183002737,
+          "difference": -193.18423057840988,
+          "cohens_d": -43.34576820716714,
+          "hypothesis_supported": "False"
+        },
+        "base_uncertainty": 0.002646846572613461
+      },
+      {
+        "dataset": "rel-f1",
+        "task": "driver-top3",
+        "timestamp": "2025-12-23T17:33:45.917302",
+        "data_shape": [
+          1353,
+          14
+        ],
+        "fk_groups": {
+          "QUALIFYING": 2,
+          "RESULTS": 9,
+          "STANDINGS": 3
+        },
+        "fk_contributions": {
+          "QUALIFYING": -109.34581633961525,
+          "RESULTS": -360.6524702684966,
+          "STANDINGS": -99.14752499702398
+        },
+        "fk_contributions_std": {
+          "QUALIFYING": 2.740245777175655,
+          "RESULTS": 9.682671672929835,
+          "STANDINGS": 3.6835355510406322
+        },
+        "statistics": {
+          "causal_mean": -360.6524702684966,
+          "correlational_mean": -104.24667066831961,
+          "difference": -256.405799600177,
+          "cohens_d": -71.11241424361039,
+          "hypothesis_supported": "False"
+        },
+        "base_uncertainty": 0.002453934769383734
+      },
+      {
+        "dataset": "rel-f1",
+        "task": "driver-top3",
+        "timestamp": "2025-12-23T17:33:46.428206",
+        "data_shape": [
+          1353,
+          14
+        ],
+        "fk_groups": {
+          "QUALIFYING": 2,
+          "RESULTS": 9,
+          "STANDINGS": 3
+        },
+        "fk_contributions": {
+          "QUALIFYING": -149.8942123690188,
+          "RESULTS": -313.95540200079006,
+          "STANDINGS": -97.33472001750114
+        },
+        "fk_contributions_std": {
+          "QUALIFYING": 4.009081437039102,
+          "RESULTS": 11.66311158382816,
+          "STANDINGS": 2.3621880352836735
+        },
+        "statistics": {
+          "causal_mean": -313.95540200079006,
+          "correlational_mean": -123.61446619325997,
+          "difference": -190.3409358075301,
+          "cohens_d": -10.242973090131953,
+          "hypothesis_supported": "False"
+        },
+        "base_uncertainty": 0.0023679344617381047
+      }
+    ],
+    "hypothesis_support_rate": 0.0
+  }
+]

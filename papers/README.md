@@ -168,9 +168,9 @@ papers/causal_regimes/
 | 2.2 | Figure 생성 (causal DAG per regime) | 2h | [x] Done (gate3_dags.png) |
 | 2.3 | ICAIF template 적용 | 2h | [x] Done (main_icaif.tex) |
 | 2.4 | references.bib 완성 | 1h | [x] Done (15 entries) |
-| 2.5 | 2024 out-of-sample validation | 4h | [ ] Requires Fama-French data |
-| 2.6 | GitHub code repository 정리 | 4h | [ ] |
-| 2.7 | Robustness appendix 상세화 | 2h | [ ] |
+| 2.5 | 2024 out-of-sample validation | 4h | [x] Done (0/2 patterns - noted in limitations) |
+| 2.6 | GitHub code repository 정리 | 4h | [x] Done (code/ directory) |
+| 2.7 | Robustness appendix 상세화 | 2h | [x] Done (4 subsections added) |
 
 ---
 

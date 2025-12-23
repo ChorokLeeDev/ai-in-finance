@@ -1,0 +1,192 @@
+{
+  "test": "multi_seed_validation",
+  "dataset": "rel-f1",
+  "task": "driver-position",
+  "n_seeds": 5,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "decision": "\u2705 STRONG - Active learning shows >25% efficiency",
+  "fk_verdict": "\u274c NO BENEFIT - FK-guided \u2248 uncertainty sampling (within 5%)",
+  "recommendation": "Include active learning as application direction",
+  "fk_recommendation": "FK information doesn't help acquisition - drop FK-guided claim",
+  "statistics": {
+    "uncertainty": {
+      "mean_gain_pct": 30.0,
+      "std_gain_pct": 24.49489742783178,
+      "all_gains_pct": [
+        50.0,
+        0.0,
+        50.0,
+        0.0,
+        50.0
+      ],
+      "min_gain_pct": 0.0,
+      "max_gain_pct": 50.0
+    },
+    "fk_guided_v1": {
+      "mean_gain_pct": 30.0,
+      "std_gain_pct": 24.49489742783178,
+      "all_gains_pct": [
+        50.0,
+        0.0,
+        50.0,
+        0.0,
+        50.0
+      ],
+      "min_gain_pct": 0.0,
+      "max_gain_pct": 50.0
+    }
+  },
+  "all_results": [
+    {
+      "seed": 42,
+      "strategies": {
+        "random": {
+          "maes": [
+            4.46299840546858,
+            4.451740280916365,
+            4.433519254780335
+          ],
+          "final_mae": 4.433519254780335
+        },
+        "uncertainty": {
+          "maes": [
+            4.46299840546858,
+            4.282408019533423,
+            4.193780054585529
+          ],
+          "final_mae": 4.193780054585529
+        },
+        "fk_guided_v1": {
+          "maes": [
+            4.46299840546858,
+            4.282408019533423,
+            4.193780054585529
+          ],
+          "final_mae": 4.193780054585529
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "strategies": {
+        "random": {
+          "maes": [
+            4.48561061606825,
+            4.4337737985630366,
+            4.482342335343902
+          ],
+          "final_mae": 4.482342335343902
+        },
+        "uncertainty": {
+          "maes": [
+            4.48561061606825,
+            4.204198766703729,
+            4.073370979295905
+          ],
+          "final_mae": 4.073370979295905
+        },
+        "fk_guided_v1": {
+          "maes": [
+            4.48561061606825,
+            4.204198766703729,
+            4.073370979295905
+          ],
+          "final_mae": 4.073370979295905
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "strategies": {
+        "random": {
+          "maes": [
+            4.586072374124488,
+            4.4771957948581225,
+            4.304887104482025
+          ],
+          "final_mae": 4.304887104482025
+        },
+        "uncertainty": {
+          "maes": [
+            4.586072374124488,
+            4.306832029028114,
+            4.3271235738338865
+          ],
+          "final_mae": 4.3271235738338865
+        },
+        "fk_guided_v1": {
+          "maes": [
+            4.586072374124488,
+            4.306832029028114,
+            4.3271235738338865
+          ],
+          "final_mae": 4.3271235738338865
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "strategies": {
+        "random": {
+          "maes": [
+            4.413711650220842,
+            4.4202329643502525,
+            4.4254121799439945
+          ],
+          "final_mae": 4.4254121799439945
+        },
+        "uncertainty": {
+          "maes": [
+            4.413711650220842,
+            4.221193269429025,
+            4.2255168069457865
+          ],
+          "final_mae": 4.2255168069457865
+        },
+        "fk_guided_v1": {
+          "maes": [
+            4.413711650220842,
+            4.221193269429025,
+            4.2255168069457865
+          ],
+          "final_mae": 4.2255168069457865
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "strategies": {
+        "random": {
+          "maes": [
+            4.563070131988207,
+            4.463355333363487,
+            4.366434590619384
+          ],
+          "final_mae": 4.366434590619384
+        },
+        "uncertainty": {
+          "maes": [
+            4.563070131988207,
+            4.323927259700861,
+            4.282857073476483
+          ],
+          "final_mae": 4.282857073476483
+        },
+        "fk_guided_v1": {
+          "maes": [
+            4.563070131988207,
+            4.323927259700861,
+            4.282857073476483
+          ],
+          "final_mae": 4.282857073476483
+        }
+      }
+    }
+  ]
+}

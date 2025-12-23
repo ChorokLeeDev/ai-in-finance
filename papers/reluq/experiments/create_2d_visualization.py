@@ -32,6 +32,8 @@ DOMAIN_COLORS = {
     'rel-trial': '#2ca02c',   # Green
     'rel-salt': '#ff7f0e',    # Orange
     'rel-avito': '#9467bd',   # Purple
+    'rel-event': '#d62728',   # Red
+    'rel-amazon': '#8c564b',  # Brown
 }
 
 # Task type markers
@@ -100,6 +102,10 @@ def load_and_compute_all():
         # rel-avito
         ('rel-avito', 'ad-ctr', 'regression'),
         ('rel-avito', 'user-clicks', 'classification'),
+        # rel-event
+        ('rel-event', 'user-attendance', 'regression'),
+        ('rel-event', 'user-repeat', 'classification'),
+        # rel-amazon skipped - 13GB dataset causes OOM
     ]
 
     for dataset_name, task_name, task_type in experiments:
@@ -224,6 +230,63 @@ def load_and_compute_all():
                         for col_idx in col_indices:
                             X_perm[:, col_idx] = np.random.permutation(X_perm[:, col_idx])
                         perm_unc = ensemble_variance(models, X_perm, is_classification).mean()
+                        contrib = (base_unc - perm_unc) / base_unc * 100
+                        contributions.append(contrib)
+                    fk_uncertainty[fk_name] = np.mean(contributions)
+
+            elif dataset_name == 'rel-event':
+                from run_event_validation import (
+                    extract_features_generic as extract_event,
+                    train_ensemble as train_event,
+                    ensemble_variance as var_event
+                )
+                X, y, col_to_fk, feature_cols, fk_to_cols, n_classes, is_classification = extract_event(
+                    dataset, task, sample_size=2000
+                )
+
+                models = train_event(X, y, n_models=5, n_classes=n_classes,
+                                    is_classification=is_classification, seed=42)
+
+                base_unc = var_event(models, X, is_classification).mean()
+                fk_uncertainty = {}
+                for fk_name, col_indices in fk_to_cols.items():
+                    if not col_indices:
+                        continue
+                    contributions = []
+                    for _ in range(5):
+                        X_perm = X.copy()
+                        for col_idx in col_indices:
+                            X_perm[:, col_idx] = np.random.permutation(X_perm[:, col_idx])
+                        perm_unc = var_event(models, X_perm, is_classification).mean()
+                        contrib = (base_unc - perm_unc) / base_unc * 100
+                        contributions.append(contrib)
+                    fk_uncertainty[fk_name] = np.mean(contributions)
+
+            elif dataset_name == 'rel-amazon':
+                # Use generic extraction for Amazon
+                from run_avito_validation import (
+                    extract_features_generic as extract_amazon,
+                    train_ensemble as train_amazon,
+                    ensemble_variance as var_amazon
+                )
+                X, y, col_to_fk, feature_cols, fk_to_cols, n_classes, is_classification = extract_amazon(
+                    dataset, task, sample_size=2000
+                )
+
+                models = train_amazon(X, y, n_models=5, n_classes=n_classes,
+                                     is_classification=is_classification, seed=42)
+
+                base_unc = var_amazon(models, X, is_classification).mean()
+                fk_uncertainty = {}
+                for fk_name, col_indices in fk_to_cols.items():
+                    if not col_indices:
+                        continue
+                    contributions = []
+                    for _ in range(5):
+                        X_perm = X.copy()
+                        for col_idx in col_indices:
+                            X_perm[:, col_idx] = np.random.permutation(X_perm[:, col_idx])
+                        perm_unc = var_amazon(models, X_perm, is_classification).mean()
                         contrib = (base_unc - perm_unc) / base_unc * 100
                         contributions.append(contrib)
                     fk_uncertainty[fk_name] = np.mean(contributions)

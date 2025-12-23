@@ -1,0 +1,262 @@
+[
+  {
+    "task": "user-attendance",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "fk_summary": {
+      "EVENTS": {
+        "mean": 2.5172490395503977,
+        "std": 0.5333047709580887,
+        "type": "causal"
+      },
+      "EVENT_ATTENDEES": {
+        "mean": -31.82531438909883,
+        "std": 23.571343730112286,
+        "type": "correlational"
+      },
+      "EVENT_INTEREST": {
+        "mean": 0.2551434744246266,
+        "std": 0.7117870749203546,
+        "type": "correlational"
+      },
+      "USERS": {
+        "mean": -4.309784090381838,
+        "std": 3.834456198780118,
+        "type": "correlational"
+      },
+      "USER_FRIENDS": {
+        "mean": 1.3547625657901698,
+        "std": 2.9771694026407407,
+        "type": "correlational"
+      }
+    },
+    "hypothesis_support_rate": "5/5",
+    "results": [
+      {
+        "task": "user-attendance",
+        "seed": 42,
+        "task_type": "TaskType.REGRESSION",
+        "data_shape": [
+          2000,
+          24
+        ],
+        "fk_contributions": {
+          "USERS": -11.951612631716447,
+          "EVENT_INTEREST": -0.5960207301302496,
+          "EVENT_ATTENDEES": -67.42734953276158,
+          "USER_FRIENDS": -0.23358278248815062,
+          "EVENTS": 2.156276594658941
+        },
+        "base_uncertainty": 0.0324476766068033,
+        "hypothesis_supported": "True"
+      },
+      {
+        "task": "user-attendance",
+        "seed": 43,
+        "task_type": "TaskType.REGRESSION",
+        "data_shape": [
+          2000,
+          24
+        ],
+        "fk_contributions": {
+          "USERS": -2.9623104296248313,
+          "EVENT_INTEREST": -0.588892339916154,
+          "EVENT_ATTENDEES": -42.34014805863382,
+          "USER_FRIENDS": 1.3518252479827457,
+          "EVENTS": 2.2394164918024217
+        },
+        "base_uncertainty": 0.029893184034644405,
+        "hypothesis_supported": "True"
+      },
+      {
+        "task": "user-attendance",
+        "seed": 44,
+        "task_type": "TaskType.REGRESSION",
+        "data_shape": [
+          2000,
+          24
+        ],
+        "fk_contributions": {
+          "USERS": -2.463688246926191,
+          "EVENT_INTEREST": 0.9593308933510022,
+          "EVENT_ATTENDEES": -33.88532979366288,
+          "USER_FRIENDS": -3.2626201162271933,
+          "EVENTS": 3.566703270580136
+        },
+        "base_uncertainty": 0.02942085760519019,
+        "hypothesis_supported": "True"
+      },
+      {
+        "task": "user-attendance",
+        "seed": 45,
+        "task_type": "TaskType.REGRESSION",
+        "data_shape": [
+          2000,
+          24
+        ],
+        "fk_contributions": {
+          "USERS": -2.0703430347744822,
+          "EVENT_INTEREST": 0.9845240285393496,
+          "EVENT_ATTENDEES": -18.58179834760262,
+          "USER_FRIENDS": 3.684223265801543,
+          "EVENTS": 2.4321477158365337
+        },
+        "base_uncertainty": 0.037398741255791054,
+        "hypothesis_supported": "True"
+      },
+      {
+        "task": "user-attendance",
+        "seed": 46,
+        "task_type": "TaskType.REGRESSION",
+        "data_shape": [
+          2000,
+          24
+        ],
+        "fk_contributions": {
+          "USERS": -2.1009661088672384,
+          "EVENT_INTEREST": 0.5167755202791848,
+          "EVENT_ATTENDEES": 3.108053787166768,
+          "USER_FRIENDS": 5.233967213881904,
+          "EVENTS": 2.1917011248739575
+        },
+        "base_uncertainty": 0.03750881185753559,
+        "hypothesis_supported": "True"
+      }
+    ]
+  },
+  {
+    "task": "user-repeat",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "fk_summary": {
+      "EVENTS": {
+        "mean": 2.4386364270892154,
+        "std": 0.911096431306835,
+        "type": "causal"
+      },
+      "EVENT_ATTENDEES": {
+        "mean": 28.5855012106724,
+        "std": 1.7709443422274225,
+        "type": "correlational"
+      },
+      "EVENT_INTEREST": {
+        "mean": 2.1870483481019827,
+        "std": 0.8376908522403945,
+        "type": "correlational"
+      },
+      "USERS": {
+        "mean": 6.509007065618067,
+        "std": 0.5479651980618375,
+        "type": "correlational"
+      },
+      "USER_FRIENDS": {
+        "mean": 11.43132574426869,
+        "std": 0.5224651251352642,
+        "type": "correlational"
+      }
+    },
+    "hypothesis_support_rate": "0/5",
+    "results": [
+      {
+        "task": "user-repeat",
+        "seed": 42,
+        "task_type": "TaskType.BINARY_CLASSIFICATION",
+        "data_shape": [
+          2000,
+          24
+        ],
+        "fk_contributions": {
+          "USERS": 7.450641977745384,
+          "EVENT_INTEREST": 3.427130575758416,
+          "EVENT_ATTENDEES": 27.761124781691734,
+          "USER_FRIENDS": 11.76852440217053,
+          "EVENTS": 2.699548742479338
+        },
+        "base_uncertainty": 0.011616480800513848,
+        "hypothesis_supported": "False"
+      },
+      {
+        "task": "user-repeat",
+        "seed": 43,
+        "task_type": "TaskType.BINARY_CLASSIFICATION",
+        "data_shape": [
+          2000,
+          24
+        ],
+        "fk_contributions": {
+          "USERS": 5.8350611848538625,
+          "EVENT_INTEREST": 2.84385581818933,
+          "EVENT_ATTENDEES": 27.230073746802304,
+          "USER_FRIENDS": 11.339891131644663,
+          "EVENTS": 3.9870098048805622
+        },
+        "base_uncertainty": 0.011007624357896633,
+        "hypothesis_supported": "False"
+      },
+      {
+        "task": "user-repeat",
+        "seed": 44,
+        "task_type": "TaskType.BINARY_CLASSIFICATION",
+        "data_shape": [
+          2000,
+          24
+        ],
+        "fk_contributions": {
+          "USERS": 6.688699732301812,
+          "EVENT_INTEREST": 2.0145339469001624,
+          "EVENT_ATTENDEES": 27.298914991177913,
+          "USER_FRIENDS": 10.464286684961007,
+          "EVENTS": 2.220953859648964
+        },
+        "base_uncertainty": 0.010838669049760961,
+        "hypothesis_supported": "False"
+      },
+      {
+        "task": "user-repeat",
+        "seed": 45,
+        "task_type": "TaskType.BINARY_CLASSIFICATION",
+        "data_shape": [
+          2000,
+          24
+        ],
+        "fk_contributions": {
+          "USERS": 6.403817877268909,
+          "EVENT_INTEREST": 1.2177777057558514,
+          "EVENT_ATTENDEES": 28.660202235473683,
+          "USER_FRIENDS": 11.946077570018039,
+          "EVENTS": 2.0735100476359034
+        },
+        "base_uncertainty": 0.011052385608733114,
+        "hypothesis_supported": "False"
+      },
+      {
+        "task": "user-repeat",
+        "seed": 46,
+        "task_type": "TaskType.BINARY_CLASSIFICATION",
+        "data_shape": [
+          2000,
+          24
+        ],
+        "fk_contributions": {
+          "USERS": 6.166814555920362,
+          "EVENT_INTEREST": 1.4319436939061534,
+          "EVENT_ATTENDEES": 31.977190298216374,
+          "USER_FRIENDS": 11.637848932549208,
+          "EVENTS": 1.2121596808013089
+        },
+        "base_uncertainty": 0.011128774208242874,
+        "hypothesis_supported": "False"
+      }
+    ]
+  }
+]

@@ -4,24 +4,24 @@
     "task": "driver-position",
     "task_type": "regression",
     "fk": "QUALIFYING",
-    "importance": 0.14660790852521302,
-    "uncertainty": 3.983918733976126
+    "importance": 0.14059467595956743,
+    "uncertainty": 4.035531879723265
   },
   {
     "dataset": "rel-f1",
     "task": "driver-position",
     "task_type": "regression",
     "fk": "RESULTS",
-    "importance": 69.7304623373082,
-    "uncertainty": 2.1843055171687267
+    "importance": 67.77937766816409,
+    "uncertainty": 2.233070120609162
   },
   {
     "dataset": "rel-f1",
     "task": "driver-position",
     "task_type": "regression",
     "fk": "STANDINGS",
-    "importance": 2.3114376308629296,
-    "uncertainty": 11.055192353972318
+    "importance": 2.306845638965055,
+    "uncertainty": 11.359330863797968
   },
   {
     "dataset": "rel-f1",
@@ -29,39 +29,39 @@
     "task_type": "classification",
     "fk": "QUALIFYING",
     "importance": 0.0,
-    "uncertainty": 2.6908260007630718
+    "uncertainty": 2.583935951549164
   },
   {
     "dataset": "rel-f1",
     "task": "driver-dnf",
     "task_type": "classification",
     "fk": "RESULTS",
-    "importance": 0.9496890898812846,
-    "uncertainty": -20.992903485069725
+    "importance": 0.9609949123798703,
+    "uncertainty": -20.447827578510097
   },
   {
     "dataset": "rel-f1",
     "task": "driver-dnf",
     "task_type": "classification",
     "fk": "STANDINGS",
-    "importance": 0.5765969474279221,
-    "uncertainty": -31.062005548714474
+    "importance": 0.4635387224420568,
+    "uncertainty": -29.055435000054814
   },
   {
     "dataset": "rel-f1",
     "task": "driver-top3",
     "task_type": "classification",
     "fk": "QUALIFYING",
-    "importance": 0.25402201524132895,
-    "uncertainty": -52.371011793442236
+    "importance": 0.0508044030482663,
+    "uncertainty": -54.30113506132087
   },
   {
     "dataset": "rel-f1",
     "task": "driver-top3",
     "task_type": "classification",
     "fk": "RESULTS",
-    "importance": 6.316680779000855,
-    "uncertainty": -316.2069835074776
+    "importance": 5.910245554614735,
+    "uncertainty": -317.2964303776601
   },
   {
     "dataset": "rel-f1",
@@ -69,263 +69,263 @@
     "task_type": "classification",
     "fk": "STANDINGS",
     "importance": 0.0,
-    "uncertainty": -133.8118617476404
+    "uncertainty": -131.6499918191775
   },
   {
     "dataset": "rel-trial",
     "task": "study-outcome",
     "task_type": "regression",
     "fk": "STUDIES",
-    "importance": 9.234350075114289,
-    "uncertainty": 6.73416143110899
+    "importance": 9.790664070075591,
+    "uncertainty": 6.223740245522102
   },
   {
     "dataset": "rel-trial",
     "task": "study-outcome",
     "task_type": "regression",
     "fk": "OUTCOMES",
-    "importance": 2.370004052253127,
-    "uncertainty": 2.753892631030479
+    "importance": 2.331386601111412,
+    "uncertainty": 2.936385359359258
   },
   {
     "dataset": "rel-trial",
     "task": "study-outcome",
     "task_type": "regression",
     "fk": "INTERVENTIONS_STUDIES",
-    "importance": 5.1862122815297,
-    "uncertainty": 8.073805454357107
+    "importance": 5.04531258023674,
+    "uncertainty": 7.416654293114371
   },
   {
     "dataset": "rel-trial",
     "task": "study-outcome",
     "task_type": "regression",
     "fk": "DROP_WITHDRAWALS",
-    "importance": 6.050516626236734,
-    "uncertainty": 4.4991631256726965
+    "importance": 6.096857052061781,
+    "uncertainty": 4.975975876574919
   },
   {
     "dataset": "rel-trial",
     "task": "study-outcome",
     "task_type": "regression",
     "fk": "OUTCOME_ANALYSES",
-    "importance": 153.02576981895686,
-    "uncertainty": 16.94848381375754
+    "importance": 151.85866216693023,
+    "uncertainty": 17.847122446206146
   },
   {
     "dataset": "rel-trial",
     "task": "study-outcome",
     "task_type": "regression",
     "fk": "DESIGNS",
-    "importance": 1.8316727158495105,
-    "uncertainty": 2.842125280035672
+    "importance": 1.7714036181036383,
+    "uncertainty": 3.0582811550955036
   },
   {
     "dataset": "rel-trial",
     "task": "study-outcome",
     "task_type": "regression",
     "fk": "FACILITIES_STUDIES",
-    "importance": 4.281469829578396,
-    "uncertainty": 6.18699067590075
+    "importance": 4.276531610203895,
+    "uncertainty": 6.95826259109233
   },
   {
     "dataset": "rel-trial",
     "task": "study-outcome",
     "task_type": "regression",
     "fk": "ELIGIBILITIES",
-    "importance": 0.5562421778580138,
-    "uncertainty": 0.46848411983417415
+    "importance": 0.5426011593633954,
+    "uncertainty": 0.3608438900615553
   },
   {
     "dataset": "rel-trial",
     "task": "study-outcome",
     "task_type": "regression",
     "fk": "SPONSORS_STUDIES",
-    "importance": 5.100117481251734,
-    "uncertainty": 5.435183395740265
+    "importance": 4.767791530862615,
+    "uncertainty": 5.208035901528953
   },
   {
     "dataset": "rel-trial",
     "task": "study-outcome",
     "task_type": "regression",
     "fk": "REPORTED_EVENT_TOTALS",
-    "importance": 6.237695150789775,
-    "uncertainty": 6.416245851007337
+    "importance": 6.07412844909428,
+    "uncertainty": 6.555932908914906
   },
   {
     "dataset": "rel-trial",
     "task": "study-outcome",
     "task_type": "regression",
     "fk": "CONDITIONS_STUDIES",
-    "importance": 5.452088686335008,
-    "uncertainty": 7.487304574454623
+    "importance": 5.516122946902816,
+    "uncertainty": 7.082931884282255
   },
   {
     "dataset": "rel-trial",
     "task": "study-adverse",
     "task_type": "regression",
     "fk": "STUDIES",
-    "importance": 4.431599652203575,
-    "uncertainty": -20.168986899227775
+    "importance": 4.796775069754149,
+    "uncertainty": -20.43725115271813
   },
   {
     "dataset": "rel-trial",
     "task": "study-adverse",
     "task_type": "regression",
     "fk": "OUTCOMES",
-    "importance": 2.827512237393113,
-    "uncertainty": -0.3489222876827499
+    "importance": 3.0443899125864506,
+    "uncertainty": -0.10269978687021579
   },
   {
     "dataset": "rel-trial",
     "task": "study-adverse",
     "task_type": "regression",
     "fk": "INTERVENTIONS_STUDIES",
-    "importance": 0.21998423539789394,
-    "uncertainty": -0.23755777993077798
+    "importance": 0.2168371006472778,
+    "uncertainty": -0.1995267188397615
   },
   {
     "dataset": "rel-trial",
     "task": "study-adverse",
     "task_type": "regression",
     "fk": "DROP_WITHDRAWALS",
-    "importance": 6.866197431669285,
-    "uncertainty": -30.964148499425942
+    "importance": 6.748982749818497,
+    "uncertainty": -31.012920143123573
   },
   {
     "dataset": "rel-trial",
     "task": "study-adverse",
     "task_type": "regression",
     "fk": "OUTCOME_ANALYSES",
-    "importance": 5.197910707669854,
-    "uncertainty": 0.35856159026286105
+    "importance": 5.4069647931110065,
+    "uncertainty": 0.4867900341150106
   },
   {
     "dataset": "rel-trial",
     "task": "study-adverse",
     "task_type": "regression",
     "fk": "DESIGNS",
-    "importance": 0.2588596108871214,
-    "uncertainty": 0.09265583283404928
+    "importance": 0.3049033766871416,
+    "uncertainty": 0.10116698697362762
   },
   {
     "dataset": "rel-trial",
     "task": "study-adverse",
     "task_type": "regression",
     "fk": "FACILITIES_STUDIES",
-    "importance": 0.11402822691532247,
-    "uncertainty": 0.02570045707757465
+    "importance": 0.10040612816293781,
+    "uncertainty": 0.026451749603755247
   },
   {
     "dataset": "rel-trial",
     "task": "study-adverse",
     "task_type": "regression",
     "fk": "ELIGIBILITIES",
-    "importance": 0.18904476955214222,
-    "uncertainty": 0.27731744522457846
+    "importance": 0.22170694410694303,
+    "uncertainty": 0.19717650580156462
   },
   {
     "dataset": "rel-trial",
     "task": "study-adverse",
     "task_type": "regression",
     "fk": "SPONSORS_STUDIES",
-    "importance": 0.6251343884861859,
-    "uncertainty": -0.06357835492579969
+    "importance": 0.5877371608950426,
+    "uncertainty": -0.6515304376507017
   },
   {
     "dataset": "rel-trial",
     "task": "study-adverse",
     "task_type": "regression",
     "fk": "REPORTED_EVENT_TOTALS",
-    "importance": 126.07124206138079,
-    "uncertainty": -21.731317246269406
+    "importance": 126.94799650580796,
+    "uncertainty": -21.948196775768544
   },
   {
     "dataset": "rel-trial",
     "task": "study-adverse",
     "task_type": "regression",
     "fk": "CONDITIONS_STUDIES",
-    "importance": 0.7955203026253892,
-    "uncertainty": -0.02044014298383796
+    "importance": 0.8394849827590724,
+    "uncertainty": -0.15731873797355855
   },
   {
     "dataset": "rel-trial",
     "task": "site-success",
     "task_type": "regression",
     "fk": "FACILITIES_STUDIES",
-    "importance": 14.075243308074414,
-    "uncertainty": -67.89321144571913
+    "importance": 14.014049948825335,
+    "uncertainty": -68.63420069977572
   },
   {
     "dataset": "rel-salt",
     "task": "item-plant",
     "task_type": "classification",
     "fk": "SALESDOCUMENTITEM",
-    "importance": 54.03061224489795,
-    "uncertainty": -108.10068495269238
+    "importance": 54.5,
+    "uncertainty": -100.66248909804003
   },
   {
     "dataset": "rel-salt",
     "task": "item-plant",
     "task_type": "classification",
     "fk": "SALESDOCUMENT",
-    "importance": 2.2346938775510212,
-    "uncertainty": -65.80435886063225
+    "importance": 2.1530612244897966,
+    "uncertainty": -64.45285706972655
   },
   {
     "dataset": "rel-salt",
     "task": "item-plant",
     "task_type": "classification",
     "fk": "SOLDTOPARTY",
-    "importance": 0.3061224489795876,
-    "uncertainty": -10.244777794674755
+    "importance": 0.44897959183673286,
+    "uncertainty": -12.516905290097837
   },
   {
     "dataset": "rel-salt",
     "task": "item-shippoint",
     "task_type": "classification",
     "fk": "SALESDOCUMENTITEM",
-    "importance": 35.942028985507235,
-    "uncertainty": -4.730288424891464
+    "importance": 36.086956521739125,
+    "uncertainty": -4.963152600806355
   },
   {
     "dataset": "rel-salt",
     "task": "item-shippoint",
     "task_type": "classification",
     "fk": "SALESDOCUMENT",
-    "importance": 28.028985507246375,
-    "uncertainty": -3.574437251979817
+    "importance": 30.173913043478258,
+    "uncertainty": -3.028387141142898
   },
   {
     "dataset": "rel-salt",
     "task": "item-shippoint",
     "task_type": "classification",
     "fk": "SOLDTOPARTY",
-    "importance": 5.971014492753613,
-    "uncertainty": -3.217003928348818
+    "importance": 3.768115942028973,
+    "uncertainty": -3.520205875548111
   },
   {
     "dataset": "rel-salt",
     "task": "sales-payterms",
     "task_type": "classification",
     "fk": "SALESDOCUMENT",
-    "importance": 55.14581373471308,
-    "uncertainty": 11.49841320465974
+    "importance": 56.76387582314205,
+    "uncertainty": 11.22653412764311
   },
   {
     "dataset": "rel-salt",
     "task": "sales-payterms",
     "task_type": "classification",
     "fk": "SALESDOCUMENTITEM",
-    "importance": 73.86641580432737,
-    "uncertainty": -19.587898390584492
+    "importance": 73.09501411100659,
+    "uncertainty": -20.67180094552764
   },
   {
     "dataset": "rel-avito",
     "task": "ad-ctr",
     "task_type": "regression",
     "fk": "ADSINFO",
-    "importance": 3.92196415031421,
-    "uncertainty": 2.784626443729749
+    "importance": 4.408101849020106,
+    "uncertainty": 1.294414964469692
   },
   {
     "dataset": "rel-avito",
@@ -348,15 +348,95 @@
     "task": "ad-ctr",
     "task_type": "regression",
     "fk": "SEARCHSTREAM",
-    "importance": 147.45549903790297,
-    "uncertainty": 10.442157837147738
+    "importance": 146.74101266582306,
+    "uncertainty": 8.780005149294173
   },
   {
     "dataset": "rel-avito",
     "task": "user-clicks",
     "task_type": "classification",
     "fk": "SEARCHINFO",
-    "importance": 0.697190426638915,
-    "uncertainty": -6.361551660238297
+    "importance": 0.6555671175858453,
+    "uncertainty": -8.269008825953225
+  },
+  {
+    "dataset": "rel-event",
+    "task": "user-attendance",
+    "task_type": "regression",
+    "fk": "USERS",
+    "importance": 2.953263358062216,
+    "uncertainty": -10.89767135158851
+  },
+  {
+    "dataset": "rel-event",
+    "task": "user-attendance",
+    "task_type": "regression",
+    "fk": "EVENT_INTEREST",
+    "importance": 2.0094457851553424,
+    "uncertainty": -0.42747181086030406
+  },
+  {
+    "dataset": "rel-event",
+    "task": "user-attendance",
+    "task_type": "regression",
+    "fk": "EVENT_ATTENDEES",
+    "importance": 134.9098847612739,
+    "uncertainty": -69.35297156718102
+  },
+  {
+    "dataset": "rel-event",
+    "task": "user-attendance",
+    "task_type": "regression",
+    "fk": "USER_FRIENDS",
+    "importance": 13.508915311850956,
+    "uncertainty": 0.6306842422403115
+  },
+  {
+    "dataset": "rel-event",
+    "task": "user-attendance",
+    "task_type": "regression",
+    "fk": "EVENTS",
+    "importance": 0.641785056941661,
+    "uncertainty": 2.2055608004072247
+  },
+  {
+    "dataset": "rel-event",
+    "task": "user-repeat",
+    "task_type": "classification",
+    "fk": "USERS",
+    "importance": 1.5365551425031019,
+    "uncertainty": 7.655622521994879
+  },
+  {
+    "dataset": "rel-event",
+    "task": "user-repeat",
+    "task_type": "classification",
+    "fk": "EVENT_INTEREST",
+    "importance": 0.34696406443618644,
+    "uncertainty": 3.3764041838044534
+  },
+  {
+    "dataset": "rel-event",
+    "task": "user-repeat",
+    "task_type": "classification",
+    "fk": "EVENT_ATTENDEES",
+    "importance": 35.50185873605948,
+    "uncertainty": 26.671650861589875
+  },
+  {
+    "dataset": "rel-event",
+    "task": "user-repeat",
+    "task_type": "classification",
+    "fk": "USER_FRIENDS",
+    "importance": 4.758364312267664,
+    "uncertainty": 12.270909973993355
+  },
+  {
+    "dataset": "rel-event",
+    "task": "user-repeat",
+    "task_type": "classification",
+    "fk": "EVENTS",
+    "importance": 0.3841387856257762,
+    "uncertainty": 2.7501356204035288
   }
 ]

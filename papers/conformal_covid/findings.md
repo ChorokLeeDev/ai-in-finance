@@ -173,6 +173,58 @@ These findings provide actionable guidance for deploying uncertainty quantificat
 
 ---
 
+---
+
+## 8. Extended Experiments
+
+### 8.1 Does Adaptive Conformal Help?
+
+We test Adaptive Conformal Inference (ACI, Gibbs & Candès 2021) which updates the quantile online:
+
+| Method | Test Coverage |
+|--------|---------------|
+| Standard Conformal | 0.2% |
+| ACI (γ=0.001) | 0.0% |
+| ACI (γ=0.01) | 0.0% |
+| ACI (γ=0.05) | 0.0% |
+
+**Finding**: ACI does NOT help under severe distribution shift. When feature overlap is 0%, no amount of online adaptation can recover coverage.
+
+### 8.2 Does Removing ID Features Help?
+
+| Condition | Val Coverage | Test Coverage | Drop |
+|-----------|-------------|---------------|------|
+| With ID features | 93.3% | 0.2% | 93.1% |
+| Without ID features | 93.4% | 0.4% | 93.0% |
+
+**Finding**: Removing SALESDOCUMENT does not improve robustness. The remaining features (SALESORGANIZATION, etc.) also lack predictive power for new data.
+
+### 8.3 Cross-Domain Validation: rel-trial
+
+We test COVID impact on clinical trials data:
+
+| Task | Val Coverage | Test Coverage | Drop |
+|------|-------------|---------------|------|
+| study-outcome | 100.0% | 100.0% | 0.0% |
+| study-adverse | 88.6% | 25.5% | **63.1%** |
+| site-success | 94.8% | 42.8% | **52.0%** |
+
+**Finding**: COVID also severely impacted clinical trial predictions. The pattern matches rel-salt: some tasks are robust (study-outcome), others fail catastrophically.
+
+### 8.4 Theoretical Analysis: Correlation Bounds
+
+| Relationship | Correlation |
+|-------------|-------------|
+| Feature Overlap ↔ Coverage Drop | **r = -0.70** |
+| Entropy ↔ Coverage Drop (0% overlap) | **r = 0.57** |
+
+**Finding**: Feature temporal stability (overlap) is the primary predictor of coverage failure (r = -0.70). For tasks with 0% overlap, entropy becomes the secondary predictor.
+
+### Figure 2: Extended Experiments
+![Extended experiments](figure2_extended_experiments.png)
+
+---
+
 ## Appendix: Reproducibility
 
 ### Code

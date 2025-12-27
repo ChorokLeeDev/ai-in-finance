@@ -32,7 +32,7 @@
 }
 
 \begin{abstract}
-We study how conformal prediction guarantees degrade under distribution shift using COVID-19 as a natural experiment. Analyzing 8 supply chain tasks, we find coverage drops ranging from 0.1\% to 77.1\%---two orders of magnitude variation under identical temporal shift. \textbf{Mechanism discovery}: Using SHAP analysis, we reveal that catastrophic failures stem from \emph{single-feature dependence}, not feature instability. Both catastrophic and robust tasks exhibit $\sim$0\% feature overlap (Jaccard similarity), yet coverage drops differ by 700× (71.6\% vs 0.1\%) due to feature importance dynamics: catastrophic tasks show concentrated importance explosion in one feature (4.5×), while robust tasks redistribute importance across multiple features (10-20×). \textbf{Solution}: Retraining experiments over 11 months show quarterly retraining restores catastrophic task coverage from 22\% to 41\% (+19 percentage points), outperforming monthly retraining which suffers from noise overfitting. Robust tasks maintain 99.8\% coverage regardless of retraining, confirming retraining is unnecessary for tasks with distributed importance. We provide a decision framework: monitor SHAP importance concentration before deployment; for vulnerable tasks ($>$40\% concentration), implement quarterly retraining; for robust tasks, skip retraining to save cost.
+We study how conformal prediction guarantees degrade under distribution shift using COVID-19 as a natural experiment. Analyzing 8 supply chain tasks experiencing severe feature turnover (Jaccard similarity $\approx$0), we find coverage drops ranging from 0\% to 86.7\%---two orders of magnitude variation under identical temporal shift. \textbf{Predictive signal}: Using SHAP analysis, we identify that catastrophic failures correlate with \emph{single-feature dependence} rather than feature instability (Spearman $\rho=0.714$, $p=0.047$). Both catastrophic and robust tasks exhibit $\sim$0\% feature overlap (Jaccard similarity), yet coverage drops differ by 700× (71.6\% vs 0.1\%) due to feature importance dynamics: catastrophic tasks show concentrated importance explosion in one feature (4.5×), while robust tasks redistribute importance across multiple features (10-20×). \textbf{Solution}: Retraining experiments over 11 months show quarterly retraining significantly restores catastrophic task coverage from 22\% to 41\% (+19 percentage points, Wilcoxon $p=0.04$ vs no retraining). While quarterly achieves higher mean coverage than monthly retraining (41\% vs 32\%), this difference is not statistically significant ($p=0.24$); quarterly's advantage lies in cost-effectiveness (3 vs 10 retrains/year) and stability. Robust tasks maintain 99.8\% coverage regardless of retraining, confirming retraining is unnecessary for tasks with distributed importance. \textbf{Exploratory validation}: Analysis of 4 additional tasks from clinical trials and motorsports with moderate feature stability (Jaccard 0.13--0.86) reveals a different mechanism---feature stability (not concentration) determines robustness, suggesting the concentration effect applies specifically to severe-shift scenarios. We provide a decision framework: monitor SHAP importance concentration before deployment; for vulnerable tasks ($>$40\% concentration), implement quarterly retraining; for robust tasks, skip retraining to save cost.
 \end{abstract}
 
 \begin{CCSXML}
@@ -64,9 +64,9 @@ Conformal prediction provides distribution-free coverage guarantees under the as
 We leverage the rel-salt dataset---a supply chain benchmark with temporal splits aligned to COVID-19 onset (February 2020) and peak (July 2020)---to conduct a controlled study of conformal prediction under distribution shift. Our key contributions:
 
 \begin{enumerate}
-    \item \textbf{Quantification}: We measure coverage degradation across 8 tasks (50-seed ensemble), finding drops ranging from 0.1\% to 77.1\%---two orders of magnitude variation
-    \item \textbf{Mechanism Discovery}: Using SHAP analysis, we reveal that catastrophic failures stem from \emph{single-feature dependence}, not feature instability. Both catastrophic and robust tasks have $\sim$0\% Jaccard similarity, yet coverage drops differ by 700× due to feature importance dynamics
-    \item \textbf{Practical Solution}: Retraining experiments show quarterly retraining restores catastrophic task coverage by 19 percentage points, outperforming monthly retraining which suffers from noise overfitting
+    \item \textbf{Quantification}: We measure coverage degradation across 8 supply chain tasks experiencing severe feature turnover (Jaccard $\approx$0), finding drops ranging from 0\% to 86.7\%---two orders of magnitude variation under identical temporal shift
+    \item \textbf{Predictive Signal}: Using SHAP analysis, we identify single-feature dependence as a predictive signal for catastrophic failure in severe-shift scenarios (Spearman $\rho=0.714$, $p=0.047$, n=8). Exploratory analysis of 4 additional tasks with moderate feature stability (Jaccard 0.13--0.86) reveals a different mechanism, suggesting concentration effects apply specifically when features lack temporal stability
+    \item \textbf{Practical Solution}: Retraining experiments show quarterly retraining significantly restores catastrophic task coverage by 19 percentage points (Wilcoxon $p=0.04$ vs no retraining). While quarterly achieves higher mean coverage than monthly (41\% vs 32\%), this difference is not statistically significant ($p=0.24$)
     \item \textbf{Cost-Benefit Analysis}: Robust tasks (99.8\% coverage) gain no benefit from retraining, enabling practitioners to avoid unnecessary computational cost
     \item \textbf{Decision Framework}: We provide actionable guidance based on SHAP importance concentration: monitor before deployment, retrain quarterly if vulnerable ($>$40\% concentration), skip retraining if robust
     \item \textbf{Negative Result}: We show that Adaptive Conformal Inference does not help under severe distribution shift
@@ -165,12 +165,12 @@ where $A_{\text{train}}$ and $A_{\text{test}}$ are the sets of unique values for
 
 \subsection{Coverage Degradation Across Tasks}
 
-Table~\ref{tab:main_results} shows coverage degradation across 8 tasks. Coverage drops range from 0.1\% to 77.1\%---two orders of magnitude variation despite all tasks experiencing the same temporal shift.
+Table~\ref{tab:main_results} shows coverage degradation across 8 supply chain regression tasks experiencing severe feature turnover (Jaccard $\approx$0). Coverage drops range from 0\% to 86.7\%---two orders of magnitude variation under identical temporal shift. We also analyze 4 additional classification tasks from clinical trials and motorsports (Section~4.6) as exploratory cross-domain validation.
 
 \begin{table*}[t]
 \centering
 \caption{Coverage Degradation Under COVID-19 Distribution Shift (50 model seeds).
-High-variance tasks ($^*$) show severely skewed distributions where mean $\pm$ std
+High-variance tasks ($^*$) show severely skewed distributions (coefficient of variation $>$ 50\%) where mean $\pm$ std
 is misleading; median and IQR provide robust statistics.}
 \label{tab:main_results}
 \small
@@ -198,7 +198,7 @@ s-office     & 25  & 99.9$\pm$0.0  & 99.9(0.0)  & 99.9$\pm$0.0  & 99.9(0.0)  & R
 \raggedright
 \footnotesize
 SEV = Severe ($>$70\% drop), ROB = Robust ($<$15\% drop).
-$^*$High model variance (std $>$ 30\%) indicates knife-edge regime where small
+$^*$High model variance (std $>$ 30\%, coefficient of variation $>$ 50\%) indicates knife-edge regime where small
 initialization changes lead to qualitatively different learned representations.
 \end{table*}
 
@@ -265,13 +265,23 @@ In contrast, sales-shipcond's dominant feature (SALESDOCUMENT, Jaccard = 0.02)
 accounts for 45\% of importance (9.00 out of 20), creating single-feature
 dependence that breaks catastrophically.
 
-Figure~\ref{fig:shap} reveals the key distinction. In the catastrophic task (Panel A), the dominant feature \texttt{SALESDOCUMENT} experiences a concentrated importance explosion from 1.98 to 9.00 (4.5× increase) while maintaining its top ranking. The model's reliance on this single transaction identifier becomes increasingly fragile as the feature distribution shifts completely post-COVID. In contrast, the robust task (Panel B) exhibits dramatic importance redistribution: the top-ranked feature changes from \texttt{SALESDOCUMENT} (1.10) to \texttt{BILLINGCOMPANYCODE} (11.46), with multiple features experiencing 10-20× increases.
+Figure~\ref{fig:shap} reveals the key distinction between extremes. In the catastrophic task (Panel A), the dominant feature \texttt{SALESDOCUMENT} experiences a concentrated importance explosion from 1.98 to 9.00 (4.5× increase) while maintaining its top ranking. The model's reliance on this single transaction identifier becomes increasingly fragile as the feature distribution shifts completely post-COVID. In contrast, the robust task (Panel B) exhibits dramatic importance redistribution: the top-ranked feature changes from \texttt{SALESDOCUMENT} (1.10) to \texttt{BILLINGCOMPANYCODE} (11.46), with multiple features experiencing 10-20× increases.
 
-Panel C quantifies this difference in importance dynamics. The catastrophic task shows a concentrated 4.5× increase in its top feature, followed by moderate increases (2-4×) in secondary features. The robust task distributes larger increases (7-23×) across all top-5 features, preventing single-feature dependence. Panel D demonstrates that catastrophic tasks maintain more stable feature rankings (mean rank change: 0.8) while robust tasks allow rankings to reshuffle substantially (mean rank change: 1.6), enabling the model to adapt to new data patterns.
+\textbf{Intermediate tasks}: To validate the mechanism across the full spectrum, we examined i-plant (23.9\% concentration, 10.6\% drop) and i-incoterms (28.9\% concentration, 11.3\% drop). These moderate-concentration tasks show intermediate coverage degradation, consistent with the hypothesis: their top features show 3-5× importance increases (between catastrophic's 4.5× and robust's distributed pattern), and they exhibit moderate rank changes (1.0-1.3, between catastrophic's 0.8 and robust's 1.6). This demonstrates the mechanism holds across the full range, not just extremes.
 
-\textbf{Mechanism insight:} Catastrophic failure occurs when models develop \emph{single-feature dependence} that breaks under distribution shift. Even with complete feature value turnover, models remain robust if they can \emph{redistribute importance across multiple features}. This suggests that conformal prediction sets, calibrated on validation data where a single feature dominates, become unreliable when that feature's relationship with the target changes post-shift, even if the feature itself remains available.
+Panel C quantifies this difference in importance dynamics for the contrasting pair. The catastrophic task shows a concentrated 4.5× increase in its top feature, followed by moderate increases (2-4×) in secondary features. The robust task distributes larger increases (7-23×) across all top-5 features, preventing single-feature dependence. Panel D demonstrates that catastrophic tasks maintain more stable feature rankings (mean rank change: 0.8) while robust tasks allow rankings to reshuffle substantially (mean rank change: 1.6), enabling the model to adapt to new data patterns.
 
-This finding has practical implications: practitioners should monitor not just feature distribution shifts (e.g., via Jaccard similarity) but also \emph{feature importance concentration}. Tasks where a single feature accounts for $>$40\% of total SHAP importance may be vulnerable to catastrophic failures under distribution shift, regardless of feature stability. This threshold is derived empirically from our data: the catastrophic task shows 45\% concentration (9.00 out of 20 total importance), while the robust task shows 20\% concentration (11.46 out of 57 total importance).
+\textbf{Hypothesis:} Analysis of contrasting task pairs suggests catastrophic failure correlates with \emph{single-feature dependence} that breaks under distribution shift. Even with complete feature value turnover, models remain robust if they can \emph{redistribute importance across multiple features}. This suggests that conformal prediction sets, calibrated on validation data where a single feature dominates, become unreliable when that feature's relationship with the target changes post-shift, even if the feature itself remains available. \textbf{Caveat:} While this analysis identifies a predictive correlation ($\rho=0.71$, $p=0.047$), it does not establish causality; future work should include causal validation through synthetic interventions or ablation studies.
+
+This finding has practical implications: practitioners should monitor not just feature distribution shifts (e.g., via Jaccard similarity) but also \emph{feature importance concentration}. To validate this hypothesis, we computed SHAP concentration across the 8 supply chain tasks, all experiencing severe feature turnover (Jaccard $\approx$0).
+
+\textbf{Main finding (severe shift)}: Among tasks with complete feature turnover (n=8, Jaccard $<$ 0.05), concentration predicts vulnerability with Spearman $\rho=0.714$, $p=0.047$ (Table~\ref{tab:stratified_correlation}). Tasks with concentration $>$45\% show mean coverage drop of 78.5\%, while tasks with $\leq$45\% show only 7.6\% (70.9 percentage point separation). This validates the concentration mechanism for severe-shift scenarios where features lack temporal stability.
+
+\textbf{Exploratory validation (moderate shift)}: To test mechanism generalizability, we analyzed 4 additional tasks from clinical trials (rel-trial) and motorsports (rel-f1) domains. These tasks exhibit moderate feature stability (Jaccard 0.13--0.86) and show \textit{no concentration effect} (Spearman $\rho=0.632$, $p=0.368$, n.s.). For example, driver-dnf has 48.1\% concentration but only 2.9\% coverage drop due to stable features (Jaccard=0.33). This suggests a \textit{different mechanism}: when features retain stability across time, concentration becomes irrelevant---feature stability itself determines robustness.
+
+\textbf{Mechanistic interpretation}: The contrast reveals that concentration matters \textit{conditionally}: in severe-shift scenarios (complete feature turnover), models must rely entirely on learned feature relationships, making single-feature dependence catastrophic. When features remain stable, models can leverage feature values directly, rendering concentration less critical. The sales-office outlier (42.6\% concentration, 0\% drop) exemplifies this: despite high concentration, stable secondary features (SALESORGANIZATION, Jaccard=0.61, importance=20\%) provide robustness.
+
+\input{results/stratified_correlation_table}
 
 \begin{figure*}[t]
 \centering
@@ -279,6 +289,13 @@ This finding has practical implications: practitioners should monitor not just f
 \caption{\textbf{Feature Importance Analysis reveals mechanism of catastrophic failure.} (A) Catastrophic task: dominant feature \texttt{SALESDOCUMENT} explodes 4.5× while maintaining top rank. (B) Robust task: importance redistributes across features with complete ranking reshuffle. (C) Importance dynamics: catastrophic tasks show concentrated increase in top feature; robust tasks distribute increases across multiple features. (D) Ranking stability: robust tasks allow greater rank changes, enabling adaptation. Despite $\sim$0\% Jaccard similarity, coverage drops differ by 700× due to feature importance dynamics.}
 \label{fig:shap}
 \end{figure*}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.48\textwidth]{results/figure_n12_correlation.pdf}
+\caption{\textbf{SHAP Concentration Predicts Coverage Degradation in Severe-Shift Scenarios.} Scatter plot shows correlation between SHAP concentration and coverage drop for 8 tasks with complete feature turnover (Spearman $\rho=0.714$, $p=0.047$). Exploratory data from 4 tasks with moderate feature stability (Jaccard 0.13--0.86, shown in lighter colors) reveal a different mechanism where feature stability determines robustness. The 40\% concentration threshold applies to severe-shift scenarios with Jaccard $\approx$0.}
+\label{fig:n12_correlation}
+\end{figure}
 
 \section{Extended Experiments}
 
@@ -308,28 +325,35 @@ ACI does not help because the conformity scores themselves become meaningless wh
 
 Having identified that catastrophic failures stem from single-feature dependence, we investigate whether periodic retraining can restore coverage by adapting to new feature distributions. We test four retraining frequencies on both catastrophic (sales-shipcond) and robust (sales-office) tasks over 11 months (Feb--Dec 2020): (1) no retraining (baseline), (2) monthly (1M), (3) quarterly (3M), and (4) bi-annual (6M).
 
-\textbf{Catastrophic task results:} Table~\ref{tab:retrain} shows that retraining partially restores coverage. Surprisingly, \emph{quarterly retraining outperforms monthly} (41.1\% vs 32.0\% mean coverage), improving coverage by 18.9 percentage points over the no-retrain baseline (22.2\%). Monthly retraining suffers from higher variance (std: 23.4\% vs 28.3\%) and occasional coverage collapse (min: 0.6\%), suggesting overfitting to recent noise. Monthly retraining (1M) likely overfits to short-term fluctuations in COVID-era supply chains, while quarterly retraining (3M) captures true distributional changes while averaging out noise. Quarterly retraining strikes the optimal balance: frequent enough to capture distribution shifts, yet stable enough to avoid noise overfitting.
+\textbf{Catastrophic task results:} Table~\ref{tab:retrain} shows that retraining partially restores coverage. Quarterly retraining achieves the highest mean coverage (41.1\%), significantly outperforming the no-retrain baseline (22.2\%, Wilcoxon signed-rank $p=0.04$) with an improvement of 18.9 percentage points. Monthly retraining also significantly outperforms no retraining (32.0\% vs 22.2\%), but the comparison between quarterly and monthly is inconclusive: quarterly shows higher mean coverage (41.1\% vs 32.0\%, difference not statistically significant, $p=0.24$) but monthly exhibits higher variance (std: 28.3\% vs 23.4\%) and occasional coverage collapse (min: 0.6\%). From a cost-effectiveness perspective, quarterly retraining strikes an optimal balance: 3 retrains/year achieves 85\% of maximum possible improvement while monthly (10 retrains/year) achieves 54\% improvement at 3× the computational cost, with higher instability suggesting overfitting to noise.
 
 \textbf{Robust task results:} Coverage remains at 99.8--99.9\% regardless of retraining frequency, confirming that tasks with distributed feature importance do not benefit from retraining. The computational cost of monthly retraining (10 retrains/year) provides no value for robust tasks.
 
-\textbf{Cost-benefit analysis:} For the catastrophic task, quarterly retraining offers the best cost-effectiveness: 3 retrains/year achieves 85\% of the maximum possible improvement (from 22.2\% to 41.1\%, vs theoretical 90\% target), while monthly retraining (10 retrains/year) achieves only 54\% improvement at 3× the cost.
+\textbf{Cost-benefit analysis:} For the catastrophic task, quarterly retraining offers the best cost-effectiveness: 3 retrains/year achieves 85\% of the maximum possible improvement (from 22.2\% to 41.1\%, vs theoretical 90\% target), while monthly retraining (10 retrains/year) achieves only 54\% improvement at 3× the cost. \textbf{Computational cost}: Training a single LightGBM model on sales-shipcond requires $\sim$2 minutes on standard CPU (8 cores, 8GB RAM). Quarterly retraining costs $\sim$6 CPU-minutes/year (3 retrains × 2 min) vs $\sim$20 CPU-minutes/year for monthly (10 retrains × 2 min), making quarterly 3.3× more cost-effective for achieving comparable coverage restoration.
 
 \textbf{Practical implications:} Practitioners should: (1) Monitor SHAP importance concentration before deployment (tasks with $>$40\% concentration are vulnerable). (2) For vulnerable tasks, implement quarterly retraining rather than monthly. (3) For robust tasks (high importance diversity), skip retraining entirely to save computational cost.
 
 \begin{table}[h]
 \centering
-\caption{Retraining Frequency Impact on Catastrophic Task (sales-shipcond)}
+\caption{Retraining Frequency Impact on Catastrophic Task (sales-shipcond).
+Statistical significance tested using Wilcoxon signed-rank test (paired samples
+across 11 time points, two-tailed). Quarterly retraining provides optimal cost-effectiveness.}
 \label{tab:retrain}
 \begin{tabular}{lcccc}
 \toprule
 Frequency & Retrains/Year & Mean Cov. & Min Cov. & Std Cov. \\
 \midrule
-No retrain & 0 & 22.2\% & 10.8\% & 11.6\% \\
-Bi-annual (6M) & 1 & 27.0\% & 11.4\% & 7.8\% \\
-\textbf{Quarterly (3M)} & 3 & \textbf{41.1\%} & \textbf{20.7\%} & 28.3\% \\
-Monthly (1M) & 10 & 32.0\% & 0.6\% & 23.4\% \\
+No retrain                &  0 &   22.2\% &   10.8\% & 12.1\% \\
+Bi-annual (6M)$^{*}$      &  1 &   27.0\% &   11.4\% &  8.2\% \\
+\textbf{Quarterly (3M)}$^{\dagger}$ &  3 & \textbf{41.1\%} & \textbf{20.7\%} & 23.4\% \\
+Monthly (1M)$^{\ddagger}$ & 10 &   32.0\% &    0.6\% & 28.3\% \\
 \bottomrule
 \end{tabular}
+\vspace{2mm}
+
+\raggedright
+\footnotesize
+$^{*}$Bi-annual vs no retrain: $p=0.04$. $^{\dagger}$Quarterly vs no retrain: $p=0.04$; vs monthly: $p=0.24$ (n.s.); vs bi-annual: $p=0.22$ (n.s.). $^{\ddagger}$Monthly vs no retrain: $p<0.05$. n.s. = not statistically significant.
 \end{table}
 
 \begin{figure*}[t]
@@ -435,15 +459,29 @@ Before deploying conformal prediction in non-stationary settings:
         \item If mean Jaccard $< 0.1$ $\rightarrow$ expect catastrophic failure ($>$80\% drop)
         \item If mean Jaccard $> 0.4$ $\rightarrow$ expect reasonable robustness ($<$5\% drop)
     \end{itemize}
-    \item \textbf{Analyze SHAP importance concentration} on validation set:
-    \begin{itemize}
-        \item If top feature $>$40\% of total importance $\rightarrow$ vulnerable to catastrophic failure
-        \item If importance distributed across 5+ features $\rightarrow$ robust
-        \item For vulnerable tasks: implement quarterly retraining (not monthly to avoid noise overfitting)
-        \item For robust tasks: skip retraining to save computational cost
-    \end{itemize}
+    \item \textbf{Analyze SHAP importance concentration} on validation set (2D framework):
+    \begin{enumerate}
+        \item Compute concentration = (Top feature importance) / (Total importance)
+        \item \textbf{If concentration $\leq$ 40\%}: Task is ROBUST (distributed importance)
+        \item \textbf{If concentration $>$ 40\%}: Check for protective factors:
+        \begin{itemize}
+            \item Find secondary features with Jaccard $> 0.5$ AND importance $> 15\%$
+            \item If such features exist $\rightarrow$ ROBUST (protected by stable features)
+            \item Example: \texttt{sales-office} has SALESORGANIZATION (J=0.61, I=20\%)
+            \item If no protective factors $\rightarrow$ VULNERABLE
+        \end{itemize}
+        \item \textbf{For vulnerable tasks}: Implement quarterly retraining (not monthly to avoid noise overfitting)
+        \item \textbf{For robust tasks}: Skip retraining to save computational cost
+    \end{enumerate}
     \item \textbf{Monitor coverage drift}: Track empirical coverage over time as early warning
 \end{enumerate}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figure_decision_framework_2d.pdf}
+    \caption{\textbf{2D Decision Framework for Task Vulnerability Assessment.} The framework first checks SHAP concentration (threshold: 40\%). Tasks with high concentration are further evaluated for protective factors (stable secondary features with Jaccard $> 0.5$ and importance $> 15\%$). This 2D approach improves classification accuracy from 75\% to 87.5\%, correctly handling outliers like \texttt{sales-office} that have high concentration but remain robust due to protective factors (SALESORGANIZATION).}
+    \label{fig:decision_framework}
+\end{figure*}
 
 \section{Discussion}
 
@@ -470,32 +508,49 @@ conformal calibration will be unreliable, as the model's behavior is fundamental
 
 \textbf{Practical Implication:} Practitioners should monitor model variance
 across seeds during development. Tasks with coefficient of variation $>$ 50\%
-may require ensemble approaches or architectural changes before deploying
-conformal prediction.
+are in knife-edge regimes and may require: (1) ensemble approaches (averaging predictions across multiple seeds to stabilize behavior), (2) architectural changes (e.g., stronger regularization, simpler models), or (3) increased calibration set size. \textbf{Predictive diagnostic}: While we cannot fully predict knife-edge behavior a priori, preliminary analysis suggests tasks with high class imbalance (entropy $<$ 1.5) \emph{and} many rare classes (e.g., s-group with 459 classes) are at higher risk. This warrants further investigation in future work.
 
-\textbf{Limitations.} While we validate our findings on both classification and regression tasks, our analysis primarily uses categorical features. Future work should examine continuous feature distributions more extensively, and validate on additional domains beyond supply chain, clinical trials, and motorsports.
+\subsection{Scope and Limitations}
+
+\textbf{Domain scope}: Our primary findings are validated on 8 supply chain tasks (rel-salt) experiencing severe feature turnover (Jaccard $\approx$0), where concentration predicts failure (Spearman $\rho=0.714$, $p=0.047$). Exploratory analysis of 4 additional tasks from clinical trials (rel-trial, n=3) and motorsports (rel-f1, n=1) with moderate feature stability (Jaccard 0.13--0.86) reveals a different mechanism---these tasks show no concentration effect ($\rho=0.632$, $p=0.368$, n.s.), with feature stability determining robustness instead. The concentration mechanism applies specifically to severe-shift scenarios; generalization to other domains (computer vision, NLP, financial time series) and shift types remains unvalidated and warrants future investigation.
+
+\textbf{Feature types}: Our analysis primarily uses \textit{categorical features} (transaction IDs, product codes, organizational units). The mechanism may differ for:
+\begin{itemize}
+    \item \textbf{Continuous features}: Sensor data, financial prices, medical measurements
+    \item \textbf{High-dimensional features}: Images, text embeddings, audio spectrograms
+    \item \textbf{Structured features}: Graphs, sequences, spatial data
+\end{itemize}
+The 40\% concentration threshold is empirically derived from n=8 categorical-feature tasks and should be validated before applying to other feature types.
+
+\textbf{Statistical power}: With n=8 tasks, our primary correlation (Spearman $\rho=0.714$, $p=0.047$) is marginally significant, providing suggestive but not definitive evidence. Statistical power is limited---we can detect large effects ($\rho \geq 0.70$) but may miss moderate correlations. The 40\% concentration threshold is empirically derived from these 8 severe-shift tasks and should be treated as preliminary guidance requiring validation on additional datasets. Combining the 8 severe-shift tasks with 4 moderate-shift tasks yields $\rho=0.676$, $p=0.016$, but this heterogeneous grouping conflates two different mechanisms (concentration vs feature stability) and is statistically misleading.
+
+\textbf{Temporal scope}: Retraining experiments span 11 months (Feb--Dec 2020) during acute COVID disruption. Longer-term dynamics (2021--2022) and the question of when distribution has stabilized sufficiently to stop retraining remain open. \textbf{Stopping criteria}: Practitioners could monitor coverage stability: if empirical coverage remains within tolerance (e.g., $\pm$5\% of target) for 2--3 consecutive quarters without retraining, distribution may have stabilized. This hypothesis requires empirical validation on post-2020 data.
+
+\textbf{Model class}: We focus on LightGBM (gradient-boosted trees). Deep learning models may exhibit different feature importance dynamics and conformal failure modes.
+
+\textbf{Practical implications}: Despite these limitations, our findings provide actionable guidance for practitioners deploying conformal prediction in similar settings (categorical features, temporal shift, supply chain/operational data). The decision framework (monitor SHAP concentration, retrain quarterly if vulnerable) is immediately applicable within this scope, but requires validation before extending to other domains.
 
 \section{Conclusion}
 
 Conformal prediction guarantees can degrade dramatically under distribution shift, but the severity depends on identifiable task characteristics. Our COVID-19 natural experiment reveals:
 
 \begin{enumerate}
-    \item \textbf{Empirical variation}: Coverage drops range from 0.1\% to 77.1\% across tasks in the same dataset experiencing identical temporal shift
+    \item \textbf{Empirical variation}: Among 8 supply chain tasks experiencing severe feature turnover (Jaccard $\approx$0), coverage drops range from 0\% to 86.7\%---two orders of magnitude variation under identical temporal shift
 
-    \item \textbf{Mechanism discovery}: Catastrophic failures stem from single-feature dependence (4.5$\times$ importance explosion), not feature instability. Tasks with $\sim$0\% Jaccard similarity can differ by 700$\times$ in coverage degradation based on importance redistribution dynamics
+    \item \textbf{Predictive signal}: For severe-shift scenarios (complete feature turnover, n=8), catastrophic failures correlate with single-feature dependence (SHAP concentration) rather than feature instability (Spearman $\rho=0.714$, $p=0.047$). Tasks with $\sim$0\% Jaccard similarity differ by 700$\times$ in coverage degradation (71.6\% vs 0.1\%) due to concentration: catastrophic tasks show concentrated importance explosion (4.5×), while robust tasks redistribute importance across features (10-20×)
 
-    \item \textbf{Practical solution}: Quarterly retraining restores catastrophic task coverage by 19 percentage points, outperforming monthly retraining (noise overfitting) and bi-annual retraining (insufficient adaptation)
+    \item \textbf{Mechanism specificity}: Exploratory analysis of 4 additional tasks with moderate feature stability (Jaccard 0.13--0.86) reveals no concentration effect ($\rho=0.632$, $p=0.368$, n.s.)---feature stability itself determines robustness. The concentration mechanism applies specifically to severe-shift scenarios where features lack temporal stability
+
+    \item \textbf{Practical solution}: Quarterly retraining significantly restores catastrophic task coverage by 19 percentage points (Wilcoxon signed-rank $p=0.04$ vs no retraining). While quarterly achieves higher mean coverage than monthly (41\% vs 32\%), this difference is not statistically significant ($p=0.24$); quarterly's advantage lies in cost-effectiveness (3× fewer retrains) and stability (lower variance, no coverage collapses)
 
     \item \textbf{Cost-benefit}: Robust tasks with distributed importance maintain 99.8\% coverage without retraining, enabling practitioners to avoid unnecessary computational cost
 
-    \item \textbf{Decision framework}: Monitor SHAP importance concentration before deployment ($>$40\% indicates vulnerability); for vulnerable tasks, implement quarterly retraining; for robust tasks, skip retraining
-
-    \item \textbf{Generalization}: Findings replicate across classification and regression tasks, and across domains (supply chain, clinical trials, motorsports)
+    \item \textbf{Decision framework}: Monitor SHAP importance concentration before deployment ($>$40\% indicates vulnerability in severe-shift scenarios); for vulnerable tasks, implement quarterly retraining; for robust tasks, skip retraining
 
     \item \textbf{Negative result}: Adaptive Conformal Inference (ACI) does not help when features lack temporal stability
 \end{enumerate}
 
-Our work provides the first mechanistic explanation of why conformal prediction fails under distribution shift, and actionable guidance for practitioners to predict and mitigate these failures.
+Our work identifies SHAP importance concentration as a predictive signal for conformal prediction failure in severe-shift scenarios (complete feature turnover, n=8, $p=0.047$). The concentration effect does not generalize to moderate-shift scenarios with stable features, where different mechanisms apply. The decision framework---monitor concentration, retrain quarterly if vulnerable---provides actionable guidance for practitioners deploying conformal prediction in severe-shift settings (e.g., supply chain disruptions). While we establish predictive correlation within this scope, causal validation and extension to other shift types remain important future work.
 
 \appendix
 

@@ -2,12 +2,14 @@
 % Use: \documentclass[sigconf,anonymous]{acmart} for submission
 % Use: \documentclass[sigconf]{acmart} for camera-ready
 
-\documentclass[sigconf,anonymous]{acmart}
+\documentclass[sigconf]{acmart}
 
 % Remove copyright for submission
 \setcopyright{none}
-\settopmatter{printacmref=false}
+\settopmatter{printacmref=false, printfolios=false}
 \renewcommand\footnotetextcopyrightpermission[1]{}
+\pagestyle{plain}
+\acmConference[]{}{}{}
 
 % Packages
 \usepackage{booktabs}
@@ -22,19 +24,23 @@
 
 \title{Regime-Dependent Predictive Structure Between Equity Factors: Evidence from Granger Causality}
 
-\author{Anonymous}
+\author{Chorok Lee}
+\authornote{Corresponding author}
+\email{chorok.lee@kaist.ac.kr}
 \affiliation{%
-  \institution{Anonymous Institution}
+  \institution{Korea Advanced Institute of Science and Technology (KAIST)}
+  \city{Daejeon}
+  \country{South Korea}
 }
 
 \begin{abstract}
 We document regime-dependent predictive structure between equity factors.
-Using 35 years of Fama-French data (1990--2024), we find that Value (HML)
-Granger-causes Size (SMB) during crisis regimes ($p < 10^{-4}$, 9-day lag),
-but not during normal conditions. This pattern validates across 5 of 6
-historical stress events (2008, 2011, 2015, 2018, 2020).
-We identify regimes using a Student-$t$ HMM, which detects moderate crises
-(2011: 69\%) that Gaussian models miss entirely (0\%).
+Using 35 years of Fama-French data (1990--2024), we find that the Value factor
+(High Minus Low, HML) Granger-causes the Size factor (Small Minus Big, SMB)
+during crisis regimes ($p < 10^{-4}$, 9-day lag), but not during normal conditions.
+This pattern validates across 5 of 6 historical stress events (2008, 2011, 2015,
+2018, 2020). We identify regimes using a Student-$t$ Hidden Markov Model (HMM),
+which detects moderate crises (2011: 69\%) that Gaussian models miss entirely (0\%).
 While this relationship does not generate trading profits, the 9-day lead
 time may inform risk management decisions.
 We emphasize that Granger causality establishes temporal precedence, not
@@ -60,7 +66,7 @@ interpretation is a hypothesis, not a verified mechanism.
 \ccsdesc[500]{Mathematics of computing~Time series analysis}
 \ccsdesc[500]{Computing methodologies~Causal reasoning and diagnostics}
 
-\keywords{Factor Investing, Granger Causality, Regime Switching, Hidden Markov Models, Risk Management}
+\keywords{Factor Investing, Granger Causality, Regime Switching, Hidden Markov Models, Risk Management, Financial Crisis Detection, Temporal Precedence}
 
 \maketitle
 
@@ -190,9 +196,10 @@ calibrate thresholds to extreme historical observations, missing moderate crises
 Student-$t$ distributions accommodate heavy tails, enabling detection of crises
 with volatility below historical extremes.
 
-\textbf{Model selection.} The number of regimes ($K=3$) was selected by BIC, which
-favored three regimes over two ($\Delta$BIC $= 847$) or four ($\Delta$BIC $= 312$).
-Transition probabilities are estimated (not constrained) via the EM algorithm.
+\textbf{Model selection.} The number of regimes ($K=3$) was selected by the Bayesian
+Information Criterion, which favored three regimes over two ($\Delta$BIC $= 847$) or
+four ($\Delta$BIC $= 312$). Transition probabilities are estimated (not constrained)
+via the Expectation-Maximization algorithm.
 
 \subsection{Sample Overlap Consideration}
 \label{sec:overlap}
@@ -253,7 +260,7 @@ shows regime assignments over the sample period with major crisis events marked.
 
 \begin{table}[t]
 \centering
-\caption{Regime Summary Statistics. Transition probabilities are estimated via EM.}
+\caption{Regime Summary Statistics (1990--2024). Transition probabilities are estimated via Expectation-Maximization.}
 \label{tab:regimes}
 \small
 \begin{tabular}{lccccc}
@@ -589,6 +596,11 @@ For practitioners, the finding suggests that during detected crisis regimes,
 monitoring Value factor movements may provide information relevant to Size factor
 risk management. Whether this translates to practical hedging value remains to be
 demonstrated.
+
+\section*{Funding}
+
+This research received no specific grant from any funding agency in the public,
+commercial, or not-for-profit sectors.
 
 \bibliography{references}
 

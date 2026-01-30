@@ -1,0 +1,215 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{15}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{} and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showURL}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showURL #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[Adebayo et~al\mbox{.}(2018)]%
+        {adebayo2018sanity}
+\bibfield{author}{\bibinfo{person}{Julius Adebayo}, \bibinfo{person}{Justin
+  Gilmer}, \bibinfo{person}{Michael Muelly}, \bibinfo{person}{Ian Goodfellow},
+  \bibinfo{person}{Moritz Hardt}, {and} \bibinfo{person}{Been Kim}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Sanity checks for saliency maps}. In
+  \bibinfo{booktitle}{\emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}}, Vol.~\bibinfo{volume}{31}.
+\newblock
+
+
+\bibitem[Barber et~al\mbox{.}(2023)]%
+        {barber2023conformal}
+\bibfield{author}{\bibinfo{person}{Rina~Foygel Barber},
+  \bibinfo{person}{Emmanuel~J Cand{\`e}s}, \bibinfo{person}{Aaditya Ramdas},
+  {and} \bibinfo{person}{Ryan~J Tibshirani}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Conformal Prediction Beyond Exchangeability}.
+\newblock \bibinfo{journal}{\emph{The Annals of Statistics}}
+  \bibinfo{volume}{51}, \bibinfo{number}{2} (\bibinfo{year}{2023}),
+  \bibinfo{pages}{816--845}.
+\newblock
+
+
+\bibitem[Fey et~al\mbox{.}(2023)]%
+        {fey2023relbench}
+\bibfield{author}{\bibinfo{person}{Matthias Fey} {et~al\mbox{.}}}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{RelBench: A Benchmark for Deep Learning on
+  Relational Databases}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint}} (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Gibbs and Cand{\`e}s(2021)]%
+        {gibbs2021adaptive}
+\bibfield{author}{\bibinfo{person}{Isaac Gibbs} {and} \bibinfo{person}{Emmanuel
+  Cand{\`e}s}.} \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{Adaptive Conformal Inference Under Distribution
+  Shift}.
+\newblock \bibinfo{journal}{\emph{Advances in Neural Information Processing
+  Systems}}  \bibinfo{volume}{34} (\bibinfo{year}{2021}),
+  \bibinfo{pages}{1660--1672}.
+\newblock
+
+
+\bibitem[Gulrajani and Lopez-Paz(2021)]%
+        {gulrajani2020search}
+\bibfield{author}{\bibinfo{person}{Ishaan Gulrajani} {and}
+  \bibinfo{person}{David Lopez-Paz}.} \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{In search of lost domain generalization}. In
+  \bibinfo{booktitle}{\emph{International Conference on Learning
+  Representations (ICLR)}}.
+\newblock
+
+
+\bibitem[Koh et~al\mbox{.}(2021)]%
+        {koh2021wilds}
+\bibfield{author}{\bibinfo{person}{Pang~Wei Koh}, \bibinfo{person}{Shiori
+  Sagawa}, \bibinfo{person}{Henrik Marklund}, \bibinfo{person}{Sang~Michael
+  Xie}, \bibinfo{person}{Marvin Zhang}, \bibinfo{person}{Akshay Balsubramani},
+  \bibinfo{person}{Weihua Hu}, \bibinfo{person}{Michihiro Yasunaga},
+  \bibinfo{person}{Richard~Lanas Phillips}, \bibinfo{person}{Irena Gao},
+  {et~al\mbox{.}}} \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{{WILDS}: A benchmark of in-the-wild distribution
+  shifts}. In \bibinfo{booktitle}{\emph{International Conference on Machine
+  Learning (ICML)}}. PMLR, \bibinfo{pages}{5637--5664}.
+\newblock
+
+
+\bibitem[Lundberg et~al\mbox{.}(2020)]%
+        {lundberg2020local}
+\bibfield{author}{\bibinfo{person}{Scott~M Lundberg}, \bibinfo{person}{Gabriel
+  Erion}, \bibinfo{person}{Hugh Chen}, \bibinfo{person}{Alex DeGrave},
+  \bibinfo{person}{Jordan~M Prutkin}, \bibinfo{person}{Bala Nair},
+  \bibinfo{person}{Ronit Katz}, \bibinfo{person}{Jonathan Himmelfarb},
+  \bibinfo{person}{Nisha Bansal}, {and} \bibinfo{person}{Su-In Lee}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{From local explanations to global understanding
+  with explainable {AI} for trees}.
+\newblock \bibinfo{journal}{\emph{Nature Machine Intelligence}}
+  \bibinfo{volume}{2}, \bibinfo{number}{1} (\bibinfo{year}{2020}),
+  \bibinfo{pages}{56--67}.
+\newblock
+
+
+\bibitem[Lundberg and Lee(2017)]%
+        {lundberg2017unified}
+\bibfield{author}{\bibinfo{person}{Scott~M Lundberg} {and}
+  \bibinfo{person}{Su-In Lee}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{A Unified Approach to Interpreting Model
+  Predictions}. In \bibinfo{booktitle}{\emph{Advances in Neural Information
+  Processing Systems}}, Vol.~\bibinfo{volume}{30}.
+\newblock
+
+
+\bibitem[Malinin et~al\mbox{.}(2021)]%
+        {malinin2021shifts}
+\bibfield{author}{\bibinfo{person}{Andrey Malinin}, \bibinfo{person}{Neil
+  Band}, \bibinfo{person}{German Chesnokov}, \bibinfo{person}{Yarin Gal},
+  \bibinfo{person}{Mark~JF Gales}, \bibinfo{person}{Alexey Noskov},
+  \bibinfo{person}{Andrey Ploskonosov}, \bibinfo{person}{Liudmila
+  Prokhorenkova}, \bibinfo{person}{Ivan Provilkov}, \bibinfo{person}{Vatsal
+  Raina}, {et~al\mbox{.}}} \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{Shifts: A dataset of real distributional shift
+  across multiple large-scale tasks}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2107.07455}}
+  (\bibinfo{year}{2021}).
+\newblock
+
+
+\bibitem[Podkopaev and Ramdas(2021)]%
+        {podkopaev2021distribution}
+\bibfield{author}{\bibinfo{person}{Aleksandr Podkopaev} {and}
+  \bibinfo{person}{Aaditya Ramdas}.} \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{Distribution-Free Predictive Inference For
+  Regression}.
+\newblock \bibinfo{journal}{\emph{J. Amer. Statist. Assoc.}}
+  (\bibinfo{year}{2021}).
+\newblock
+
+
+\bibitem[Romano et~al\mbox{.}(2019)]%
+        {romano2019conformalized}
+\bibfield{author}{\bibinfo{person}{Yaniv Romano}, \bibinfo{person}{Evan
+  Patterson}, {and} \bibinfo{person}{Emmanuel Cand{\`e}s}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Conformalized Quantile Regression}. In
+  \bibinfo{booktitle}{\emph{Advances in Neural Information Processing
+  Systems}}, Vol.~\bibinfo{volume}{32}.
+\newblock
+
+
+\bibitem[Romano et~al\mbox{.}(2020)]%
+        {romano2020classification}
+\bibfield{author}{\bibinfo{person}{Yaniv Romano}, \bibinfo{person}{Matteo
+  Sesia}, {and} \bibinfo{person}{Emmanuel Cand{\`e}s}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Classification with Valid and Adaptive Coverage}.
+  In \bibinfo{booktitle}{\emph{Advances in Neural Information Processing
+  Systems}}, Vol.~\bibinfo{volume}{33}. \bibinfo{pages}{3581--3591}.
+\newblock
+
+
+\bibitem[Tibshirani et~al\mbox{.}(2019)]%
+        {tibshirani2019conformal}
+\bibfield{author}{\bibinfo{person}{Ryan~J Tibshirani},
+  \bibinfo{person}{Rina~Foygel Barber}, \bibinfo{person}{Emmanuel Cand{\`e}s},
+  {and} \bibinfo{person}{Aaditya Ramdas}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Conformal Prediction Under Covariate Shift}.
+\newblock \bibinfo{journal}{\emph{Advances in Neural Information Processing
+  Systems}}  \bibinfo{volume}{32} (\bibinfo{year}{2019}).
+\newblock
+
+
+\bibitem[Vovk et~al\mbox{.}(2005)]%
+        {vovk2005algorithmic}
+\bibfield{author}{\bibinfo{person}{Vladimir Vovk}, \bibinfo{person}{Alex
+  Gammerman}, {and} \bibinfo{person}{Glenn Shafer}.}
+  \bibinfo{year}{2005}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Algorithmic Learning in a Random World}}.
+\newblock \bibinfo{publisher}{Springer}.
+\newblock
+
+
+\bibitem[Zaffran et~al\mbox{.}(2022)]%
+        {zaffran2022adaptive}
+\bibfield{author}{\bibinfo{person}{Margaux Zaffran}, \bibinfo{person}{Olivier
+  F{\'e}ron}, \bibinfo{person}{Yannig Goude}, \bibinfo{person}{Julie Josse},
+  {and} \bibinfo{person}{Aymeric Dieuleveut}.} \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Adaptive Conformal Predictions for Time Series}.
+\newblock \bibinfo{journal}{\emph{International Conference on Machine
+  Learning}} (\bibinfo{year}{2022}), \bibinfo{pages}{25834--25866}.
+\newblock
+
+
+\end{thebibliography}

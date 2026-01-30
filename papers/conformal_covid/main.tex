@@ -3,8 +3,9 @@
 
 % Remove copyright for submission
 \setcopyright{none}
-\settopmatter{printacmref=false, printfolios=true}
+\settopmatter{printacmref=false, printfolios=false}
 \renewcommand\footnotetextcopyrightpermission[1]{}
+\pagestyle{plain}
 
 % Remove conference header for preprint
 \acmConference[]{}{}{}
@@ -25,14 +26,29 @@
 \title{Conformal Prediction Under Distribution Shift: A COVID-19 Natural Experiment}
 
 \author{Chorok Lee}
+\authornote{Corresponding author}
 \email{choroklee@kaist.ac.kr}
 \affiliation{%
   \institution{Korea Advanced Institute of Science and Technology (KAIST)}
+  \city{Daejeon}
   \country{South Korea}
 }
 
 \begin{abstract}
-We study how conformal prediction guarantees degrade under distribution shift using COVID-19 as a natural experiment. Analyzing 8 supply chain tasks experiencing severe feature turnover (Jaccard similarity $\approx$0), we find coverage drops ranging from 0\% to 86.7\%---two orders of magnitude variation under identical temporal shift. \textbf{Predictive signal}: Using SHAP analysis, we identify that catastrophic failures correlate with \emph{single-feature dependence} rather than feature instability (Spearman $\rho=0.714$, $p=0.047$). Both catastrophic and robust tasks exhibit $\sim$0\% feature overlap (Jaccard similarity), yet coverage drops differ by 700× (71.6\% vs 0.1\%) due to feature importance dynamics: catastrophic tasks show concentrated importance explosion in one feature (4.5×), while robust tasks redistribute importance across multiple features (10-20×). \textbf{Solution}: Retraining experiments over 11 months show quarterly retraining significantly restores catastrophic task coverage from 22\% to 41\% (+19 percentage points, Wilcoxon $p=0.04$ vs no retraining). While quarterly achieves higher mean coverage than monthly retraining (41\% vs 32\%), this difference is not statistically significant ($p=0.24$); quarterly's advantage lies in cost-effectiveness (3 vs 10 retrains/year) and stability. Robust tasks maintain 99.8\% coverage regardless of retraining, confirming retraining is unnecessary for tasks with distributed importance. \textbf{Exploratory validation}: Analysis of 4 additional tasks from clinical trials and motorsports with moderate feature stability (Jaccard 0.13--0.86) reveals a different mechanism---feature stability (not concentration) determines robustness, suggesting the concentration effect applies specifically to severe-shift scenarios. We provide a decision framework: monitor SHAP importance concentration before deployment; for vulnerable tasks ($>$40\% concentration), implement quarterly retraining; for robust tasks, skip retraining to save cost.
+Conformal prediction guarantees degrade under distribution shift.
+We study this using COVID-19 as a natural experiment across 8 supply chain tasks.
+Despite identical severe feature turnover (Jaccard approximately 0), coverage drops vary
+from 0\% to 86.7\%, spanning two orders of magnitude. Using SHapley Additive exPlanations
+(SHAP) analysis, we find catastrophic failures correlate with \emph{single-feature
+dependence} (rho = 0.714, p = 0.047). Catastrophic tasks concentrate importance
+in one feature (4.5x increase), while robust tasks redistribute across many
+(10-20x). Quarterly retraining restores catastrophic task coverage from 22\%
+to 41\% (+19 pp, p = 0.04), but provides no benefit for robust tasks (99.8\%
+coverage). Exploratory analysis of 4 additional tasks with moderate feature stability
+(Jaccard 0.13-0.86) reveals feature stability, not concentration, determines
+robustness, suggesting concentration effects apply specifically to severe shifts.
+We provide a decision framework: monitor SHAP concentration before deployment;
+retrain quarterly if vulnerable (>40\% concentration); skip retraining if robust.
 \end{abstract}
 
 \begin{CCSXML}
@@ -53,7 +69,7 @@ We study how conformal prediction guarantees degrade under distribution shift us
 \ccsdesc[500]{Computing methodologies~Uncertainty quantification}
 \ccsdesc[300]{Mathematics of computing~Time series analysis}
 
-\keywords{Conformal Prediction, Distribution Shift, COVID-19, Uncertainty Quantification, Supply Chain}
+\keywords{Conformal Prediction, Distribution Shift, COVID-19, Uncertainty Quantification, Supply Chain, SHAP, Feature Importance, Model Retraining}
 
 \maketitle
 
@@ -65,7 +81,7 @@ We leverage the rel-salt dataset---a supply chain benchmark with temporal splits
 
 \begin{enumerate}
     \item \textbf{Quantification}: We measure coverage degradation across 8 supply chain tasks experiencing severe feature turnover (Jaccard $\approx$0), finding drops ranging from 0\% to 86.7\%---two orders of magnitude variation under identical temporal shift
-    \item \textbf{Predictive Signal}: Using SHAP analysis, we identify single-feature dependence as a predictive signal for catastrophic failure in severe-shift scenarios (Spearman $\rho=0.714$, $p=0.047$, n=8). Exploratory analysis of 4 additional tasks with moderate feature stability (Jaccard 0.13--0.86) reveals a different mechanism, suggesting concentration effects apply specifically when features lack temporal stability
+    \item \textbf{Predictive Signal}: Using SHapley Additive exPlanations (SHAP) analysis, we identify single-feature dependence as a predictive signal for catastrophic failure in severe-shift scenarios (Spearman $\rho = 0.714$, $p = 0.047$, n=8). Exploratory analysis of 4 additional tasks with moderate feature stability (Jaccard 0.13--0.86) reveals a different mechanism, suggesting concentration effects apply specifically when features lack temporal stability
     \item \textbf{Practical Solution}: Retraining experiments show quarterly retraining significantly restores catastrophic task coverage by 19 percentage points (Wilcoxon $p=0.04$ vs no retraining). While quarterly achieves higher mean coverage than monthly (41\% vs 32\%), this difference is not statistically significant ($p=0.24$)
     \item \textbf{Cost-Benefit Analysis}: Robust tasks (99.8\% coverage) gain no benefit from retraining, enabling practitioners to avoid unnecessary computational cost
     \item \textbf{Decision Framework}: We provide actionable guidance based on SHAP importance concentration: monitor before deployment, retrain quarterly if vulnerable ($>$40\% concentration), skip retraining if robust
@@ -171,7 +187,7 @@ Table~\ref{tab:main_results} shows coverage degradation across 8 supply chain re
 \centering
 \caption{Coverage Degradation Under COVID-19 Distribution Shift (50 model seeds).
 High-variance tasks ($^*$) show severely skewed distributions (coefficient of variation $>$ 50\%) where mean $\pm$ std
-is misleading; median and IQR provide robust statistics.}
+is misleading; median and Interquartile Range (IQR) provide robust statistics.}
 \label{tab:main_results}
 \small
 \begin{tabular}{@{}lcccccc@{}}
@@ -476,13 +492,6 @@ Before deploying conformal prediction in non-stationary settings:
     \item \textbf{Monitor coverage drift}: Track empirical coverage over time as early warning
 \end{enumerate}
 
-\begin{figure*}[t]
-    \centering
-    \includegraphics[width=0.75\textwidth]{figure_decision_framework_2d.pdf}
-    \caption{\textbf{2D Decision Framework for Task Vulnerability Assessment.} The framework first checks SHAP concentration (threshold: 40\%). Tasks with high concentration are further evaluated for protective factors (stable secondary features with Jaccard $> 0.5$ and importance $> 15\%$). This 2D approach improves classification accuracy from 75\% to 87.5\%, correctly handling outliers like \texttt{sales-office} that have high concentration but remain robust due to protective factors (SALESORGANIZATION).}
-    \label{fig:decision_framework}
-\end{figure*}
-
 \section{Discussion}
 
 \textbf{Why Set Sizes Decrease.} Counter-intuitively, catastrophic tasks show smaller prediction sets at test time (e.g., sales-shipcond: 7.0 $\rightarrow$ 3.0). The model is \emph{confidently wrong}---it produces small sets that miss the true label.
@@ -618,16 +627,21 @@ probability exceeds quantile $q$.
 \subsection{Computational Resources}
 
 \begin{itemize}
-    \item \textbf{Hardware}: Standard CPU (no GPU required for LightGBM)
+    \item \textbf{Hardware}: Standard Central Processing Unit (no Graphics Processing Unit required for LightGBM)
     \item \textbf{Parallel execution}: 8 cores for 50-seed ensemble
     \item \textbf{Wall-clock time}: $\sim$3--4 hours for full 8-task, 50-seed suite
-    \item \textbf{Peak memory}: $<$8GB RAM per task
+    \item \textbf{Peak memory}: $<$8 Gigabytes per task
 \end{itemize}
 
 \subsection{Code Availability}
 
 Code will be made available upon publication. Implementation built on the
 RelBench framework~\cite{fey2023relbench}.
+
+\section*{Funding}
+
+This research received no specific grant from any funding agency in the public,
+commercial, or not-for-profit sectors.
 
 \bibliography{references}
 

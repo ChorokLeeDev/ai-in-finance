@@ -1,0 +1,63 @@
+
+================================================================================
+SHAP Analysis: rel-trial/study-outcome
+================================================================================
+
+Loading task...
+Loading data...
+Loading Database object from /Users/i767700/Library/Caches/relbench/rel-trial/db...
+Done in 3.59 seconds.
+  Features: 28
+  Training samples: 11994
+  Validation samples: 960
+  Test samples: 825
+Training LightGBM binary classifier...
+  Model trained with 111 trees
+
+Computing SHAP values on validation set...
+  Computing SHAP values for 960 samples...
+  SHAP values shape: (960, 28)
+
+Computing SHAP values on test set...
+  Computing SHAP values for 825 samples...
+  SHAP values shape: (825, 28)
+
+Computing feature importance...
+Computing Jaccard similarity for features...
+
+================================================================================
+SHAP Concentration Analysis Results
+================================================================================
+
+Validation Set:
+  Top feature: number_of_arms
+  Top feature importance: 0.2725
+  Total importance: 1.3102
+  Concentration: 20.80%
+  Top feature Jaccard: 0.786
+  Mean Jaccard (top 10): 0.447
+
+Test Set:
+  Top feature: number_of_arms
+  Top feature importance: 0.2762
+  Total importance: 1.3442
+  Concentration: 20.55%
+
+Top 10 Features (Validation):
+   1. number_of_arms                 | Importance: 0.2725 | Jaccard: 0.786
+   2. phase                          | Importance: 0.2059 | Jaccard: 1.000
+   3. enrollment                     | Importance: 0.1231 | Jaccard: 0.342
+   4. source_class                   | Importance: 0.1113 | Jaccard: 0.857
+   5. has_dmc                        | Importance: 0.0783 | Jaccard: 1.000
+   6. start_date                     | Importance: 0.0731 | Jaccard: 0.211
+   7. brief_title                    | Importance: 0.0661 | Jaccard: 0.000
+   8. source                         | Importance: 0.0611 | Jaccard: 0.274
+   9. official_title                 | Importance: 0.0590 | Jaccard: 0.001
+  10. detailed_descriptions          | Importance: 0.0451 | Jaccard: 0.001
+
+✓ Results saved to papers/conformal_covid/results/shap/shap_rel-trial_study-outcome.pkl
+
+================================================================================
+Analysis Complete!
+================================================================================
+

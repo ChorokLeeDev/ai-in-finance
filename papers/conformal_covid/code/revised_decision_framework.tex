@@ -1,0 +1,53 @@
+
+\section{Revised Practitioner Decision Framework}
+
+Before deploying conformal prediction in non-stationary settings:
+
+\begin{enumerate}
+    \item \textbf{Check task complexity}: If entropy $< 2.5$ or top-class $> 50\%$, coverage likely maintained
+
+    \item \textbf{Compute feature Jaccard similarity}:
+    \begin{itemize}
+        \item If mean Jaccard $< 0.1$ $\rightarrow$ potential risk
+        \item If mean Jaccard $> 0.4$ $\rightarrow$ likely robust
+    \end{itemize}
+
+    \item \textbf{Analyze SHAP importance (2D framework)}:
+    \begin{enumerate}
+        \item Compute concentration = (Top feature importance) / (Total importance)
+        \item \textbf{If concentration $\leq$ 40\%}: Task is ROBUST (distributed importance)
+        \item \textbf{If concentration $>$ 40\%}: Check for protective factors:
+        \begin{itemize}
+            \item Find secondary features with Jaccard $> 0.5$ AND importance $> 15\%$
+            \item If such features exist $\rightarrow$ ROBUST (protected by stable features)
+            \item If no protective factors $\rightarrow$ VULNERABLE
+        \end{itemize}
+    \end{enumerate}
+
+    \item \textbf{For vulnerable tasks}:
+    \begin{itemize}
+        \item Implement quarterly retraining (3 retrains/year)
+        \item Do NOT use monthly (overfitting risk, higher variance)
+    \end{itemize}
+
+    \item \textbf{For robust tasks}:
+    \begin{itemize}
+        \item Skip retraining to save computational cost
+        \item Monitor coverage drift as early warning
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Example: sales-office (The Outlier Case)}
+
+This task demonstrates why the 2D framework is necessary:
+\begin{itemize}
+    \item Primary feature concentration: 42.6\% ($>$ 40\% threshold)
+    \item \textbf{BUT}: Secondary feature SALESORGANIZATION has:
+    \begin{itemize}
+        \item Jaccard similarity: 0.61 ($>$ 0.5)
+        \item Importance: 20\% ($>$ 15\%)
+    \end{itemize}
+    \item 1D framework: Predicts VULNERABLE (wrong)
+    \item 2D framework: Predicts ROBUST due to protective factor (correct)
+    \item Actual coverage drop: 0\% (ROBUST)
+\end{itemize}

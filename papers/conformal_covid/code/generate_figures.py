@@ -87,7 +87,7 @@ OVERLAP_DATA = [
 
 def generate_figure1():
     """Generate Figure 1: Main Results (4 panels)."""
-    fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+    fig, axes = plt.subplots(2, 2, figsize=(16, 14))
 
     # Colors
     val_color = '#2ecc71'  # Green
@@ -249,7 +249,7 @@ def generate_figure1():
 
     # Save
     output_path = Path(__file__).parent.parent / 'figure1_main_results.png'
-    plt.savefig(output_path, dpi=150, bbox_inches='tight', facecolor='white')
+    plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
     plt.savefig(output_path.with_suffix('.pdf'), bbox_inches='tight', facecolor='white')
     print(f"Saved: {output_path}")
     plt.close()
@@ -257,7 +257,7 @@ def generate_figure1():
 
 def generate_figure2():
     """Generate Figure 2: Extended Experiments (4 panels)."""
-    fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+    fig, axes = plt.subplots(2, 2, figsize=(16, 14))
 
     val_color = '#2ecc71'
     test_color = '#e74c3c'
@@ -300,7 +300,7 @@ def generate_figure2():
                    color=test_color, alpha=0.85, edgecolor='white', linewidth=0.5)
 
     ax.set_ylabel('Coverage Drop (%)')
-    ax.set_title('B. Placebo Test: COVID is Special\n(10-100× worse than normal drift)', fontweight='bold')
+    ax.set_title('B. Placebo Test: COVID is Special\n(10-200× worse than normal drift)', fontweight='bold')
     ax.set_xticks(x)
     ax.set_xticklabels(tasks, fontsize=8, rotation=45, ha='right')
     ax.set_ylim([0, 100])
@@ -383,7 +383,7 @@ def generate_figure2():
 
     # Save
     output_path = Path(__file__).parent.parent / 'figure2_extended_experiments.png'
-    plt.savefig(output_path, dpi=150, bbox_inches='tight', facecolor='white')
+    plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
     plt.savefig(output_path.with_suffix('.pdf'), bbox_inches='tight', facecolor='white')
     print(f"Saved: {output_path}")
     plt.close()

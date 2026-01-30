@@ -48,7 +48,9 @@
       "Bash(tlmgr install:*)",
       "Bash(sudo tlmgr install:*)",
       "Bash(timeout 120 python:*)",
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Bash(unzip:*)",
+      "Bash(git status:*)"
     ],
     "deny": [],
     "ask": []

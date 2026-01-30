@@ -1,0 +1,63 @@
+
+================================================================================
+SHAP Analysis: rel-trial/study-adverse
+================================================================================
+
+Loading task...
+Loading data...
+Loading Database object from /Users/i767700/Library/Caches/relbench/rel-trial/db...
+Done in 2.71 seconds.
+  Features: 28
+  Training samples: 30000
+  Validation samples: 3596
+  Test samples: 3098
+Training LightGBM binary classifier...
+  Model trained with 245 trees
+
+Computing SHAP values on validation set...
+  Computing SHAP values for 3596 samples...
+  SHAP values shape: (3596, 28)
+
+Computing SHAP values on test set...
+  Computing SHAP values for 3098 samples...
+  SHAP values shape: (3098, 28)
+
+Computing feature importance...
+Computing Jaccard similarity for features...
+
+================================================================================
+SHAP Concentration Analysis Results
+================================================================================
+
+Validation Set:
+  Top feature: source_class
+  Top feature importance: 0.6360
+  Total importance: 3.7324
+  Concentration: 17.04%
+  Top feature Jaccard: 0.857
+  Mean Jaccard (top 10): 0.568
+
+Test Set:
+  Top feature: source_class
+  Top feature importance: 0.6196
+  Total importance: 3.8434
+  Concentration: 16.12%
+
+Top 10 Features (Validation):
+   1. source_class                   | Importance: 0.6360 | Jaccard: 0.857
+   2. phase                          | Importance: 0.5312 | Jaccard: 1.000
+   3. enrollment                     | Importance: 0.5307 | Jaccard: 0.399
+   4. start_date                     | Importance: 0.5091 | Jaccard: 0.386
+   5. has_dmc                        | Importance: 0.3188 | Jaccard: 1.000
+   6. official_title                 | Importance: 0.2789 | Jaccard: 0.001
+   7. number_of_arms                 | Importance: 0.1930 | Jaccard: 0.739
+   8. acronym                        | Importance: 0.1440 | Jaccard: 0.015
+   9. source                         | Importance: 0.0910 | Jaccard: 0.284
+  10. is_fda_regulated_drug          | Importance: 0.0849 | Jaccard: 1.000
+
+✓ Results saved to papers/conformal_covid/results/shap/shap_rel-trial_study-adverse.pkl
+
+================================================================================
+Analysis Complete!
+================================================================================
+

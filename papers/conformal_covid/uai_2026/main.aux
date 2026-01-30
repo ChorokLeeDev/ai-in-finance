@@ -1,0 +1,109 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\providecommand \babel@aux [2]{\global \let \babel@toc \@gobbletwo }
+\@nameuse{bbl@beforestart}
+\bibstyle{plainnat}
+\citation{vovk2005algorithmic}
+\citation{vovk2005algorithmic}
+\citation{romano2020classification}
+\citation{romano2019conformalized}
+\citation{angelopoulos2021gentle}
+\citation{tibshirani2019conformal}
+\citation{podkopaev2021distribution}
+\citation{barber2023conformal}
+\providecommand \oddpage@label [2]{}
+\babel@aux{american}{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{1}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{1}{Related Work}{section.2}{}}
+\citation{koh2021wilds}
+\citation{malinin2021shifts}
+\citation{gulrajani2020search}
+\citation{gibbs2021adaptive}
+\citation{zaffran2022adaptive}
+\citation{lundberg2017unified}
+\citation{adebayo2018sanity}
+\citation{romano2020classification}
+\citation{lundberg2017unified}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Methodology}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Dataset and Temporal Splits}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Conformal Prediction Setup}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Ensemble for Variance Quantification}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Feature Overlap Metric}{2}{subsection.3.4}\protected@file@percent }
+\newlabel{eq:jaccard}{{1}{2}{Feature Overlap Metric}{equation.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{2}{section.4}\protected@file@percent }
+\newlabel{sec:results}{{4}{2}{Results}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Coverage Degradation Across Tasks}{2}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Diagnostic Analysis}{2}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Feature Importance Analysis}{2}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:shap}{{4.3}{2}{Feature Importance Analysis}{subsection.4.3}{}}
+\citation{gibbs2021adaptive}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Coverage Degradation Under COVID-19 Distribution Shift (50 Model Seeds). High-variance tasks ($^*$) show severely skewed distributions (CV $>$ 50\%); median and IQR provide robust statistics.}}{3}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main_results}{{1}{3}{Coverage Degradation Under COVID-19 Distribution Shift (50 Model Seeds). High-variance tasks ($^*$) show severely skewed distributions (CV $>$ 50\%); median and IQR provide robust statistics}{table.caption.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Feature Overlap for Primary Features.}}{3}{table.caption.2}\protected@file@percent }
+\newlabel{tab:overlap}{{2}{3}{Feature Overlap for Primary Features}{table.caption.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Extended Experiments}{3}{section.5}\protected@file@percent }
+\newlabel{sec:extended}{{5}{3}{Extended Experiments}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Does Adaptive Conformal Help?}{3}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Stratified Correlation Analysis by Shift Severity.}}{3}{table.caption.3}\protected@file@percent }
+\newlabel{tab:stratified_correlation}{{3}{3}{Stratified Correlation Analysis by Shift Severity}{table.caption.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces ACI Does Not Help Under Severe Shift.}}{3}{table.caption.6}\protected@file@percent }
+\newlabel{tab:aci}{{4}{3}{ACI Does Not Help Under Severe Shift}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Retraining Analysis}{3}{subsection.5.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {Feature Importance Analysis.} (A) Catastrophic task: dominant feature explodes 4.5$\times $ while maintaining top rank. (B) Robust task: importance redistributes across features with ranking reshuffle. (C) Importance dynamics: catastrophic tasks show concentrated increase; robust tasks distribute increases. (D) Ranking stability: robust tasks allow greater rank changes. Despite $\sim $0\% Jaccard similarity, coverage drops differ by 700$\times $.}}{4}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:shap}{{1}{4}{\textbf {Feature Importance Analysis.} (A) Catastrophic task: dominant feature explodes 4.5$\times $ while maintaining top rank. (B) Robust task: importance redistributes across features with ranking reshuffle. (C) Importance dynamics: catastrophic tasks show concentrated increase; robust tasks distribute increases. (D) Ranking stability: robust tasks allow greater rank changes. Despite $\sim $0\% Jaccard similarity, coverage drops differ by 700$\times $}{figure.caption.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Retraining Impact on Catastrophic Task (Sales-Shipcond).}}{4}{table.caption.7}\protected@file@percent }
+\newlabel{tab:retrain}{{5}{4}{Retraining Impact on Catastrophic Task (Sales-Shipcond)}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-Domain Validation.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:cross}{{6}{4}{Cross-Domain Validation}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cross-Domain Validation}{4}{subsection.5.3}\protected@file@percent }
+\bibdata{references}
+\bibcite{adebayo2018sanity}{{1}{2018}{{Adebayo et~al.}}{{Adebayo, Gilmer, Muelly, Goodfellow, Hardt, and Kim}}}
+\bibcite{angelopoulos2021gentle}{{2}{2021}{{Angelopoulos and Bates}}{{}}}
+\bibcite{barber2023conformal}{{3}{2023}{{Barber et~al.}}{{Barber, Cand{\`e}s, Ramdas, and Tibshirani}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \textbf  {SHAP Concentration Predicts Coverage Degradation.} Spearman $\rho =0.714$, $p=0.047$ for 8 severe-shift tasks. Lighter points: 4 moderate-shift tasks (different mechanism). The 40\% threshold applies to severe-shift scenarios.}}{5}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:n12_correlation}{{2}{5}{\textbf {SHAP Concentration Predicts Coverage Degradation.} Spearman $\rho =0.714$, $p=0.047$ for 8 severe-shift tasks. Lighter points: 4 moderate-shift tasks (different mechanism). The 40\% threshold applies to severe-shift scenarios}{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Placebo Test}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Practitioner Decision Framework}{5}{section.6}\protected@file@percent }
+\newlabel{sec:framework}{{6}{5}{Practitioner Decision Framework}{section.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{5}{section.7}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{5}{Discussion}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{5}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{5}{Conclusion}{section.8}{}}
+\bibcite{gibbs2021adaptive}{{4}{2021}{{Gibbs and Cand{\`e}s}}{{}}}
+\bibcite{gulrajani2020search}{{5}{2021}{{Gulrajani and Lopez-Paz}}{{}}}
+\bibcite{koh2021wilds}{{6}{2021}{{Koh et~al.}}{{Koh, Sagawa, Marklund, Xie, Zhang, Balsubramani, Hu, Yasunaga, Phillips, Gao, et~al.}}}
+\bibcite{lundberg2017unified}{{7}{2017}{{Lundberg and Lee}}{{}}}
+\bibcite{lundberg2020local}{{8}{2020}{{Lundberg et~al.}}{{Lundberg, Erion, Chen, DeGrave, Prutkin, Nair, Katz, Himmelfarb, Bansal, and Lee}}}
+\bibcite{malinin2021shifts}{{9}{2021}{{Malinin et~al.}}{{Malinin, Band, Chesnokov, Gal, Gales, Noskov, Ploskonosov, Prokhorenkova, Provilkov, Raina, et~al.}}}
+\bibcite{podkopaev2021distribution}{{10}{2021}{{Podkopaev and Ramdas}}{{}}}
+\bibcite{romano2019conformalized}{{11}{2019}{{Romano et~al.}}{{Romano, Patterson, and Cand{\`e}s}}}
+\bibcite{romano2020classification}{{12}{2020}{{Romano et~al.}}{{Romano, Sesia, and Cand{\`e}s}}}
+\bibcite{tibshirani2019conformal}{{13}{2019}{{Tibshirani et~al.}}{{Tibshirani, Barber, Cand{\`e}s, and Ramdas}}}
+\bibcite{vovk2005algorithmic}{{14}{2005}{{Vovk et~al.}}{{Vovk, Gammerman, and Shafer}}}
+\bibcite{zaffran2022adaptive}{{15}{2022}{{Zaffran et~al.}}{{Zaffran, F{\'e}ron, Goude, Josse, and Dieuleveut}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {Retraining restores coverage for catastrophic tasks.} Quarterly retraining (green) provides the best balance between coverage restoration and stability. Monthly (blue) shows high variance. No retraining (red) exhibits severe degradation post-COVID.}}{6}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:retrain}{{3}{6}{\textbf {Retraining restores coverage for catastrophic tasks.} Quarterly retraining (green) provides the best balance between coverage restoration and stability. Monthly (blue) shows high variance. No retraining (red) exhibits severe degradation post-COVID}{figure.caption.8}{}}
+\citation{romano2020classification}
+\citation{lundberg2020local}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Reproducibility Details}{8}{appendix.A}\protected@file@percent }
+\newlabel{app:reproducibility}{{A}{8}{Reproducibility Details}{appendix.A}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}LightGBM Hyperparameters}{8}{subsection.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Conformal Prediction}{8}{subsection.A.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}SHAP Computation}{8}{subsection.A.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Computational Resources}{8}{subsection.A.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}Placebo Test Details}{8}{appendix.B}\protected@file@percent }
+\newlabel{app:placebo}{{B}{8}{Placebo Test Details}{appendix.B}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}High Model Variance Analysis}{8}{appendix.C}\protected@file@percent }
+\newlabel{app:variance}{{C}{8}{High Model Variance Analysis}{appendix.C}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Placebo Test: Pre-COVID vs COVID Degradation.}}{9}{table.caption.10}\protected@file@percent }
+\newlabel{tab:placebo}{{7}{9}{Placebo Test: Pre-COVID vs COVID Degradation}{table.caption.10}{}}
+\newlabel{LastPage}{{C}{9}{High Model Variance Analysis}{page.9}{}}
+\gdef\lastpage@lastpage{9}
+\gdef\lastpage@lastpageHy{9}
+\gdef \@abspage@last{9}

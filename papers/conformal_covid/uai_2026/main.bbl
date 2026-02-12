@@ -1,4 +1,4 @@
-\begin{thebibliography}{19}
+\begin{thebibliography}{20}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -18,6 +18,12 @@ Anastasios~N Angelopoulos and Stephen Bates.
 \newblock A gentle introduction to conformal prediction and distribution-free
   uncertainty quantification.
 \newblock \emph{arXiv preprint arXiv:2107.07511}, 2021.
+
+\bibitem[Angelopoulos et~al.(2021)Angelopoulos, Bates, Malik, and
+  Jordan]{angelopoulos2021uncertainty}
+Anastasios~N Angelopoulos, Stephen Bates, Jitendra Malik, and Michael~I Jordan.
+\newblock Uncertainty sets for image classifiers using conformal prediction.
+\newblock In \emph{International Conference on Learning Representations}, 2021.
 
 \bibitem[Angelopoulos et~al.(2024)Angelopoulos, Bates, Fisch, Lei, and
   Schuster]{angelopoulos2024conformal}

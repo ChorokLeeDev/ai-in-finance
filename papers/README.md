@@ -1,208 +1,75 @@
 # Research Papers
 
-## Paper Status
+## Overview
 
-| Status | Paper | Target | Deadline | Priority |
-|--------|-------|--------|----------|----------|
-| **Active** | **RelUQ: Schema-Guided Uncertainty Attribution for Relational Databases** | NeurIPS 2026 | May 2026 | **Primary** |
-| On Hold | **Causal Structure Changes Across Market Regimes: Evidence from Factor Returns** | ICAIF 2025 | TBD | Secondary |
-
-## Assessment Summary
-
-### RelUQ - Strong Results ✓
-- Core finding validated: ρ = 0.90-1.00 on EP domains
-- Clear domain scope (EP vs Associative)
-- Solid theoretical foundation
-- **Recommendation: Focus development efforts here**
-
-### Causal Regimes - Mixed Results
-- In-sample: Strong (p < 0.001)
-- Out-of-sample: Moderate (45% Crisis hit rate, 17% Crowding)
-- Trading: Negative (-6.1% vs +1.9% benchmark)
-- **Recommendation: Leave as-is, submit to ICAIF for feedback, focus on RelUQ**
+| # | Paper | Venue | Status | Directory |
+|---|-------|-------|--------|-----------|
+| 1 | **Diagnosing Conformal Prediction Failures Under Distribution Shift** | UAI 2026 | Ready to submit | `conformal_covid/` |
+| 2 | **Regime-Dependent Predictive Structure Between Equity Factors** | ICAIF 2025 | Nearly ready | `causal_regimes/` |
+| 3 | **RelUQ: Schema-Guided Uncertainty Attribution for Relational Databases** | NeurIPS 2026 | Needs major revision | `reluq/` |
 
 ---
 
-## 1. RelUQ (reluq/)
+## 1. Conformal Prediction (conformal_covid/)
 
-**Title:** RelUQ: Schema-Guided Uncertainty Attribution for Relational Databases
+**Title:** Diagnosing Conformal Prediction Failures Under Distribution Shift: A COVID-19 Case Study
 
-**Core Idea:** ML 모델의 예측 불확실성을 개별 feature가 아닌 FK(Foreign Key) 그룹 단위로 귀인하여, 어떤 데이터 수집 프로세스가 불확실성에 기여하는지 파악
+**Key result:** SHAP concentration predicts conformal prediction failure under distribution shift (rho=0.888, p<0.001, 16 tasks, 9 domains). Formal Theorem 1 proves score inflation is monotone in concentration.
 
-### Progress
-
-| Section | Status | Notes |
-|---------|--------|-------|
-| Abstract | Done | Error Propagation Hypothesis 명시 |
-| Introduction | Done | FK grouping의 장점 설명 |
-| Related Work | Done | UQ, Attribution, Relational Learning 커버 |
-| Method | Done | Algorithm, Hierarchy, Actionability, Theory |
-| Experiments | Done | 4개 도메인 (SALT, Trial, Amazon, Stack) |
-| Conclusion | Done | 범위와 한계 명시 |
-| Figures | Done | 8개 figure (overview, baseline, ablation 등) |
-
-### Key Results
-- **Error Propagation 도메인** (ERP, Clinical): Spearman ρ ≥ 0.90
-- **Associative 도메인** (Q&A): Spearman ρ = -0.50 (작동 안함)
-- 도메인 적용 범위 명확히 정의
-
-### Limitations & Improvements
-
-#### Format Issues (Must Fix)
-
-| Issue | Current | Required | Priority |
-|-------|---------|----------|----------|
-| Template | article class | NeurIPS 2026 template | P0 |
-| Page count | ~15 pages | 9 pages + appendix | P0 |
-| Korean text | Appendix에 한글 | 영어로 번역 or 제거 | P0 |
-| Font package | kotex (XeLaTeX) | 표준 pdfLaTeX | P0 |
-| References | inline bibitems | 별도 references.bib | P1 |
-| Anonymization | 저자 정보 포함 | 익명화 | P1 |
-
-#### Content Issues (Should Fix)
-
-| Issue | Current State | Improvement | Priority |
-|-------|---------------|-------------|----------|
-| **Domain Coverage** | 4 domains (SALT, Trial, Amazon, Stack) | Add Banking, Insurance, Manufacturing | P1 |
-| **Baselines** | Self-defined baselines only | Add TreeSHAP variance, InfoSHAP comparison | P1 |
-| **Scalability** | Mentioned but not tested | Large-scale experiments (100K+ samples) | P2 |
-| **Classification** | Regression only | Extend to classification (ensemble disagreement) | P2 |
-| **Diagnostic Tool** | Theory only | Automatic EP structure detection algorithm | P2 |
-| **UQ Methods** | Ensemble variance only | Compare MC Dropout, Conformal Prediction | P3 |
-
-#### Content Issues (Nice to Have)
-
-| Issue | Description | Priority |
-|-------|-------------|----------|
-| Real deployment case study | Industry partner validation | P3 |
-| Computational cost analysis | Runtime vs accuracy tradeoff | P3 |
-| Online/streaming setting | Temporal drift handling | P4 |
-
-### File Structure
 ```
-papers/reluq/
-├── main.tex           # 892 lines, full paper
-├── figures/           # 18 PDF figures
-├── FORMAL_THEOREM.md  # 수학적 정형화
-├── THEORY_FORMALIZATION.md
-└── NEURIPS_2026_PLAN.md
+conformal_covid/
+├── uai_2026/           # Submission package
+│   ├── main.tex        # Paper source (latest)
+│   ├── main.pdf        # Compiled PDF (21 pages)
+│   ├── references.bib
+│   └── uai2026.cls
+├── code/               # All experiment scripts (64 files)
+├── results/            # All experimental data (45 files)
+└── figures/            # Paper figures (2 PDF + 2 PNG)
 ```
-
----
 
 ## 2. Causal Regimes (causal_regimes/)
 
-**Title:** Causal Structure Changes Across Market Regimes: Evidence from Factor Returns
+**Title:** Regime-Dependent Predictive Structure Between Equity Factors: Evidence from Granger Causality
 
-**Core Idea:** Equity factor 간의 인과관계가 시장 레짐에 따라 변한다는 실증적 발견. Crisis에서는 Value→Size, Crowding에서는 Size→Value로 방향이 역전됨.
+**Key result:** HML Granger-causes SMB during crisis regimes (p=1.89e-5, 9-day lag). Trading backtest is negative (-6.1%), honestly reported.
 
-### Progress
+**Known issues:** Data count inconsistency across versions (8,967 vs 8,817 days); lag selection via min-p should use BIC; needs permutation test. The older `arxiv/` version overclaims and should be updated.
 
-| Section | Status | Notes |
-|---------|--------|-------|
-| Abstract | Done | Key finding 명시 (p-values, lags) |
-| Introduction | Done | 2007 quant meltdown 동기 |
-| Related Work | Done | Crowding, Regime-switching, Causal discovery |
-| Methodology | Done | Student-t HMM, Granger causality |
-| Results | Done | Regime characteristics, Main finding, Early warning |
-| Discussion | Done | Risk management implications, Limitations |
-| Appendix | Done | Algorithm, Full Granger tables |
-
-### Key Results
-- **Crisis Regime:** HML → SMB (p = 1.89e-5, 9-day lag)
-- **Crowding Regime:** SMB → HML (p = 1.94e-4, 3-day lag)
-- **Normal Regime:** No significant causality
-- **Early Warning:** Lehman 61일 전 감지
-
-### Limitations & Improvements
-
-#### Format Issues (Must Fix)
-
-| Issue | Current | Required | Priority |
-|-------|---------|----------|----------|
-| Template | article class | ICAIF/ACM template | P0 |
-| Figures | Referenced but missing | Generate all figures | P0 |
-| References | Incomplete .bib | Complete all citations | P1 |
-| Code | "Available upon request" | GitHub repository | P1 |
-
-#### Content Issues (Should Fix)
-
-| Issue | Current State | Improvement | Priority |
-|-------|---------------|-------------|----------|
-| **Crowding Proxy** | Rolling volatility (indirect) | Discuss limitations, consider alternatives | P1 |
-| **Out-of-sample** | None | 2024 data validation | P1 |
-| **Robustness** | "See Appendix" only | Add actual tables/figures | P1 |
-| **Causality Type** | Granger (predictive) | Clarify ≠ structural causality | P2 |
-| **Confounding** | Mentioned | More explicit discussion | P2 |
-
-#### Content Issues (Nice to Have)
-
-| Issue | Description | Priority |
-|-------|-------------|----------|
-| Trading strategy backtest | Simulated P&L from early warning | P3 |
-| FANTOM comparison | Direct comparison with SOTA | P3 |
-| International markets | Non-US factor data | P4 |
-| Real-time implementation | Production system design | P4 |
-
-### File Structure
 ```
-papers/causal_regimes/
-├── arxiv/
-│   ├── main.tex       # 356 lines, ArXiv format
-│   ├── main.pdf       # Compiled PDF
-│   ├── references.bib # Bibliography
-│   └── submission.zip # Ready package
-├── icaif_draft.md     # ICAIF v1
-├── icaif_draft_v2.md  # ICAIF v2
-├── neurips_preprint.md
-└── preprint_final.md
+causal_regimes/
+├── main_icaif.tex      # Latest version (ICAIF format, primary)
+├── main_icaif.pdf
+├── main_arxiv.tex      # arXiv preprint version (same content)
+├── main_arxiv.pdf
+├── references.bib
+├── figures/            # regime_timeline.pdf
+├── code/               # Analysis scripts (8 files)
+└── arxiv/              # Earlier arxiv version (deprecated, overclaims)
+    ├── main.tex
+    └── main.pdf
 ```
 
----
+## 3. RelUQ (reluq/)
 
-## Action Plan
+**Title:** RelUQ: Schema-Guided Uncertainty Attribution for Relational Databases
 
-### Phase 1: RelUQ (High Priority) - Target: Q1 2026
+**Key idea:** Attribute ML prediction uncertainty to FK groups in relational databases.
 
-| Step | Task | Effort | Status |
-|------|------|--------|--------|
-| 1.1 | NeurIPS 2025 template 적용 | 2h | [x] Done (main_neurips.tex) |
-| 1.2 | 한글 제거 + pdfLaTeX 호환 | 1h | [x] Done |
-| 1.3 | references.bib 분리 | 1h | [x] Done |
-| 1.4 | 9 pages로 압축 (appendix 분리) | 4h | [x] Done |
-| 1.5 | 추가 도메인 실험 (Avito) | 1-2 weeks | [x] Done (ρ=1.0) |
-| 1.6 | SHAP baseline 비교 | 1 week | [x] Done (similar ρ) |
-| 1.7 | Anonymization | 30min | [x] Done |
+**Status: Needs major revision.** Core hypothesis (FK-level uncertainty attribution predicts error impact) was falsified in broad validation (aggregate rho=-0.04). Multiple .tex versions exist with inconsistent claims. The FK-grouping stability result does validate consistently and may be a viable narrower contribution.
 
-### Phase 2: Causal Regimes (Medium Priority) - Target: Q2 2025
+**Known issues:** 4 divergent .tex files with contradicting results; Theorem 2-3 have mathematical issues; v2 claims 24 tasks with no backing data; v1 doesn't compile. See review notes for details.
 
-| Step | Task | Effort | Status |
-|------|------|--------|--------|
-| 2.1 | Figure 생성 (regime detection plot) | 2h | [x] Done (12 figures copied) |
-| 2.2 | Figure 생성 (causal DAG per regime) | 2h | [x] Done (gate3_dags.png) |
-| 2.3 | ICAIF template 적용 | 2h | [x] Done (main_icaif.tex) |
-| 2.4 | references.bib 완성 | 1h | [x] Done (15 entries) |
-| 2.5 | 2024 out-of-sample validation | 4h | [x] Done (0/2 patterns - noted in limitations) |
-| 2.6 | GitHub code repository 정리 | 4h | [x] Done (code/ directory) |
-| 2.7 | Robustness appendix 상세화 | 2h | [x] Done (4 subsections added) |
-| 2.8 | Rolling out-of-sample validation | 2h | [x] Done (45% Crisis, 17% Crowding hit rate) |
-| 2.9 | Trading strategy backtest | 2h | [x] Done (negative returns - honest reporting) |
-
----
-
-## Known Limitations Summary
-
-### RelUQ
-1. **Domain Scope:** EP structure 도메인에서만 유효 (transactional data)
-2. **Method Scope:** Ensemble + Permutation만 검증됨
-3. **Scale:** 3K samples로 테스트, 대규모 미검증
-4. **Task Type:** Regression만 지원
-
-### Causal Regimes
-1. **Causality Type:** Granger (predictive) ≠ Structural (interventional)
-2. **Crowding Measurement:** Indirect proxy (volatility-based)
-3. **Regime Stationarity:** 35년간 3-regime 가정
-4. **Sample Size:** Crisis regime 1,167 days (power 제한)
-5. **Factor Definition:** Fama-French specific
-6. **Out-of-sample:** Rolling validation shows 45% Crisis, 17% Crowding hit rate
-7. **Trading Profitability:** Naive strategy yields -6.1% annual return (vs +1.9% benchmark)
+```
+reluq/
+├── main.tex              # Original extended draft (XeLaTeX, Korean appendix)
+├── main_neurips.tex      # NeurIPS v1 (doesn't compile)
+├── main_neurips_v2.tex   # NeurIPS v2 (overclaims, placeholder data)
+├── main_neurips_v3.tex   # NeurIPS v3 (most honest, reduced scope)
+├── main.pdf              # Compiled from main.tex
+├── references.bib
+├── neurips_2025.sty
+├── figures/              # 13 PDF figures + PNG copies
+├── experiments/          # Experiment scripts and results
+└── results/              # scale_up_extended.json
+```

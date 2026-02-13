@@ -12,3 +12,24 @@ cache
 .pixi
 *.egg-info
 .DS_Store
+
+# CatBoost training artifacts
+catboost_info/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz
+missfont.log
+
+# UV lock
+uv.lock
+
+# Downloaded datasets (large binary files)
+papers/conformal_covid/results/cwru_bearing/
+papers/conformal_covid/results/gas_sensor_drift/
+papers/conformal_covid/results/checkpoints/
+*.mat

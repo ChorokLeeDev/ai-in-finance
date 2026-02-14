@@ -33,3 +33,20 @@ papers/conformal_covid/results/cwru_bearing/
 papers/conformal_covid/results/gas_sensor_drift/
 papers/conformal_covid/results/checkpoints/
 *.mat
+
+# macOS filesystem artifacts
+.AppleDouble
+.LSOverride
+
+# Python bytecode artifacts
+__pycache__/
+*.pyc
+*.py[cod]
+*$py.class
+
+# Additional LaTeX intermediates
+*.fls
+*.fdb_latexmk
+*.nav
+*.snm
+*.vrb

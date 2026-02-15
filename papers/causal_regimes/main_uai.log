@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.30)  15 FEB 2026 20:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.30)  16 FEB 2026 01:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -772,41 +772,41 @@ dftex.map}{/usr/local/texlive/2025basic/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
 [3]
-<figures/regime_timeline.pdf, id=246, 720.08084pt x 309.4279pt>
+<figures/regime_timeline.pdf, id=240, 720.08084pt x 309.4279pt>
 File: figures/regime_timeline.pdf Graphic file (type pdf)
 <use figures/regime_timeline.pdf>
-Package pdftex.def Info: figures/regime_timeline.pdf  used on input line 332.
+Package pdftex.def Info: figures/regime_timeline.pdf  used on input line 335.
 (pdftex.def)             Requested size: 234.8775pt x 100.92642pt.
 
 
-<figures/granger_heatmap.pdf, id=248, 1004.08812pt x 335.27446pt>
-File: figures/granger_heatmap.pdf Graphic file (type pdf)
-<use figures/granger_heatmap.pdf>
-Package pdftex.def Info: figures/granger_heatmap.pdf  used on input line 442.
-(pdftex.def)             Requested size: 234.8775pt x 78.42627pt.
 
 
 [4 <./figures/regime_timeline.pdf>]
+<figures/granger_heatmap.pdf, id=304, 1004.08812pt x 335.27446pt>
+File: figures/granger_heatmap.pdf Graphic file (type pdf)
+<use figures/granger_heatmap.pdf>
+Package pdftex.def Info: figures/granger_heatmap.pdf  used on input line 452.
+(pdftex.def)             Requested size: 234.8775pt x 78.42627pt.
 
-<figures/ff25_overlap_granger_heatmap.pdf, id=315, 909.52058pt x 349.30273pt>
-File: figures/ff25_overlap_granger_heatmap.pdf Graphic file (type pdf)
-<use figures/ff25_overlap_granger_heatmap.pdf>
-Package pdftex.def Info: figures/ff25_overlap_granger_heatmap.pdf  used on inpu
-t line 534.
-(pdftex.def)             Requested size: 234.8775pt x 90.20361pt.
+
 
 
 [5 <./figures/granger_heatmap.pdf>]
+<figures/ff25_overlap_granger_heatmap.pdf, id=403, 909.52058pt x 349.30273pt>
+File: figures/ff25_overlap_granger_heatmap.pdf Graphic file (type pdf)
+<use figures/ff25_overlap_granger_heatmap.pdf>
+Package pdftex.def Info: figures/ff25_overlap_granger_heatmap.pdf  used on inpu
+t line 544.
+(pdftex.def)             Requested size: 234.8775pt x 90.20361pt.
+
 
 (./main_uai.bbl
 
-[6 <./figures/ff25_overlap_granger_heatmap.pdf>])
+[6 <./figures/ff25_overlap_granger_heatmap.pdf>]
 
+)
 
-
-[7
-
-]
+[7]
 
 [8
 
@@ -815,32 +815,32 @@ t line 534.
 [9]
 
 [10]
-<figures/hybrid_detector_performance.pdf, id=528, 859.69179pt x 714.10478pt>
+<figures/hybrid_detector_performance.pdf, id=530, 859.69179pt x 714.10478pt>
 File: figures/hybrid_detector_performance.pdf Graphic file (type pdf)
 <use figures/hybrid_detector_performance.pdf>
 Package pdftex.def Info: figures/hybrid_detector_performance.pdf  used on input
- line 925.
+ line 944.
 (pdftex.def)             Requested size: 487.8225pt x 405.20247pt.
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 934.
-<figures/rolling_granger.pdf, id=531, 858.07454pt x 352.75478pt>
+put line 953.
+<figures/rolling_granger.pdf, id=533, 858.07454pt x 352.75478pt>
 File: figures/rolling_granger.pdf Graphic file (type pdf)
 <use figures/rolling_granger.pdf>
-Package pdftex.def Info: figures/rolling_granger.pdf  used on input line 982.
+Package pdftex.def Info: figures/rolling_granger.pdf  used on input line 1001.
 (pdftex.def)             Requested size: 487.8225pt x 200.54482pt.
-<figures/lag_sensitivity.pdf, id=535, 568.93492pt x 352.34511pt>
+<figures/lag_sensitivity.pdf, id=539, 568.93492pt x 352.34511pt>
 File: figures/lag_sensitivity.pdf Graphic file (type pdf)
 <use figures/lag_sensitivity.pdf>
-Package pdftex.def Info: figures/lag_sensitivity.pdf  used on input line 1001.
+Package pdftex.def Info: figures/lag_sensitivity.pdf  used on input line 1023.
 (pdftex.def)             Requested size: 487.8225pt x 302.12378pt.
 
 
 [11]
-<figures/complexity_spectrum.pdf, id=546, 433.62pt x 289.08pt>
+<figures/complexity_spectrum.pdf, id=551, 433.62pt x 289.08pt>
 File: figures/complexity_spectrum.pdf Graphic file (type pdf)
 <use figures/complexity_spectrum.pdf>
 Package pdftex.def Info: figures/complexity_spectrum.pdf  used on input line 10
-56.
+80.
 (pdftex.def)             Requested size: 487.8225pt x 325.23183pt.
 
 
@@ -861,14 +861,14 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main_uai.out' has not changed.
-(rerunfilecheck)             Checksum: 8DB1E0F10A48B9DF4107874EE887C425;4270.
+(rerunfilecheck)             Checksum: DFD2FAB400DF28A113BCC216C9AC901A;4303.
  ) 
 Here is how much of TeX's memory you used:
- 19446 strings out of 474662
- 317774 string characters out of 5751108
- 772881 words of memory out of 5000000
+ 19464 strings out of 474662
+ 317933 string characters out of 5751108
+ 771050 words of memory out of 5000000
  41679 multiletter control sequences out of 15000+600000
- 622236 words of font info for 312 fonts, out of 8000000 for 9000
+ 623399 words of font info for 324 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
  100i,13n,131p,1005b,719s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx1
@@ -898,10 +898,10 @@ sr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7
 .pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
 </usr/local/texlive/2025basic/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
 /local/texlive/2025basic/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main_uai.pdf (16 pages, 1003037 bytes).
+Output written on main_uai.pdf (16 pages, 1003989 bytes).
 PDF statistics:
- 967 PDF objects out of 1000 (max. 8388607)
- 522 compressed objects within 6 object streams
+ 973 PDF objects out of 1000 (max. 8388607)
+ 527 compressed objects within 6 object streams
  121 named destinations out of 1000 (max. 500000)
  62708 words of extra memory for PDF output out of 74296 (max. 10000000)
 

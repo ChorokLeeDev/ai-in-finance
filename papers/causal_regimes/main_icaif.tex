@@ -6,7 +6,7 @@
 
 % Remove copyright for submission
 \setcopyright{none}
-\settopmatter{printacmref=false, printfolios=false}
+\settopmatter{printacmref=true, printfolios=false}
 \renewcommand\footnotetextcopyrightpermission[1]{}
 \pagestyle{plain}
 \acmConference[]{}{}{}
@@ -139,9 +139,11 @@ A single-stage Markov-Switching VAR still supports inclusion of HML lags
 The frozen held-out aggregate result is significant at $p = 0.041$
 (Section~\ref{sec:frozen_oos}).
 
-\textbf{Structurally linear.} A four-model diagnostic protocol (Linear, RF,
-MLP, LSTM) confirms the linear Granger effect across regimes; no nonlinear
-method improves prediction (Section~\ref{sec:robustness}).
+\textbf{Predominantly linear.} A four-model diagnostic protocol (Linear, RF,
+MLP, LSTM) finds that no nonlinear method improves HML$\to$SMB prediction beyond
+the linear baseline. However, transfer entropy reveals an additional nonlinear
+reverse channel (SMB$\to$HML, $z = 5.37$, $p < 10^{-6}$) in Normal,
+invisible to standard Granger tests (Section~\ref{sec:robustness}).
 
 \textbf{Mechanism evidence.} Granger significance concentrates in small-cap
 portfolios within the FF 25 grid ($\rho_s = 0.35$, permutation $p = 0.046$),
@@ -165,12 +167,12 @@ violation rate ($p_{\text{CC}} = 0.336$)---the best among all specifications
     (50 initializations) for reproducible regime detection
     (Sections~\ref{sec:hmm}, \ref{sec:gaussian_comparison})
 
-    \item \textbf{Complexity Characterization:} A four-model diagnostic protocol
+\item \textbf{Complexity Characterization:} A four-model diagnostic protocol
     (Linear, RF, MLP, LSTM) maps the complexity boundary of the predictive link,
-    establishing it as structurally linear. Transfer entropy reveals a
-    TE/Granger discrepancy in Normal (nonlinear reverse channel invisible to
-    standard Granger tests), demonstrating the protocol's diagnostic value
-    (Section~\ref{sec:robustness})
+    establishing the forward HML$\to$SMB link as predominantly linear while
+    identifying a nonlinear reverse-direction channel via transfer entropy
+    (SMB$\to$HML, $z = 5.37$, $p < 10^{-6}$), demonstrating the protocol's
+    diagnostic value (Section~\ref{sec:robustness})
 
     \item \textbf{Mechanism Evidence:} Portfolio overlap analysis of the FF 25
     Size$\times$BM grid confirms that the HML$\to$SMB link is mediated by
@@ -266,14 +268,14 @@ with volatility below historical extremes.
 \textbf{Model selection.} The number of regimes ($K=3$) was selected by the Bayesian
 Information Criterion, which favored three regimes over two ($\Delta$BIC $= 847$) or
 four ($\Delta$BIC $= 312$). Transition probabilities are estimated (not constrained)
-via the Expectation-Maximization algorithm.\footnote{We fit Student-$t$ HMMs
-with 50 EM initializations and select the highest log-likelihood among fits
-detecting the 2008 crisis ($\geq 50\%$ of 2008 days as Crisis). Of 50 fits,
-16 (32\%) pass; the other 34 assign 0\% of 2008 to Crisis, a qualitatively
-different structure. The LL cost is $<$0.3\%. All regime assignments derive
-from this single fit, with three exceptions: Table~\ref{tab:frozen_events}
-(frozen 1990--2012 parameters), Table~\ref{tab:var} (independent VaR pipeline),
-and LSTM in Figure~\ref{fig:complexity} (independent initialization).
+via the Expectation-Maximization algorithm.\footnote{We fit Student-$t$ HMMs with 50
+EM initializations.
+\emph{Primary selection (leakage-safe):} the fit with highest log-likelihood across
+all 50 starts, regardless of event detection. This fit assigns 0\% of 2008, 2011, and
+2020 stress windows to the Crisis regime (Table~\ref{tab:detection}).
+\emph{Sensitivity:} among the 16/50 fits (32\%) that assign $\geq$50\% of 2008
+days to Crisis, we separately report the highest-LL fit; the LL cost is $<$0.3\%.
+All tables use the primary fit unless explicitly noted.
 Table~\ref{tab:detection} compares against a Gaussian HMM baseline
 (also multi-start, 10 seeds).}
 
@@ -324,6 +326,10 @@ We focus on the HML--SMB pair for three reasons. First, \emph{preliminary screen
 we tested all 30 directed pairs among the six factors; HML--SMB showed the most
 distinctive non-monotonic pattern in the selected fit (Normal:
 $p = 1.0 \times 10^{-6}$, Elevated: $p = 0.013$, Crisis: $p = 0.880$ at lag 5).
+Crucially, the primary (LL-only) fit independently identifies HML--SMB as
+distinctive (Normal: $p = 1.0 \times 10^{-6}$, Elevated: $p = 0.013$, Crisis:
+$p = 0.880$ at lag 5)---no 2008-based screening is involved in pair selection
+for the primary analysis.
 Second, \emph{economic plausibility}:
 Value and Size factors have documented overlap in institutional holdings, providing
 a candidate mechanism (Section~\ref{sec:interpretation}). Third, \emph{architectural
@@ -390,6 +396,14 @@ label these benchmark windows as Crisis (0.0\%), while the Gaussian baseline
 assigns substantial Crisis mass to 2008 and 2020. We therefore treat event-level
 ``detection'' as sensitivity-dependent and avoid confirmatory claims based solely
 on this table.
+\textbf{Terminology note.} Under the leakage-safe primary fit, the third regime
+captures a distinct statistical state (high kurtosis, shifted covariance) rather
+than exclusively named crisis events---Table~\ref{tab:detection} shows 0\% alignment
+with 2008, 2011, and 2020 stress windows. We retain the label ``Crisis'' for
+consistency with the HMM literature~\cite{bulla2011hidden}, but readers should
+interpret Crisis-regime results as pertaining to this statistical state. The
+2008-screened sensitivity fit does align with calendar crises; we report it
+separately where noted.
 
 \subsection{Main Result: Regime-Dependent Predictive Structure}
 \label{sec:main_result}
@@ -531,7 +545,7 @@ We test this prediction using the Fama-French 25 Size$\times$BM portfolios
 of HML$\to$Portfolio at lag 1 (BIC-selected in Table~\ref{tab:main}) within
 the Crisis regime.
 
-\textbf{Spatial gradient test.} We define an ``overlap score'' for each
+\textbf{Spatial gradient test (exploratory).} We define an ``overlap score'' for each
 portfolio as $(4 - \text{size quintile}) + \text{BM quintile}$, ranging from
 0 (Big/LowBM, no overlap) to 8 (Small/HighBM, maximal overlap). The
 confirmatory test is a Spearman rank correlation between overlap score and
@@ -589,9 +603,12 @@ COVID 2020 & None & Mar 23, 2020 & None \\
 \end{tabular}
 \end{table}
 
+Under the primary fit, early warning is absent for EU Crisis 2011 and COVID 2020 (Table~\ref{tab:warning}), consistent with the primary fit's
+non-alignment to these calendar events (Table~\ref{tab:detection}).
+
 \section{Discussion}
 
-\subsection{Out-of-Sample Validation}
+\subsection{Event-Based Consistency Checks}
 \label{sec:oos}
 
 We assess generalization through event-based validation, testing whether the crisis
@@ -599,7 +616,7 @@ pattern holds during six documented stress episodes.
 
 \begin{table}[t]
 \centering
-\caption{Event-Based Validation. Expected pattern: HML $\to$ SMB significant during
+\caption{Event-Based Consistency Checks. Expected pattern: HML $\to$ SMB significant during
 Crisis. Result codes: \checkmark = expected pattern holds ($p < 0.10$ for HML$\to$SMB,
 $p > 0.10$ for reverse); Dir.\ = correct direction but insufficient power;
 $\times$ = opposite pattern.}
@@ -619,12 +636,13 @@ Event & Days & $p$(H$\to$S) & $p$(S$\to$H) & Result \\
 \end{tabular}
 \end{table}
 
-\textbf{Summary:} The expected pattern (HML$\to$SMB significant, reverse not)
+\textbf{Summary (exploratory, low-power):} The expected pattern (HML$\to$SMB significant, reverse not)
 holds clearly in 2 of 6 events (2011, 2020). Two additional events (2008, 2015)
 show the correct direction ($p_{\text{HML}\to\text{SMB}} < p_{\text{SMB}\to\text{HML}}$)
 but lack statistical power. Under the null hypothesis of no directional preference,
 the probability of 4+ correct-direction events out of 6 by chance is approximately
-0.11 (binomial test).
+0.11 (binomial test), though this test has limited discriminative power at
+$n = 6$.
 
 \textbf{Exceptions.} Two events show reversed dynamics: 2018 Vol Shock and
 2022 Rate Hikes (SMB$\to$HML direction). Both are short-duration or
@@ -833,6 +851,11 @@ alert rate, at most 39\% of alerts can be ``true'' ($5/12.8$), yielding a
 of correct tail coverage: alert-day VaR averages $2.51\times$ wider than
 non-alert VaR, achieving zero violations on alert days at the cost of
 unnecessary capital reserves on non-violation alerts.
+\textbf{Consequence.} The hybrid detector activates on 14.9\% of test days with a 93.2\%
+false-alarm rate---on most alert days no VaR violation occurs. Practitioners
+must weigh correct tail coverage against unnecessary capital reserves on
+non-violation alert days; we analyze the base-rate mechanics in the appendix
+(Section~\ref{sec:risk_monitoring}, ``False alarms'' paragraph).
 The alternative (GARCH) avoids regime labels entirely and achieves
 3.91\% violation rate with no false-alarm mechanism, but its over-coverage means
 capital is consistently over-reserved. In practice, the choice depends on whether
@@ -959,17 +982,21 @@ HML lookback & --- & 9 days \\
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/rolling_granger.pdf}
-\caption{Rolling 3-year Granger causality ($-\log_{10}(p)$, HML$\to$SMB, lag=9).
-Background shading shows regime assignments. Predictive strength concentrates during
-Crisis periods and is not a static feature of the data.}
+\caption{Rolling 3-year unconditional Granger causality ($-\log_{10}(p)$, HML$\to$SMB,
+lag=9). Background shading shows HMM regime assignments for reference. Predictive
+strength varies episodically, with peaks during periods overlapping known market
+stress events. This rolling analysis does not condition on regime labels;
+regime-conditional results are in Table~\ref{tab:main}.}
 \Description{Time-series plot of rolling Granger significance with shaded regime bands, showing time variation in HML-to-SMB predictability.}
 \label{fig:rolling}
 \end{figure}
 
 \textbf{Temporal dynamics.} Figure~\ref{fig:rolling} presents rolling 3-year
 Granger $p$-values for HML$\to$SMB, showing that the predictive link is not a
-static property but concentrates during Crisis episodes. The signal is strongest
-during the 2008--2009 and 2020 crises and near-absent during calm periods.
+static property, with peaks during calendar stress periods (2008--2009, 2020),
+though this unconditional rolling test does not distinguish regime-conditional effects.
+The signal is strongest during the 2008--2009 and 2020 crises and near-absent during
+calm periods.
 
 \textbf{Lag specification.} BIC selects lag 1 for all regime$\times$direction
 combinations (Table~\ref{tab:main}).
@@ -995,7 +1022,7 @@ are both non-significant, so we avoid claims of subsample-confirmed Crisis effec
 in sensitivity checks, but we treat this as exploratory given the primary-fit
 null in Crisis at lag 1.
 
-\textbf{Practitioner baselines.} Standard unconditional tools detect the HML$\to$SMB
+\textbf{Practitioner baselines (exploratory).} Standard unconditional tools detect the HML$\to$SMB
 asymmetry but miss the architectural distinction. Rolling 250-day Granger tests
 find HML$\to$SMB significant in 36.2\% of windows vs.\ 9.6\% for the
 reverse---with concentration in Normal (47.1\% vs.\ 13.7\% reverse),
@@ -1009,7 +1036,7 @@ qualitatively different predictive architectures that rolling methods average aw
 remains non-significant ($p = 0.114$, $n = 221$), consistent with weak
 evidence outside Normal.
 
-\textbf{Regime transitions.} Analyzing 60-day windows around Normal$\to$Crisis
+\textbf{Regime transitions (exploratory).} Analyzing 60-day windows around Normal$\to$Crisis
 transitions, the HML$\to$SMB relationship strengthens upon crisis entry
 (median $p$: $0.058 \to 0.021$), suggesting discrete intensification of the
 predictive link.
@@ -1030,7 +1057,9 @@ MLP, and LSTM permutation tests are uniformly non-significant.\footnote{The LSTM
 HMM initialization (see footnote 1); qualitative conclusions are consistent
 across fits.}
 This complexity characterization supports a conservative conclusion:
-incremental predictive content, when present, is captured by linear terms.
+incremental predictive content in the HML$\to$SMB direction is captured by linear
+terms, though TE reveals residual nonlinear structure in the reverse direction
+(Table~\ref{tab:te}).
 
 \begin{figure}[t]
 \centering

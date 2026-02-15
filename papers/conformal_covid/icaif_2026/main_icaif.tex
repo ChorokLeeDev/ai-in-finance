@@ -49,7 +49,7 @@
 \begin{document}
 
 \begin{abstract}
-Conformal prediction coverage guarantees rely on exchangeability but can degrade severely under shift. We ask which deployed models fail before any test data is observed. On a temporal COVID-19 split of SALT supply-chain tasks and extensions to 11 additional domains, we find that \emph{SHAP concentration}---the fraction of SHAP mass on the top feature---strongly predicts coverage failure for gradient-boosted classifiers under covariate shift. Concentration alone explains why coverage losses range from near-zero to over 70\% despite similar shift. We report 50-seed experiments, confirm a concentration--degradation relationship across 16 multiclass tasks (Spearman $\rho=0.853$, $p<0.001$), and show that standard shift detectors (MMD/C2ST/PSI) do not predict failure severity. A short exploratory decision rule uses SHAP concentration with a 40\% threshold and conservative ambiguity band. This work is associational: it identifies a model-specific pre-deployment risk signal tied to failure mechanism, not a universal causality law.
+Conformal prediction coverage guarantees rely on exchangeability but can degrade severely under shift. We ask which deployed models fail before any test data is observed. On a temporal COVID-19 split of SALT supply-chain tasks and extensions to 11 additional domains, we find that \emph{SHAP concentration}---the fraction of SHAP mass on the top feature---strongly predicts coverage failure for gradient-boosted classifiers under covariate shift. Concentration alone is consistent with why coverage losses range from near-zero to over 70\% despite similar shift. We report 50-seed experiments, confirm a concentration--degradation relationship across 16 multiclass tasks (Spearman $\rho=0.853$, $p<0.001$), and show that standard shift detectors (MMD/C2ST/PSI) do not predict failure severity. A short exploratory decision rule uses SHAP concentration with a 40\% threshold and conservative ambiguity band. This work is associational: it identifies a model-specific pre-deployment risk signal tied to failure mechanism, not a universal causality law.
 \end{abstract}
 
 \keywords{Conformal prediction, covariate shift, SHAP, robustness, uncertainty quantification}
@@ -84,7 +84,7 @@ We use the SALT benchmark (8 classification tasks) with aligned temporal splits:
 \begin{itemize}
   \item Train: before Feb 2020, Val: Feb--Jul 2020, Test: after Jul 2020.
 \end{itemize}
-For external tests, we use 11 datasets across 10 domains.
+For external tests, we use 11 datasets across 10 domains. Excluding binary tasks yields 8 external multiclass datasets, and together with the 8 multiclass SALT tasks this gives the primary endpoint of $n=16$ multiclass tasks across 9 domains (SALT counts as one domain).
 
 We compute SHAP concentration only from validation data:
 \begin{equation}

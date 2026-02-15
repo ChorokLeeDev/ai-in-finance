@@ -243,7 +243,7 @@ Investment (CMA), and Momentum (MOM).
 
 \textbf{Sample:} January 2, 1990 -- December 31, 2024 (8,817 trading days).
 
-\subsection{Student-$t$ Hidden Markov Model}
+\subsection{Student-\texorpdfstring{$t$}{t} Hidden Markov Model}
 \label{sec:hmm}
 
 Let $z_t \in \{1, \ldots, K\}$ denote the latent regime at time $t$. We model:
@@ -339,7 +339,7 @@ shows regime assignments over the sample period with major crisis events marked.
 
 \begin{table}[t]
 \centering
-\caption{Regime Summary Statistics (1990--2024). Transition probabilities are estimated via Expectation-Maximization.}
+\caption[Regime statistics]{Regime Summary Statistics (1990--2024). Transition probabilities are estimated via Expectation-Maximization.}
 \label{tab:regimes}
 \small
 \begin{tabular}{lccccc}
@@ -365,7 +365,7 @@ captures moderate volatility periods.}
 \label{fig:timeline}
 \end{figure}
 
-\subsection{Gaussian vs. Student-$t$ Comparison}
+\subsection{Gaussian vs. Student-\texorpdfstring{$t$}{t} Comparison}
 \label{sec:gaussian_comparison}
 
 \begin{table}[t]
@@ -784,7 +784,8 @@ exclusion and warm-up requirements):
 
 \begin{table}[t]
 \centering
-\caption{Out-of-Sample VaR Backtest (2013--2024). Target violation rate: 5\%.
+\setlength{\tabcolsep}{4pt}
+\caption[Out-of-Sample VaR Backtest (2013--2024)]{Out-of-Sample VaR Backtest (2013--2024). Target violation rate: 5\%.
 Christoffersen CC tests conditional coverage (unconditional + independence).}
 \label{tab:var}
 \small
@@ -800,6 +801,7 @@ Hybrid (HMM+Vol) & \textbf{5.60\%} & $\mathbf{+0.60}$ \textbf{pp} & \textbf{0.33
 \bottomrule
 \end{tabular}
 \end{table}
+\setlength{\tabcolsep}{6pt}
 
 Both the HML-informed and hybrid models pass the Christoffersen conditional
 coverage test ($p > 0.05$); all other specifications are rejected. The hybrid
@@ -1043,7 +1045,7 @@ fail to improve prediction.}
 
 \begin{table}[t]
 \centering
-\caption{Four-Model Diagnostic Protocol: HML$\to$SMB by Regime.
+\caption[Four-model diagnostics]{Four-Model Diagnostic Protocol: HML$\to$SMB by Regime.
 Linear column shows MSE improvement (\%); others show permutation $p$-values.}
 \label{tab:neural}
 \small

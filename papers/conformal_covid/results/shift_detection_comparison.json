@@ -1,0 +1,454 @@
+{
+  "per_task": {
+    "sales-shipcond": {
+      "coverage_drop_pct": 71.626,
+      "shap_concentration": 50.704624,
+      "mmd2": 0.5669495493422366,
+      "mmd_p_value": 0.001996007984031936,
+      "mmd_bandwidth": 1.8315933545903234,
+      "c2st_accuracy": 0.9999500000000001,
+      "c2st_std": 9.999999999998899e-05,
+      "c2st_fold_accs": [
+        1.0,
+        1.0,
+        0.99975,
+        1.0,
+        1.0
+      ],
+      "psi_max": 0.003541066078767588,
+      "psi_mean": 0.000505866582681084,
+      "psi_top_feature": "SALESORGANIZATION",
+      "psi_per_feature": {
+        "SALESDOCUMENT": 0.0,
+        "SALESDOCUMENTTYPE": 0.0,
+        "SALESORGANIZATION": 0.003541,
+        "DISTRIBUTIONCHANNEL": 0.0,
+        "ORGANIZATIONDIVISION": 0.0,
+        "BILLINGCOMPANYCODE": 0.0,
+        "TRANSACTIONCURRENCY": 0.0
+      },
+      "n_train": 30000,
+      "n_val": 71474,
+      "n_features": 7
+    },
+    "sales-group": {
+      "coverage_drop_pct": 71.1523,
+      "shap_concentration": 47.302289,
+      "mmd2": 0.5653467578405453,
+      "mmd_p_value": 0.001996007984031936,
+      "mmd_bandwidth": 1.7603464335074375,
+      "c2st_accuracy": 0.9999500000000001,
+      "c2st_std": 9.999999999998899e-05,
+      "c2st_fold_accs": [
+        1.0,
+        1.0,
+        0.99975,
+        1.0,
+        1.0
+      ],
+      "psi_max": 0.0031233222314538253,
+      "psi_mean": 0.00044618889020768933,
+      "psi_top_feature": "SALESORGANIZATION",
+      "psi_per_feature": {
+        "SALESDOCUMENT": 0.0,
+        "SALESDOCUMENTTYPE": 0.0,
+        "SALESORGANIZATION": 0.003123,
+        "DISTRIBUTIONCHANNEL": 0.0,
+        "ORGANIZATIONDIVISION": 0.0,
+        "BILLINGCOMPANYCODE": 0.0,
+        "TRANSACTIONCURRENCY": 0.0
+      },
+      "n_train": 30000,
+      "n_val": 71474,
+      "n_features": 7
+    },
+    "sales-payterms": {
+      "coverage_drop_pct": 77.1154,
+      "shap_concentration": 54.178153,
+      "mmd2": 0.539483333721501,
+      "mmd_p_value": 0.001996007984031936,
+      "mmd_bandwidth": 1.945117215188849,
+      "c2st_accuracy": 0.9999500000000001,
+      "c2st_std": 9.999999999998899e-05,
+      "c2st_fold_accs": [
+        1.0,
+        1.0,
+        0.99975,
+        1.0,
+        1.0
+      ],
+      "psi_max": 0.00317387804148571,
+      "psi_mean": 0.00045341114878367285,
+      "psi_top_feature": "SALESORGANIZATION",
+      "psi_per_feature": {
+        "SALESDOCUMENT": 0.0,
+        "SALESDOCUMENTTYPE": 0.0,
+        "SALESORGANIZATION": 0.003174,
+        "DISTRIBUTIONCHANNEL": 0.0,
+        "ORGANIZATIONDIVISION": 0.0,
+        "BILLINGCOMPANYCODE": 0.0,
+        "TRANSACTIONCURRENCY": 0.0
+      },
+      "n_train": 30000,
+      "n_val": 71474,
+      "n_features": 7
+    },
+    "item-plant": {
+      "coverage_drop_pct": 10.5701,
+      "shap_concentration": 23.89556,
+      "mmd2": 0.19234950676689544,
+      "mmd_p_value": 0.001996007984031936,
+      "mmd_bandwidth": 3.507959082567478,
+      "c2st_accuracy": 0.9994,
+      "c2st_std": 0.00020000000000002793,
+      "c2st_fold_accs": [
+        0.9995,
+        0.99975,
+        0.99925,
+        0.99925,
+        0.99925
+      ],
+      "psi_max": 0.008253929438902062,
+      "psi_mean": 0.004927443054923272,
+      "psi_top_feature": "BILLTOPARTY",
+      "psi_per_feature": {
+        "SALESDOCUMENT": 0.0,
+        "SALESDOCUMENTITEM": 0.007571,
+        "SALESDOCUMENTITEMCATEGORY": 0.0,
+        "PRODUCT": 0.001048,
+        "SOLDTOPARTY": 0.007668,
+        "SHIPTOPARTY": 0.007526,
+        "BILLTOPARTY": 0.008254,
+        "PAYERPARTY": 0.007353
+      },
+      "n_train": 30000,
+      "n_val": 293896,
+      "n_features": 8
+    },
+    "item-shippoint": {
+      "coverage_drop_pct": 18.499,
+      "shap_concentration": 48.788484,
+      "mmd2": 0.19546379023264748,
+      "mmd_p_value": 0.001996007984031936,
+      "mmd_bandwidth": 3.5713775766468228,
+      "c2st_accuracy": 0.9995,
+      "c2st_std": 0.000223606797750004,
+      "c2st_fold_accs": [
+        0.99925,
+        0.99975,
+        0.99925,
+        0.99975,
+        0.9995
+      ],
+      "psi_max": 0.008657548397783325,
+      "psi_mean": 0.004071534071047825,
+      "psi_top_feature": "SHIPTOPARTY",
+      "psi_per_feature": {
+        "SALESDOCUMENT": 0.0,
+        "SALESDOCUMENTITEM": 0.002881,
+        "SALESDOCUMENTITEMCATEGORY": 0.0,
+        "PRODUCT": 0.001102,
+        "SOLDTOPARTY": 0.006223,
+        "SHIPTOPARTY": 0.008658,
+        "BILLTOPARTY": 0.007832,
+        "PAYERPARTY": 0.005876
+      },
+      "n_train": 30000,
+      "n_val": 293896,
+      "n_features": 8
+    },
+    "sales-incoterms": {
+      "coverage_drop_pct": 8.4842,
+      "shap_concentration": 23.662905,
+      "mmd2": 0.557642690963423,
+      "mmd_p_value": 0.001996007984031936,
+      "mmd_bandwidth": 1.788474049368703,
+      "c2st_accuracy": 0.9999500000000001,
+      "c2st_std": 9.999999999998899e-05,
+      "c2st_fold_accs": [
+        1.0,
+        1.0,
+        0.99975,
+        1.0,
+        1.0
+      ],
+      "psi_max": 0.0034234621844285258,
+      "psi_mean": 0.0004890660263469323,
+      "psi_top_feature": "SALESORGANIZATION",
+      "psi_per_feature": {
+        "SALESDOCUMENT": 0.0,
+        "SALESDOCUMENTTYPE": 0.0,
+        "SALESORGANIZATION": 0.003423,
+        "DISTRIBUTIONCHANNEL": 0.0,
+        "ORGANIZATIONDIVISION": 0.0,
+        "BILLINGCOMPANYCODE": 0.0,
+        "TRANSACTIONCURRENCY": 0.0
+      },
+      "n_train": 30000,
+      "n_val": 71474,
+      "n_features": 7
+    },
+    "item-incoterms": {
+      "coverage_drop_pct": 11.2973,
+      "shap_concentration": 28.930663,
+      "mmd2": 0.19974301570675435,
+      "mmd_p_value": 0.001996007984031936,
+      "mmd_bandwidth": 3.472442354107868,
+      "c2st_accuracy": 0.9993000000000001,
+      "c2st_std": 0.0004000000000000059,
+      "c2st_fold_accs": [
+        0.99875,
+        0.99975,
+        0.99925,
+        0.99975,
+        0.999
+      ],
+      "psi_max": 0.009093400683173722,
+      "psi_mean": 0.0050251642224993995,
+      "psi_top_feature": "SHIPTOPARTY",
+      "psi_per_feature": {
+        "SALESDOCUMENT": 0.0,
+        "SALESDOCUMENTITEM": 0.007775,
+        "SALESDOCUMENTITEMCATEGORY": 0.0,
+        "PRODUCT": 0.002065,
+        "SOLDTOPARTY": 0.005769,
+        "SHIPTOPARTY": 0.009093,
+        "BILLTOPARTY": 0.008273,
+        "PAYERPARTY": 0.007226
+      },
+      "n_train": 30000,
+      "n_val": 293896,
+      "n_features": 8
+    },
+    "sales-office": {
+      "coverage_drop_pct": 0.052899999999999996,
+      "shap_concentration": 42.647182,
+      "mmd2": 0.5720066647019201,
+      "mmd_p_value": 0.001996007984031936,
+      "mmd_bandwidth": 1.817310594031725,
+      "c2st_accuracy": 0.9999500000000001,
+      "c2st_std": 9.999999999998899e-05,
+      "c2st_fold_accs": [
+        1.0,
+        1.0,
+        0.99975,
+        1.0,
+        1.0
+      ],
+      "psi_max": 0.002749293109080302,
+      "psi_mean": 0.0003927561584400431,
+      "psi_top_feature": "SALESORGANIZATION",
+      "psi_per_feature": {
+        "SALESDOCUMENT": 0.0,
+        "SALESDOCUMENTTYPE": 0.0,
+        "SALESORGANIZATION": 0.002749,
+        "DISTRIBUTIONCHANNEL": 0.0,
+        "ORGANIZATIONDIVISION": 0.0,
+        "BILLINGCOMPANYCODE": 0.0,
+        "TRANSACTIONCURRENCY": 0.0
+      },
+      "n_train": 30000,
+      "n_val": 71474,
+      "n_features": 7
+    }
+  },
+  "correlations_with_coverage_drop": {
+    "SHAP_concentration": {
+      "spearman_rho": 0.8333,
+      "spearman_p": 0.010176,
+      "kendall_tau": 0.7143,
+      "kendall_p": 0.014137,
+      "values": {
+        "item-incoterms": 28.930663,
+        "item-plant": 23.89556,
+        "item-shippoint": 48.788484,
+        "sales-group": 47.302289,
+        "sales-incoterms": 23.662905,
+        "sales-office": 42.647182,
+        "sales-payterms": 54.178153,
+        "sales-shipcond": 50.704624
+      }
+    },
+    "MMD2": {
+      "spearman_rho": -0.0476,
+      "spearman_p": 0.910849,
+      "kendall_tau": 0.0,
+      "kendall_p": 1.0,
+      "values": {
+        "item-incoterms": 0.199743,
+        "item-plant": 0.19235,
+        "item-shippoint": 0.195464,
+        "sales-group": 0.565347,
+        "sales-incoterms": 0.557643,
+        "sales-office": 0.572007,
+        "sales-payterms": 0.539483,
+        "sales-shipcond": 0.56695
+      }
+    },
+    "C2ST_accuracy": {
+      "spearman_rho": 0.1909,
+      "spearman_p": 0.650593,
+      "kendall_tau": 0.1782,
+      "kendall_p": 0.566386,
+      "values": {
+        "item-incoterms": 0.9993,
+        "item-plant": 0.9994,
+        "item-shippoint": 0.9995,
+        "sales-group": 0.99995,
+        "sales-incoterms": 0.99995,
+        "sales-office": 0.99995,
+        "sales-payterms": 0.99995,
+        "sales-shipcond": 0.99995
+      }
+    },
+    "PSI_max": {
+      "spearman_rho": 0.0714,
+      "spearman_p": 0.866526,
+      "kendall_tau": 0.0714,
+      "kendall_p": 0.904861,
+      "values": {
+        "item-incoterms": 0.009093,
+        "item-plant": 0.008254,
+        "item-shippoint": 0.008658,
+        "sales-group": 0.003123,
+        "sales-incoterms": 0.003423,
+        "sales-office": 0.002749,
+        "sales-payterms": 0.003174,
+        "sales-shipcond": 0.003541
+      }
+    },
+    "PSI_mean": {
+      "spearman_rho": 0.0238,
+      "spearman_p": 0.955374,
+      "kendall_tau": 0.0,
+      "kendall_p": 1.0,
+      "values": {
+        "item-incoterms": 0.005025,
+        "item-plant": 0.004927,
+        "item-shippoint": 0.004072,
+        "sales-group": 0.000446,
+        "sales-incoterms": 0.000489,
+        "sales-office": 0.000393,
+        "sales-payterms": 0.000453,
+        "sales-shipcond": 0.000506
+      }
+    }
+  },
+  "group_separation_tests": {
+    "MMD2": {
+      "catastrophic_mean": 0.55726,
+      "catastrophic_values": [
+        0.56695,
+        0.565347,
+        0.539483
+      ],
+      "robust_mean": 0.380435,
+      "robust_values": [
+        0.19235,
+        0.199743,
+        0.557643,
+        0.572007
+      ],
+      "mannwhitney_U_p": 0.628571,
+      "separates_groups": false
+    },
+    "C2ST_accuracy": {
+      "catastrophic_mean": 0.99995,
+      "catastrophic_values": [
+        0.99995,
+        0.99995,
+        0.99995
+      ],
+      "robust_mean": 0.99965,
+      "robust_values": [
+        0.9994,
+        0.9993,
+        0.99995,
+        0.99995
+      ],
+      "mannwhitney_U_p": 0.270289,
+      "separates_groups": false
+    },
+    "PSI_max": {
+      "catastrophic_mean": 0.003279,
+      "catastrophic_values": [
+        0.003541,
+        0.003123,
+        0.003174
+      ],
+      "robust_mean": 0.00588,
+      "robust_values": [
+        0.008254,
+        0.009093,
+        0.003423,
+        0.002749
+      ],
+      "mannwhitney_U_p": 0.628571,
+      "separates_groups": false
+    },
+    "PSI_mean": {
+      "catastrophic_mean": 0.000468,
+      "catastrophic_values": [
+        0.000506,
+        0.000446,
+        0.000453
+      ],
+      "robust_mean": 0.002709,
+      "robust_values": [
+        0.004927,
+        0.005025,
+        0.000489,
+        0.000393
+      ],
+      "mannwhitney_U_p": 0.628571,
+      "separates_groups": false
+    },
+    "SHAP_concentration": {
+      "catastrophic_mean": 50.728355,
+      "catastrophic_values": [
+        50.704624,
+        47.302289,
+        54.178153
+      ],
+      "robust_mean": 29.784077,
+      "robust_values": [
+        23.89556,
+        28.930663,
+        23.662905,
+        42.647182
+      ],
+      "mannwhitney_U_p": 0.057143,
+      "separates_groups": false
+    }
+  },
+  "detection_summary": {
+    "all_mmd_significant": true,
+    "all_c2st_above_chance": true,
+    "mmd_per_task_significant": {
+      "sales-shipcond": true,
+      "sales-group": true,
+      "sales-payterms": true,
+      "item-plant": true,
+      "item-shippoint": true,
+      "sales-incoterms": true,
+      "item-incoterms": true,
+      "sales-office": true
+    },
+    "c2st_per_task_above_chance": {
+      "sales-shipcond": true,
+      "sales-group": true,
+      "sales-payterms": true,
+      "item-plant": true,
+      "item-shippoint": true,
+      "sales-incoterms": true,
+      "item-incoterms": true,
+      "sales-office": true
+    },
+    "conclusion": "MMD and C2ST detect distribution shift for ALL tasks uniformly, confirming that the COVID temporal split induces measurable shift everywhere. However, only SHAP concentration differentiates which tasks suffer catastrophic conformal failure vs remaining robust."
+  },
+  "methodology": {
+    "mmd": "RBF kernel, median heuristic bandwidth, subsample=1000, 500 permutations",
+    "c2st": "LightGBM binary classifier, 5-fold stratified CV, accuracy metric",
+    "psi": "10 quantile bins from training distribution, max and mean across features"
+  }
+}

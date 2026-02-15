@@ -450,7 +450,7 @@ def main():
 
         # Mann-Whitney U test (one-sided: catastrophic > robust)
         u_stat, u_p = stats.mannwhitneyu(cat_vals, rob_vals, alternative='two-sided')
-        sep = "YES" if u_p < 0.10 else "NO"
+        sep = "YES" if u_p < 0.05 else "NO"
 
         print(f"\n  {metric_name}:")
         print(f"    Catastrophic: {[round(v,4) for v in cat_vals]} (mean={np.mean(cat_vals):.4f})")

@@ -1,0 +1,337 @@
+{
+  "metadata": {
+    "strict_alpha": 0.05,
+    "at_risk_rule": "coverage_drop_pp > 15",
+    "threshold_pred_rule": "concentration_pct > threshold_pct",
+    "inputs": {
+      "statistical_rigor": "/Users/i767700/Github/ai-in-finance/papers/conformal_covid/results/statistical_rigor.json",
+      "external_multiseed_validation": "/Users/i767700/Github/ai-in-finance/papers/conformal_covid/results/external_multiseed_validation.json",
+      "external_phase2_validation": "/Users/i767700/Github/ai-in-finance/papers/conformal_covid/results/external_phase2_validation.json",
+      "pendigits_validation": "/Users/i767700/Github/ai-in-finance/papers/conformal_covid/results/pendigits_validation.json",
+      "satimage_validation": "/Users/i767700/Github/ai-in-finance/papers/conformal_covid/results/satimage_validation.json"
+    }
+  },
+  "multiclass_n16": {
+    "tasks": [
+      {
+        "task": "s-payterms",
+        "dataset": "rel-salt",
+        "domain": "Supply Chain",
+        "source": "salt_50seed",
+        "num_seeds": 50,
+        "concentration_pct": 54.2,
+        "coverage_drop_pp": 77.1,
+        "at_risk_gt15": true
+      },
+      {
+        "task": "s-shipcond",
+        "dataset": "rel-salt",
+        "domain": "Supply Chain",
+        "source": "salt_50seed",
+        "num_seeds": 50,
+        "concentration_pct": 50.7,
+        "coverage_drop_pp": 71.6,
+        "at_risk_gt15": true
+      },
+      {
+        "task": "s-group",
+        "dataset": "rel-salt",
+        "domain": "Supply Chain",
+        "source": "salt_50seed",
+        "num_seeds": 50,
+        "concentration_pct": 47.3,
+        "coverage_drop_pp": 71.2,
+        "at_risk_gt15": true
+      },
+      {
+        "task": "i-shippoint",
+        "dataset": "rel-salt",
+        "domain": "Supply Chain",
+        "source": "salt_50seed",
+        "num_seeds": 50,
+        "concentration_pct": 48.8,
+        "coverage_drop_pp": 18.5,
+        "at_risk_gt15": true
+      },
+      {
+        "task": "s-office",
+        "dataset": "rel-salt",
+        "domain": "Supply Chain",
+        "source": "salt_50seed",
+        "num_seeds": 50,
+        "concentration_pct": 42.6,
+        "coverage_drop_pp": 0.1,
+        "at_risk_gt15": false
+      },
+      {
+        "task": "i-incoterms",
+        "dataset": "rel-salt",
+        "domain": "Supply Chain",
+        "source": "salt_50seed",
+        "num_seeds": 50,
+        "concentration_pct": 28.9,
+        "coverage_drop_pp": 11.3,
+        "at_risk_gt15": false
+      },
+      {
+        "task": "i-plant",
+        "dataset": "rel-salt",
+        "domain": "Supply Chain",
+        "source": "salt_50seed",
+        "num_seeds": 50,
+        "concentration_pct": 23.9,
+        "coverage_drop_pp": 10.6,
+        "at_risk_gt15": false
+      },
+      {
+        "task": "s-incoterms",
+        "dataset": "rel-salt",
+        "domain": "Supply Chain",
+        "source": "salt_50seed",
+        "num_seeds": 50,
+        "concentration_pct": 23.7,
+        "coverage_drop_pp": 8.5,
+        "at_risk_gt15": false
+      },
+      {
+        "task": "Covertype",
+        "dataset": "Covertype",
+        "domain": "Ecology",
+        "source": "external_10seed",
+        "num_seeds": 10,
+        "concentration_pct": 49.8,
+        "coverage_drop_pp": 81.8,
+        "at_risk_gt15": true
+      },
+      {
+        "task": "KDDCup99",
+        "dataset": "KDDCup99",
+        "domain": "Security",
+        "source": "external_10seed",
+        "num_seeds": 10,
+        "concentration_pct": 21.1,
+        "coverage_drop_pp": 15.9,
+        "at_risk_gt15": true
+      },
+      {
+        "task": "Gas Sensor",
+        "dataset": "Gas Sensor",
+        "domain": "Chemical",
+        "source": "external_10seed",
+        "num_seeds": 10,
+        "concentration_pct": 7.3,
+        "coverage_drop_pp": -3.8,
+        "at_risk_gt15": false
+      },
+      {
+        "task": "Avila Bible",
+        "dataset": "Avila Bible",
+        "domain": "Humanities",
+        "source": "external_10seed",
+        "num_seeds": 10,
+        "concentration_pct": 20.5,
+        "coverage_drop_pp": 1.0,
+        "at_risk_gt15": false
+      },
+      {
+        "task": "Shuttle",
+        "dataset": "Shuttle",
+        "domain": "Aerospace",
+        "source": "external_10seed",
+        "num_seeds": 10,
+        "concentration_pct": 30.7,
+        "coverage_drop_pp": 0.3,
+        "at_risk_gt15": false
+      },
+      {
+        "task": "PAMAP2",
+        "dataset": "PAMAP2",
+        "domain": "Health",
+        "source": "external_10seed",
+        "num_seeds": 10,
+        "concentration_pct": 19.2,
+        "coverage_drop_pp": -2.1,
+        "at_risk_gt15": false
+      },
+      {
+        "task": "Pendigits",
+        "dataset": "Pendigits",
+        "domain": "HCI",
+        "source": "external_10seed",
+        "num_seeds": 10,
+        "concentration_pct": 14.5,
+        "coverage_drop_pp": -1.7,
+        "at_risk_gt15": false
+      },
+      {
+        "task": "Satimage",
+        "dataset": "Satimage",
+        "domain": "Remote Sensing",
+        "source": "external_10seed",
+        "num_seeds": 10,
+        "concentration_pct": 9.0,
+        "coverage_drop_pp": -0.3,
+        "at_risk_gt15": false
+      }
+    ],
+    "correlation": {
+      "n": 16,
+      "spearman_rho": 0.853,
+      "spearman_p": 2.7e-05,
+      "kendall_tau": 0.667,
+      "kendall_p": 0.000135,
+      "bootstrap_95ci_spearman": [
+        0.5,
+        0.96
+      ],
+      "significant_at_0p05": true,
+      "n_bootstrap": 10000,
+      "bootstrap_seed": 42
+    },
+    "threshold_sensitivity": [
+      {
+        "threshold_pct": 25,
+        "tp": 5,
+        "fp": 3,
+        "tn": 7,
+        "fn": 1,
+        "precision": 0.63,
+        "recall": 0.83,
+        "f1": 0.71
+      },
+      {
+        "threshold_pct": 30,
+        "tp": 5,
+        "fp": 2,
+        "tn": 8,
+        "fn": 1,
+        "precision": 0.71,
+        "recall": 0.83,
+        "f1": 0.77
+      },
+      {
+        "threshold_pct": 35,
+        "tp": 5,
+        "fp": 1,
+        "tn": 9,
+        "fn": 1,
+        "precision": 0.83,
+        "recall": 0.83,
+        "f1": 0.83
+      },
+      {
+        "threshold_pct": 40,
+        "tp": 5,
+        "fp": 1,
+        "tn": 9,
+        "fn": 1,
+        "precision": 0.83,
+        "recall": 0.83,
+        "f1": 0.83
+      },
+      {
+        "threshold_pct": 45,
+        "tp": 5,
+        "fp": 0,
+        "tn": 10,
+        "fn": 1,
+        "precision": 1.0,
+        "recall": 0.83,
+        "f1": 0.91
+      },
+      {
+        "threshold_pct": 50,
+        "tp": 2,
+        "fp": 0,
+        "tn": 10,
+        "fn": 4,
+        "precision": 1.0,
+        "recall": 0.33,
+        "f1": 0.5
+      }
+    ]
+  },
+  "external_stability": {
+    "rule": "deterministic=10/10, near-deterministic=9/10, else variable",
+    "datasets": [
+      {
+        "dataset": "Covertype",
+        "num_seeds": 10,
+        "per_seed_threshold_correct": 10,
+        "stability_status": "deterministic",
+        "concentration_mean_pct": 49.8,
+        "coverage_drop_mean_pp": 81.8
+      },
+      {
+        "dataset": "KDDCup99",
+        "num_seeds": 10,
+        "per_seed_threshold_correct": 5,
+        "stability_status": "variable",
+        "concentration_mean_pct": 21.1,
+        "coverage_drop_mean_pp": 15.9
+      },
+      {
+        "dataset": "Gas Sensor",
+        "num_seeds": 10,
+        "per_seed_threshold_correct": 10,
+        "stability_status": "deterministic",
+        "concentration_mean_pct": 7.3,
+        "coverage_drop_mean_pp": -3.8
+      },
+      {
+        "dataset": "Stack Overflow",
+        "num_seeds": 10,
+        "per_seed_threshold_correct": 0,
+        "stability_status": "variable",
+        "concentration_mean_pct": 48.9,
+        "coverage_drop_mean_pp": -7.0
+      },
+      {
+        "dataset": "Avila Bible",
+        "num_seeds": 10,
+        "per_seed_threshold_correct": 10,
+        "stability_status": "deterministic",
+        "concentration_mean_pct": 20.5,
+        "coverage_drop_mean_pp": 1.0
+      },
+      {
+        "dataset": "Shuttle",
+        "num_seeds": 10,
+        "per_seed_threshold_correct": 9,
+        "stability_status": "near-deterministic",
+        "concentration_mean_pct": 30.7,
+        "coverage_drop_mean_pp": 0.3
+      },
+      {
+        "dataset": "PAMAP2",
+        "num_seeds": 10,
+        "per_seed_threshold_correct": 10,
+        "stability_status": "deterministic",
+        "concentration_mean_pct": 19.2,
+        "coverage_drop_mean_pp": -2.1
+      },
+      {
+        "dataset": "Pendigits",
+        "num_seeds": 10,
+        "per_seed_threshold_correct": 10,
+        "stability_status": "deterministic",
+        "concentration_mean_pct": 14.5,
+        "coverage_drop_mean_pp": -1.7
+      },
+      {
+        "dataset": "Satimage",
+        "num_seeds": 10,
+        "per_seed_threshold_correct": 10,
+        "stability_status": "deterministic",
+        "concentration_mean_pct": 9.0,
+        "coverage_drop_mean_pp": -0.3
+      }
+    ],
+    "counts": {
+      "deterministic": 6,
+      "near-deterministic": 1,
+      "variable": 2
+    },
+    "n_external_domains": 9
+  }
+}

@@ -10,13 +10,16 @@ All split by regime from selected_fit_regimes.csv.
 """
 
 import json
+import io
+import re
 import warnings
+import zipfile
 from collections import Counter
 from pathlib import Path
+import urllib.request
 
 import numpy as np
 import pandas as pd
-import pandas_datareader.famafrench as ff
 from statsmodels.tsa.api import VAR
 from statsmodels.tsa.stattools import grangercausalitytests
 
@@ -29,13 +32,52 @@ REGIME_PATH = RESULTS_DIR / "selected_fit_regimes.csv"
 
 def load_ff6_daily():
     """Load Fama-French 6 factors (5 + Momentum) daily, 1990-2024."""
+
+    def download_french_daily(dataset):
+        url = (
+            "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/"
+            f"{dataset}_CSV.zip"
+        )
+        with urllib.request.urlopen(url, timeout=60) as response:
+            raw = response.read()
+        with zipfile.ZipFile(io.BytesIO(raw)) as zf:
+            csv_name = next(name for name in zf.namelist() if name.lower().endswith(".csv"))
+            raw_text = zf.read(csv_name).decode("utf-8", errors="replace")
+        lines = raw_text.splitlines()
+        header_idx = next((i for i, line in enumerate(lines) if line.strip().startswith(",")), None)
+        if header_idx is None:
+            raise RuntimeError(f"Could not find header row in {dataset}")
+        header = lines[header_idx].strip()
+        date_rows = []
+        for line in lines[header_idx + 1 :]:
+            stripped = line.strip()
+            if re.match(r"^\d{8},", stripped):
+                date_rows.append(stripped)
+        if not date_rows:
+            raise RuntimeError(f"Could not find daily date rows in {dataset}")
+        data = pd.read_csv(io.StringIO(header + "\n" + "\n".join(date_rows)))
+        data.columns = [str(c).strip() for c in data.columns]
+        data = data.rename(columns={data.columns[0]: "Date"})
+        data["Date"] = data["Date"].astype(str).str.strip()
+        data = data[data["Date"].str.fullmatch(r"\d{8}")]
+        data["Date"] = pd.to_datetime(data["Date"], format="%Y%m%d")
+        for col in data.columns:
+            if col != "Date":
+                data[col] = pd.to_numeric(data[col], errors="coerce")
+        return data.set_index("Date").dropna(how="all")
+
     print("Downloading FF 5-factor daily data...")
-    ff5 = ff.FamaFrenchReader("F-F_Research_Data_5_Factors_2x3_daily", start="1990", end="2025").read()
-    df5 = ff5[0]
+    df5 = download_french_daily("F-F_Research_Data_5_Factors_2x3_daily")
 
     print("Downloading Momentum factor daily data...")
-    mom = ff.FamaFrenchReader("F-F_Momentum_Factor_daily", start="1990", end="2025").read()
-    dfm = mom[0]
+    dfm = download_french_daily("F-F_Momentum_Factor_daily")
+    mom_col = next(
+        (c for c in dfm.columns if "mom" in c.lower() or "wml" in c.lower()),
+        None,
+    )
+    if mom_col is None:
+        raise RuntimeError(f"Could not identify momentum column in {list(dfm.columns)}")
+    dfm = dfm[[mom_col]].rename(columns={mom_col: "MOM"})
 
     # Merge on date index
     df = df5.join(dfm, how="inner")
@@ -44,17 +86,6 @@ def load_ff6_daily():
     df.columns = [c.strip() for c in df.columns]
     rename_map = {"Mkt-RF": "MKT", "Mom": "MOM"}
     df = df.rename(columns=rename_map)
-
-    # If MOM not found, check what columns we have
-    if "MOM" not in df.columns:
-        for c in df.columns:
-            if "mom" in c.lower() or "wml" in c.lower():
-                df = df.rename(columns={c: "MOM"})
-                break
-
-    # Ensure date index is datetime
-    if not pd.api.types.is_datetime64_any_dtype(df.index):
-        df.index = pd.to_datetime(df.index, format="%Y%m%d")
 
     # Keep only the 6 factors
     keep_cols = ["MKT", "SMB", "HML", "RMW", "CMA", "MOM"]

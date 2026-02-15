@@ -2,7 +2,7 @@
 Multi-Start HMM Pipeline for ICAIF 2025
 ========================================
 
-Fits Student-t HMM with 10 random seeds, selects best by log-likelihood.
+Fits Student-t HMM with configurable seeds, selects fit via a configurable rule.
 From the selected fit, computes ALL fit-dependent tables and analyses:
   - Table 1 (tab:regimes): Regime summary statistics
   - Table 2 (tab:detection): Gaussian vs Student-t crisis detection
@@ -20,6 +20,7 @@ Outputs:
   results/selected_fit_regimes.csv
 """
 
+import argparse
 import numpy as np
 import pandas as pd
 import json
@@ -40,6 +41,37 @@ warnings.filterwarnings('ignore')
 
 RESULTS_DIR = '/Users/i767700/Github/ai-in-finance/papers/causal_regimes/results'
 REGIME_NAMES = ['Normal', 'Elevated', 'Crisis']
+
+
+def parse_seeds_arg(seeds_arg):
+    """Parse a seed list like '0-49,42,77' into sorted unique ints."""
+    if not seeds_arg:
+        return None
+    seeds = set()
+    for token in seeds_arg.split(','):
+        token = token.strip()
+        if not token:
+            continue
+        if '-' in token:
+            left, right = token.split('-', 1)
+            start = int(left.strip())
+            end = int(right.strip())
+            if end < start:
+                raise ValueError(f"Invalid seed range: {token}")
+            for value in range(start, end + 1):
+                seeds.add(value)
+        else:
+            seeds.add(int(token))
+    if not seeds:
+        raise ValueError("No valid seeds parsed from --seeds")
+    return sorted(seeds)
+
+
+def tagged_output_path(base_name, output_tag, ext):
+    """Build output filename with optional tag before extension."""
+    if output_tag:
+        return os.path.join(RESULTS_DIR, f"{base_name}_{output_tag}.{ext}")
+    return os.path.join(RESULTS_DIR, f"{base_name}.{ext}")
 
 # =============================================================================
 # DATA LOADING
@@ -505,7 +537,7 @@ def relabel_hmm_params(hmm, order):
     return hmm
 
 
-def run_multistart_hmm(df, seeds=None):
+def run_multistart_hmm(df, seeds=None, selection_rule='ll_only'):
     """Fit Student-t HMM with multiple seeds, select best by log-likelihood.
 
     Uses seeds 0-49 plus seed 42 (paper's original) to ensure wide coverage.
@@ -562,15 +594,55 @@ def run_multistart_hmm(df, seeds=None):
         crisis_2008 = float((reg_tmp[idx_2008] == 2).mean() * 100)
         summary['crisis_2008_pct'] = crisis_2008
 
-    # Select: among fits with ≥50% 2008 crisis detection, pick highest LL.
-    # If none pass, pick the one with highest 2008 detection × LL.
+    # Candidate fits for different selection policies
     valid_fits = [s for s in fit_summaries if s['crisis_2008_pct'] >= 50]
+    best_ll_summary = max(fit_summaries, key=lambda s: s['log_likelihood'])
     if valid_fits:
-        best_summary = max(valid_fits, key=lambda s: s['log_likelihood'])
-        print(f"\n  {len(valid_fits)}/{len(fit_summaries)} fits pass crisis detection filter (≥50% of 2008)")
+        best_screened_summary = max(valid_fits, key=lambda s: s['log_likelihood'])
     else:
-        print(f"\n  WARNING: No fit achieves ≥50% 2008 detection. Selecting best detection.")
-        best_summary = max(fit_summaries, key=lambda s: s['crisis_2008_pct'])
+        best_screened_summary = max(fit_summaries, key=lambda s: s['crisis_2008_pct'])
+
+    if selection_rule == 'll_only':
+        best_summary = best_ll_summary
+        primary_reason = "highest log-likelihood (leakage-safe)"
+        sensitivity = {
+            'screened_2008_candidate': {
+                'seed': best_screened_summary['seed'],
+                'log_likelihood': best_screened_summary['log_likelihood'],
+                'crisis_2008_pct': best_screened_summary['crisis_2008_pct'],
+                'screened_pass_count': len(valid_fits),
+                'screened_total': len(fit_summaries),
+            }
+        }
+    elif selection_rule == 'screened_2008':
+        best_summary = best_screened_summary
+        primary_reason = "highest log-likelihood among fits with >=50% 2008 crisis detection"
+        sensitivity = {
+            'll_only_candidate': {
+                'seed': best_ll_summary['seed'],
+                'log_likelihood': best_ll_summary['log_likelihood'],
+                'crisis_2008_pct': best_ll_summary['crisis_2008_pct'],
+            }
+        }
+    elif selection_rule == 'dual':
+        # Primary remains leakage-safe; screened result is explicitly sensitivity-only.
+        best_summary = best_ll_summary
+        primary_reason = "dual mode: ll_only primary, screened_2008 sensitivity"
+        sensitivity = {
+            'screened_2008_candidate': {
+                'seed': best_screened_summary['seed'],
+                'log_likelihood': best_screened_summary['log_likelihood'],
+                'crisis_2008_pct': best_screened_summary['crisis_2008_pct'],
+                'screened_pass_count': len(valid_fits),
+                'screened_total': len(fit_summaries),
+            }
+        }
+    else:
+        raise ValueError(f"Unknown selection_rule: {selection_rule}")
+
+    print(f"\n  Selection rule: {selection_rule}")
+    print(f"  Primary selection reason: {primary_reason}")
+    print(f"  Screened pass count: {len(valid_fits)}/{len(fit_summaries)}")
 
     best_seed = best_summary['seed']
     best_ll = best_summary['log_likelihood']
@@ -585,7 +657,17 @@ def run_multistart_hmm(df, seeds=None):
     regimes, order = relabel_regimes_by_data_norm(df, regimes_raw, factor_cols)
     hmm_best = relabel_hmm_params(hmm_best, order)
 
-    return hmm_best, regimes, fit_summaries, best_seed
+    selection_info = {
+        'selection_rule': selection_rule,
+        'primary_reason': primary_reason,
+        'primary_seed': best_seed,
+        'primary_log_likelihood': best_ll,
+        'primary_crisis_2008_pct': best_summary['crisis_2008_pct'],
+        'screened_pass_count': len(valid_fits),
+        'screened_total': len(fit_summaries),
+        'sensitivity': sensitivity,
+    }
+    return hmm_best, regimes, fit_summaries, best_seed, selection_info
 
 
 # =============================================================================
@@ -1322,6 +1404,25 @@ def compute_frozen_oos(df, best_seed):
 # =============================================================================
 
 def main():
+    parser = argparse.ArgumentParser(description="Multi-start HMM pipeline with configurable selection.")
+    parser.add_argument(
+        '--selection-rule',
+        choices=['ll_only', 'screened_2008', 'dual'],
+        default='ll_only',
+        help="Primary fit selection rule. 'dual' keeps ll_only primary and records screened sensitivity.",
+    )
+    parser.add_argument(
+        '--seeds',
+        default=None,
+        help="Seed list/ranges, e.g. '0-49,77'. Default uses 0-49 (+42 deduped).",
+    )
+    parser.add_argument(
+        '--output-tag',
+        default='',
+        help="Optional suffix for outputs, e.g. 'screened'. Produces *_<tag>.json/csv.",
+    )
+    args = parser.parse_args()
+
     os.makedirs(RESULTS_DIR, exist_ok=True)
     start_time = datetime.now()
 
@@ -1330,15 +1431,20 @@ def main():
     assert len(df) == 8817, f"Expected 8,817 trading days, got {len(df)}"
     print(f"Data verification: {len(df)} trading days")
 
-    # Phase 1: Multi-start HMM (seeds 0-49, includes paper's original seed 42)
-    hmm, regimes, fit_summaries, best_seed = run_multistart_hmm(df)
+    # Phase 1: Multi-start HMM
+    seeds = parse_seeds_arg(args.seeds)
+    hmm, regimes, fit_summaries, best_seed, selection_info = run_multistart_hmm(
+        df,
+        seeds=seeds,
+        selection_rule=args.selection_rule,
+    )
 
     # Save regime assignments CSV
     regime_csv = pd.DataFrame({
         'date': df.index.strftime('%Y-%m-%d'),
         'regime_label': [REGIME_NAMES[r] for r in regimes],
     })
-    csv_path = os.path.join(RESULTS_DIR, 'selected_fit_regimes.csv')
+    csv_path = tagged_output_path('selected_fit_regimes', args.output_tag, 'csv')
     regime_csv.to_csv(csv_path, index=False)
     print(f"\n  Saved regime assignments to {csv_path}")
 
@@ -1380,8 +1486,11 @@ def main():
             'timestamp': str(datetime.now()),
             'n_days': len(df),
             'date_range': f"{df.index[0].date()} to {df.index[-1].date()}",
-            'n_starts': 10,
+            'n_starts': len(fit_summaries),
+            'selection_rule': args.selection_rule,
+            'output_tag': args.output_tag,
             'versions': versions,
+            'selection_info': selection_info,
         },
         'fit_summaries': fit_summaries,
         'selected_fit': {
@@ -1400,7 +1509,7 @@ def main():
         'frozen_oos': frozen_oos,
     }
 
-    json_path = os.path.join(RESULTS_DIR, 'multistart_hmm_results.json')
+    json_path = tagged_output_path('multistart_hmm_results', args.output_tag, 'json')
     with open(json_path, 'w') as f:
         json.dump(results, f, indent=2, default=str)
 

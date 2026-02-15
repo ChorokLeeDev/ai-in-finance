@@ -15,6 +15,9 @@ import os
 import sys
 import time
 import warnings
+import io
+import zipfile
+import urllib.request
 
 import numpy as np
 import pandas as pd
@@ -43,6 +46,27 @@ RESULTS_DIR = "/Users/i767700/Github/ai-in-finance/papers/causal_regimes/results
 RESULTS_FILE = os.path.join(RESULTS_DIR, "lstm_granger_results.json")
 
 device = torch.device("cpu")  # daily factor data is small, CPU is fine
+
+
+# ============================================================================
+# DATA
+# ============================================================================
+def load_ff5_data():
+    """Download Fama-French 5-factor daily data (1990-2024) without pandas_datareader."""
+    url = "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_5_Factors_2x3_daily_CSV.zip"
+    with urllib.request.urlopen(url, timeout=60) as response:
+        raw = response.read()
+    with zipfile.ZipFile(io.BytesIO(raw)) as zf:
+        with zf.open(zf.namelist()[0]) as f:
+            df = pd.read_csv(f, skiprows=3)
+    df.columns = df.columns.str.strip()
+    df = df.rename(columns={df.columns[0]: "Date"})
+    df = df[df["Date"].astype(str).str.match(r"^\d{8}$")]
+    df["Date"] = pd.to_datetime(df["Date"], format="%Y%m%d")
+    for col in ["Mkt-RF", "SMB", "HML", "RMW", "CMA", "RF"]:
+        df[col] = pd.to_numeric(df[col], errors="coerce")
+    df = df.set_index("Date").dropna()
+    return df.loc["1990-01-01":"2024-12-31"]
 
 
 # ============================================================================
@@ -797,15 +821,7 @@ def main():
 
     # --- Load data ---
     print("\n[1/4] Loading Fama-French 5-factor daily data (1990-2024)...")
-    import pandas_datareader.data as web
-
-    ff5 = web.DataReader(
-        "F-F_Research_Data_5_Factors_2x3_daily",
-        "famafrench",
-        start="1990-01-01",
-        end="2024-12-31",
-    )[0]
-    ff5.index = pd.to_datetime(ff5.index, format="%Y%m%d")
+    ff5 = load_ff5_data()
     print(f"  Loaded {len(ff5)} daily observations")
 
     smb = ff5["SMB"].values

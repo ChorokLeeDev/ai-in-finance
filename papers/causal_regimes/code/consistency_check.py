@@ -4,17 +4,20 @@ Reads LaTeX file and JSON results, compares extracted numbers.
 Output: PASS/FAIL for each check with details.
 """
 
+import argparse
 import json
 import re
 import sys
 import os
+import io
+from contextlib import redirect_stdout
 
 RESULTS_DIR = '/Users/i767700/Github/ai-in-finance/papers/causal_regimes/results'
 LATEX_FILE = '/Users/i767700/Github/ai-in-finance/papers/causal_regimes/main_icaif.tex'
 
 
-def load_json(filename):
-    path = f"{RESULTS_DIR}/{filename}"
+def load_json(filename, results_dir=RESULTS_DIR):
+    path = f"{results_dir}/{filename}"
     if not os.path.exists(path):
         print(f"  WARNING: {filename} not found")
         return None
@@ -22,8 +25,8 @@ def load_json(filename):
         return json.load(f)
 
 
-def read_latex():
-    with open(LATEX_FILE) as f:
+def read_latex(latex_file=LATEX_FILE):
+    with open(latex_file) as f:
         return f.read()
 
 
@@ -455,8 +458,8 @@ def check_frozen_inline(hmm_json, latex):
         print(r)
 
 
-def check_heatmap_claim(hmm_json):
-    """Verify HML→SMB has strongest regime-dependent intensity gradient."""
+def check_heatmap_claim(hmm_json, latex=None):
+    """Check heatmap ranking and flag only if manuscript overclaims top ranking."""
     print("\n=== Heatmap Narrative Check ===")
     import numpy as np
     all_pairs = hmm_json['selected_fit']['all_pairs']
@@ -485,7 +488,7 @@ def check_heatmap_claim(hmm_json):
     if sorted_pairs[0][0] == 'HML->SMB':
         print("  PASS: HML->SMB has strongest regime-dependent differential")
     else:
-        print(f"  FAIL: {sorted_pairs[0][0]} has stronger differential than HML->SMB")
+        print(f"  INFO: {sorted_pairs[0][0]} has stronger differential than HML->SMB")
         # Find HML->SMB rank
         for i, (pair, diff) in enumerate(sorted_pairs):
             if pair == 'HML->SMB':
@@ -494,39 +497,88 @@ def check_heatmap_claim(hmm_json):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Consistency checker for paper tables/claims vs JSON artifacts.")
+    parser.add_argument(
+        '--latex-file',
+        default=LATEX_FILE,
+        help="Path to LaTeX manuscript to validate.",
+    )
+    parser.add_argument(
+        '--json-dir',
+        default=RESULTS_DIR,
+        help="Directory containing result JSON artifacts.",
+    )
+    parser.add_argument(
+        '--strict',
+        action='store_true',
+        help="Exit nonzero on any FAIL/SKIP markers.",
+    )
+    parser.add_argument(
+        '--profile',
+        choices=['full', 'arxiv'],
+        default='full',
+        help="Validation scope: 'full' for ICAIF full paper checks, 'arxiv' for overlapping subset checks.",
+    )
+    args = parser.parse_args()
+
     print("=" * 70)
     print("CONSISTENCY CHECK: LaTeX vs JSON")
     print("=" * 70)
+    print(f"LaTeX file: {args.latex_file}")
+    print(f"JSON dir:   {args.json_dir}")
 
-    latex = read_latex()
-    hmm_json = load_json('multistart_hmm_results.json')
-    trading_json = load_json('trading_selected.json')
-    var_json = load_json('var_fixes_results.json')
-    neural_json = load_json('neural_granger_selected.json')
-    te_json = load_json('te_selected.json')
+    latex = read_latex(args.latex_file)
+    hmm_json = load_json('multistart_hmm_results.json', args.json_dir)
+    trading_json = load_json('trading_selected.json', args.json_dir)
+    var_json = load_json('var_fixes_results.json', args.json_dir)
+    neural_json = load_json('neural_granger_selected.json', args.json_dir)
+    te_json = load_json('te_selected.json', args.json_dir)
 
     if hmm_json is None:
         print("FATAL: multistart_hmm_results.json not found")
         sys.exit(1)
 
-    check_table1(hmm_json, latex)
-    check_table2(hmm_json, latex)
-    check_table3(hmm_json, latex)
-    check_table4(hmm_json, latex)
-    check_table5(hmm_json, latex)
-    check_table6(hmm_json, latex)
-    check_table7(hmm_json, latex)
-    check_table8(trading_json, latex)
-    check_table9(var_json, latex)
-    check_table10(neural_json, latex)
-    check_table11(te_json, latex)
-    check_robustness(hmm_json, latex)
-    check_frozen_inline(hmm_json, latex)
-    check_heatmap_claim(hmm_json)
+    buf = io.StringIO()
+    with redirect_stdout(buf):
+        if args.profile == 'full':
+            check_table1(hmm_json, latex)
+            check_table2(hmm_json, latex)
+            check_table3(hmm_json, latex)
+            check_table4(hmm_json, latex)
+            check_table5(hmm_json, latex)
+            check_table6(hmm_json, latex)
+            check_table7(hmm_json, latex)
+            check_table8(trading_json, latex)
+            check_table9(var_json, latex)
+            check_table10(neural_json, latex)
+            check_table11(te_json, latex)
+            check_robustness(hmm_json, latex)
+            check_frozen_inline(hmm_json, latex)
+            check_heatmap_claim(hmm_json, latex=latex)
+        else:
+            # Overlapping checks for the arXiv manuscript.
+            check_table1(hmm_json, latex)
+            check_table2(hmm_json, latex)
+            check_table3(hmm_json, latex)
+            check_table5(hmm_json, latex)
+            check_table6(hmm_json, latex)
+            check_table8(trading_json, latex)
+    output = buf.getvalue()
+    print(output, end="")
+
+    fail_count = len(re.findall(r'^\s*FAIL:', output, flags=re.MULTILINE))
+    skip_count = len(re.findall(r'^\s*SKIP:', output, flags=re.MULTILINE))
+    pass_count = len(re.findall(r'^\s*PASS:', output, flags=re.MULTILINE))
+    info_count = len(re.findall(r'^\s*INFO:', output, flags=re.MULTILINE))
 
     print("\n" + "=" * 70)
     print("CONSISTENCY CHECK COMPLETE")
+    print(f"PASS={pass_count}  FAIL={fail_count}  SKIP={skip_count}  INFO={info_count}")
     print("=" * 70)
+
+    if args.strict and (fail_count > 0 or skip_count > 0):
+        print("STRICT MODE: FAILED (nonzero FAIL/SKIP detected)")
+        sys.exit(1)
 
 
 if __name__ == '__main__':

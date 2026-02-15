@@ -209,10 +209,18 @@ For intermediate and high $C$, retraining can recover part of the loss in some t
 In 9 external held-out domains (16 multiclass tasks total), concentration remains associated with failure severity. Covertype is consistently catastrophic with high concentration; many low-concentration datasets remain robust. Boundary cases (e.g., KDDCup99) show intermediate variability, motivating uncertainty bands and post-hoc calibration.
 
 \section{Discussion and Limitations}
-Coverage degradation risk is model-specific and mechanism-dependent. SHAP concentration explains when failure is amplified through concentrated dependence, but does not replace full monitoring. Evidence is strongest for gradient-boosted trees and current seeds; transfer across model classes is partial.
-\textbf{Limitations.} Current evidence is strongest for multiclass tasks and this
-experimental protocol; binary settings and some model classes may behave differently.
+\begingroup
+\hbadness=10000
+\begin{sloppypar}
+\begin{raggedright}
+Coverage degradation risk is model-specific and mechanism-dependent. SHAP concentration explains when failure is amplified through concentrated dependence, but does not replace full monitoring.
+Evidence is strongest for gradient-boosted trees and current seeds.
+Transfer across model classes is partial.
+\textbf{Limitations.} Current evidence is strongest for multiclass tasks and this experimental protocol. Binary settings and some model classes may behave differently.
 Exploratory thresholds should be revalidated before deployment and are not intended as a universal rule.
+\end{raggedright}
+\end{sloppypar}
+\endgroup
 
 \section{Conclusion}
 Across extensive 50-seed experiments and external validation, SHAP concentration is a practical pre-deployment indicator of conformal vulnerability under shift. We provide an exploratory diagnostic and a conservative thresholding workflow; we deliberately avoid causal claims and avoid overgeneralization beyond the observed mechanism.

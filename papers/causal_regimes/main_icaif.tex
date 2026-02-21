@@ -251,8 +251,11 @@ constraints force arbitrageurs to liquidate positions simultaneously, creating
 return spillovers across assets. Anton and Polk~\cite{anton2014connected} show that
 stocks with common mutual fund ownership exhibit correlated returns. Lou and
 Polk~\cite{lou2022comomentum} measure arbitrage activity through return comovement.
-Marks~\cite{marks2019factor} provides direct empirical evidence that HML/SMB
+Marks and Shang~\cite{marks2019factor} provide direct empirical evidence that HML/SMB
 crowding leads to liquidity exhaustion and factor-level crash risk.
+Chincarini, Lazo-Paz and Moneta~\cite{chincarini2026crowded} show that anomaly returns
+concentrate among the most crowded stocks and that crowding positively predicts crash risk,
+corroborating the HML$\to$SMB contagion channel proposed here.
 Stein~\cite{stein2009presidential} formalizes how crowded trades amplify drawdowns;
 Brunnermeier and Pedersen~\cite{brunnermeier2009market} establish the theoretical
 mechanism linking margin constraints to funding-liquidity spirals;
@@ -274,6 +277,9 @@ Autoregressions (MS-VARs), which jointly model regime-dependent dynamics---the
 single-stage analog of our two-stage approach (we compare against MS-VAR
 in Section~\ref{sec:msvar}).
 Guidolin and Timmermann~\cite{guidolin2007asset} apply regime models to asset allocation.
+Chincoli and Guidolin~\cite{chincoli2018linear} show that Markov-switching VARs modestly
+improve out-of-sample factor-return predictability for size, value, and momentum,
+though without examining Granger causal direction between factors.
 Bulla~\cite{bulla2011hidden} introduces Student-$t$ HMMs for financial returns,
 motivated by excess kurtosis documented in~\cite{cont2001empirical};
 Oelschl{\"a}ger, Adam and Michels~\cite{oelschlager2024fhmm} provide a recent
@@ -305,8 +311,9 @@ extend this to full MS-VAR with Bayesian inference, jointly estimating
 regime-dependent predictive densities---the single-stage analog of our two-stage
 approach; we compare against this benchmark in Section~\ref{sec:msvar}.
 We adopt a two-stage approach (HMM then regime-conditional Granger) that allows
-the regime model and causality test to be estimated separately.\footnote{The Bayesian
-MS-VAR of Droumaguet et al.\ (2017) has a finite-sample advantage for
+the regime model and causality test to be estimated separately.\footnote{For recent
+developments in MS-VAR forecasting, see Cavicchioli~\cite{cavicchioli2025forecasting}.
+The Bayesian MS-VAR of Droumaguet et al.\ (2017) has a finite-sample advantage for
 small-regime subsets: posterior inference is exact regardless of subsample size.
 Our asymptotic $F$-tests with HAC correction partially address finite-sample
 concerns; results are consistent across HAC bandwidths (sensitivity: bandwidth-1 gives Elevated $p = 0.041$, reported in Table~\ref{tab:frozen_granger} caption),
@@ -662,8 +669,9 @@ a secondary differential pattern.}
 \end{figure}
 
 \textbf{All-pairs perspective.} Figure~\ref{fig:heatmap} shows Granger causality
-$p$-values for all directed factor pairs across three regimes. Several pairs
-show regime-dependent variation; MKT-RF$\to$SMB has the largest differential.
+$p$-values for all directed factor pairs across three regimes (lag~5, for visual
+density across all 30 pairs; Table~\ref{tab:main} uses BIC-selected lag~1).
+Several pairs show regime-dependent variation; MKT-RF$\to$SMB has the largest differential.
 HML$\to$SMB ranks fourth in this differential metric, with strongest evidence in
 Normal ($p = 1.0 \times 10^{-6}$ at lag 5), suggestive Elevated evidence
 ($p = 0.013$), and no Crisis evidence ($p = 0.880$). We therefore treat

@@ -256,7 +256,7 @@ Across all 8 SALT multiclass tasks, SHAP concentration correlates with coverage 
 
 \textbf{Statistical power.} At $n=8$, power to detect $\rho = 0.833$ is $\approx 0.76$ (below the 0.80 convention); the within-SALT result is therefore \textit{exploratory}. The $n=16$ cross-domain result ($\rho=0.853$, $p<0.001$; power $>0.99$) is the confirmatory endpoint.
 
-\textbf{Cross-domain extension.} Extending to 16 multiclass tasks across 9 domains---including 8 external datasets spanning diverse types of natural distribution shift (Section~\ref{sec:cross_domain})---yields $\rho=0.853$, $p < 0.001$ (Kendall $\tau = 0.667$; bootstrap 95\% CI $[0.50, 0.96]$). We note that the 40\% threshold was derived from the SALT subset ($n=8$); the $n=16$ correlation therefore includes the in-sample SALT tasks ($\rho=0.833$ within SALT alone) alongside the held-out external 8 datasets on which the threshold was not tuned. The external datasets provide the cleanest out-of-sample validation: Covertype is correctly flagged as catastrophic (81.8~pp drop, 10/10 seeds), 6 deterministic low-concentration datasets remain robust (10/10 seeds each), and KDDCup99 is the principal intermediate-regime false negative.
+\textbf{Cross-domain extension.} Extending to 16 multiclass tasks across 9 domains---including 8 external datasets spanning documented geographic, temporal, and benchmark-partition shifts (Section~\ref{sec:cross_domain}; shift mechanisms for 5 UCI pre-defined-split datasets are not separately documented)---yields $\rho=0.853$, $p < 0.001$ (Kendall $\tau = 0.667$; bootstrap 95\% CI $[0.50, 0.96]$). We note that the 40\% threshold was derived from the SALT subset ($n=8$); the $n=16$ correlation therefore includes the in-sample SALT tasks ($\rho=0.833$ within SALT alone) alongside the held-out external 8 datasets on which the threshold was not tuned. The external datasets provide the cleanest out-of-sample validation: Covertype is correctly flagged as catastrophic (81.8~pp drop, 10/10 seeds), 6 deterministic low-concentration datasets remain robust (10/10 seeds each), and KDDCup99 is the principal intermediate-regime false negative.
 
 \begin{table}[t]
 \centering
@@ -270,7 +270,7 @@ Multiclass (SALT)    & 8 & 0.833 & 0.714 & 0.010 & $[0.29, 1.00]$ \\
 Multiclass (4 dom.) & 11 & 0.909$^\dagger$ & 0.782 & $<$0.001 & $[0.61, 1.00]$ \\
 Multiclass (8 dom.) & 15 & 0.882$^\ddagger$ & 0.714 & $<$0.001 & $[0.60, 0.97]$ \\
 \textbf{Multiclass (9 dom.)} & \textbf{16} & \textbf{0.853} & \textbf{0.667} & $<$\textbf{0.001} & $\mathbf{[0.50, 0.96]}$ \\
-Combined (10 dom.)$^\S$ & 17 & 0.654 & --- & --- & --- \\
+Combined (10 dom.)$^\S$ & 17 & 0.654 & --- & 0.004 & --- \\
 \bottomrule
 \end{tabular}}
 \vspace{1mm}
@@ -280,7 +280,7 @@ Combined (10 dom.)$^\S$ & 17 & 0.654 & --- & --- & --- \\
 LOO stability (SALT): $\rho \in [0.75, 0.96]$; 6/8 jackknife significant. Multiclass (9 domains) is the primary result, excluding binary ceiling-effect tasks. Under the at-risk criterion (drop $>$15~pp), threshold performance at 40\% is Precision $= 0.83$, Recall $= 0.83$ (Appendix~\ref{app:threshold}).
 $^\dagger$Single-seed external values; multi-seed-consistent value at $n=11$ is $\rho=0.818$, $p=0.002$ (see Appendix~\ref{app:icc}).
 $^\ddagger$$n=15$ is an intermediate analysis (7 external multiclass domains); $n=16$ adds KDDCup99 as the 8th external domain to complete the 9-domain primary endpoint. Stack~Overflow (3 classes, near-binary ceiling effect) is excluded from all multiclass endpoints.
-$^\S$Combined row includes all 17 tasks (8 SALT + 9 external, 10 domains: SALT $+$ 9 external), adding Stack~Overflow back to the $n=16$ primary endpoint. Spearman $\rho=0.654$ (from Appendix~\ref{app:icc}); Kendall $\tau$ and $p$-value not reported for this auxiliary endpoint.
+$^\S$Combined row includes all 17 tasks (8 SALT + 9 external, 10 domains: SALT $+$ 9 external), adding Stack~Overflow back to the $n=16$ primary endpoint. Spearman $\rho=0.654$, $p=0.004$ (from Appendix~\ref{app:icc}); Kendall $\tau$ not reported for this auxiliary endpoint.
 \end{table}
 
 \begin{figure*}[t]

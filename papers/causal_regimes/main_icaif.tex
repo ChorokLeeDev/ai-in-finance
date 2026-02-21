@@ -183,14 +183,14 @@ violation rate ($p_{\text{CC}} = 0.336$)---the best among all specifications
     (Linear, RF, MLP, LSTM) maps the complexity boundary of the predictive link,
     establishing the forward HML$\to$SMB link as predominantly linear while
     identifying a nonlinear reverse-direction channel via transfer entropy
-    (SMB$\to$HML, $z = 5.37$, $p < 10^{-6}$), demonstrating the protocol's
+    (SMB$\to$HML, $z = 5.37$, $p < 0.005$ empirical), demonstrating the protocol's
     diagnostic value (Section~\ref{sec:robustness})
 
-    \item \textbf{Mechanism Evidence:} Portfolio overlap analysis of the FF 25
-    Size$\times$BM grid provides suggestive evidence that the HML$\to$SMB link is
-    mediated by small-value portfolios that load on both factors (spatial gradient test:
-    $\rho_s = 0.35$, permutation $p = 0.046$; asymptotic $p = 0.086$;
-    Section~\ref{sec:overlap_evidence})
+    \item \textbf{Exploratory Mechanism Evidence:} Portfolio overlap analysis of the FF 25
+    Size$\times$BM grid provides exploratory evidence consistent with the hypothesis that the
+    HML$\to$SMB link is mediated by small-value portfolios loading on both factors (sensitivity
+    fit, seed~42; spatial gradient test: $\rho_s = 0.35$, permutation $p = 0.046$;
+    asymptotic $p = 0.086$; Section~\ref{sec:overlap_evidence})
 
     \item \textbf{Honest Assessment:} Transparent evaluation showing the finding
     supports risk monitoring rather than alpha generation, with clear acknowledgment
@@ -218,18 +218,22 @@ Gupta and Kelly~\cite{gupta2019factor} extend this finding across asset classes.
 Haddad, Kozak and Santosh~\cite{haddad2020factor} show that individual factor returns
 are predictable from conditioning variables representing the stochastic discount factor
 (out-of-sample $R^2 \approx 4\%$)---a within-factor SDF-based timing result.
+Fl{\"o}gel, Schlag and Zunft~\cite{flogel2022momentum} exploit cross-factor first-order
+autocorrelations to construct momentum-managed factor portfolios.
 Barroso and Santa-Clara~\cite{barroso2015momentum} and Daniel and
 Moskowitz~\cite{daniel2016momentum} document that momentum profits are
 regime-dependent: high in tranquil periods, negative during momentum-crash episodes.
 \textbf{Gap:} These papers establish within-factor time-series momentum,
-regime-dependent momentum \emph{returns}, and SDF-based factor timing (Haddad et al.),
+regime-dependent momentum \emph{returns}, SDF-based factor timing, and cross-factor
+autocorrelation-based portfolio management (Fl{\"o}gel et al.),
 but do not examine whether the
 \emph{Granger predictive structure between distinct factors}---which factor leads
 the other, and under which regime---changes qualitatively across market states.
 Our contribution is distinct from factor momentum by econometric construction:
 the Granger test conditions on SMB's own lags, ruling out within-factor SMB
 autocorrelation as an explanation; the HML coefficient tests \emph{incremental}
-cross-factor content beyond SMB's history.
+cross-factor content beyond SMB's history, and our regime conditioning reveals
+Normal-regime significance invisible to the unconditional autocorrelation approach of Fl{\"o}gel et al.
 This design reveals regime-dependence invisible to unconditional tests:
 significant at $p = 8.75 \times 10^{-9}$ in Normal (Bonferroni-significant)
 but null in Crisis ($p = 0.695$; the Crisis regime contains only 1,071 days,
@@ -271,7 +275,12 @@ single-stage analog of our two-stage approach (we compare against MS-VAR
 in Section~\ref{sec:msvar}).
 Guidolin and Timmermann~\cite{guidolin2007asset} apply regime models to asset allocation.
 Bulla~\cite{bulla2011hidden} introduces Student-$t$ HMMs for financial returns,
-motivated by excess kurtosis documented in~\cite{cont2001empirical}.
+motivated by excess kurtosis documented in~\cite{cont2001empirical};
+Oelschl{\"a}ger, Adam and Michels~\cite{oelschlager2024fhmm} provide a recent
+open-source implementation (\texttt{fHMM}) validating this model class on financial data.
+Shu, Yu and Mulvey~\cite{shu2024downside} compare statistical jump models against HMMs
+for equity regime detection, finding jump models reduce downside risk in specific settings;
+our two-stage Granger design motivates the HMM choice for its interpretable latent-state structure.
 Wang, Lin and Mikhelson~\cite{wang2020regime} combine HMMs with Fama-French factors
 to switch factor strategies across regimes.
 \textbf{Gap:} Existing regime-switching research focuses on regime-dependent
@@ -961,6 +970,9 @@ under a parsimony criterion.
 within a principled single-stage framework ($p < 10^{-12}$), but its economic magnitude
 is too small to justify a complex regime-switching prediction model---consistent with
 our $\Delta R^2 \approx 1\%$ finding and the trading strategy failure.
+The LR test is aggregate; the MS-VAR does not separately decompose per-regime HML significance,
+so the two-stage regime-conditional Granger results (Table~\ref{tab:main}) remain the primary
+decomposition of where in the regime structure the predictive link concentrates.
 
 \subsection{Trading Strategy Evaluation}
 \label{sec:trading}
@@ -1347,7 +1359,7 @@ Elevated & 2,792 & 0.92\%$^{**}$ & 1.00 & 1.00 & 0.93$^\dagger$ \\
 As a model-free check, we compute transfer entropy~\cite{schreiber2000measuring,frenzel2007partial}
 (Frenzel--Pompe kNN, $k=5$, 200 permutations).
 Normal shows significant bidirectional TE (HML$\to$SMB $z = 2.45$, $p = 0.007$;
-SMB$\to$HML $z = 5.37$, $p < 10^{-6}$). Elevated is weakly bidirectional at
+SMB$\to$HML $z = 5.37$, $p < 0.005$ empirical bound with 200 permutations). Elevated is weakly bidirectional at
 conventional levels (HML$\to$SMB $p = 0.008$; SMB$\to$HML $p = 0.049$), while
 Crisis is non-significant in both directions. The reverse-direction Normal TE
 signal appears despite non-significant reverse linear Granger
@@ -1373,11 +1385,11 @@ $p < 10^{-6}$ reflects the normal-approximation tail.}
 \toprule
 Regime & $n$ & HML$\to$SMB $z$ & $p$ & SMB$\to$HML $z$ & $p$ \\
 \midrule
-Normal & 4,496 & $2.45^{**}$ & 0.007 & $5.37^{***}$ & $< 10^{-6}$ \\
+Normal & 4,496 & $2.45^{**}$ & 0.007 & $5.37^{***}$ & $<0.005^\dagger$ \\
 Elevated & 2,792 & $2.41^{**}$ & 0.008 & $1.65^{*}$ & 0.049 \\
 Crisis & 1,017 & $1.01$ & 0.157 & $1.22$ & 0.111 \\
 \bottomrule
-\multicolumn{6}{l}{\footnotesize $^{***}p < 10^{-6}$, $^{**}p < 0.01$, $^{*}p < 0.05$.} \\
+\multicolumn{6}{l}{\footnotesize $^{***}p < 0.005$ ($^\dagger$empirical bound; 200 perms), $^{**}p < 0.01$, $^{*}p < 0.05$.} \\
 \multicolumn{6}{l}{\footnotesize $n$ = clean observations after boundary exclusion.} \\
 \end{tabular}
 \end{table}

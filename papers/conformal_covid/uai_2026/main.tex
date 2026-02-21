@@ -66,12 +66,12 @@ Our contributions:
 
     \item \textbf{External domain validation}: The SALT-derived 40\% threshold is partially transferable across 9 external non-supply-chain datasets without tuning. Ten-seed replication yields deterministic/near-deterministic behavior for 7/9 datasets (6 deterministic, 1 near-deterministic): Forest Covertype is correctly flagged as catastrophic ($C = 49.8\%$, 10/10 seeds), while KDDCup99 ($C = 21.1\%$, drop $= 15.9\pm21.4$~pp) and Stack Overflow (near-binary ceiling) are boundary cases that require caveats; external catastrophic evidence is concentrated in Covertype.
 
-    \item \textbf{Shift detection $\neq$ severity prediction}: Standard shift indicators (MMD, C2ST, PSI) show shift signal for \textit{all} 8 tasks uniformly (MMD $p<0.002$; C2ST $>$99.9\% accuracy; PSI $>0.002$), but cannot distinguish catastrophic from robust outcomes ($\rho \leq 0.19$, all $p > 0.6$). Among evaluated pre-deployment metrics, SHAP concentration best captures the model-specific dependence structure linked to failure severity.
+    \item \textbf{Shift detection $\neq$ severity prediction}: Standard shift indicators (MMD, C2ST, PSI\footnote{Population Stability Index, a monitoring metric standard in credit scoring practice~\citep{siddiqi2006credit}.}) show shift signal for \textit{all} 8 tasks uniformly (MMD $p<0.002$; C2ST $>$99.9\% accuracy; PSI $>0.002$), but cannot distinguish catastrophic from robust outcomes ($\rho \leq 0.19$, all $p > 0.6$). Among evaluated pre-deployment metrics, SHAP concentration best captures the model-specific dependence structure linked to failure severity.
 \end{enumerate}
 
 \section{Related Work}\label{sec:related}
 
-\textbf{Conformal Prediction.} \citet{vovk2005algorithmic} introduced conformal prediction with exchangeability guarantees; \citet{shafer2008tutorial} provide an accessible tutorial. Recent work extends to classification~\citep{romano2020classification,cauchois2021knowing} and regression~\citep{romano2019conformalized,lei2018distribution}. \citet{angelopoulos2021gentle} provide a comprehensive survey. \citet{ding2023class} show that class-conditional coverage degrades with many classes---a confound we explicitly examine via partial correlation analysis (Section~\ref{sec:baselines}).
+\textbf{Conformal Prediction.} \citet{vovk2005algorithmic} introduced conformal prediction with exchangeability guarantees; \citet{shafer2008tutorial} provide an accessible tutorial. Recent work extends to classification~\citep{romano2020classification,cauchois2021knowing} and regression~\citep{romano2019conformalized,lei2018distribution}. \citet{angelopoulos2021gentle} provide a comprehensive survey. \citet{ding2023class} show that class-conditional coverage guarantees become harder to achieve as class count grows, and propose clustered conformal prediction as a remedy---a confound we explicitly examine via partial correlation analysis (Section~\ref{sec:baselines}).
 
 \textbf{Conformal Prediction Under Shift.} \citet{tibshirani2019conformal} study covariate shift with known propensity scores. \citet{podkopaev2021distribution} develop distribution-free uncertainty quantification for classification under label shift. \citet{barber2023conformal} provide a comprehensive treatment beyond exchangeability, bounding coverage loss by the total variation distance between test and calibration score distributions. We complement these theoretical characterizations with an empirical diagnostic that is associated with this distributional divergence---and hence with which tasks fail---before deployment.
 
@@ -348,7 +348,7 @@ Retraining helps selectively. Quarterly retraining improves sales-shipcond by +1
 
 \subsection{Cross-Domain and External Validation}\label{sec:cross_domain}
 
-External validation extends to 9 additional datasets across 9 non-supply-chain benchmarks~\citep{dua2017uci} with the same LightGBM+APS pipeline and no parameter tuning. These datasets span diverse shift mechanisms: geographic (Covertype), temporal batch drift (Gas Sensor Array), semantic/category shift (Stack Overflow), and sampling-based shifts (KDDCup99, Shuttle, Avila, PAMAP2, Pendigits, Satimage), testing whether concentration generalizes beyond COVID-specific temporal dynamics. On the multiclass primary set ($n=16$, 9 domains), concentration remains strongly associated with failure severity ($\rho = 0.853$, $p < 0.001$; Kendall $\tau = 0.667$). Covertype is the key external catastrophic case ($C=49.8\%$, 81.8~pp drop, 10/10 seeds), while low-concentration datasets are mostly robust (6 deterministic robust domains and 1 near-deterministic domain). KDDCup99 is the main intermediate-regime exception (mean drop $=15.9\pm21.4$~pp despite $C=21.1\%$), motivating the conservative uncertainty-band policy in Section~\ref{sec:framework}. Binary and near-binary ceiling-effect tasks exhibit the expected ceiling effect and are excluded from the multiclass primary endpoint.
+External validation extends to 9 additional datasets across 9 non-supply-chain benchmarks~\citep{dua2017uci} with the same LightGBM+APS pipeline and no parameter tuning. These datasets span diverse shift mechanisms: geographic (Covertype), temporal batch drift (Gas Sensor Array), attack-type distribution shift (KDDCup99), semantic/category shift (Stack Overflow), and pre-defined benchmark splits whose shift type is inherent in the UCI partition (Shuttle, Avila, PAMAP2, Pendigits, Satimage); see Appendix~\ref{app:external_data} for full protocols. On the multiclass primary set ($n=16$, 9 domains), concentration remains strongly associated with failure severity ($\rho = 0.853$, $p < 0.001$; Kendall $\tau = 0.667$). Covertype is the key external catastrophic case ($C=49.8\%$, 81.8~pp drop, 10/10 seeds), while low-concentration datasets are mostly robust (6 deterministic robust domains and 1 near-deterministic domain). KDDCup99 is the main intermediate-regime exception (mean drop $=15.9\pm21.4$~pp despite $C=21.1\%$), motivating the conservative uncertainty-band policy in Section~\ref{sec:framework}. Binary and near-binary ceiling-effect tasks exhibit the expected ceiling effect and are excluded from the multiclass primary endpoint.
 
 \subsection{Placebo Test}
 
@@ -364,7 +364,7 @@ The following exploratory protocol, empirically motivated by our analysis, can g
     \item \textbf{If $C > 40\%$}: Check for protective factors---secondary features with train-validation Jaccard $> 0.5$ \textit{and} importance $> 15\%$ (validation overlap serves as a pre-deployment proxy for deployment-time feature stability)
     \begin{itemize}
         \item Protective factors exist $\rightarrow$ \textbf{robust}
-        \item Otherwise $\rightarrow$ \textbf{vulnerable}: consider quarterly retraining (effect suggestive in this study; Holm-corrected $p=0.12$ over 3 tasks)
+        \item Otherwise $\rightarrow$ \textbf{vulnerable}: consider quarterly retraining (effect suggestive; Holm-corrected $p=0.12$ over the 3 severe tasks evaluated)
     \end{itemize}
     \item \textbf{Safety override}: if $C$ is in the 35--45\% ambiguity band or the multi-seed 95\% CI overlaps 40\%, treat the task as \textbf{uncertain risk} and enable intensified monitoring rather than assuming robustness
     \item \textbf{For lower-risk tasks}: defer routine retraining (saves computational cost)
@@ -379,7 +379,7 @@ The following exploratory protocol, empirically motivated by our analysis, can g
 
 \section{Discussion}\label{sec:discussion}
 
-Catastrophic tasks become \textit{confidently wrong}: prediction sets can shrink while coverage collapses, consistent with concentrated dependence on OOD features. This is consistent with why generic shift detectors are insufficient for deployment triage: they detect shift everywhere, while concentration predicts which models amplify shift into failure.
+Catastrophic tasks become \textit{confidently wrong}: prediction sets can shrink while coverage collapses, consistent with concentrated dependence on OOD features. This explains why generic shift detectors are insufficient for deployment triage: they detect shift everywhere, while concentration predicts which models amplify shift into failure.
 
 \textbf{Limitations.} This is associative evidence, not causal identification. The 40\% threshold is exploratory (derived on $n=8$ multiclass SALT tasks) and should be treated as provisional despite external support. Evidence is model-specific (strongest for boosting models), and external catastrophic support is sparse (dominated by Covertype), so prospective deployment validation remains necessary.
 
@@ -431,6 +431,36 @@ Native feature importance concentration uses a single model (seed=42) with Light
 \subsection{Computational Resources}
 
 Standard CPU (8 cores, 8GB RAM). Wall-clock: $\sim$3--4 hours for full 8-task, 50-seed suite. Software: Python 3.9, LightGBM 3.3, SHAP 0.41.
+
+\subsection{External Dataset Protocols}\label{app:external_data}
+
+Table~\ref{tab:external_datasets} documents the train/test split, shift mechanism, and dataset characteristics for all 9 external validation datasets. All use the same LightGBM+APS pipeline as SALT (Appendix~\ref{app:reproducibility}), with 10 seeds and no hyperparameter tuning.
+
+\begin{table}[htbp]
+\centering
+\caption{External Dataset Protocols. Cal = calibration set (50\% of train); $n_\text{tr}$, $n_\text{te}$ = approximate train/test sizes used; Seeds = 10 for all external datasets.}\label{tab:external_datasets}
+\small
+\begin{tabular}{@{}llcllc@{}}
+\toprule
+Dataset & Shift mechanism & $K$ & $n_\text{tr}$ & $n_\text{te}$ & Source \\
+\midrule
+Covertype       & Geographic: wilderness area 1 (train) vs.\ areas 2--4 (test) & 7 & 11,340 & 565,892 & \citep{dua2017uci} \\
+Gas Sensor      & Temporal batch drift: batches 1--6 (train), 7--8 (cal), 9--10 (test) & 6 & 8,760 & 2,780 & \citep{dua2017uci} \\
+KDDCup99        & Attack-type distribution shift; KDD Cup 1999 competition 10\% subset (\texttt{kddcup.data\_10\_percent}), official train/test files & 11 & 394,021 & 98,521 & \citep{dua2017uci} \\
+Shuttle         & UCI Statlog pre-defined split & 7 & 43,500 & 14,500 & \citep{dua2017uci} \\
+Avila Bible     & UCI pre-defined split (copyist identification) & 12 & 10,430 & 3,646 & \citep{dua2017uci} \\
+PAMAP2          & UCI pre-defined split (physical activity, sensor data) & 12 & 233,000 & 58,000 & \citep{dua2017uci} \\
+Pendigits       & UCI pre-defined split (pen-based digit recognition) & 10 & 7,494 & 3,498 & \citep{dua2017uci} \\
+Satimage        & UCI pre-defined split (satellite image classification) & 6 & 4,435 & 2,000 & \citep{dua2017uci} \\
+Stack Overflow  & Category shift (3-class subset); excluded from $n=16$ primary endpoint (near-binary ceiling effect) & 3 & 45,000 & 15,000 & \citep{dua2017uci} \\
+\bottomrule
+\end{tabular}
+\vspace{1mm}
+
+\raggedright
+\footnotesize
+For Covertype, train uses wilderness area 1 only; test uses all remaining areas. For Gas Sensor, each batch contains $\sim$1{,}000 samples across 6 gas types; temporal sensor drift is the documented shift mechanism. For KDDCup99, classes are the 11 attack categories present in the 10\% subset; the standard KDD Cup 1999 train/test split is used. For UCI pre-defined split datasets (Shuttle, Avila, PAMAP2, Pendigits, Satimage), the official UCI train and test partitions are used directly; the shift type is inherent in the benchmark partition and not separately documented in the UCI repository. SHAP concentration and conformal calibration use the UCI train partition only.
+\end{table}
 
 \section{Placebo Test Details}\label{app:placebo}
 

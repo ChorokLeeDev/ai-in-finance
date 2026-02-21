@@ -215,11 +215,15 @@ Ehsani and Linnainmaa~\cite{ehsani2022factor} show that factor returns exhibit
 time-series momentum: past factor returns predict future factor returns, with the
 momentum factor loading on lagged returns across all other factors.
 Gupta and Kelly~\cite{gupta2019factor} extend this finding across asset classes.
+Haddad, Kozak and Santosh~\cite{haddad2020factor} show that individual factor returns
+are predictable from conditioning variables representing the stochastic discount factor
+(out-of-sample $R^2 \approx 4\%$)---a within-factor SDF-based timing result.
 Barroso and Santa-Clara~\cite{barroso2015momentum} and Daniel and
 Moskowitz~\cite{daniel2016momentum} document that momentum profits are
 regime-dependent: high in tranquil periods, negative during momentum-crash episodes.
-\textbf{Gap:} These papers establish within-factor time-series momentum and
-regime-dependent momentum \emph{returns}, but do not examine whether the
+\textbf{Gap:} These papers establish within-factor time-series momentum,
+regime-dependent momentum \emph{returns}, and SDF-based factor timing (Haddad et al.),
+but do not examine whether the
 \emph{Granger predictive structure between distinct factors}---which factor leads
 the other, and under which regime---changes qualitatively across market states.
 Our contribution is distinct from factor momentum by econometric construction:
@@ -292,7 +296,7 @@ the regime model and causality test to be estimated separately.\footnote{The Bay
 MS-VAR of Droumaguet et al.\ (2017) has a finite-sample advantage for
 small-regime subsets: posterior inference is exact regardless of subsample size.
 Our asymptotic $F$-tests with HAC correction partially address finite-sample
-concerns; results are consistent across HAC bandwidths (Table~\ref{tab:hacrobust}),
+concerns; results are consistent across HAC bandwidths (sensitivity: bandwidth-1 gives Elevated $p = 0.041$, reported in Table~\ref{tab:frozen_granger} caption),
 supporting the reliability of asymptotic inference given regime sample sizes
 ($n \geq 800$ for Primary fit in-sample tests).}
 Billio et al.~\cite{billio2012econometric} construct Granger causality
@@ -411,6 +415,7 @@ the $\Delta\text{BIC} = 1{,}680$ here is from training-only selection on
 1990--2012. Both strongly favor $K=3$.)
 
 \subsection{Per-Regime Granger Causality}
+\label{sec:granger_method}
 
 For each regime $k$, we extract observations: $\mathcal{T}_k = \{t : \hat{z}_t = k\}$.
 For each ordered pair of factors $(i, j)$, we test:
@@ -820,7 +825,7 @@ policy-driven episodes distinct from the liquidity-driven crises (2008, 2011, 20
 where the HML$\to$SMB direction is supported. This distinction between crisis
 types is speculative---we lack direct evidence for the underlying mechanisms.
 
-\textbf{Elevated regime finding.} In the primary fit, Elevated shows nominal
+\textbf{Elevated regime finding.} In the primary fit (full-sample in-sample), Elevated shows nominal
 HML$\to$SMB evidence at lag 1 ($p = 0.004$) but this does not survive the
 paper's Bonferroni threshold ($\alpha/30 = 0.00033$), and reverse direction
 remains null ($p = 0.897$). Annual splits are mixed (67\% of years show SMB$\to$HML dominant, not tabulated),
@@ -1050,7 +1055,7 @@ exclusion and warm-up requirements):
 \centering
 \setlength{\tabcolsep}{4pt}
 \caption[Out-of-Sample VaR Backtest (2013--2024)]{Out-of-Sample VaR Backtest (2013--2024). Target violation rate: 5\%.
-Christoffersen CC~\cite{christoffersen1998evaluating} tests conditional coverage (unconditional + independence).}
+Christoffersen CC~\cite{christoffersen1998evaluating} tests conditional coverage (extending Kupiec's~\cite{kupiec1995techniques} unconditional coverage test with a serial-independence component).}
 \label{tab:var}
 \small
 \begin{tabular}{lccc}
@@ -1452,7 +1457,7 @@ results remain mixed.
 \textbf{Does establish:}
 \begin{itemize}
     \item Bonferroni-significant Normal-regime HML$\to$SMB predictive precedence
-    \item Exploratory FF25 overlap evidence ($\rho_s = 0.35$, permutation $p = 0.046$)
+    \item Exploratory FF25 overlap evidence ($\rho_s = 0.35$, permutation $p = 0.046$; sensitivity fit, seed~42)
     \item No evidence of tradable alpha (Sharpe $= -0.07$)
     \item Practical utility of a hybrid detector for VaR calibration
     (5.60\% violations, CC $p = 0.336$)

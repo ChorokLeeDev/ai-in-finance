@@ -347,6 +347,8 @@ Market excess return (MKT-RF), Size (SMB), Value (HML), Profitability (RMW),
 Investment (CMA), and Momentum (MOM)~\cite{jegadeesh1993returns,carhart1997persistence}.
 
 \textbf{Sample:} January 2, 1990 -- December 31, 2024 (8,817 trading days).
+Daily factor returns are stationary by construction; ADF tests confirm unit-root
+rejection ($p < 0.001$) for all six series.
 
 \subsection{Student-\texorpdfstring{$t$}{t} Hidden Markov Model}
 \label{sec:hmm}
@@ -430,8 +432,15 @@ the $\Delta\text{BIC} = 1{,}680$ here is from training-only selection on
 \subsection{Per-Regime Granger Causality}
 \label{sec:granger_method}
 
+Granger causality~\cite{granger1969investigating,shojaie2022granger} tests whether past values
+of one series improve prediction of another, conditional on the target's own history---a
+\emph{predictive precedence} criterion, not structural causality.
 For each regime $k$, we extract observations: $\mathcal{T}_k = \{t : \hat{z}_t = k\}$.
-For each ordered pair of factors $(i, j)$, we test:
+For each ordered pair of factors $(i, j)$, we test:\footnote{We test pairwise
+(bivariate) Granger relationships. A high-dimensional VAR with all 6 factors and 9 lags
+would require $6 \times 6 \times 9 = 324$ parameters per regime; with the smallest regime
+at $n \approx 1{,}000$ observations this is severely under-identified. Post-double-selection
+methods~\cite{hecq2023granger} could address this in future work.}
 $H_0: r_{j,t} \perp \{r_{i,t-\ell}\}_{\ell=1}^{L} \mid \{r_{j,t-\ell}\}_{\ell=1}^{L}$
 
 Significance threshold: $\alpha = 0.01$ with Bonferroni correction across 30 directed
@@ -829,7 +838,9 @@ Event & Days & $p$(H$\to$S) & $p$(S$\to$H) & Result \\
 \end{table}
 
 \textbf{Summary (exploratory, low-power):} The expected pattern (HML$\to$SMB significant, reverse not)
-holds clearly in 2 of 6 events (2011, 2020). Two additional events (2008, 2015)
+holds clearly in 2 of 6 events (2011, 2020).
+Note: three events (2015, 2020, 2022) also appear in the frozen OOS Table~\ref{tab:frozen_events};
+differences in $p$-values reflect distinct HMM fits (full-sample vs.\ 1990--2012 frozen). Two additional events (2008, 2015)
 show the correct direction ($p_{\text{HML}\to\text{SMB}} < p_{\text{SMB}\to\text{HML}}$)
 but lack statistical power. Under the null hypothesis of no directional preference,
 the probability of 4+ correct-direction events out of 6 by chance is approximately
@@ -891,8 +902,11 @@ Crisis    & 1,299 & 0.281 & 0.290 & 0.09\% \\
 \end{table}
 
 \textbf{Result.} HML$\to$SMB shows suggestive evidence in the Elevated regime
-($p = 0.014$; HAC $p = 0.038$ at Andrews bandwidth 9; $\Delta R^2 = 0.73\%$),
+($p = 0.014$; HAC $p = 0.038$ at Andrews bandwidth 9; $\Delta R^2 = 0.73\%$ at lag~1),
 while Normal ($p = 0.149$) and Crisis ($p = 0.281$) are null.
+(Note: Table~\ref{tab:r2} reports $\Delta R^2 = 1.32\%$ for Elevated using the
+full-sample in-sample fit with lags~1--15; the OOS $\Delta R^2 = 0.73\%$ uses
+lag~1 only on the 2013--2024 held-out period.)
 This result does not survive Bonferroni correction across 30 pairs
 (threshold $\alpha/30 = 0.00033$, family-wise $\alpha = 0.01$); its evidential weight
 rests on economic pre-specification of the HML--SMB pair
@@ -1056,7 +1070,11 @@ While the HML--SMB link fails as a trading signal, we test whether it improves
 \emph{tail risk forecasting}. We compare five Value-at-Risk (VaR) models for SMB
 at the 5\% level, trained on 1990--2012 and tested out-of-sample on 2013--2024
 ($n \approx 3{,}000$ days; exact counts vary by model due to regime-boundary
-exclusion and warm-up requirements):
+exclusion and warm-up requirements).\footnote{We do not include
+CAViaR~\cite{engle2004caviar} (conditional autoregressive quantile regression) as a
+benchmark; our hybrid model combines regime detection with historical simulation rather
+than direct quantile autoregression, and the risk monitoring focus motivates simpler,
+interpretable specifications.}
 
 \begin{enumerate}
     \item \textbf{Unconditional:} 60-day rolling historical VaR.
@@ -1231,7 +1249,11 @@ regime windows $(w_0, w_1, w_2)$
 \begin{table}[t]
 \centering
 \caption{Algorithm~\ref{alg:monitor} Parameter Values. All calibrated on
-training data (1990--2012) only.}
+training data (1990--2012) only. $\sigma_{95}$ is the 95th percentile of the empirical
+distribution of 20-day realized volatility over 1990--2012 (mechanically defined).
+$m$ and $\tau$ were selected by grid search ($m \in \{1.5, 2.0, 2.3, 2.5, 3.0\}$,
+$\tau \in \{-0.3, -0.5, -1.0\}$) to minimize training-period CC deviation from 5\%.
+No test-period data was accessed during calibration.}
 \label{tab:algo_params}
 \small
 \begin{tabular}{lcc}

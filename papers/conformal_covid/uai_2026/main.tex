@@ -272,7 +272,7 @@ Multiclass (SALT)    & 8 & 0.833 & 0.714 & 0.010 & $[0.29, 1.00]$ \\
 Multiclass (4 dom.) & 11 & 0.909$^\dagger$ & 0.782 & $<$0.001 & $[0.61, 1.00]$ \\
 Multiclass (8 dom.) & 15 & 0.882$^\ddagger$ & 0.714 & $<$0.001 & $[0.60, 0.97]$ \\
 \textbf{Multiclass (9 dom.)} & \textbf{16} & \textbf{0.853} & \textbf{0.667} & $<$\textbf{0.001} & $\mathbf{[0.50, 0.96]}$ \\
-Combined (11 dom.) & 19 & 0.814 & 0.626 & $<$0.001 & --- \\
+Combined (10 dom.)$^\S$ & 17 & 0.654 & --- & --- & --- \\
 \bottomrule
 \end{tabular}}
 \vspace{1mm}
@@ -282,6 +282,7 @@ Combined (11 dom.) & 19 & 0.814 & 0.626 & $<$0.001 & --- \\
 LOO stability (SALT): $\rho \in [0.75, 0.96]$; 6/8 jackknife significant. Multiclass (9 domains) is the primary result, excluding binary ceiling-effect tasks. Under the at-risk criterion (drop $>$15~pp), threshold performance at 40\% is Precision $= 0.83$, Recall $= 0.83$ (Appendix~\ref{app:threshold}).
 $^\dagger$Single-seed external values; multi-seed-consistent value at $n=11$ is $\rho=0.818$, $p=0.002$ (see Appendix~\ref{app:icc}).
 $^\ddagger$$n=15$ is an intermediate analysis (7 external multiclass domains); $n=16$ adds KDDCup99 as the 8th external domain to complete the 9-domain primary endpoint. Stack~Overflow (3 classes, near-binary ceiling effect) is excluded from all multiclass endpoints.
+$^\S$Combined row includes all 17 tasks (8 SALT + 9 external, 10 domains: SALT $+$ 9 external), adding Stack~Overflow back to the $n=16$ primary endpoint. Spearman $\rho=0.654$ (from Appendix~\ref{app:icc}); Kendall $\tau$ and $p$-value not reported for this auxiliary endpoint.
 \end{table}
 
 \begin{figure*}[t]
@@ -346,7 +347,7 @@ We evaluate MMD, C2ST, and PSI as pre-deployment alternatives. All detect shift 
 
 \subsection{Retraining Analysis}
 
-Retraining helps selectively. Quarterly retraining improves sales-shipcond by +18.9~pp ($p=0.036$, unadjusted, single-seed experiment; Holm-corrected over the 3 severe tasks evaluated: $p=0.11$), partially improves sales-payterms (+15.5~pp), and is ineffective for sales-group (462 classes; 0.0\%\,$\rightarrow$\,2.2\%). Improvement is concentrated in the final two months of the retraining window (November--December 2020), which contribute the majority of the shipcond gain; earlier quarterly windows show minimal recovery. Robust tasks remain near-ceiling without intervention. Thus, retraining is beneficial for some vulnerable moderate-cardinality tasks but does not resolve the highest-complexity failures, and the single-seed setup limits causal inference about the mechanism.
+Retraining helps selectively. Quarterly retraining improves sales-shipcond by +18.9~pp ($p=0.036$, unadjusted, single-seed experiment; Holm-corrected over the 3 severe tasks evaluated: $p=0.11$), partially improves sales-payterms (+15.5~pp, non-significant), and is ineffective for sales-group (462 classes; 0.0\%\,$\rightarrow$\,2.2\%). Improvement is concentrated in the final two months of the retraining window (November--December 2020), which contribute the majority of the shipcond gain; earlier quarterly windows show minimal recovery. Robust tasks remain near-ceiling without intervention. Thus, retraining is beneficial for some vulnerable moderate-cardinality tasks but does not resolve the highest-complexity failures, and the single-seed setup limits causal inference about the mechanism.
 
 \subsection{Cross-Domain and External Validation}\label{sec:cross_domain}
 

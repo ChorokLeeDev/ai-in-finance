@@ -41,9 +41,8 @@ Conformal prediction provides distribution-free coverage guarantees, but these d
 We propose SHAP concentration---the fraction of feature importance concentrated
 in the top feature---as a \textbf{pre-deployment diagnostic} for conformal
 prediction vulnerability. Using COVID-19 as a case study across 8
-supply chain tasks experiencing identical temporal shift yet coverage drops ranging from 0.1\% to 77\% (all paired $p \leq 0.005$, 50
-seeds), we show that, for gradient-boosted models, SHAP concentration is strongly associated with failure severity: $\rho = 0.853$, $p < 0.001$ across 16 multiclass tasks in 9 domains (bootstrap 95\% CI $[0.50, 0.96]$; Kendall $\tau = 0.667$, $p < 0.001$). Standard shift detectors (MMD, C2ST) detect shift for all tasks uniformly but do not distinguish catastrophic from robust outcomes ($\rho \leq 0.19$, all $p > 0.6$); among evaluated pre-deployment diagnostics, SHAP concentration shows the strongest association with failure severity. External validation across 9 held-out domains shows partial transfer with asymmetric evidence: Covertype ($C=49.8\%$, 82~pp drop) is deterministic across 10 seeds, most low-concentration datasets are coverage-robust, Shuttle is near-deterministic (9/10), and KDDCup99/Stack Overflow are boundary cases. We prove a formal score-inflation theorem under explicit assumptions showing that APS conformity-score bounds worsen monotonically with concentration, verified on all applicable tasks. A decision framework operationalizes the diagnostic as an exploratory rule: compute SHAP concentration pre-deployment; use a conservative uncertainty band around the 40\% threshold; consider quarterly retraining if vulnerable (+19~pp recovery, $p = 0.04$); defer routine retraining for lower-risk tasks.
-seeds), we show that, for gradient-boosted models, SHAP concentration is strongly associated with failure severity: $\rho = 0.853$, $p < 0.001$ across 16 multiclass tasks in 9 domains (bootstrap 95\% CI $[0.50, 0.96]$; Kendall $\tau = 0.667$, $p < 0.001$). Standard shift detectors (MMD, C2ST) detect shift for all tasks uniformly but do not distinguish catastrophic from robust outcomes ($\rho \leq 0.19$, all $p > 0.6$); among evaluated pre-deployment diagnostics, SHAP concentration shows the strongest association with failure severity. External validation across 9 held-out domains shows partial transfer with asymmetric evidence: Covertype ($C=49.8\%$, 82~pp drop) is deterministic across 10 seeds, most low-concentration datasets are coverage-robust, Shuttle is near-deterministic (9/10), and KDDCup99/Stack Overflow are boundary cases. We prove a formal score-inflation theorem under explicit assumptions showing that APS conformity-score bounds worsen monotonically with concentration, verified on all applicable tasks. A decision framework operationalizes the diagnostic as an exploratory rule: compute SHAP concentration pre-deployment; use a conservative uncertainty band around the 40\% threshold; suggest that quarterly retraining may partially recover coverage when vulnerable (+19~pp, $p = 0.04$); and defer routine retraining for lower-risk tasks.
+supply chain tasks experiencing identical temporal shift yet coverage drops ranging from 0.1\% to 77.1\% (all paired $p \leq 0.005$, 50
+seeds), we show that, for gradient-boosted models, SHAP concentration is strongly associated with failure severity: $\rho = 0.853$, $p < 0.001$ across 16 multiclass tasks in 9 domains (bootstrap 95\% CI $[0.50, 0.96]$; Kendall $\tau = 0.667$, $p < 0.001$). Standard shift detectors (MMD, C2ST) detect shift for all tasks uniformly but do not distinguish catastrophic from robust outcomes ($\rho \leq 0.19$, all $p > 0.6$); among evaluated pre-deployment diagnostics, SHAP concentration shows the strongest association with failure severity. External validation across 9 non-supply-chain datasets shows partial transfer with asymmetric evidence: Covertype ($C=49.8\%$, 81.8~pp drop) is deterministic across 10 seeds, most low-concentration datasets are coverage-robust, Shuttle is near-deterministic (9/10), KDDCup99 is a seed-dependent intermediate case, and Stack Overflow ($K=3$) exhibits a near-binary ceiling effect and is excluded from the multiclass primary endpoint ($n=16$). We prove a formal score-inflation theorem under explicit assumptions showing that APS conformity-score bounds worsen monotonically with concentration, verified on all applicable tasks. A decision framework operationalizes the diagnostic as an exploratory rule: compute SHAP concentration pre-deployment; use a conservative uncertainty band around the 40\% threshold; suggest that quarterly retraining may partially recover coverage when vulnerable (+19~pp, $p = 0.04$ unadjusted; Holm-corrected $p=0.12$); and defer routine retraining for lower-risk tasks.
 \end{abstract}
 
 \section{Introduction}\label{sec:intro}
@@ -65,29 +64,29 @@ Our contributions:
 
     \item \textbf{Binary ceiling effect}: Binary APS prediction sets ($\{0\}, \{1\}$, or $\{0,1\}$) are structurally protected against the coverage degradation that concentration detects. This boundary condition clarifies when the diagnostic applies (multiclass) and when it does not (binary).
 
-    \item \textbf{External domain validation}: The SALT-derived 40\% threshold is partially transferable across 9 held-out domains without tuning. Ten-seed replication yields deterministic/near-deterministic behavior for 7/9 domains (6 deterministic, 1 near-deterministic): Forest Covertype is correctly flagged as catastrophic ($C = 49.8\%$, 10/10 seeds), while KDDCup99 ($C = 21.1\%$, drop $= 15.9\pm21.4$~pp) and Stack Overflow (near-binary ceiling) are boundary cases that require caveats; external catastrophic evidence is concentrated in Covertype.
+    \item \textbf{External domain validation}: The SALT-derived 40\% threshold is partially transferable across 9 external non-supply-chain datasets without tuning. Ten-seed replication yields deterministic/near-deterministic behavior for 7/9 datasets (6 deterministic, 1 near-deterministic): Forest Covertype is correctly flagged as catastrophic ($C = 49.8\%$, 10/10 seeds), while KDDCup99 ($C = 21.1\%$, drop $= 15.9\pm21.4$~pp) and Stack Overflow (near-binary ceiling) are boundary cases that require caveats; external catastrophic evidence is concentrated in Covertype.
 
     \item \textbf{Shift detection $\neq$ severity prediction}: Standard shift indicators (MMD, C2ST, PSI) show shift signal for \textit{all} 8 tasks uniformly (MMD $p<0.002$; C2ST $>$99.9\% accuracy; PSI $>0.002$), but cannot distinguish catastrophic from robust outcomes ($\rho \leq 0.19$, all $p > 0.6$). Among evaluated pre-deployment metrics, SHAP concentration best captures the model-specific dependence structure linked to failure severity.
 \end{enumerate}
 
 \section{Related Work}\label{sec:related}
 
-\textbf{Conformal Prediction.} \citet{vovk2005algorithmic} introduced conformal prediction with exchangeability guarantees. Recent work extends to classification~\citep{romano2020classification} and regression~\citep{romano2019conformalized}. \citet{angelopoulos2021gentle} provide a comprehensive tutorial.
+\textbf{Conformal Prediction.} \citet{vovk2005algorithmic} introduced conformal prediction with exchangeability guarantees; \citet{shafer2008tutorial} provide an accessible tutorial. Recent work extends to classification~\citep{romano2020classification,cauchois2021knowing} and regression~\citep{romano2019conformalized,lei2018distribution}. \citet{angelopoulos2021gentle} provide a comprehensive survey. \citet{ding2023class} show that class-conditional coverage degrades with many classes---a confound we explicitly examine via partial correlation analysis (Section~\ref{sec:baselines}).
 
 \textbf{Conformal Prediction Under Shift.} \citet{tibshirani2019conformal} study covariate shift with known propensity scores. \citet{podkopaev2021distribution} develop distribution-free uncertainty quantification for classification under label shift. \citet{barber2023conformal} provide a comprehensive treatment beyond exchangeability, bounding coverage loss by the total variation distance between test and calibration score distributions. We complement these theoretical characterizations with an empirical diagnostic that is associated with this distributional divergence---and hence with which tasks fail---before deployment.
 
-\textbf{Adaptive Methods.} \citet{gibbs2021adaptive} propose Adaptive Conformal Inference (ACI) for non-stationary settings, with extensions by \citet{zaffran2022adaptive} for time series and \citet{feldman2023achieving} for online risk control. \citet{angelopoulos2024conformal} generalize conformal prediction to broader risk measures. Our experiments show ACI recovers marginal coverage under severe shift but at a substantial cost in prediction set informativeness.
+\textbf{Adaptive Methods.} \citet{gibbs2021adaptive,gibbs2024conformal} develop Adaptive Conformal Inference (ACI) for non-stationary settings, with extensions by \citet{zaffran2022adaptive} for time series, \citet{feldman2023achieving} for online risk control, and \citet{bhatnagar2023improved} for strongly adaptive online learning. \citet{angelopoulos2024conformal} generalize conformal prediction to broader risk measures. Our experiments show ACI recovers marginal coverage under severe shift but at a substantial cost in prediction set informativeness.
 
-\textbf{Shift Detection.} WILDS~\citep{koh2021wilds} and Shifts~\citep{malinin2021shifts} provide benchmarks, while \citet{gulrajani2020search} show robust methods often fail under temporal shift. \citet{garg2022leveraging} use unlabeled test data to predict accuracy degradation---a related goal but requiring test-time observations. Kernel-based tests (MMD~\citep{gretton2012kernel}) and classifier two-sample tests (C2ST~\citep{lopez2017revisiting}) detect distributional differences but do not predict the \textit{severity} of downstream failure. We show empirically that MMD and C2ST detect shift for all tasks uniformly yet cannot distinguish catastrophic from robust conformal outcomes (Section~\ref{sec:shift_detection}). Our contribution is a \textit{pre-deployment} diagnostic using feature importance structure that predicts failure severity, not merely shift presence.
+\textbf{Shift Detection.} WILDS~\citep{koh2021wilds} and Shifts~\citep{malinin2021shifts} provide benchmarks, while \citet{gulrajani2020search} show domain generalization methods often fail to improve over ERM under realistic distribution shifts. \citet{garg2022leveraging} use unlabeled test data to predict accuracy degradation---a related goal but requiring test-time observations. Kernel-based tests (MMD~\citep{gretton2012kernel}) and classifier two-sample tests (C2ST~\citep{lopez2017revisiting}) detect distributional differences but do not predict the \textit{severity} of downstream failure. We show empirically that MMD and C2ST detect shift for all tasks uniformly yet cannot distinguish catastrophic from robust conformal outcomes (Section~\ref{sec:shift_detection}). Our contribution is a \textit{pre-deployment} diagnostic using feature importance structure that predicts failure severity, not merely shift presence.
 
-\textbf{Interpretability for Reliability.} Our work connects SHAP~\citep{lundberg2017unified} to model reliability assessment, extending the use of feature attribution from debugging~\citep{adebayo2018sanity} to prospective failure diagnosis.
+\textbf{Interpretability for Reliability.} Our work connects SHAP~\citep{lundberg2017unified,lundberg2020local} to model reliability assessment, extending the use of feature attribution from post-hoc model analysis to prospective failure diagnosis.
 
 \section{Methodology}\label{sec:method}
 
 \subsection{Dataset and Temporal Splits}
 
-We use the SALT (Supply chain ALlocaTion) dataset from RelBench~\citep{fey2023relbench}, a supply chain benchmark with temporal splits. All 8 classification tasks from the rel-salt benchmark are included; no tasks were excluded.
-External validation uses 11 additional datasets spanning 10 domains. Excluding binary tasks yields 8 external multiclass datasets, and together with the 8 multiclass SALT tasks this gives the primary endpoint of $n=16$ multiclass tasks across 9 domains (SALT counts as one domain).
+We use the SALT (Supply chain ALlocaTion) dataset from RelBench~\citep{fey2024relbench}, a supply chain benchmark with temporal splits. All 8 classification tasks from the rel-salt benchmark are included; no tasks were excluded.
+External validation uses 9 additional datasets spanning 9 non-supply-chain benchmarks. Excluding Stack~Overflow (near-binary ceiling effect) yields 8 external multiclass datasets; together with the 8 multiclass SALT tasks this gives the primary endpoint of $n=16$ multiclass tasks across 9 domains (SALT counts as one domain).
 \begin{itemize}
     \item \textbf{Train}: Before February 2020 (pre-COVID)
     \item \textbf{Validation}: February--July 2020 (COVID onset)
@@ -100,7 +99,7 @@ External validation uses 11 additional datasets spanning 10 domains. Excluding b
 
 We use Adaptive Prediction Sets (APS)~\citep{romano2020classification} with $\alpha = 0.1$ (90\% target coverage). We use the non-randomized variant (without the uniform tie-breaking variable $U$), which provides conservative rather than exact coverage. This choice does not affect the diagnostic analysis, as the same scoring rule is applied to both calibration and test sets.
 \begin{enumerate}
-    \item Train LightGBM classifier with default hyperparameters
+    \item Train LightGBM classifier with fixed hyperparameters
     \item Calibrate conformal predictor on 50\% of validation set
     \item Evaluate coverage on held-out validation and test sets
 \end{enumerate}
@@ -147,10 +146,10 @@ s(x, y^*) \;=\; 1 \;-\!\!\!\!\sum_{\substack{y \neq y^* :\\ \hat{p}(y \mid x) < 
 \end{equation}
 since $s$ includes all mass at or above the rank of $y^*$, leaving out only classes ranked strictly below. (The bound holds regardless of randomized tie-breaking conventions in APS implementations, since $\mathcal{B}$ uses strict inequality.)
 
-\begin{theorem}[Score Inflation Under Concentrated Feature Shift]\label{thm:score_inflation}
+\begin{theorem}[Score Inflation Under Concentrated Feature Shift (Idealized Additive Model)]\label{thm:score_inflation}
 Consider a $K$-class classifier ($K \geq 3$) with APS conformal predictor calibrated at level $\alpha$ with quantile $\hat{q}_\alpha$. Let $C \in [0,1]$ denote SHAP concentration on feature $x_1$. Assume:
 \begin{enumerate}[label=\textup{(A\arabic*)},leftmargin=*,nosep]
-\item \textbf{Additive decomposition.} $\hat{p}(y \mid x) = C \cdot g(y \mid x_1) + (1-C) \cdot h(y \mid x_{\setminus 1})$, where $g(\cdot \mid x_1), h(\cdot \mid x_{\setminus 1}) \in \Delta^{K-1}$.
+\item \textbf{Additive decomposition.} $\hat{p}(y \mid x) = C \cdot g(y \mid x_1) + (1-C) \cdot h(y \mid x_{\setminus 1})$, where $g(\cdot \mid x_1), h(\cdot \mid x_{\setminus 1}) \in \Delta^{K-1}$.\footnote{Assumption (A1) posits additivity in probability space. In practice, SHAP values for tree ensembles are computed in log-odds space; the additive decomposition is therefore an approximation. We use (A1) as an idealised model to derive the monotonicity result, treating SHAP-derived $C$ as an empirical proxy for the theoretical concentration parameter.}
 \item \textbf{Concentrated misclassification.} Under shift, $g(y^* \mid x_1^{\mathrm{test}}) \leq \varepsilon$ for some $\varepsilon \in [0, 1/K)$.
 \item \textbf{Residual exchangeability.} $(h(\cdot \mid x_{\setminus 1}^{\mathrm{test}}), y^*_{\mathrm{test}}) \stackrel{d}{=} (h(\cdot \mid x_{\setminus 1}^{\mathrm{cal}}), y^*_{\mathrm{cal}})$.
 \end{enumerate}
@@ -205,7 +204,7 @@ s-shipcond & 45 & 93.5 [93.2, 93.7] & 21.8 [14.1, 29.6] & 71.6 [63.9, 79.4] & $<
 s-group & 462 & 83.6 [81.7, 85.5] & 12.4 [3.1, 21.7] & 71.2 [61.3, 81.0] & $<$0.001 & SEV$^*$ \\
 s-payterms & 135 & 90.8 [90.7, 91.0] & 13.7 [6.0, 21.5] & 77.1 [69.4, 84.9] & $<$0.001 & SEV \\
 i-plant & 35 & 92.0 [91.7, 92.3] & 81.4 [79.0, 83.8] & 10.6 [8.2, 13.0] & $<$0.001 & ROB \\
-i-shippoint & 70 & 91.2 [90.9, 91.4] & 72.7 [62.3, 83.0] & 18.5 [8.2, 28.8] & 0.005 & ROB$^*$ \\
+i-shippoint & 70 & 91.2 [90.9, 91.4] & 72.7 [62.3, 83.0] & 18.5 [8.2, 28.8] & 0.005 & ROB$^{*\dagger}$ \\
 s-incoterms & 13 & 95.5 [95.3, 95.7] & 87.0 [84.7, 89.3] & 8.5 [6.2, 10.8] & $<$0.001 & ROB \\
 i-incoterms & 13 & 95.0 [94.9, 95.2] & 83.7 [80.9, 86.6] & 11.3 [8.5, 14.1] & $<$0.001 & ROB \\
 s-office & 25 & 99.9 [99.9, 100.0] & 99.9 [99.9, 99.9] & 0.1 [0.0, 0.1] & $<$0.001 & ROB \\
@@ -215,7 +214,7 @@ s-office & 25 & 99.9 [99.9, 100.0] & 99.9 [99.9, 99.9] & 0.1 [0.0, 0.1] & $<$0.0
 
 \raggedright
 \footnotesize
-SEV = Severe ($>$50\% drop), ROB = Robust ($<$20\% drop); $^*$high model variance (CV $>$ 50\%), classified by median.
+SEV = Severe ($>$50\% drop), ROB = Robust ($<$20\% drop); $^*$high model variance (CV $>$ 50\%), classified by median; $^\dagger$meets At-risk criterion (drop $>$15~pp) under the decision framework (Table~\ref{tab:framework_validation}).
 \end{table*}
 
 \subsection{Diagnostic Analysis}
@@ -249,7 +248,7 @@ Drop = mean val $-$ mean test coverage (50 seeds).
 
 \subsection{SHAP Concentration Correlates with Failure}\label{sec:shap_results}
 
-Among 8 tasks with severe feature turnover, SHAP concentration correlates with coverage degradation: Spearman $\rho = 0.833$, $p = 0.010$ (Table~\ref{tab:stratified_correlation}, Figure~\ref{fig:n11_correlation}). Bootstrap 95\% CI: $[0.29, 1.00]$ (10,000 resamples). The correlation magnitude is stable under leave-one-out analysis ($\rho \in [0.75, 0.96]$), though statistical significance is not maintained for 2 of 8 jackknife samples ($p = 0.052$) due to reduced power at $n=7$. SHAP concentration values are highly stable: bootstrap resampling (1,000 resamples of 10K validation samples) yields coefficient of variation below 1\% for all tasks, with 95\% CIs within $\pm$1 percentage point.
+Across all 8 SALT multiclass tasks, SHAP concentration correlates with coverage degradation: Spearman $\rho = 0.833$, $p = 0.010$ (Table~\ref{tab:stratified_correlation}, Figure~\ref{fig:n16_correlation}). Bootstrap 95\% CI: $[0.29, 1.00]$ (10,000 resamples). The correlation magnitude is stable under leave-one-out analysis ($\rho \in [0.75, 0.96]$), though statistical significance is not maintained for 2 of 8 jackknife samples ($p = 0.052$) due to reduced power at $n=7$. SHAP concentration values are highly stable: bootstrap resampling (1,000 resamples of 10K validation samples) yields coefficient of variation below 1\% for all tasks, with 95\% CIs within $\pm$1 percentage point.
 
 \textbf{Mechanism.} Figure~\ref{fig:shap} reveals the distinction. Catastrophic tasks: the dominant feature experiences a concentrated importance explosion (4.5$\times$ increase). Robust tasks: importance redistributes across features with ranking reshuffle (10--20$\times$ increases distributed). This matches the prediction of Theorem~\ref{thm:score_inflation}.
 
@@ -257,7 +256,7 @@ Among 8 tasks with severe feature turnover, SHAP concentration correlates with c
 
 \textbf{Task independence.} Intraclass correlation analysis confirms task identity explains the majority of seed-level variance in coverage drops (ICC $= 0.675$, 95\% CI $[0.47, 0.90]$; effective $n_{\text{eff}} = 11.7$). Per-task ICC(val,test) is negative for all 8 tasks, indicating paired tests are conservative. Details in Appendix~\ref{app:icc}.
 
-\textbf{Cross-domain extension.} Extending to 16 multiclass tasks across 9 domains---including 8 external datasets spanning 7 types of natural distribution shift (Section~\ref{sec:cross_domain})---yields $\rho=0.853$, $p < 0.001$ (Kendall $\tau = 0.667$; bootstrap 95\% CI $[0.50, 0.96]$). The external datasets confirm the diagnostic in both directions: correctly flagging catastrophic failure (Covertype, 82~pp drop) and preserving robust behavior for most low-concentration datasets, with KDDCup99 as a seed-dependent intermediate regime.
+\textbf{Cross-domain extension.} Extending to 16 multiclass tasks across 9 domains---including 8 external datasets spanning diverse types of natural distribution shift (Section~\ref{sec:cross_domain})---yields $\rho=0.853$, $p < 0.001$ (Kendall $\tau = 0.667$; bootstrap 95\% CI $[0.50, 0.96]$). We note that the 40\% threshold was derived from the SALT subset ($n=8$); the $n=16$ correlation therefore includes the in-sample SALT tasks ($\rho=0.833$ within SALT alone) alongside the held-out external 8 datasets on which the threshold was not tuned. The external datasets provide the cleanest out-of-sample validation: Covertype is correctly flagged as catastrophic (81.8~pp drop, 10/10 seeds), 6 deterministic low-concentration datasets remain robust (10/10 seeds each), and KDDCup99 is the principal intermediate-regime false negative.
 
 \begin{table}[t]
 \centering
@@ -268,9 +267,8 @@ Among 8 tasks with severe feature turnover, SHAP concentration correlates with c
 Group & $n$ & $\rho$ & Kendall $\tau$ & $p$($\rho$) & Boot.\ 95\% CI \\
 \midrule
 Multiclass (SALT)    & 8 & 0.833 & 0.714 & 0.010 & $[0.29, 1.00]$ \\
-COVID-era    & 9 & 0.883 & --- & 0.002 & $[0.39, 1.00]$ \\
-Multiclass (4 dom.) & 11 & 0.909 & 0.782 & $<$0.001 & $[0.61, 1.00]$ \\
-Multiclass (8 dom.) & 15 & 0.882 & 0.714 & $<$0.001 & $[0.60, 0.97]$ \\
+Multiclass (4 dom.) & 11 & 0.909$^\dagger$ & 0.782 & $<$0.001 & $[0.61, 1.00]$ \\
+Multiclass (8 dom.) & 15 & 0.882$^\ddagger$ & 0.714 & $<$0.001 & $[0.60, 0.97]$ \\
 \textbf{Multiclass (9 dom.)} & \textbf{16} & \textbf{0.853} & \textbf{0.667} & $<$\textbf{0.001} & $\mathbf{[0.50, 0.96]}$ \\
 Combined (11 dom.) & 19 & 0.814 & 0.626 & $<$0.001 & --- \\
 \bottomrule
@@ -280,6 +278,8 @@ Combined (11 dom.) & 19 & 0.814 & 0.626 & $<$0.001 & --- \\
 \raggedright
 \footnotesize
 LOO stability (SALT): $\rho \in [0.75, 0.96]$; 6/8 jackknife significant. Multiclass (9 domains) is the primary result, excluding binary ceiling-effect tasks. Under the at-risk criterion (drop $>$15~pp), threshold performance at 40\% is Precision $= 0.83$, Recall $= 0.83$ (Appendix~\ref{app:threshold}).
+$^\dagger$Single-seed external values; multi-seed-consistent value at $n=11$ is $\rho=0.818$, $p=0.002$ (see Appendix~\ref{app:icc}).
+$^\ddagger$$n=15$ is an intermediate analysis (7 external multiclass domains); $n=16$ adds KDDCup99 as the 8th external domain to complete the 9-domain primary endpoint. Stack~Overflow (3 classes, near-binary ceiling effect) is excluded from all multiclass endpoints.
 \end{table}
 
 \begin{figure*}[t]
@@ -290,8 +290,8 @@ LOO stability (SALT): $\rho \in [0.75, 0.96]$; 6/8 jackknife significant. Multic
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{results/figure_n11_correlation.pdf}
-\caption{\textbf{SHAP Concentration Correlates with Coverage Degradation.} Spearman $\rho=0.833$, $p=0.010$ for 8 severe-shift tasks (dark). Lighter points: 3 binary/cross-domain tasks (ceiling effect; Section~\ref{sec:cross_domain}). The 40\% threshold (dashed) is set on validation data only.}\label{fig:n11_correlation}
+\includegraphics[width=\linewidth]{results/figure_n16_correlation.pdf}
+\caption{\textbf{SHAP Concentration Correlates with Coverage Degradation (Primary Result).} Spearman $\rho=0.853$, $p<0.001$ across all 16 multiclass tasks in 9 domains (dark circles: 8 SALT supply-chain tasks; orange triangles: 8 external domains, 10-seed means). The 40\% threshold (dashed) is derived from validation data only. Within SALT alone: $\rho=0.833$, $p=0.010$ ($n=8$).}\label{fig:n16_correlation}
 \end{figure}
 
 \subsection{Diagnostic Comparison}\label{sec:baselines}
@@ -302,7 +302,7 @@ We compare SHAP concentration against two alternative pre-deployment diagnostics
 
 \textbf{Ensemble disagreement}: standard deviation of validation coverage across 50 seeds (seed 42). Achieves $\rho = 0.452$ ($p = 0.260$). Disagreement captures model instability but not the feature-level mechanism driving conformal failure.
 
-\textbf{Class cardinality as confound.} Within SALT, $\log(\text{num\_classes})$ alone correlates with coverage drop ($\rho = 0.743$, $p = 0.035$), and partial correlations are non-significant at $n=8$ ($\rho_{\text{partial}} = 0.629$ for concentration, $0.334$ for cardinality). Cross-domain evidence weakens a pure-cardinality explanation: Covertype (7 classes, $C=49.8\%$) fails catastrophically, while higher-cardinality low-concentration datasets such as Avila (12 classes, $C=20.5\%$), PAMAP2 (12, $19.2\%$), and Pendigits (10, $14.5\%$) remain robust. KDDCup99 (11, $21.1\%$) is a seed-dependent intermediate case rather than a clean robust counterexample.
+\textbf{Class cardinality as confound.} Within SALT, $\log(\text{num\_classes})$ alone correlates with coverage drop ($\rho = 0.743$, $p = 0.035$), and both partial correlations are non-significant at $n=8$ ($\rho_{\text{partial}} = 0.629$, $p = 0.131$ for concentration; $0.334$, $p = 0.464$ for cardinality; Table~\ref{tab:diagnostic_comparison}). This non-significance is expected at $n=8$---within-SALT the two predictors are correlated and power is insufficient for causal separation. Cross-domain evidence provides complementary support: Covertype (7 classes, $C=49.8\%$) fails catastrophically, while higher-cardinality low-concentration datasets such as Avila (12 classes, $C=20.5\%$), PAMAP2 (12, $19.2\%$), and Pendigits (10, $14.5\%$) remain robust---showing that high class count alone does not predict failure. KDDCup99 (11, $21.1\%$) is a seed-dependent intermediate case rather than a clean robust counterexample. We acknowledge that full causal separation of concentration and cardinality requires larger samples.
 
 \begin{table}[t]
 \centering
@@ -344,15 +344,15 @@ We evaluate MMD, C2ST, and PSI as pre-deployment alternatives. All detect shift 
 
 \subsection{Retraining Analysis}
 
-Retraining helps selectively. Quarterly retraining improves sales-shipcond by +18.9~pp ($p=0.04$), partially improves sales-payterms (+15.5~pp), and is ineffective for sales-group (462 classes; 0.0\%\,$\rightarrow$\,2.2\%). Robust tasks remain near-ceiling without intervention. Thus, retraining is beneficial for some vulnerable moderate-cardinality tasks but does not resolve the highest-complexity failures.
+Retraining helps selectively. Quarterly retraining improves sales-shipcond by +18.9~pp ($p=0.04$, unadjusted; Holm-corrected over the 3 severe tasks evaluated: $p=0.12$), partially improves sales-payterms (+15.5~pp), and is ineffective for sales-group (462 classes; 0.0\%\,$\rightarrow$\,2.2\%). Robust tasks remain near-ceiling without intervention. Thus, retraining is beneficial for some vulnerable moderate-cardinality tasks but does not resolve the highest-complexity failures.
 
 \subsection{Cross-Domain and External Validation}\label{sec:cross_domain}
 
-External validation extends to 11 additional datasets across 10 non-supply-chain domains with the same LightGBM+APS pipeline and no parameter tuning. On the multiclass primary set ($n=16$, 9 domains), concentration remains strongly associated with failure severity ($\rho = 0.853$, $p < 0.001$; Kendall $\tau = 0.667$). Covertype is the key external catastrophic case ($C=49.8\%$, 81.8~pp drop, 10/10 seeds), while low-concentration datasets are mostly robust (6 deterministic robust domains and 1 near-deterministic domain). KDDCup99 is the main intermediate-regime exception (mean drop $=15.9\pm21.4$~pp despite $C=21.1\%$), motivating the conservative uncertainty-band policy in Section~\ref{sec:framework}. Binary tasks exhibit the expected ceiling effect and are excluded from the multiclass primary endpoint.
+External validation extends to 9 additional datasets across 9 non-supply-chain benchmarks~\citep{dua2017uci} with the same LightGBM+APS pipeline and no parameter tuning. These datasets span diverse shift mechanisms: geographic (Covertype), temporal batch drift (Gas Sensor Array), semantic/category shift (Stack Overflow), and sampling-based shifts (KDDCup99, Shuttle, Avila, PAMAP2, Pendigits, Satimage), testing whether concentration generalizes beyond COVID-specific temporal dynamics. On the multiclass primary set ($n=16$, 9 domains), concentration remains strongly associated with failure severity ($\rho = 0.853$, $p < 0.001$; Kendall $\tau = 0.667$). Covertype is the key external catastrophic case ($C=49.8\%$, 81.8~pp drop, 10/10 seeds), while low-concentration datasets are mostly robust (6 deterministic robust domains and 1 near-deterministic domain). KDDCup99 is the main intermediate-regime exception (mean drop $=15.9\pm21.4$~pp despite $C=21.1\%$), motivating the conservative uncertainty-band policy in Section~\ref{sec:framework}. Binary and near-binary ceiling-effect tasks exhibit the expected ceiling effect and are excluded from the multiclass primary endpoint.
 
 \subsection{Placebo Test}
 
-Using a pre-COVID temporal placebo (train 2018, validate 2019-H1, test 2019-H2), vulnerable tasks show far smaller degradation than under the COVID split (6--140$\times$ lower; Appendix~\ref{app:placebo}). This supports the claim that the diagnostic is most informative under severe event-driven shift rather than routine temporal drift.
+Using a pre-COVID temporal placebo (train 2018, validate 2019-H1, test 2019-H2), vulnerable tasks show far smaller degradation than under the COVID split (6--143$\times$ lower; Appendix~\ref{app:placebo}). This supports the claim that the diagnostic is most informative under severe event-driven shift rather than routine temporal drift.
 
 \section{Decision Framework}\label{sec:framework}
 
@@ -364,7 +364,7 @@ The following exploratory protocol, empirically motivated by our analysis, can g
     \item \textbf{If $C > 40\%$}: Check for protective factors---secondary features with train-validation Jaccard $> 0.5$ \textit{and} importance $> 15\%$ (validation overlap serves as a pre-deployment proxy for deployment-time feature stability)
     \begin{itemize}
         \item Protective factors exist $\rightarrow$ \textbf{robust}
-        \item Otherwise $\rightarrow$ \textbf{vulnerable}: consider quarterly retraining
+        \item Otherwise $\rightarrow$ \textbf{vulnerable}: consider quarterly retraining (effect suggestive in this study; Holm-corrected $p=0.12$ over 3 tasks)
     \end{itemize}
     \item \textbf{Safety override}: if $C$ is in the 35--45\% ambiguity band or the multi-seed 95\% CI overlaps 40\%, treat the task as \textbf{uncertain risk} and enable intensified monitoring rather than assuming robustness
     \item \textbf{For lower-risk tasks}: defer routine retraining (saves computational cost)
@@ -412,7 +412,7 @@ SHAP concentration provides a pre-deployment, model-specific signal for conforma
 
 \subsection{LightGBM Hyperparameters}
 
-All models trained with default LightGBM settings: objective=multiclass, boosting=gbdt, num\_leaves=31, learning\_rate=0.05, feature\_fraction=0.8, bagging\_fraction=0.8, bagging\_freq=5, num\_boost\_round=500, early\_stopping\_rounds=50, seeds 42--91 (50 seeds). No task-specific tuning was performed.
+All models trained with fixed LightGBM settings: objective=multiclass, boosting=gbdt, num\_leaves=31, learning\_rate=0.05, feature\_fraction=0.8, bagging\_fraction=0.8, bagging\_freq=5, num\_boost\_round=500, early\_stopping\_rounds=50, seeds 42--91 (50 seeds). No task-specific tuning was performed.
 
 \subsection{Conformal Prediction}
 
@@ -422,7 +422,7 @@ Method: APS~\citep{romano2020classification}. Target coverage: $(1-\alpha)=0.9$ 
 
 \subsection{SHAP Computation}
 
-Method: TreeExplainer~\citep{lundberg2020local}. Subsample: 10,000 per split. Aggregation: mean absolute SHAP across classes. Concentration metric (Eq.~\ref{eq:concentration}): computed on validation (pre-COVID) data only.
+Method: TreeExplainer~\citep{lundberg2020local}. Subsample: 10,000 per split. Aggregation: mean absolute SHAP across classes. Concentration metric (Eq.~\ref{eq:concentration}): computed on validation data only.
 
 \subsection{Baseline Diagnostics}
 
@@ -517,6 +517,7 @@ KDDCup99 & 21.1 & ROB & At-risk$^\S$ & Seed-dependent (FN) \\
 Pendigits & 14.5 & ROB & ROB & 10/10 seeds \\
 Satimage & 9.0 & ROB & ROB & 10/10 seeds \\
 Gas Sensor & 7.3 & ROB & ROB & 10/10 seeds \\
+Stack Overflow & 48.9 & VULN & ROB & Near-binary ceiling$^\P$ \\
 \bottomrule
 \end{tabular}
 \vspace{1mm}
@@ -527,6 +528,7 @@ $^\dagger$Median drop 1.2\%; most seeds maintain coverage.
 $^\ddagger$SALESORGANIZATION: train-validation Jaccard$=$0.61, importance$>$15\%.
 $^\S$Concentration below threshold ($C=21.1\pm7.5\%$), but mean drop exceeds the at-risk cutoff (15.9~pp); outcome seed-dependent (range $-$0.8 to 73.5~pp).
 In-sample F1 $= 0.89$ (1 FP: s-office). External: Covertype deterministic catastrophic (10/10); five low-concentration datasets deterministic robust (10/10); Shuttle near-deterministic (9/10); KDDCup99 is the intermediate-regime false negative.
+$^\P$Stack Overflow ($K=3$, $C=48.9\%$): high concentration predicts VULN, but near-binary class structure creates a ceiling effect (only 3 classes; APS prediction sets trivially remain small). Actual coverage is robust ($-7.0$~pp). Excluded from $n=16$ multiclass primary endpoint; confirms diagnostic applies to multiclass ($K>3$) settings only.
 \end{table}
 
 \section{Pre-Deployment vs Post-Hoc Baselines}\label{app:baselines}
@@ -590,7 +592,7 @@ i-shippoint & $-$0.10 & 0.90 & 55 \\
 \end{tabular}
 \end{table}
 
-\textbf{Multiple comparisons.} We tested 5 concentration metrics (top-1, top-2, top-3, HHI, entropy) against coverage drop. Under Holm--Bonferroni correction for this 5-test family, the adjusted $p$-value for top-1 concentration is $5 \times 0.010 = 0.050$, at the conventional significance boundary. For the 3 correlation subsets ($n=8$, $n=9$, $n=11$), all adjusted $p$-values remain significant (Holm-corrected $p \leq 0.021$). We note that top-1 was the a priori natural choice (Section~\ref{sec:why_shap}), not one of 5 equally plausible alternatives; the correction is therefore conservative.
+\textbf{Multiple comparisons.} We tested 5 concentration metrics (top-1, top-2, top-3, HHI, entropy) against coverage drop. Under Holm--Bonferroni correction for this 5-test family, the adjusted $p$-value for top-1 concentration is $5 \times 0.010 = 0.050$, at the conventional significance boundary. For the primary correlation subsets ($n=8$, $n=11$, $n=16$), all adjusted $p$-values remain significant (Holm-corrected $p \leq 0.021$). We note that top-1 was the a priori natural choice (Section~\ref{sec:why_shap}), not one of 5 equally plausible alternatives; the correction is therefore conservative.
 
 \textbf{Multi-seed aggregation.} The primary $n=16$ correlation ($\rho = 0.853$) uses 10-seed means for all external datasets and 50-seed means for SALT tasks. The early $n=11$ result ($\rho = 0.909$) used single-seed external values; switching to multi-seed means at $n=11$ yields $\rho = 0.818$, $p = 0.002$, with the reduction driven by KDDCup99 whose multi-seed mean drop (15.9~pp) exceeds its single-seed value ($-$0.8~pp). This intermediate-concentration regime ($C=21.1\pm7.5\%$) exhibits high outcome variance characteristic of the boundary between robust and vulnerable. Extending to $n=16$ with consistent multi-seed means yields $\rho = 0.853$ ($p < 0.001$). Including Stack Overflow (3 classes, near-binary ceiling) to make $n=17$ weakens correlation to $\rho = 0.654$.
 
@@ -598,7 +600,7 @@ i-shippoint & $-$0.10 & 0.90 & 55 \\
 
 \textbf{Proof details.} Starting from~\eqref{eq:aps_equiv}, define $L := \sum_{y \in \mathcal{B}}\hat p(y)$ for classes below the true-label rank. Since each term in $L$ is $<\hat p(y^*)$ and $|\mathcal{B}| \le K-1$, $L \le (K-1)\hat p(y^*)$, so $s=1-L$ yields~\eqref{eq:score_pointwise} after substituting (A1)--(A2). Taking expectations and applying (A3) gives~\eqref{eq:score_bound}; differentiating gives monotonicity in $C$ when $\varepsilon < \bar h$. Rearranging~\eqref{eq:score_pointwise} gives the threshold form in~\eqref{eq:cov_bound}, and differentiating $T(C)$ shows the coverage upper bound decreases with concentration under the theorem condition.
 
-\textbf{Conservative bound verification.} Using $\varepsilon=0$ and $\bar h=1/K$, Theorem~\ref{thm:score_inflation}(ii) yields lower bounds consistent with all five applicable right-shift tasks: s-shipcond ($0.785$ vs.\ observed $0.98$), s-payterms ($0.841$ vs.\ $0.92$), s-group ($0.990$ vs.\ $1.00$), i-plant ($0.806$ vs.\ $0.86$), and s-incoterms ($0.825$ vs.\ $0.87$). Gaps reflect conservative assumptions and the $(K-1)$ counting bound.
+\textbf{Conservative bound verification.} Using $\varepsilon=0$ and $\bar h=1/K$, Theorem~\ref{thm:score_inflation}(ii) yields conservative lower bounds verified on all five applicable tasks: s-shipcond ($0.518$ vs.\ observed $0.98$), s-payterms ($0.545$ vs.\ $0.92$), s-group ($0.474$ vs.\ $1.00$), i-plant ($0.261$ vs.\ $0.86$), and s-incoterms ($0.296$ vs.\ $0.87$). The large gaps between bounds and observed values reflect conservative assumptions in the $(K-1)$ counting bound and the uniform residual prior $\bar{h}=1/K$; tighter bounds follow from empirical $\bar{h}$ estimates.
 
 \begin{figure}[htbp]
 \centering
@@ -697,7 +699,7 @@ s-office & 42.6 & 24.5 & 36.8 & 33.5 & 0.1 & 0.0 & 0.0 & $-$0.0 \\
 
 \textbf{Results.} The diagnostic's predictive power varies by model class (Table~\ref{tab:model_sensitivity}). All three gradient-boosted implementations show positive correlation: LightGBM ($\rho = 0.833$, $p = 0.010$), CatBoost ($\rho = 0.667$, $p = 0.071$), and XGBoost ($\rho = 0.548$, $p = 0.16$). RandomForest ($\rho = 0.30$, $p = 0.47$) does not replicate.
 
-\textbf{Mixed-effects analysis.} Since (task, model) pairs share data and temporal split, we fit a linear mixed-effects model with task as a random intercept to properly account for clustering: $\text{Drop}_{ij} = \beta_0 + \beta_1 \cdot \text{Concentration}_{ij} + u_i + \varepsilon_{ij}$, where $u_i \sim \mathcal{N}(0, \sigma^2_u)$ is the task random effect. Across the three gradient-boosted models ($n=24$, 8 tasks $\times$ 3 models), the concentration effect is $\beta_1 = 1.64$ (95\% CI $[0.70, 2.58]$, $p = 0.0006$): each 1\% increase in concentration predicts 1.6~pp additional coverage drop, after accounting for task-level clustering. Including model class as a fixed effect yields $\beta_1 = 1.66$ ($p = 0.001$). With all four models including RF ($n=32$): $\beta_1 = 1.06$ ($p = 0.010$).
+\textbf{Mixed-effects analysis.} Since (task, model) pairs share data and temporal split, we fit a linear mixed-effects model with task as a random intercept to properly account for clustering: $\text{Drop}_{ij} = \beta_0 + \beta_1 \cdot \text{Concentration}_{ij} + u_i + \varepsilon_{ij}$, where $u_i \sim \mathcal{N}(0, \sigma^2_u)$ is the task random effect. Across the three gradient-boosted models ($n=24$, 8 tasks $\times$ 3 models), the concentration effect is $\beta_1 = 1.64$ (95\% CI $[0.70, 2.58]$, $p = 0.0006$): each 1\% increase in concentration predicts 1.6~pp additional coverage drop, after accounting for task-level clustering. We note that with only 8 task-level clusters the random-intercept variance may be downward-biased and the fixed-effect standard error potentially anti-conservative; nonetheless, the large effect size ($\beta_1 = 1.64$) and narrow CI suggest the direction is robust. Including model class as a fixed effect yields $\beta_1 = 1.66$ ($p = 0.001$). With all four models including RF ($n=32$): $\beta_1 = 1.06$ ($p = 0.010$).
 
 \begin{table}[htbp]
 \centering

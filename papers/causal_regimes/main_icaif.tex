@@ -37,7 +37,7 @@
 
 \begin{abstract}
 We evaluate regime-dependent predictive structure between equity factors using
-approximately 35 years of Fama-French daily data (1990--2024, 8,817 trading
+35 years of Fama-French daily data (1990--2024, 8,817 trading
 days) and a Student-$t$ Hidden Markov Model with 50 multi-start initializations.
 To eliminate regime-identification circularity, the \emph{primary} analysis
 uses a frozen out-of-sample design: the HMM is trained on 1990--2012 ($n =
@@ -144,7 +144,7 @@ Full-sample in-sample analysis provides higher-power corroboration: Normal-regim
 $p = 8.75 \times 10^{-9}$ (HAC $p = 9.45 \times 10^{-8}$), surviving Bonferroni
 correction across 30 directed pairs.
 A single-stage Markov-Switching VAR further supports HML lags ($p < 10^{-12}$),
-and event tests are mixed (2/6 significant, 4/6 directional)
+and event tests are mixed (2/6 significant, 4/6 in the predicted direction)
 (Section~\ref{sec:frozen_oos}).
 
 \textbf{Predominantly linear.} A four-model diagnostic protocol (Linear, RF,
@@ -509,7 +509,7 @@ is treated as a \emph{pre-specified} corroborative test of the economically moti
 not a blind search among 30 pairs. The economic motivation (liquidity-mediated HML$\to$SMB
 contagion) was established prior to the OOS evaluation and is consistent with the
 FF25 mechanism evidence (Section~\ref{sec:overlap_evidence}). Readers should nonetheless
-note that applying a 30-pair Bonferroni penalty to the OOS HAC $p = 0.041$ would
+note that applying a 30-pair Bonferroni penalty to the OOS HAC $p = 0.038$ would
 yield a corrected $p > 1$; the OOS result's strength rests on economic pre-specification,
 not on the unadjusted $p$-value alone.
 
@@ -630,7 +630,7 @@ $F$-test significance. We recompute at lag 1 (BIC-optimal) using Newey-West~\cit
 heteroskedasticity-and-autocorrelation-consistent (HAC) standard errors.
 Normal-regime HML$\to$SMB survives HAC correction
 ($p = 9.45 \times 10^{-8}$ HAC vs.\ $p = 8.75 \times 10^{-9}$ standard).
-Elevated HML$\to$SMB weakens under HAC ($p = 0.034$), and Crisis remains
+Elevated HML$\to$SMB weakens under HAC (full-sample in-sample: $p = 0.034$), and Crisis remains
 non-significant ($p = 0.711$ HAC vs.\ $p = 0.695$ standard).
 
 \textbf{Incremental $R^2$.} Table~\ref{tab:r2} quantifies the economic magnitude. Adding

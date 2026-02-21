@@ -150,7 +150,7 @@ and event tests are mixed (2/6 significant, 4/6 directional)
 \textbf{Predominantly linear.} A four-model diagnostic protocol (Linear, RF,
 MLP, LSTM) finds that no nonlinear method improves HML$\to$SMB prediction beyond
 the linear baseline. However, transfer entropy reveals an additional nonlinear
-reverse channel (SMB$\to$HML, $z = 5.37$, $p < 10^{-6}$) in Normal,
+reverse channel (SMB$\to$HML, $z = 5.37$, $p < 0.005$ empirical) in Normal,
 invisible to standard Granger tests (Section~\ref{sec:robustness}).
 
 \textbf{Mechanism evidence.} Granger significance concentrates in small-cap
@@ -280,7 +280,11 @@ Oelschl{\"a}ger, Adam and Michels~\cite{oelschlager2024fhmm} provide a recent
 open-source implementation (\texttt{fHMM}) validating this model class on financial data.
 Shu, Yu and Mulvey~\cite{shu2024downside} compare statistical jump models against HMMs
 for equity regime detection, finding jump models reduce downside risk in specific settings;
-our two-stage Granger design motivates the HMM choice for its interpretable latent-state structure.
+Shu, Yu and Mulvey~\cite{shu2025dynamic} apply regime-switching signals to dynamic allocation
+across six equity factors (value, size, momentum, quality, low-vol, growth) --- selecting which factor
+to hold per regime --- whereas the present paper examines Granger predictive \emph{precedence between}
+factors within shared multi-factor regimes.
+Our two-stage Granger design motivates the HMM choice for its interpretable latent-state structure.
 Wang, Lin and Mikhelson~\cite{wang2020regime} combine HMMs with Fama-French factors
 to switch factor strategies across regimes.
 \textbf{Gap:} Existing regime-switching research focuses on regime-dependent
@@ -594,7 +598,9 @@ Crisis & SMB $\to$ HML & $0.294$ & 1 & No \\
 HML$\to$SMB survives Bonferroni correction.
 \begin{itemize}
     \item \textbf{Normal (Bonferroni-significant):} Strong lag-1 effect
-    ($p = 8.75 \times 10^{-9}$), robust to HAC correction.
+    ($p = 8.75 \times 10^{-9}$), robust to HAC correction. The Granger test conditions
+    on lagged SMB, so the HML coefficient reflects \emph{incremental cross-factor}
+    predictive content beyond SMB's own history---not a within-SMB autocorrelation artifact.
     \item \textbf{Elevated (suggestive):} HML$\to$SMB is directional at
     conventional levels ($p = 0.004$) but does not pass the paper's
     multiple-testing threshold.
@@ -679,6 +685,8 @@ factor-level Granger tests are not significant in the leakage-safe fit.
 
 \textbf{Alternative explanations we cannot rule out:}
 \begin{itemize}
+    \item Differential price delay~\cite{hou2005market} between value and size constituents
+    could generate mechanical daily cross-autocorrelation independent of any economic channel
     \item A common driver (e.g., funding liquidity) affects both factors with different lags
     \item Information about distress propagates through markets, reaching Value-sensitive
     investors before Size-sensitive investors
@@ -798,7 +806,7 @@ pattern holds during six documented stress episodes.
 
 \begin{table}[t]
 \centering
-\caption{Event-Based Consistency Checks. Windows: 2008 Financial Jul~'08--Jun~'09,
+\caption{Event-Based Consistency Checks (full-sample primary fit regime assignments). Windows: 2008 Financial Jul~'08--Jun~'09,
 2011 EU Debt Jul--Oct~2011, 2015 China Aug--Oct~2015, 2018 Vol~Shock Feb~2018,
 2020 COVID Feb--Apr~2020 (83 Crisis-classified days), 2022 Rate~Hikes Jan--Dec~2022.
 Expected pattern: HML $\to$ SMB significant during Crisis.
@@ -1208,7 +1216,7 @@ regime windows $(w_0, w_1, w_2)$
   \STATE Compute filtered regime: $\hat{z}_t \gets \arg\max_k P(z_t=k \mid \mathbf{x}_{1:t})$
   \STATE Compute 20-day realized vol: $\hat{\sigma}_t \gets \text{std}(\|\mathbf{x}\|_{t-19:t})$
   \IF{$\hat{z}_t \neq \text{Crisis}$ \AND $\hat{\sigma}_t > \sigma_{95}$}
-    \STATE $\hat{z}_t \gets \text{Crisis}$ \COMMENT{Volatility override}
+    \STATE $\hat{z}_t \gets \text{Crisis (Stress Alert)}$ \COMMENT{Volatility override; uses sensitivity fit (seed~42)}
   \ENDIF
   \STATE Set VaR window: $w \gets w_{\hat{z}_t}$
   \STATE Compute base VaR: $\text{VaR}_t \gets Q_{0.05}(\text{SMB}_{t-w:t-1})$
@@ -1438,6 +1446,12 @@ The finding is qualitatively consistent across classification methods.
     optima (covering 41 of 50 seeds); the 9 null seeds share the lowest of three
     local optima, so robustness holds across distinct HMM solutions. The in-sample result ($p =
     8.75 \times 10^{-9}$, all-seed robust) remains the higher-powered characterization.
+    Additionally, regime \emph{semantic drift} is a concern: a classifier trained on
+    1990--2012 (64.8\% Crisis) and applied frozen to 2013--2024 (45.3\% Crisis,
+    30.7\% Elevated) may use the Elevated label to capture conditions that, in-sample,
+    fell in Normal. The directional finding---HML predicts SMB in stress-adjacent conditions---is
+    consistent across the in-sample (Normal) and OOS (Elevated) results, but these regime
+    labels may not map to identical economic states.
 
     \item \textbf{Regime boundary exclusion and sample size.} Boundary cleaning
     (1--15 lags excluded per table) reduces effective samples. Crisis contains

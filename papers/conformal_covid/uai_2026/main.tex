@@ -69,7 +69,7 @@ Our contributions:
 
 \section{Related Work}\label{sec:related}
 
-\textbf{Conformal Prediction.} \citet{vovk2005algorithmic} introduced conformal prediction with exchangeability guarantees; \citet{shafer2008tutorial} provide an accessible tutorial. Recent work extends to classification~\citep{romano2020classification,cauchois2021knowing} and regression~\citep{romano2019conformalized,lei2018distribution}. \citet{angelopoulos2021gentle} provide a comprehensive survey. \citet{ding2023class} show that class-conditional coverage guarantees become harder to achieve as class count grows and propose clustered conformal prediction as a remedy; \citet{gibbs2025conditional} provide finite-sample conditional guarantees via covariate-shift reformulation. Both works frame class count as a challenge---a confound we explicitly examine via partial correlation analysis (Section~\ref{sec:baselines}).
+\textbf{Conformal Prediction.} \citet{vovk2005algorithmic} introduced conformal prediction with exchangeability guarantees; \citet{shafer2008tutorial} provide an accessible tutorial. Recent work extends to classification~\citep{romano2020classification,cauchois2021knowing} and regression~\citep{romano2019conformalized,lei2018distribution}. \citet{angelopoulos2021gentle} provide a comprehensive survey. \citet{ding2023class} show that class-conditional coverage guarantees become harder to achieve as class count grows and propose clustered conformal prediction as a remedy; \citet{gibbs2025conditional} provide finite-sample conditional guarantees via a quantile-regression calibration framework interpolating between marginal and conditional validity. Both works frame class count as a challenge---a confound we explicitly examine via partial correlation analysis (Section~\ref{sec:baselines}).
 
 \textbf{Conformal Prediction Under Shift.} \citet{tibshirani2019conformal} study covariate shift with known propensity scores. \citet{podkopaev2021distribution} develop distribution-free uncertainty quantification for classification under label shift. \citet{barber2023conformal} provide a comprehensive treatment beyond exchangeability, bounding coverage loss by the total variation distance between test and calibration score distributions. \citet{kasa2023empirically} empirically characterize how CP degrades across many vision architectures and shift types, showing substantial degradation is common---our work addresses the complementary question of which tabular models will fail \textit{before} test data is observed. We complement these theoretical characterizations with an empirical diagnostic that is associated with this distributional divergence---and hence with which tasks fail---before deployment.
 
@@ -426,7 +426,7 @@ Table~\ref{tab:external_datasets} documents the train/test split, shift mechanis
 \toprule
 Dataset & Shift mechanism & $K$ & $n_\text{tr}$ & $n_\text{te}$ & Source \\
 \midrule
-Covertype       & Geographic: wilderness area 1 (train) vs.\ areas 2--4 (test) & 7 & 11,340 & 565,892 & \citep{dua2017uci} \\
+Covertype       & Geographic: areas 1--2 (train), area 3 (val/cal), area 4 (test) & 7 & 290,680 & 36,968 & \citep{dua2017uci} \\
 Gas Sensor      & Temporal batch drift: batches 1--6 (train), 7--8 (cal), 9--10 (test) & 6 & 8,760 & 2,780 & \citep{dua2017uci} \\
 KDDCup99        & Attack-type distribution shift; KDD Cup 1999 competition 10\% subset (\texttt{kddcup.data\_10\_percent}), official train/test files & 11 & 394,021 & 98,521 & \citep{dua2017uci} \\
 Shuttle         & UCI Statlog pre-defined split & 7 & 43,500 & 14,500 & \citep{dua2017uci} \\
@@ -441,7 +441,7 @@ Stack Overflow  & Category shift (3-class subset); excluded from $n=16$ primary 
 
 \raggedright
 \footnotesize
-For Covertype, train uses wilderness area 1 only; test uses all remaining areas. For Gas Sensor, each batch contains $\sim$1{,}000 samples across 6 gas types; temporal sensor drift is the documented shift mechanism. For KDDCup99, classes are the 11 attack categories present in the 10\% subset; the standard KDD Cup 1999 train/test split is used. For UCI pre-defined split datasets (Shuttle, Avila, PAMAP2, Pendigits, Satimage), the official UCI train and test partitions are used directly; the shift type is inherent in the benchmark partition and not separately documented in the UCI repository. SHAP concentration and conformal calibration use the UCI train partition only.
+For Covertype, train uses wilderness areas 1--2 (Spruce-Fir and Lodgepole Pine); conformal calibration uses area 3 (Ponderosa Pine); test uses area 4 (Cottonwood/Willow). For Gas Sensor, each batch contains $\sim$1{,}000 samples across 6 gas types; temporal sensor drift is the documented shift mechanism. For KDDCup99, classes are the 11 attack categories present in the 10\% subset; the standard KDD Cup 1999 train/test split is used. For UCI pre-defined split datasets (Shuttle, Avila, PAMAP2, Pendigits, Satimage), the official UCI train and test partitions are used directly; the shift type is inherent in the benchmark partition and not separately documented in the UCI repository. SHAP concentration and conformal calibration use the UCI train partition only.
 \end{table}
 
 \section{Placebo Test Details}\label{app:placebo}

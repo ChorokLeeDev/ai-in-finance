@@ -246,7 +246,7 @@ Drop = mean val $-$ mean test coverage (50 seeds).
 
 \subsection{SHAP Concentration Correlates with Failure}\label{sec:shap_results}
 
-Across all 8 SALT multiclass tasks, SHAP concentration correlates with coverage degradation: Spearman $\rho = 0.833$, $p = 0.010$ (Table~\ref{tab:stratified_correlation}, Figure~\ref{fig:n16_correlation}). Bootstrap 95\% CI: $[0.29, 1.00]$ (10,000 resamples, percentile method; BCa would yield a modestly tighter lower bound at $n=8$ but does not change the qualitative conclusion). The correlation magnitude is stable under leave-one-out analysis ($\rho \in [0.75, 0.96]$), though statistical significance is not maintained for 2 of 8 jackknife samples ($p = 0.052$) due to reduced power at $n=7$. SHAP concentration values are highly stable: bootstrap resampling (1,000 resamples of 10K validation samples) yields coefficient of variation below 1\% for all tasks, with 95\% CIs within $\pm$1 percentage point.
+Across all 8 SALT multiclass tasks, SHAP concentration correlates with coverage degradation: Spearman $\rho = 0.833$, $p = 0.010$ (Table~\ref{tab:stratified_correlation}, Figure~\ref{fig:n16_correlation}). Bootstrap 95\% CI: $[0.30, 1.00]$ (10,000 resamples, percentile method; BCa would yield a modestly tighter lower bound at $n=8$ but does not change the qualitative conclusion). The correlation magnitude is stable under leave-one-out analysis ($\rho \in [0.75, 0.96]$), though statistical significance is not maintained for 2 of 8 jackknife samples ($p = 0.052$) due to reduced power at $n=7$. SHAP concentration values are highly stable: bootstrap resampling (1,000 resamples of 10K validation samples) yields coefficient of variation below 1\% for all tasks, with 95\% CIs within $\pm$1 percentage point.
 
 \textbf{Mechanism.} Figure~\ref{fig:shap} reveals the distinction. Catastrophic tasks: the dominant feature experiences a concentrated importance explosion (4.5$\times$ increase). Robust tasks: importance redistributes across features with ranking reshuffle (10--20$\times$ increases distributed). This matches the prediction of Theorem~\ref{thm:score_inflation}.
 
@@ -266,7 +266,7 @@ Across all 8 SALT multiclass tasks, SHAP concentration correlates with coverage 
 \toprule
 Group & $n$ & $\rho$ & Kendall $\tau$ & $p$($\rho$) & Boot.\ 95\% CI \\
 \midrule
-Multiclass (SALT)    & 8 & 0.833 & 0.714 & 0.010 & $[0.29, 1.00]$ \\
+Multiclass (SALT)    & 8 & 0.833 & 0.714 & 0.010 & $[0.30, 1.00]$ \\
 Multiclass (4 dom.) & 11 & 0.909$^\dagger$ & 0.782 & $<$0.001 & $[0.61, 1.00]$ \\
 Multiclass (8 dom.) & 15 & 0.882$^\ddagger$ & 0.714 & $<$0.001 & $[0.60, 0.97]$ \\
 \textbf{Multiclass (9 dom.)} & \textbf{16} & \textbf{0.853} & \textbf{0.667} & $<$\textbf{0.001} & $\mathbf{[0.50, 0.96]}$ \\
@@ -337,7 +337,7 @@ ACI~\citep{gibbs2021adaptive} recovers marginal coverage on severe tasks (+47.5~
 
 \subsection{Alternative Conformal Scoring}\label{sec:raps}
 
-RAPS~\citep{angelopoulos2021uncertainty} shows mechanism-dependent benefit: substantially reduces drops for high-cardinality tasks (s-group: $73.5\%\rightarrow10.4\%$; s-payterms: $79.9\%\rightarrow35.1\%$) but not the most concentrated task (s-shipcond: $60.4\%\rightarrow67.8\%$). This matches Section~\ref{sec:theory}: regularization controls class-accumulation effects, not concentrated single-feature dependence (Appendix~\ref{app:raps}; RAPS used random 50/50 calibration splits vs.\ deterministic main-experiment splits---within-experiment comparisons are unaffected).
+Regularized Adaptive Prediction Sets (RAPS)~\citep{angelopoulos2021uncertainty} shows mechanism-dependent benefit: substantially reduces drops for high-cardinality tasks (s-group: $73.5\%\rightarrow10.4\%$; s-payterms: $79.9\%\rightarrow35.1\%$) but not the most concentrated task (s-shipcond: $60.4\%\rightarrow67.8\%$). This matches Section~\ref{sec:theory}: regularization controls class-accumulation effects, not concentrated single-feature dependence (Appendix~\ref{app:raps}; RAPS used random 50/50 calibration splits vs.\ deterministic main-experiment splits---within-experiment comparisons are unaffected).
 
 \subsection{Comparison with Standard Shift Detection}\label{sec:shift_detection}
 
@@ -394,7 +394,7 @@ Catastrophic tasks become \textit{confidently wrong}---prediction sets shrink (r
 
 \subsection{LightGBM Hyperparameters}
 
-All models trained with fixed LightGBM settings: objective=multiclass, boosting=gbdt, num\_leaves=31, learning\_rate=0.05, feature\_fraction=0.8, bagging\_fraction=0.8, bagging\_freq=5, num\_boost\_round=500, early\_stopping\_rounds=50, seeds 42--91 (50 seeds). No task-specific tuning was performed.
+All models trained with fixed LightGBM~\citep{ke2017lightgbm} settings: objective=multiclass, boosting=gbdt, num\_leaves=31, learning\_rate=0.05, feature\_fraction=0.8, bagging\_fraction=0.8, bagging\_freq=5, num\_boost\_round=500, early\_stopping\_rounds=50, seeds 42--91 (50 seeds). No task-specific tuning was performed.
 
 \subsection{Conformal Prediction}
 

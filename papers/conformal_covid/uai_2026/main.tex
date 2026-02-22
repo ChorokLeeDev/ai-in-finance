@@ -37,7 +37,7 @@
 \maketitle
 
 \begin{abstract}
-Conformal prediction provides distribution-free coverage guarantees, but these degrade under distribution shift---and practitioners lack tools to anticipate \textit{which} deployed gradient-boosted models will fail before deployment.
+Conformal prediction provides distribution-free coverage guarantees, but these degrade under distribution shift---and practitioners lack tools to anticipate \textit{which} gradient-boosted models will fail before observing test data.
 We propose SHAP concentration---the fraction of feature importance concentrated
 in the top feature---as a \textbf{pre-deployment diagnostic} for conformal
 prediction vulnerability. Using COVID-19 as a case study across 8
@@ -69,7 +69,7 @@ Our contributions:
 
 \section{Related Work}\label{sec:related}
 
-\textbf{Conformal Prediction.} \citet{vovk2005algorithmic} introduced conformal prediction with exchangeability guarantees; \citet{shafer2008tutorial} provide an accessible tutorial. Recent work extends to classification~\citep{romano2020classification,cauchois2021knowing} and regression~\citep{romano2019conformalized,lei2018distribution}. \citet{angelopoulos2023gentle} provide a comprehensive survey. \citet{ding2023class} show that class-conditional coverage guarantees become harder to achieve as class count grows and propose clustered conformal prediction as a remedy; \citet{gibbs2025conditional} provide finite-sample conditional guarantees via a quantile-regression calibration framework interpolating between marginal and conditional validity. Both works frame class count as a challenge---a confound we explicitly examine via partial correlation analysis (Section~\ref{sec:baselines}).
+\textbf{Conformal Prediction.} \citet{vovk2005algorithmic} introduced conformal prediction with exchangeability guarantees; \citet{shafer2008tutorial} provide an accessible tutorial. Recent work extends to classification~\citep{romano2020classification,cauchois2021knowing} and regression~\citep{romano2019conformalized,lei2018distribution}. \citet{angelopoulos2023gentle} provide a comprehensive survey. \citet{ding2023class} show that class-conditional coverage guarantees become harder to achieve as class count grows and propose clustered conformal prediction as a remedy; \citet{gibbs2025conditional} provide finite-sample conditional guarantees via a covariate-shift reweighting framework interpolating between marginal and conditional validity. Both works frame class count as a challenge---a confound we explicitly examine via partial correlation analysis (Section~\ref{sec:baselines}).
 
 \textbf{Conformal Prediction Under Shift.} \citet{tibshirani2019conformal} study covariate shift with known propensity scores. \citet{podkopaev2021distribution} develop distribution-free uncertainty quantification for classification under label shift. \citet{barber2023conformal} provide a comprehensive treatment beyond exchangeability, bounding coverage loss by the total variation distance between test and calibration score distributions. \citet{kasa2023empirically} empirically characterize how CP degrades across many vision architectures and shift types, showing substantial degradation is common---our work addresses the complementary question of which tabular models will fail \textit{before} test data is observed. We complement these theoretical characterizations with an empirical diagnostic that is associated with this distributional divergence---and hence with which tasks fail---before deployment.
 
@@ -84,7 +84,7 @@ Our contributions:
 \subsection{Dataset and Temporal Splits}
 
 We use the SALT (Supply chain ALlocaTion) dataset from RelBench~\citep{fey2024relbench}, a supply chain benchmark with temporal splits. All 8 classification tasks from the rel-salt benchmark are included; no tasks were excluded.
-External validation uses 9 additional datasets spanning 9 non-supply-chain benchmarks. The primary endpoint includes only $K \geq 4$ class tasks: near-binary tasks ($K \leq 3$) are excluded because binary APS prediction sets ($\{0\}$, $\{1\}$, $\{0,1\}$) have a structural ceiling that blocks the concentration mechanism (Contribution~5); this criterion follows from APS mechanics, not from the data. Stack~Overflow ($K=3$) falls under this exclusion. Applying it yields 8 external multiclass datasets; together with the 8 multiclass SALT tasks this gives the primary endpoint of $n=16$ multiclass tasks across 9 domains (SALT counts as one domain).
+External validation uses 9 additional datasets spanning 9 non-supply-chain benchmarks. The primary endpoint includes only $K \geq 4$ class tasks: near-binary tasks ($K \leq 3$) are excluded because binary APS prediction sets ($\{0\}$, $\{1\}$, $\{0,1\}$) have a structural ceiling that blocks the concentration mechanism (Contribution~1); this criterion follows from APS mechanics, not from the data. Stack~Overflow ($K=3$) falls under this exclusion. Applying it yields 8 external multiclass datasets; together with the 8 multiclass SALT tasks this gives the primary endpoint of $n=16$ multiclass tasks across 9 domains (SALT counts as one domain).
 \begin{itemize}
     \item \textbf{Train}: Before February 2020 (pre-COVID)
     \item \textbf{Validation}: February--July 2020 (COVID onset)
@@ -199,10 +199,10 @@ Despite experiencing identical COVID-19 temporal shift, the 8 supply chain tasks
 Task & Cl & Val Coverage [95\% CI] & Test Coverage [95\% CI] & Drop [95\% CI] & $p$ & Cat \\
 \midrule
 s-shipcond & 45 & 93.5 [93.2, 93.7] & 21.8 [14.1, 29.6] & 71.6 [63.9, 79.4] & $<$0.001 & SEV \\
-s-group & 462 & 83.6 [81.7, 85.5] & 12.4 [3.1, 21.7] & 71.2 [61.3, 81.0] & $<$0.001 & SEV$^*$ \\
-s-payterms & 135 & 90.8 [90.7, 91.0] & 13.7 [6.0, 21.5] & 77.1 [69.4, 84.9] & $<$0.001 & SEV \\
+s-group & 459 & 83.6 [81.7, 85.5] & 12.4 [3.1, 21.7] & 71.2 [61.3, 81.0] & $<$0.001 & SEV$^*$ \\
+s-payterms & 137 & 90.8 [90.7, 91.0] & 13.7 [6.0, 21.5] & 77.1 [69.4, 84.9] & $<$0.001 & SEV \\
 i-plant & 35 & 92.0 [91.7, 92.3] & 81.4 [79.0, 83.8] & 10.6 [8.2, 13.0] & $<$0.001 & ROB \\
-i-shippoint & 70 & 91.2 [90.9, 91.4] & 72.7 [62.3, 83.0] & 18.5 [8.2, 28.8] & 0.005 & ROB$^{*\dagger}$ \\
+i-shippoint & 69 & 91.2 [90.9, 91.4] & 72.7 [62.3, 83.0] & 18.5 [8.2, 28.8] & 0.005 & ROB$^{*\dagger}$ \\
 s-incoterms & 13 & 95.5 [95.3, 95.7] & 87.0 [84.7, 89.3] & 8.5 [6.2, 10.8] & $<$0.001 & ROB \\
 i-incoterms & 13 & 95.0 [94.9, 95.2] & 83.7 [80.9, 86.6] & 11.3 [8.5, 14.1] & $<$0.001 & ROB \\
 s-office & 25 & 99.9 [99.9, 100.0] & 99.9 [99.9, 99.9] & 0.1 [0.0, 0.1] & $<$0.001 & ROB \\
@@ -299,9 +299,9 @@ $^\S$Combined row includes all 17 tasks (8 SALT + 9 external, 10 domains: SALT $
 
 We compare SHAP concentration against two alternative pre-deployment diagnostics that require no test data (Table~\ref{tab:diagnostic_comparison}).
 
-\textbf{Native feature importance concentration}: top-1 LightGBM gain divided by total gain (zero SHAP cost, single seed). Achieves $\rho = 0.667$ ($p = 0.071$)---directionally correct but not significant at $\alpha = 0.05$. The weaker discrimination arises because native gain conflates feature cardinality with predictive importance: sales-office shows 66.1\% native concentration (vs.\ 42.6\% SHAP) despite near-zero coverage drop.
+\textbf{Native feature importance concentration}: top-1 LightGBM gain divided by total gain (zero SHAP cost, single seed; seed=42). Achieves $\rho = 0.667$ ($p = 0.071$)---directionally correct but not significant at $\alpha = 0.05$. The weaker discrimination arises because native gain conflates feature cardinality with predictive importance: sales-office shows 66.1\% native concentration (vs.\ 42.6\% SHAP) despite near-zero coverage drop.
 
-\textbf{Ensemble disagreement}: standard deviation of validation coverage across 50 seeds (seed 42). Achieves $\rho = 0.452$ ($p = 0.260$). Disagreement captures model instability but not the feature-level mechanism driving conformal failure.
+\textbf{Ensemble disagreement}: standard deviation of validation coverage across 50 seeds. Achieves $\rho = 0.452$ ($p = 0.260$). Disagreement captures model instability but not the feature-level mechanism driving conformal failure.
 
 \textbf{Class cardinality as confound.} Within SALT, $\log(\text{num\_classes})$ alone correlates with coverage drop ($\rho = 0.743$, $p = 0.035$), and both partial correlations are non-significant at $n=8$ ($\rho_{\text{partial}} = 0.629$, $p = 0.131$ for concentration; $0.334$, $p = 0.464$ for cardinality; Table~\ref{tab:diagnostic_comparison}). This non-significance is expected at $n=8$---within-SALT the two predictors are correlated and power is insufficient for causal separation. Cross-domain evidence provides complementary support: Covertype (7 classes, $C=49.8\%$) fails catastrophically, while higher-cardinality low-concentration datasets such as Avila (12 classes, $C=20.5\%$), PAMAP2 (12, $19.2\%$), and Pendigits (10, $14.5\%$) remain robust---showing that high class count alone does not predict failure. KDDCup99 (11, $21.1\%$) is a seed-dependent intermediate case rather than a clean robust counterexample. At $n=16$ (8 SALT + 8 external multiclass tasks), the partial Spearman controlling for $\log K$ yields $\rho_{\text{partial}}(\text{conc.}) = 0.771$ ($p = 0.0008$) while $\rho_{\text{partial}}(\log K) = -0.010$ ($p = 0.97$), providing strong cross-domain evidence that concentration drives the severity association independently of class count.
 
@@ -333,7 +333,7 @@ Both metrics can detect shift \textit{after} test data is observed, but neither 
 
 \subsection{Adaptive Conformal Inference Across All Tasks}
 
-ACI~\citep{gibbs2021adaptive} recovers marginal coverage on severe tasks (+47.5~pp on s-shipcond, +71.8~pp on s-group, +60.0~pp on s-payterms) but inflates prediction sets; only s-shipcond remains deployable post-adaptation (usable-set rate 30\%: sets $\approx$30\% of $K$=45 classes; s-group inflates to 74--89\% of 462). Robust tasks show minimal benefit. ACI can recover coverage but often sacrifices informativeness in the highest-risk regimes.
+ACI~\citep{gibbs2021adaptive} recovers marginal coverage on severe tasks (+47.5~pp on s-shipcond, +71.8~pp on s-group, +60.0~pp on s-payterms) but inflates prediction sets; only s-shipcond remains deployable post-adaptation (usable-set rate 30\%: sets $\approx$30\% of $K$=45 classes; s-group inflates to 74--89\% of 459). Robust tasks show minimal benefit. ACI can recover coverage but often sacrifices informativeness in the highest-risk regimes.
 
 \subsection{Alternative Conformal Scoring}\label{sec:raps}
 
@@ -365,7 +365,7 @@ This exploratory protocol guides practitioners deploying conformal prediction un
     \item \textbf{Monitor} empirical coverage continuously; defer retraining for lower-risk tasks.
 \end{enumerate}
 
-\section{Conclusion}\label{sec:conclusion}\label{sec:discussion}
+\section{Conclusion}\label{sec:conclusion}
 
 Catastrophic tasks become \textit{confidently wrong}---prediction sets shrink (rightward score shift, Appendix~\ref{app:ks}) while coverage collapses, driven by concentrated OOD-feature dependence that generic shift detectors cannot distinguish from robust outcomes. SHAP concentration provides a pre-deployment signal: $\rho=0.853$ ($p<0.001$) across 16 multiclass tasks vs.\ $\rho \leq 0.19$ for MMD/C2ST. Mitigation is mechanism-dependent (RAPS helps class-accumulation failures; retraining/ACI recover coverage). The 40\% threshold is exploratory ($n=8$ SALT tasks) and requires prospective validation beyond boosting models.
 
@@ -422,26 +422,26 @@ Table~\ref{tab:external_datasets} documents the train/test split, shift mechanis
 \centering
 \caption{External Dataset Protocols. Cal = calibration set (50\% of train); $n_\text{tr}$, $n_\text{te}$ = approximate train/test sizes used; Seeds = 10 for all external datasets.}\label{tab:external_datasets}
 \small
-\begin{tabular}{@{}llcllc@{}}
+\begin{tabular}{@{}lp{5.5cm}cllc@{}}
 \toprule
 Dataset & Shift mechanism & $K$ & $n_\text{tr}$ & $n_\text{te}$ & Source \\
 \midrule
 Covertype       & Geographic: areas 1--2 (train), area 3 (val/cal), area 4 (test) & 7 & 290,680 & 36,968 & \citep{dua2017uci} \\
-Gas Sensor      & Temporal batch drift: batches 1--6 (train), 7--8 (cal), 9--10 (test) & 6 & 8,760 & 2,780 & \citep{dua2017uci} \\
-KDDCup99        & Attack-type distribution shift; KDD Cup 1999 competition 10\% subset (\texttt{kddcup.data\_10\_percent}), official train/test files & 11 & 394,021 & 98,521 & \citep{dua2017uci} \\
-Shuttle         & UCI Statlog pre-defined split & 7 & 43,500 & 14,500 & \citep{dua2017uci} \\
-Avila Bible     & UCI pre-defined split (copyist identification) & 12 & 10,430 & 3,646 & \citep{dua2017uci} \\
-PAMAP2          & UCI pre-defined split (physical activity, sensor data) & 12 & 233,000 & 58,000 & \citep{dua2017uci} \\
+Gas Sensor      & Temporal batch drift: batches 1--6 (train), 7--8 (cal), 9--10 (test) & 6 & 9,840 & 4,070 & \citep{dua2017uci} \\
+KDDCup99        & Attack-type distribution shift; KDD Cup 1999 competition 10\% subset (\texttt{kddcup.data\_10\_percent}), official train/test files & 11 & 395,073 & 98,769 & \citep{dua2017uci} \\
+Shuttle         & UCI Statlog; 60/20/20 split & 7 & 46,400 & 11,600 & \citep{dua2017uci} \\
+Avila Bible     & Copyist identification; 50/50 split & 12 & 10,430 & 10,437 & \citep{dua2017uci} \\
+PAMAP2          & Physical activity; subject-based split & 12 & 1,674,379 & 268,493 & \citep{dua2017uci} \\
 Pendigits       & UCI pre-defined split (pen-based digit recognition) & 10 & 7,494 & 3,498 & \citep{dua2017uci} \\
-Satimage        & UCI pre-defined split (satellite image classification) & 6 & 4,435 & 2,000 & \citep{dua2017uci} \\
-Stack Overflow  & Category shift (3-class subset); excluded from $n=16$ primary endpoint (near-binary ceiling effect) & 3 & 45,000 & 15,000 & \citep{dua2017uci} \\
+Satimage        & 60/20/20 random split (satellite image classification) & 6 & 5,144 & 1,286 & \citep{dua2017uci} \\
+Stack Overflow  & Category shift (3-class subset); excluded from $n=16$ primary endpoint (near-binary ceiling effect) & 3 & 65,105 & 127,370 & \citep{dua2017uci} \\
 \bottomrule
 \end{tabular}
 \vspace{1mm}
 
 \raggedright
 \footnotesize
-For Covertype, train uses wilderness areas 1--2 (Spruce-Fir and Lodgepole Pine); conformal calibration uses area 3 (Ponderosa Pine); test uses area 4 (Cottonwood/Willow). For Gas Sensor, each batch contains $\sim$1{,}000 samples across 6 gas types; temporal sensor drift is the documented shift mechanism. For KDDCup99, classes are the 11 attack categories present in the 10\% subset; the standard KDD Cup 1999 train/test split is used. For UCI pre-defined split datasets (Shuttle, Avila, PAMAP2, Pendigits, Satimage), the official UCI train and test partitions are used directly; the shift type is inherent in the benchmark partition and not separately documented in the UCI repository. SHAP concentration and conformal calibration use the UCI train partition only.
+For Covertype, train uses wilderness areas 1--2 (Spruce-Fir and Lodgepole Pine); conformal calibration uses area 3 (Ponderosa Pine); test uses area 4 (Cottonwood/Willow). For Gas Sensor, each batch contains $\sim$1{,}000 samples across 6 gas types; temporal sensor drift is the documented shift mechanism; $n_\text{tr}$ is batches 1--8 (train + conformal cal); $n_\text{te}$ is batches 9--10. For KDDCup99, classes are the 11 attack categories present in the 10\% subset; the official train file ($\sim$395K) is split 75/25 into LightGBM training and conformal calibration; $n_\text{tr}$ reports total official training file; $n_\text{te}$ is the official test file. For Pendigits, the official UCI train partition (7,494) is split 80/20 into LightGBM training and conformal calibration. For Shuttle, Avila, Satimage, and Stack~Overflow, the full dataset is split 60/20/20 into LightGBM train/conformal cal/test; $n_\text{tr}$ = train+cal pool. For PAMAP2, a subject-based protocol yields a large training pool ($\sim$1.67M samples); $n_\text{tr}$ = LightGBM train + conformal cal combined. SHAP concentration is computed on the conformal calibration partition (validation data) only.
 \end{table}
 
 \section{Placebo Test Details}\label{app:placebo}
@@ -567,8 +567,8 @@ s-group & SEV & 47.3\% & $-$1.274 & +0.176 \\
 s-payterms & SEV & 54.2\% & $-$1.979 & +0.629 \\
 \midrule
 \multicolumn{5}{l}{\textit{Robust tasks}} \\
-i-plant & ROB & 23.9\% & +0.181 & +0.1314 \\
-i-shippoint & ROB & 48.8\% & +0.469 & +0.0727 \\
+i-plant & ROB & 23.9\% & +0.181 & +0.131 \\
+i-shippoint & ROB & 48.8\% & +0.469 & +0.073 \\
 s-incoterms & ROB & 23.7\% & +0.364 & +0.350 \\
 s-office & ROB & 42.6\% & +0.032 & +0.104 \\
 \bottomrule
@@ -672,12 +672,12 @@ Task & Cl & APS Drop & RAPS Drop & $\Delta$ & Note \\
 \midrule
 \multicolumn{6}{l}{\textit{Severe tasks}} \\
 s-shipcond & 45 & $60.4\pm31.8$ & $67.8\pm25.4$ & +7.4 & No improvement \\
-s-group & 462 & $73.5\pm33.9$ & $10.4\pm1.3$ & $-$63.1 & RAPS protects \\
-s-payterms & 135 & $79.9\pm29.4$ & $35.1\pm28.6$ & $-$44.8 & Partial recovery \\
+s-group & 459 & $73.5\pm33.9$ & $10.4\pm1.3$ & $-$63.1 & RAPS protects \\
+s-payterms & 137 & $79.9\pm29.4$ & $35.1\pm28.6$ & $-$44.8 & Partial recovery \\
 \midrule
 \multicolumn{6}{l}{\textit{Non-severe tasks}} \\
 i-plant & 35 & $11.8\pm9.0$ & $13.1\pm5.8$ & +1.3 & Near-identical \\
-i-shippoint & 70 & $9.3\pm27.6$ & $20.5\pm21.6$ & +11.2 & RAPS worse \\
+i-shippoint & 69 & $9.3\pm27.6$ & $20.5\pm21.6$ & +11.2 & RAPS worse \\
 i-incoterms & 13 & $10.8\pm9.1$ & $10.8\pm9.1$ & 0.0 & Identical \\
 s-incoterms & 13 & $6.7\pm6.8$ & $6.7\pm6.8$ & 0.0 & Identical \\
 s-office & 25 & $0.04\pm0.03$ & $0.04\pm0.03$ & 0.0 & Identical \\
@@ -687,7 +687,7 @@ s-office & 25 & $0.04\pm0.03$ & $0.04\pm0.03$ & 0.0 & Identical \\
 
 \raggedright
 \footnotesize
-All values are 10-seed means $\pm$ std. APS drops differ from 50-seed Table~\ref{tab:main_results} due to smaller seed range (10 vs.\ 50) and high variance. The key comparison is APS vs.\ RAPS within the same seed set. Note: RAPS experiments used a random 50/50 calibration split rather than the deterministic first-half/second-half split used in the main APS experiments (Appendix~\ref{app:reproducibility}); this protocol difference does not affect the within-experiment APS vs.\ RAPS comparison but means RAPS coverage values are not directly comparable to Table~\ref{tab:main_results}. RAPS eliminates the catastrophic drop for sales-group by truncating the class accumulation that amplifies score inflation in many-class settings (mean set size: 232/462 classes). Sales-shipcond is unhelped because single-feature dependence places dominant mass on the wrong class \textit{before} the $k_{\text{reg}}=5$ penalty activates---the exchangeability violation occurs at the top of the APS ordering, not through class accumulation. For low-class tasks ($\leq$35 classes), RAPS and APS produce identical or near-identical drops, confirming RAPS regularization has negligible effect when prediction sets are already small. Item-shippoint ($K=70$) is an exception: RAPS worsens coverage by 11.2~pp (paired Wilcoxon $p=0.064$, 10 seeds), reflecting that the regularization penalty can disrupt calibration for intermediate-cardinality tasks with high seed variance.
+All values are 10-seed means $\pm$ std. APS drops differ from 50-seed Table~\ref{tab:main_results} due to smaller seed range (10 vs.\ 50) and high variance. The key comparison is APS vs.\ RAPS within the same seed set. Note: RAPS experiments used a random 50/50 calibration split rather than the deterministic first-half/second-half split used in the main APS experiments (Appendix~\ref{app:reproducibility}); this protocol difference does not affect the within-experiment APS vs.\ RAPS comparison but means RAPS coverage values are not directly comparable to Table~\ref{tab:main_results}. RAPS eliminates the catastrophic drop for sales-group by truncating the class accumulation that amplifies score inflation in many-class settings (mean set size: 232/459 classes). Sales-shipcond is unhelped because single-feature dependence places dominant mass on the wrong class \textit{before} the $k_{\text{reg}}=5$ penalty activates---the exchangeability violation occurs at the top of the APS ordering, not through class accumulation. For low-class tasks ($\leq$35 classes), RAPS and APS produce identical or near-identical drops, confirming RAPS regularization has negligible effect when prediction sets are already small. Item-shippoint ($K=69$) is an exception: RAPS worsens coverage by 11.2~pp (paired Wilcoxon $p=0.064$, 10 seeds), reflecting that the regularization penalty can disrupt calibration for intermediate-cardinality tasks with high seed variance.
 \end{table}
 
 \section{Model Class Sensitivity}\label{app:rf}

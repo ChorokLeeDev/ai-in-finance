@@ -137,7 +137,8 @@ Using a frozen OOS design (HMM trained on 1990--2012, Granger tested on
 circularity (not Bonferroni-significant across 30 pairs; economically motivated pair):
 \begin{itemize}
     \item \emph{Elevated (OOS, $n = 836$):} $p = 0.014$, HAC $p = 0.041$ (Newey--West, bandwidth~1),
-    $\Delta R^2 = 0.73\%$ (lag 1, pre-fixed from in-sample BIC).
+    $\Delta R^2 = 0.73\%$ (lag 1, pre-fixed from in-sample BIC); permutation $p = 0.031$
+    (1{,}000 label shuffles preserving regime counts~\cite{good2005permutation}).
     \item \emph{Normal (OOS):} $p = 0.149$ (null).
     \item \emph{Crisis (OOS):} $p = 0.281$ (null).
 \end{itemize}
@@ -174,7 +175,7 @@ violation rate ($p_{\text{CC}} = 0.336$)---the best among all specifications
 \begin{enumerate}
     \item \textbf{Empirical (circularity-free):} Suggestive OOS evidence for HML$\to$SMB in
     the Elevated regime (frozen design, 2013--2024, $n = 836$): $p = 0.014$,
-    HAC $p = 0.041$; not Bonferroni-significant across 30 pairs;
+    HAC $p = 0.041$, permutation $p = 0.031$; not Bonferroni-significant across 30 pairs;
     Normal and Crisis null. In-sample analysis (1990--2024)
     corroborates with higher power ($p = 8.75 \times 10^{-9}$, Normal regime,
     Bonferroni-significant)
@@ -1515,9 +1516,12 @@ The finding is qualitatively consistent across classification methods.
     Additionally, regime \emph{semantic drift} is a concern: a classifier trained on
     1990--2012 (64.8\% Crisis) and applied frozen to 2013--2024 (45.3\% Crisis,
     30.7\% Elevated) may use the Elevated label to capture conditions that, in-sample,
-    fell in Normal. The directional finding---HML predicts SMB in stress-adjacent conditions---is
-    consistent across the in-sample (Normal) and OOS (Elevated) results, but these regime
-    labels may not map to identical economic states.
+    fell in Normal. We directly test this via three-statistic distributional comparison (KS,
+    Levene, $t$-test) of HML returns: Training Normal vs.\ OOS Elevated differs significantly
+    on 2/3 tests (KS $p = 4.5\times10^{-29}$, Levene $p = 3.7\times10^{-175}$), while
+    Training Elevated vs.\ OOS Elevated does not (2/3 tests $p \geq 0.05$). Verdict:
+    \emph{low drift}---OOS Elevated is more consistent with training Elevated than training Normal,
+    supporting regime label stability across the split.
 
     \item \textbf{Regime boundary exclusion and sample size.} Boundary cleaning
     (1--15 lags excluded per table) reduces effective samples. Crisis contains

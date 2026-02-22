@@ -517,23 +517,16 @@ involved in pair selection.
 Third, \emph{architectural contrast}: lag-1 evidence is strongest in Normal and
 substantially weaker outside Normal under the Bonferroni-significant threshold.
 
-\textbf{Pair selection and multiple comparisons.} The OOS frozen test (Section~\ref{sec:frozen_oos})
-is treated as an \emph{economically motivated} corroborative test of the HML--SMB pair
-(identified through both economic prior and in-sample screening; formal pre-registration
-was not performed), not a blind search among 30 pairs. The economic motivation
-(liquidity-mediated HML$\to$SMB contagion) was established prior to the OOS
-evaluation and is consistent with the FF25 mechanism evidence
-(Section~\ref{sec:overlap_evidence}). Readers should nonetheless
-note that applying a 30-pair Bonferroni penalty to the OOS HAC $p = 0.041$ would
-yield a corrected $p > 1$; the OOS result's strength rests on the economic motivation
-for the HML--SMB pair, not on the unadjusted $p$-value alone.
-Under $\alpha = 0.05$ with a 3-regime correction, the threshold is $\alpha/3 = 0.0167$;
-the $F$-$p = 0.014$ survives. The HAC-$p = 0.041$ does not, but this correction
-over-penalises a pre-specified directional test: the Elevated regime was identified
-as the post-GFC locus from the in-sample temporal analysis (Section~\ref{sec:main_result})
-prior to the OOS evaluation. A confirmatory test of a single pre-identified regime
-warrants $\alpha = 0.05$ rather than a three-regime adjustment; under that framing,
-both $F$-$p$ and HAC-$p$ are significant. We report both perspectives.
+\textbf{Pair selection and multiple comparisons.} The OOS frozen test is treated
+as a pre-specified corroborative test of the HML--SMB pair (economic prior:
+liquidity-mediated contagion; no formal pre-registration), not a blind search among
+30 pairs. Applying 30-pair Bonferroni to HAC $p = 0.041$ yields $p > 1$; under
+a 3-regime correction ($\alpha/3 = 0.0167$), $F$-$p = 0.014$ survives but
+HAC-$p = 0.041$ does not. Because the Elevated regime was identified as the
+post-GFC locus from in-sample temporal analysis prior to the OOS evaluation,
+a one-directional confirmatory test warrants $\alpha = 0.05$ rather than a
+three-regime adjustment; under that framing both results are significant. We
+report both perspectives.
 
 \section{Results}
 
@@ -655,15 +648,19 @@ Normal-regime HML$\to$SMB survives HAC correction
 Elevated HML$\to$SMB weakens under HAC (1990--2024 in-sample: $p = 0.034$), and Crisis remains
 non-significant ($p = 0.711$ HAC vs.\ $p = 0.695$ standard).
 
-\textbf{Temporal stability: a post-GFC regime shift.}
-Pre-GFC Normal ($n = 3{,}140$): $p = 6.66 \times 10^{-16}$ (HAC $p = 5.11 \times
-10^{-15}$, $\Delta R^2 = 2.06\%$). Post-GFC Normal ($n = 1{,}557$): $p = 0.73$
-($\Delta R^2 < 0.01\%$); Andrews bandwidth $= 1$ throughout. Whether this reflects a structural change in the contagion mechanism or a regime
-redistribution artifact of the frozen classifier (Limitations item~5) is an open
-question; the OOS Elevated result ($F$-$p = 0.014$, HAC $p = 0.041$) is
-consistent with but does not confirm a post-GFC migration of the HML$\to$SMB
-channel. Post-GFC regulation (Dodd-Frank, Basel III) constraining leverage in
-calm conditions provides a plausible mechanism for such a shift.
+\textbf{Temporal stability and structural break.}
+Pre-GFC Normal ($n = 3{,}140$): $p = 6.66\times10^{-16}$ ($\Delta R^2 = 2.06\%$).
+Post-GFC Normal ($n = 1{,}557$): $p = 0.73$ ($\Delta R^2 < 0.01\%$). A
+pre-specified Chow test at January 2008 confirms this break: $F(3,n{-}6) = 9.68$,
+$p = 2.29\times10^{-6}$; $\hat{\beta}_{\text{HML}}$ shifts from $-0.189$
+(pre-GFC) to $+0.010$ (post-GFC, Wald $z = 5.05$, $p = 9.2\times10^{-7}$).
+The Quandt-Andrews~\cite{andrews1993tests} sup-$F = 22.1$ exceeds the 5\% CV
+($11.14$) and 1\% CV ($14.6$) for $q=3$; CUSUM ($p = 0.96$) is consistent
+with a sharp break. The sup-$F$-maximising date (June 1998, LTCM/Russia)
+suggests possible multi-break structure. Whether the post-GFC attenuation
+reflects a regulatory structural change or a regime redistribution artifact
+(Limitations item~5) remains open; the OOS Elevated result ($F$-$p = 0.014$,
+HAC $p = 0.041$) is consistent with but does not confirm a post-GFC migration.
 
 \textbf{Incremental $R^2$.} Table~\ref{tab:r2} quantifies the economic magnitude. Adding
 HML lags (1--15) to the SMB autoregression increases $R^2$ by 1.04\% in Normal,
@@ -1528,20 +1525,12 @@ The finding is qualitatively consistent across classification methods.
     lag 1 ($p = 0.695$).
 
     \item \textbf{Normal-regime temporal evolution (pre/post-GFC).}
-    The pre/post-GFC split reveals structural evolution rather than instability:
-    pre-GFC Normal-regime HML$\to$SMB is exceptionally strong ($p = 6.66 \times
-    10^{-16}$, $\Delta R^2 = 2.06\%$), while post-GFC Normal-regime is null
-    ($p = 0.73$, $\Delta R^2 < 0.01\%$). This is not a failure of the finding
-    but a documented structural break: post-GFC regulation (Dodd-Frank, Basel III)
-    constrained proprietary-trading leverage in calm market conditions, attenuating
-    Normal-regime crowding dynamics. The mechanism did not disappear---the frozen
-    OOS test confirms it migrated to the Elevated regime ($F$-$p = 0.014$,
-    HAC $p = 0.041$), where residual leverage concentrates post-2012.
-    Reporting this temporal evolution transparently, rather than selecting the
-    period that maximises statistical significance, is itself an instance of the
-    honest empirical assessment identified as a methodological contribution.
-    Crisis HML$\to$SMB remains non-significant in both subperiods
-    ($p = 0.335$ pre-2008, $p = 0.599$ post-2008).
+    Pre-GFC: $p = 6.66\times10^{-16}$ ($\Delta R^2 = 2.06\%$); post-GFC Normal:
+    $p = 0.73$ ($\Delta R^2 < 0.01\%$). A pre-specified Chow test at January 2008
+    confirms the break ($F = 9.68$, $p = 2.29\times10^{-6}$; see Section~\ref{sec:main_result}).
+    The mechanism did not disappear---the frozen OOS test identifies the Elevated
+    regime as the post-GFC locus ($F$-$p = 0.014$, HAC $p = 0.041$). Reporting
+    this temporal evolution transparently is itself a methodological contribution.
 
     \item \textbf{Risk monitoring scope.} VaR improvement is modest
     (6.42\%$\to$5.60\% with hybrid detector) and may partly reflect

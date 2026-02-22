@@ -363,7 +363,8 @@ Investment (CMA), and Momentum (MOM)~\cite{jegadeesh1993returns,carhart1997persi
 
 \textbf{Sample:} January 2, 1990 -- December 31, 2024 (8,817 trading days).
 Daily factor returns are stationary by construction; ADF tests confirm unit-root
-rejection ($p < 0.001$) for all six series.
+rejection ($p < 0.001$) for all six series (BIC lag selection, intercept included,
+no trend).
 
 \subsection{Student-\texorpdfstring{$t$}{t} Hidden Markov Model}
 \label{sec:hmm}
@@ -1136,7 +1137,11 @@ Hybrid (HMM+Vol) & \textbf{5.60\%} & $\mathbf{+0.60}$ \textbf{pp} & \textbf{0.33
 \setlength{\tabcolsep}{6pt}
 
 Both the HML-informed and hybrid models pass the Christoffersen conditional
-coverage test ($p > 0.05$); all other specifications are rejected. The hybrid
+coverage test ($p > 0.05$); all other specifications are rejected.
+The CC test evaluates both unconditional coverage (Kupiec) and serial independence
+of violations; a complementary Dynamic Quantile (DQ)
+test~\cite{engle2004caviar} conditioning on lagged violations and the VaR level
+would provide additional validation beyond the CC result but is left for future work. The hybrid
 model (Algorithm~\ref{alg:monitor}) adds a realized-volatility override that
 activates when 20-day realized vol exceeds the 95th percentile of training
 data. This corrects the frozen HMM's COVID-2020 detection failure
@@ -1343,7 +1348,7 @@ in sensitivity checks, but we treat this as exploratory given the primary-fit
 null in Crisis at lag 1.
 
 \textbf{Practitioner baselines (exploratory).} Standard unconditional tools detect the HML$\to$SMB
-asymmetry but miss the architectural distinction. Rolling 250-day Granger tests
+asymmetry but miss the architectural distinction. Rolling 250-day Granger tests~\cite{baum2022timevarying}
 find HML$\to$SMB significant in 36.2\% of windows vs.\ 9.6\% for the
 reverse---with concentration in Normal (47.1\% vs.\ 13.7\% reverse),
 lower rates in Elevated (21.3\%), and mixed Crisis windows (27.7\%).

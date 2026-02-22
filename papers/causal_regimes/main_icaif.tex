@@ -289,7 +289,7 @@ Chincoli and Guidolin~\cite{chincoli2017linear} show that Markov-Switching VARs 
 improve out-of-sample factor-return predictability for size, value, and momentum,
 though without examining Granger causal direction between factors.
 Bulla~\cite{bulla2011hidden} introduces Student-$t$ HMMs for financial returns,
-motivated by excess kurtosis documented in~\cite{cont2001empirical};
+motivated by excess kurtosis documented by Cont~\cite{cont2001empirical};
 Oelschl{\"a}ger, Adam and Michels~\cite{oelschlager2024fhmm} provide a recent
 open-source implementation (\texttt{fHMM}) validating this model class on financial data.
 Shu, Yu and Mulvey~\cite{shu2024downside} compare statistical jump models against HMMs
@@ -779,7 +779,7 @@ portfolios: all five Small quintile portfolios are nominally significant
 ($p < 0.01$), with three surviving Bonferroni correction ($\alpha/25 = 0.002$,
 using familywise error rate $\alpha = 0.05$ for this exploratory test):
 S/L ($p = 2.5 \times 10^{-6}$, $\Delta R^2 = 1.47\%$),
-S/3 ($p = 0.0014$), and S/H ($p \approx 0$, $\Delta R^2 = 1.79\%$).
+S/3 ($p = 0.0014$), and S/H ($p < 10^{-15}$, $\Delta R^2 = 1.79\%$).
 One Big-quintile portfolio is nominally significant ($p < 0.01$), but none
 survive Bonferroni. This spatial pattern is inconsistent
 with a uniform factor-level effect and supports the overlap channel.
@@ -1035,8 +1035,7 @@ because it requires real-time regime classification and the lag-1 effect is smal
 
 \begin{table}[t]
 \centering
-\caption{Trading Strategy Backtest (1995--2024). Strategy trades SMB based on
-9-day lagged HML signal during Crisis regimes only.}
+\caption{Trading Strategy Backtest (1995--2024). Start date reflects a 5-year warm-up period for regime detection. Strategy trades SMB based on 9-day lagged HML signal during Crisis regimes only.}
 \label{tab:trading}
 \begin{tabular}{lcc}
 \toprule
@@ -1331,7 +1330,7 @@ in Normal, while Crisis remains non-significant across lags.
 \centering
 \includegraphics[width=\columnwidth]{figures/lag_sensitivity.pdf}
 \caption{Granger causality $p$-values for HML$\to$SMB across lags 1--15 by regime.
-Normal regime (green) shows concentrated short-lag significance ($p < 10^{-7}$ at lag 1).
+Normal regime (green) shows concentrated short-lag significance ($p < 10^{-8}$ at lag 1).
 Crisis regime (red) remains non-significant across the tested lag range.}
 \Description{Line chart of HML-to-SMB p-values by lag for each regime, highlighting strong Normal-regime significance and weak Crisis-regime evidence.}
 \label{fig:lag_sensitivity}
@@ -1487,7 +1486,7 @@ The finding is qualitatively consistent across classification methods.
     economically motivated HML$\to$SMB pair (informed by both economic prior and
     in-sample screening of 30 pairs; formal pre-registration was not performed).
     While the economic hypothesis (liquidity-mediated contagion) provides a priori
-    justification, the direction of the link was also observed in in-sample screening.
+    justification, the direction of the link was also observed during in-sample screening.
     The economic and data-based motivations are not fully independent, and without
     pre-registration this caveat cannot be entirely eliminated.
 

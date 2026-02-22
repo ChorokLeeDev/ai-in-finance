@@ -349,8 +349,8 @@ pair specifically, and extends: we show this predictive precedence is
 We apply the neural Granger framework alongside
 Random Forest and transfer entropy~\cite{schreiber2000measuring,frenzel2007partial} not to discover
 new nonlinear links, but to \emph{characterize the complexity boundary} of
-a known linear relationship---determining whether nonlinear models capture
-additional predictive structure beyond the linear baseline.
+a known linear relationship. \textit{Gap:} No prior work maps the complexity
+boundary of regime-conditional factor Granger links.
 
 \section{Methodology}
 
@@ -652,7 +652,7 @@ non-significant ($p = 0.711$ HAC vs.\ $p = 0.695$ standard).
 \textbf{Temporal stability and structural break.}
 Pre-GFC Normal ($n = 3{,}140$): $p = 6.66\times10^{-16}$ ($\Delta R^2 = 2.06\%$).
 Post-GFC Normal ($n = 1{,}557$): $p = 0.73$ ($\Delta R^2 < 0.01\%$). A
-pre-specified Chow test at January 2008 confirms this break: $F(3,n{-}6) = 9.68$,
+GFC-motivated Chow test at January 2008 confirms this break: $F(3,n{-}6) = 9.68$,
 $p = 2.29\times10^{-6}$; $\hat{\beta}_{\text{HML}}$ shifts from $-0.189$
 (pre-GFC) to $+0.010$ (post-GFC, Wald $z = 5.05$, $p = 9.2\times10^{-7}$).
 The Quandt-Andrews~\cite{andrews1993tests} sup-$F = 22.1$ exceeds the 5\% CV
@@ -733,7 +733,8 @@ factor-level Granger tests are not significant in the leakage-safe fit.
 \textbf{Alternative explanations we cannot rule out:}
 \begin{itemize}
     \item Differential price delay~\cite{hou2005market} between value and size constituents
-    could generate mechanical daily cross-autocorrelation independent of any economic channel
+    could generate mechanical daily cross-autocorrelation (Hou and Moskowitz document
+    market-to-stock delay; by analogy, cross-factor delay is plausible)
     \item A common driver (e.g., funding liquidity) affects both factors with different lags
     \item Information about distress propagates through markets, reaching Value-sensitive
     investors before Size-sensitive investors
@@ -1033,7 +1034,10 @@ is too small to justify a complex regime-switching prediction model---consistent
 our $\Delta R^2 \approx 1\%$ finding and the trading strategy failure.
 The LR test is aggregate; the MS-VAR does not separately decompose per-regime HML significance,
 so the two-stage regime-conditional Granger results (Table~\ref{tab:main}) remain the primary
-decomposition of where in the regime structure the predictive link concentrates.
+decomposition of where in the regime structure the predictive link concentrates.\footnote{LR
+tests in regime-switching models have non-standard asymptotics due to unidentified nuisance
+parameters under the null~\cite{hansen1992likelihood}; $p < 10^{-12}$ is strongly suggestive,
+not exact.}
 
 \subsection{Trading Strategy Evaluation}
 \label{sec:trading}

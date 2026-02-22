@@ -295,8 +295,8 @@ open-source implementation (\texttt{fHMM}) validating this model class on financ
 Shu, Yu and Mulvey~\cite{shu2024downside} compare statistical jump models against HMMs
 for equity regime detection, finding jump models reduce downside risk in specific settings;
 Shu and Mulvey~\cite{shu2025dynamic} apply regime-switching signals to dynamic allocation
-across six equity factors (value, size, momentum, quality, low-vol, growth) --- selecting which factor
-to hold per regime --- whereas the present paper examines Granger predictive \emph{precedence between}
+across six equity factors (value, size, momentum, quality, low-vol, growth)---selecting which factor
+to hold per regime---whereas the present paper examines Granger predictive \emph{precedence between}
 factors within shared multi-factor regimes.
 Our two-stage Granger design motivates the HMM choice for its interpretable latent-state structure.
 Wang, Lin and Mikhelson~\cite{wang2020regime} combine HMMs with Fama-French factors
@@ -324,7 +324,7 @@ developments in MS-VAR forecasting, see Cavicchioli~\cite{cavicchioli2025forecas
 The Bayesian MS-VAR of Droumaguet et al.\ (2017) has a finite-sample advantage for
 small-regime subsets: posterior inference is exact regardless of subsample size.
 Our asymptotic $F$-tests with HAC correction partially address finite-sample
-concerns; results are consistent across HAC bandwidths (sensitivity: bandwidth-1 gives Elevated $p = 0.041$, reported in Table~\ref{tab:frozen_granger} caption),
+concerns; results are consistent across HAC bandwidths (primary: Newey--West bandwidth-1 gives Elevated $p = 0.041$, reported in Table~\ref{tab:frozen_granger} caption),
 supporting the reliability of asymptotic inference given regime sample sizes
 ($n \geq 800$ for Primary fit in-sample tests).}
 Billio et al.~\cite{billio2012econometric} construct Granger causality
@@ -645,7 +645,7 @@ HML$\to$SMB survives Bonferroni correction.
 
 \textbf{Robustness to heteroskedasticity.}
 Financial returns exhibit volatility clustering, which may inflate standard Granger
-$F$-test significance. We recompute at lag 1 (BIC-optimal) using Newey-West~\cite{newey1987simple}
+$F$-test significance. We recompute at lag 1 (BIC-optimal) using Newey--West~\cite{newey1987simple}
 heteroskedasticity-and-autocorrelation-consistent (HAC) standard errors.
 Normal-regime HML$\to$SMB survives HAC correction
 ($p = 9.45 \times 10^{-8}$ HAC vs.\ $p = 8.75 \times 10^{-9}$ standard).
@@ -1560,7 +1560,7 @@ where the HMM alone detected 0\%. Algorithm~\ref{alg:monitor} formalizes
 the monitoring protocol with all parameters calibrated on training data.
 
 For practitioners, the key insight is that factor lead-lag relationships are not
-merely stronger or weaker across regimes. In the recomputed primary fit,
+merely stronger or weaker across regimes. In the primary fit,
 the clearest actionable signal is Normal-regime lag-1 HML$\to$SMB. Crisis-regime
 monitoring is better treated as stress-sensitivity analysis than as a
 statistically established directional signal. Real-time implementation still benefits from

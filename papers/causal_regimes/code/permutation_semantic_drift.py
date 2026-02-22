@@ -229,6 +229,7 @@ def main():
     print(f"  Train LL: {hmm.log_likelihood_:.2f}")
 
     # Relabel by data-norm (canonical, not centroid-norm)
+    # use_filtered=False for train (smoothed in-sample is fine; no future leakage within train)
     train_raw, _ = hmm.predict_oos(train_df[FACTOR_COLS].values, use_filtered=False)
     train_regimes, remap = relabel_regimes_by_data_norm(train_df, train_raw, FACTOR_COLS)
     train_counts = {k: int((train_regimes == v).sum()) for k, v in
@@ -236,7 +237,8 @@ def main():
     print(f"  Train regime counts: {train_counts}")
 
     # Apply same remap to test
-    test_raw, _ = hmm.predict_oos(test_df[FACTOR_COLS].values, use_filtered=False)
+    # use_filtered=True: no future info in OOS labels — matches frozen_oos_primary.py
+    test_raw, _ = hmm.predict_oos(test_df[FACTOR_COLS].values, use_filtered=True)
     test_regimes = np.array([remap[r] for r in test_raw])
     test_counts = {k: int((test_regimes == v).sum()) for k, v in
                    {'Normal': 0, 'Elevated': 1, 'Crisis': 2}.items()}

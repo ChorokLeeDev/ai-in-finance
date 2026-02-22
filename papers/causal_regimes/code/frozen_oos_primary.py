@@ -52,7 +52,58 @@ def apply_train_remap(test_raw, remap):
     return np.array([remap[r] for r in test_raw])
 
 
-def run_frozen_oos_for_seed(seed, train_df, test_df, factor_cols, lag=FIXED_LAG):
+def granger_f(smb, hml, clean_idx, lag=1):
+    """Return F-statistic only (fast, for permutation loop)."""
+    usable = clean_idx[clean_idx >= lag]
+    n = len(usable)
+    if n < 2 * lag + 10:
+        return np.nan
+    y = smb[usable]
+    yl = np.column_stack([smb[usable - i - 1] for i in range(lag)])
+    xl = np.column_stack([hml[usable - i - 1] for i in range(lag)])
+    Xr = np.column_stack([np.ones(n), yl])
+    Xu = np.column_stack([np.ones(n), yl, xl])
+    br = np.linalg.lstsq(Xr, y, rcond=None)[0]
+    bu = np.linalg.lstsq(Xu, y, rcond=None)[0]
+    rr = float(np.sum((y - Xr @ br) ** 2))
+    ru = float(np.sum((y - Xu @ bu) ** 2))
+    df1, df2 = lag, n - 2 * lag - 1
+    if df2 <= 0 or ru <= 0:
+        return np.nan
+    return ((rr - ru) / df1) / (ru / df2)
+
+
+def run_permutation_test(test_regimes, smb, hml, n_perm=1000, lag=FIXED_LAG, seed=42):
+    """
+    Permute OOS regime labels (preserving counts) n_perm times.
+    Computes Granger F on the permuted 'Elevated' (idx=1) set each time.
+    Uses the SAME regime assignments as the primary result (no re-fitting).
+    Returns (actual_F, perm_p, perm_95pct).
+    """
+    rng = np.random.default_rng(seed)
+    clean_actual = extract_regime_clean_indices(test_regimes, 1, max_lag=lag)
+    actual_F = granger_f(smb, hml, clean_actual, lag)
+    print(f"  Permutation test: actual F={actual_F:.4f}, n_clean={len(clean_actual)}")
+
+    perm_Fs = []
+    for i in range(n_perm):
+        perm_reg = rng.permutation(test_regimes)
+        clean_p = extract_regime_clean_indices(perm_reg, 1, max_lag=lag)
+        F_p = granger_f(smb, hml, clean_p, lag)
+        perm_Fs.append(F_p)
+        if (i + 1) % 200 == 0:
+            print(f"  Permutation {i+1}/{n_perm}...")
+
+    perm_arr = np.array(perm_Fs)
+    valid = ~np.isnan(perm_arr)
+    perm_p = float(np.mean(perm_arr[valid] >= actual_F)) if valid.any() else np.nan
+    perm_95 = float(np.nanpercentile(perm_arr, 95))
+    print(f"  Permutation p={perm_p:.4f}  (actual F={actual_F:.3f} vs 95th pctile={perm_95:.3f})")
+    return actual_F, perm_p, perm_95
+
+
+def run_frozen_oos_for_seed(seed, train_df, test_df, factor_cols, lag=FIXED_LAG,
+                             run_perm=False, n_perm=1000):
     """Run frozen OOS for a single seed. Returns per-regime Granger results."""
     hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=seed)
     hmm.fit(train_df[factor_cols].values)
@@ -82,13 +133,27 @@ def run_frozen_oos_for_seed(seed, train_df, test_df, factor_cols, lag=FIXED_LAG)
             'smb_to_hml': s2h,
         }
 
-    return {
+    result = {
         'seed': seed,
         'train_ll': float(hmm.log_likelihood_),
         'train_counts': train_counts,
         'test_counts': test_counts,
         'granger': granger,
     }
+
+    if run_perm:
+        print(f"\n  Running permutation test (n_perm={n_perm}) on exact regime assignments...")
+        actual_F, perm_p, perm_95 = run_permutation_test(
+            test_regimes, smb, hml, n_perm=n_perm, lag=lag)
+        result['permutation_test'] = {
+            'n_perm': n_perm,
+            'actual_F': actual_F,
+            'perm_p': perm_p,
+            'perm_95pct_F': perm_95,
+            'n_clean_elevated': int(len(extract_regime_clean_indices(test_regimes, 1, lag))),
+        }
+
+    return result
 
 
 def main():
@@ -109,7 +174,9 @@ def main():
     all_results = []
     for seed in top_seeds:
         print(f"\n  Seed {seed}:")
-        res = run_frozen_oos_for_seed(seed, train_df, test_df, factor_cols, lag=FIXED_LAG)
+        is_primary = (seed == PRIMARY_SEED)
+        res = run_frozen_oos_for_seed(seed, train_df, test_df, factor_cols, lag=FIXED_LAG,
+                                      run_perm=is_primary, n_perm=1000)
         for name in REGIME_NAMES:
             g = res['granger'][name]
             h2s = g.get('hml_to_smb')

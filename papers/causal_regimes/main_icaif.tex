@@ -136,7 +136,7 @@ Using a frozen OOS design (HMM trained on 1990--2012, Granger tested on
 circularity (not Bonferroni-significant across 30 pairs; economically motivated pair):
 \begin{itemize}
     \item \emph{Elevated (OOS, $n = 836$):} $p = 0.014$, HAC $p = 0.041$ (Newey--West, bandwidth~1),
-    $\Delta R^2 = 0.73\%$ (lag 1, pre-fixed from in-sample BIC); permutation $p = 0.031$
+    $\Delta R^2 = 0.73\%$ (lag 1, pre-fixed from in-sample BIC); permutation $p = 0.049$
     (1{,}000 label shuffles preserving regime counts~\cite{good2005permutation}).
     \item \emph{Normal (OOS):} $p = 0.149$ (null).
     \item \emph{Crisis (OOS):} $p = 0.281$ (null).
@@ -174,7 +174,7 @@ violation rate ($p_{\text{CC}} = 0.336$)---the best among all specifications
 \begin{enumerate}
     \item \textbf{Empirical (circularity-free):} Suggestive OOS evidence for HML$\to$SMB in
     the Elevated regime (frozen design, 2013--2024, $n = 836$): $p = 0.014$,
-    HAC $p = 0.041$, permutation $p = 0.031$; not Bonferroni-significant across 30 pairs;
+    HAC $p = 0.041$, permutation $p = 0.049$; not Bonferroni-significant across 30 pairs;
     Normal and Crisis null. In-sample analysis (1990--2024)
     corroborates with higher power ($p = 8.75 \times 10^{-9}$, Normal regime,
     Bonferroni-significant)
@@ -222,8 +222,8 @@ momentum factor loading on lagged returns across all other factors.
 Gupta and Kelly~\cite{gupta2019factor} extend this finding across asset classes.
 Haddad, Kozak and Santosh~\cite{haddad2020factor} show that individual factor returns
 are predictable from conditioning variables representing the stochastic discount factor
-(out-of-sample $R^2 \approx 4\%$)---a within-factor SDF-based timing result.
-Fl{\"o}gel, Schlag and Zunft~\cite{flogel2022momentum} exploit cross-factor first-order
+(the most predictable SDF components achieve out-of-sample $R^2 \approx 4\%$ at the monthly frequency)---a within-factor SDF-based timing result.
+Fl{\"o}gel, Schlag and Zunft~\cite{flogel2022momentum} exploit within-factor (own) first-order
 autocorrelations to construct momentum-managed factor portfolios.
 Barroso and Santa-Clara~\cite{barroso2015momentum} and Daniel and
 Moskowitz~\cite{daniel2016momentum} document that momentum profits are
@@ -300,9 +300,10 @@ factors within shared multi-factor regimes.
 Our two-stage Granger design motivates the HMM choice for its interpretable latent-state structure.
 Wang, Lin and Mikhelson~\cite{wang2020regime} combine HMMs with Fama-French factors
 to switch factor strategies across regimes.
+Nuriyev, Duan and Yi~\cite{nuriyev2024regime} augment factor allocation with global macro regimes via HMMs, selecting which factor to hold per regime---the closest ICAIF-adjacent precedent; our distinction is that we examine Granger predictive \emph{precedence between} factors within shared regimes, not regime-based factor allocation.
 \textbf{Gap:} Existing regime-switching research focuses on regime-dependent
 \emph{distributions} or regime-conditional \emph{strategy allocation}
-(Wang et al.\ 2020), but does not examine whether Granger predictive
+(Wang et al.\ 2020; Nuriyev et al.\ 2024), but does not examine whether Granger predictive
 \emph{structure between factors} changes across regimes---which is our focus.
 
 \textbf{Granger causality and connectedness.}
@@ -313,7 +314,7 @@ conditions it on latent market regimes.
 Granger~\cite{granger1969investigating} introduced the predictive-precedence test
 we employ. Psaradakis, Ravn and Sola~\cite{psaradakis2005markov} pioneered
 regime-switching Granger causality via a Markov chain in macroeconomics.
-Shi, Phillips and Hurn~\cite{shi2018change} detect causal change-points with recursive-evolving tests; we differ by conditioning on HMM latent states for within-regime pooling.
+Shi, Phillips and Hurn~\cite{shi2018change} detect causal change-points with recursive-evolving tests (extended to possibly integrated systems by \citealt{shi2020causal}); we differ by conditioning on HMM latent states for within-regime pooling.
 Droumaguet et al.~\cite{droumaguet2017granger} extend to full MS-VAR with Bayesian inference; we compare against this in Section~\ref{sec:msvar}.
 We adopt a two-stage approach (HMM then regime-conditional Granger) for separate estimation.
 Billio et al.~\cite{billio2012econometric} construct Granger causality

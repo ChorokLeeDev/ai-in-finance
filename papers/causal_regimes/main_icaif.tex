@@ -655,6 +655,18 @@ Normal-regime HML$\to$SMB survives HAC correction
 Elevated HML$\to$SMB weakens under HAC (1990--2024 in-sample: $p = 0.034$), and Crisis remains
 non-significant ($p = 0.711$ HAC vs.\ $p = 0.695$ standard).
 
+\textbf{Temporal stability: pre/post-GFC split.}
+Splitting the Normal regime at January 2008 reveals that the full-sample
+significance ($p = 8.75 \times 10^{-9}$) is pre-GFC concentrated: pre-2008
+($n = 3{,}140$) gives $p = 6.66 \times 10^{-16}$ (HAC $p = 5.11 \times
+10^{-15}$, $\Delta R^2 = 2.06\%$), while post-2008 ($n = 1{,}557$) is null
+($p = 0.73$, $\Delta R^2 < 0.01\%$); Andrews bandwidth $= 1$ throughout.
+The Normal-regime finding does not generalize post-GFC in this regime.
+The frozen OOS test (Section~\ref{sec:frozen_oos}) identifies the
+\emph{Elevated} regime as the post-GFC locus ($p = 0.014$, HAC $p = 0.041$),
+suggesting a regime shift rather than disappearance (Limitations item~6,
+Section~\ref{sec:limitations}).
+
 \textbf{Incremental $R^2$.} Table~\ref{tab:r2} quantifies the economic magnitude. Adding
 HML lags (1--15) to the SMB autoregression increases $R^2$ by 1.04\% in Normal,
 1.32\% in Elevated, and 0.56\% in Crisis. Normal and Elevated pass conventional
@@ -1517,9 +1529,20 @@ The finding is qualitatively consistent across classification methods.
     1,071 days in the primary fit, and Crisis-regime HML$\to$SMB is null at
     lag 1 ($p = 0.695$).
 
-    \item \textbf{Subsample instability outside Normal.} Normal HML$\to$SMB
-    is robust, but Crisis remains non-significant in both pre-2008 and
-    post-2008 subsamples ($p = 0.335$ and $p = 0.599$).
+    \item \textbf{Normal-regime temporal instability (pre/post-GFC).}
+    Table~\ref{tab:normal_subsample} shows that Normal-regime HML$\to$SMB
+    is concentrated in the pre-GFC period: pre-2008 $p = 6.66 \times 10^{-16}$
+    ($\Delta R^2 = 2.06\%$) vs.\ post-2008 $p = 0.73$ (null, $\Delta R^2 <
+    0.01\%$). The full-sample significance ($p = 8.75 \times 10^{-9}$) is
+    therefore driven by pre-GFC data; the in-sample Normal result does not
+    generalize post-2008 in this regime. Post-GFC regulatory changes
+    (e.g., Dodd-Frank, Basel III) likely reduced factor crowding in calm
+    market conditions, consistent with the empirical pattern.
+    The frozen OOS test (2013--2024) identifies the \emph{Elevated} regime
+    as the post-GFC locus ($p = 0.014$), which we interpret as a regime
+    shift rather than disappearance of the mechanism.
+    Crisis HML$\to$SMB remains non-significant in both subperiods
+    ($p = 0.335$ pre-2008, $p = 0.599$ post-2008).
 
     \item \textbf{Risk monitoring scope.} VaR improvement is modest
     (6.42\%$\to$5.60\% with hybrid detector) and may partly reflect

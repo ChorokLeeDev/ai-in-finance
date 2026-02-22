@@ -44,7 +44,7 @@ uses a frozen out-of-sample design: the HMM is trained on 1990--2012 ($n =
 5{,}797$ days) and applied without refitting to classify 2013--2024 ($n =
 3{,}020$ days), after which Granger tests are run on the held-out labels.
 In this frozen OOS evaluation, HML$\to$SMB shows suggestive evidence in the
-Elevated regime ($p = 0.014$; HAC-robust $p = 0.038$ at Andrews bandwidth;
+Elevated regime ($p = 0.014$; HAC-robust $p = 0.041$;
 $\Delta R^2 = 0.73\%$; $n = 836$; not Bonferroni-significant across 30 pairs),
 with Normal and Crisis null ($p = 0.149$ and $p = 0.281$).
 A full 50-seed sensitivity analysis finds that 2 of 3 local optima
@@ -120,7 +120,13 @@ not \emph{structural causality}. A statistically significant Granger relationshi
 could arise from: (1) direct causal influence, (2) a common driver affecting both
 series with different lags, or (3) omitted variables. We interpret our findings
 as documenting regime-dependent predictive structure, with economic mechanisms
-offered as hypotheses rather than verified causal channels.
+offered as hypotheses rather than verified causal channels. This distinction between predictive precedence and structural causality is
+foundational in the causal inference literature~\cite{pearl2009causality} and
+has been formalized in the recent factor investing
+literature~\cite{lopezdeprado2023causal}; we adopt the Granger framework for
+its tractability on high-dimensional daily factor series while acknowledging
+that L\'opez de Prado advocates structural causal models (SCMs/DAGs) as the
+more rigorous alternative for factor research.
 
 \subsection{Our Findings}
 
@@ -130,9 +136,9 @@ a Student-$t$ Hidden Markov Model, we establish:
 \textbf{Main Finding: regime-dependent predictability with suggestive OOS corroboration.}
 Using a frozen OOS design (HMM trained on 1990--2012, Granger tested on
 2013--2024), HML$\to$SMB shows suggestive evidence in stress-adjacent regimes with no
-circularity (not Bonferroni-significant across 30 pairs; economically pre-specified pair):
+circularity (not Bonferroni-significant across 30 pairs; economically motivated pair):
 \begin{itemize}
-    \item \emph{Elevated (OOS, $n = 836$):} $p = 0.014$, HAC $p = 0.038$ (Andrews bandwidth 9),
+    \item \emph{Elevated (OOS, $n = 836$):} $p = 0.014$, HAC $p = 0.041$ (Newey--West, bandwidth~1),
     $\Delta R^2 = 0.73\%$ (lag 1, pre-fixed from in-sample BIC).
     \item \emph{Normal (OOS):} $p = 0.149$ (null).
     \item \emph{Crisis (OOS):} $p = 0.281$ (null).
@@ -153,10 +159,11 @@ the linear baseline. However, transfer entropy reveals an additional nonlinear
 reverse channel (SMB$\to$HML, $z = 5.37$, $p < 0.005$ empirical) in Normal,
 invisible to standard Granger tests (Section~\ref{sec:robustness}).
 
-\textbf{Mechanism evidence.} Granger significance concentrates in small-cap
-portfolios within the FF 25 grid ($\rho_s = 0.35$, permutation $p = 0.046$),
-consistent with portfolio overlap driving the factor-level link
-(Section~\ref{sec:overlap_evidence}).
+\textbf{Mechanism evidence (sensitivity fit, seed~42).} Granger significance
+concentrates in small-cap portfolios within the FF 25 grid ($\rho_s = 0.35$,
+permutation $p = 0.046$), consistent with portfolio overlap; this analysis uses
+an alternative HMM fit optimized for crisis detection rather than the primary
+OOS fit (see Section~\ref{sec:overlap_evidence}).
 
 \textbf{Practical Implication.} The effect is small ($\Delta R^2 \approx 1\%$)
 and does not translate to profitable trading, but a hybrid VaR model combining
@@ -169,7 +176,7 @@ violation rate ($p_{\text{CC}} = 0.336$)---the best among all specifications
 \begin{enumerate}
     \item \textbf{Empirical (circularity-free):} Suggestive OOS evidence for HML$\to$SMB in
     the Elevated regime (frozen design, 2013--2024, $n = 836$): $p = 0.014$,
-    HAC $p = 0.038$ (Andrews bandwidth); not Bonferroni-significant across 30 pairs;
+    HAC $p = 0.041$; not Bonferroni-significant across 30 pairs;
     Normal and Crisis null. Full-sample in-sample analysis
     corroborates with higher power ($p = 8.75 \times 10^{-9}$, Normal regime,
     Bonferroni-significant)
@@ -453,12 +460,11 @@ $H_0: r_{j,t} \perp \{r_{i,t-\ell}\}_{\ell=1}^{L} \mid \{r_{j,t-\ell}\}_{\ell=1}
 
 Significance threshold: $\alpha = 0.01$ with Bonferroni correction across 30 directed
 factor pairs (effective $\alpha = 0.00033$). HAC standard errors use Newey--West
-with Andrews's~\cite{andrews1991heteroskedasticity} AR(1) plug-in data-driven bandwidth as the
-primary specification, applied consistently across all Granger tests
-($\approx$9--10 for $n \approx 800$; for the Elevated OOS
-regime this yields HAC $p = 0.038$ at bandwidth 9). As a sensitivity check,
-bandwidth equal to the Granger lag (bandwidth = 1) yields HAC $p = 0.041$,
-confirming directional consistency.
+with bandwidth equal to the Granger lag (bandwidth~1) as the primary specification,
+applied consistently across all Granger tests. As a robustness check,
+Andrews's~\cite{andrews1991heteroskedasticity} AR(1) plug-in data-driven bandwidth
+($\approx$9--10 for $n \approx 800$) yields directionally consistent results
+at conventional significance levels for the Elevated OOS regime.
 
 \textbf{Regime boundary handling.} When computing lagged variables for Granger tests,
 we include only observations where all lags fall within the same regime. Specifically,
@@ -512,13 +518,18 @@ Third, \emph{architectural contrast}: lag-1 evidence is strongest in Normal and
 substantially weaker outside Normal under the Bonferroni-significant threshold.
 
 \textbf{Pair selection and multiple comparisons.} The OOS frozen test (Section~\ref{sec:frozen_oos})
-is treated as a \emph{pre-specified} corroborative test of the economically motivated pair,
-not a blind search among 30 pairs. The economic motivation (liquidity-mediated HML$\to$SMB
-contagion) was established prior to the OOS evaluation and is consistent with the
-FF25 mechanism evidence (Section~\ref{sec:overlap_evidence}). Readers should nonetheless
-note that applying a 30-pair Bonferroni penalty to the OOS HAC $p = 0.038$ would
-yield a corrected $p > 1$; the OOS result's strength rests on economic pre-specification,
-not on the unadjusted $p$-value alone.
+is treated as an \emph{economically motivated} corroborative test of the HML--SMB pair
+(identified through both economic prior and in-sample screening; formal pre-registration
+was not performed), not a blind search among 30 pairs. The economic motivation
+(liquidity-mediated HML$\to$SMB contagion) was established prior to the OOS
+evaluation and is consistent with the FF25 mechanism evidence
+(Section~\ref{sec:overlap_evidence}). Readers should nonetheless
+note that applying a 30-pair Bonferroni penalty to the OOS HAC $p = 0.041$ would
+yield a corrected $p > 1$; the OOS result's strength rests on the economic motivation
+for the HML--SMB pair, not on the unadjusted $p$-value alone.
+Additionally, adjusting only for the 3 regimes (not the 30 pairs) gives a threshold
+of $\alpha/3 = 0.0167$; the $F$-$p = 0.014$ result barely survives this
+regime-adjusted threshold while the HAC-$p = 0.041$ does not.
 
 \section{Results}
 
@@ -902,7 +913,7 @@ regime runs in the OOS period (fewer transitions when parameters are fixed).
 \caption{Frozen OOS Granger Causality (HML$\to$SMB), 2013--2024.
 HMM trained on 1990--2012 only; relabeling uses train-period ordering;
 lag $= 1$ pre-fixed from in-sample BIC; filtered probabilities (no future info).
-HAC-$p$ uses Andrews data-driven bandwidth ($\approx$9); bandwidth-1 sensitivity: Elevated $p = 0.041$.}
+HAC-$p$ uses Newey--West bandwidth~1 (matching Granger lag); Elevated HAC $p = 0.041$.}
 \label{tab:frozen_granger}
 \small
 \begin{tabular}{@{}lcccc@{}}
@@ -910,21 +921,21 @@ HAC-$p$ uses Andrews data-driven bandwidth ($\approx$9); bandwidth-1 sensitivity
 Regime & $n$ & $F$-$p$ & HAC-$p$ & $\Delta R^2$ \\
 \midrule
 Normal    & 661 & 0.149 & 0.153 & 0.32\% \\
-Elevated  & 836 & \textbf{0.014} & \textbf{0.038} & \textbf{0.73\%} \\
+Elevated  & 836 & \textbf{0.014} & \textbf{0.041} & \textbf{0.73\%} \\
 Crisis    & 1,299 & 0.281 & 0.290 & 0.09\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \textbf{Result.} HML$\to$SMB shows suggestive evidence in the Elevated regime
-($p = 0.014$; HAC $p = 0.038$ at Andrews bandwidth 9; $\Delta R^2 = 0.73\%$ at lag~1),
+($p = 0.014$; HAC $p = 0.041$; $\Delta R^2 = 0.73\%$ at lag~1),
 while Normal ($p = 0.149$) and Crisis ($p = 0.281$) are null.
 (Note: Table~\ref{tab:r2} reports $\Delta R^2 = 1.32\%$ for Elevated using the
 full-sample in-sample fit with lags~1--15; the OOS $\Delta R^2 = 0.73\%$ uses
 lag~1 only on the 2013--2024 held-out period.)
 This result does not survive Bonferroni correction across 30 pairs
 (threshold $\alpha/30 = 0.00033$, family-wise $\alpha = 0.01$); its evidential weight
-rests on economic pre-specification of the HML--SMB pair
+rests on the economic motivation for the HML--SMB pair
 (Section~\ref{sec:pairselection}).
 Notably, in-sample significance is expected given the degrees of freedom consumed
 by regime identification, lag selection, and pair screening on the same data;
@@ -940,7 +951,7 @@ optima, each representing a distinct HMM solution rather than an independent ini
 These results use forward-only (filtered)
 HMM probabilities and train-period relabeling, eliminating all forms
 of look-ahead and circularity.
-OOS is treated as a pre-specified corroborative test of the economically motivated pair
+OOS is treated as an economically motivated corroborative test of the pre-identified pair
 (Section~\ref{sec:pairselection}); the Bonferroni-corrected result is discussed therein.
 The reverse direction SMB$\to$HML in Normal is nominally significant ($F$-$p = 0.047$;
 HAC-$p = 0.063$) but does not survive Bonferroni correction across 30 pairs and was
@@ -1403,7 +1414,10 @@ Elevated & 2,792 & 0.92\%$^{**}$ & 1.00 & 1.00 & 0.93$^\dagger$ \\
 As a model-free check, we compute transfer entropy~\cite{schreiber2000measuring,frenzel2007partial}
 (Frenzel--Pompe kNN, $k=5$, 200 permutations).
 Normal shows significant bidirectional TE (HML$\to$SMB $z = 2.45$, $p = 0.007$;
-SMB$\to$HML $z = 5.37$, $p < 0.005$ empirical bound with 200 permutations). Elevated is weakly bidirectional at
+SMB$\to$HML $z = 5.37$, $p < 0.005$ empirical bound with 200 permutations;
+note the minimum achievable empirical $p$ is $1/201 \approx 0.005$, and
+the $z$-score is computed under a Gaussian approximation that may not hold in
+heavy tails). Elevated is weakly bidirectional at
 conventional levels (HML$\to$SMB $p = 0.008$; SMB$\to$HML $p = 0.049$), while
 Crisis is non-significant in both directions. The reverse-direction Normal TE
 signal appears despite non-significant reverse linear Granger
@@ -1465,11 +1479,12 @@ The finding is qualitatively consistent across classification methods.
     Bonferroni-significant) is left for future work. We do not analyze
     13F holdings data or fund flows for direct verification.
 
-    \item \textbf{Pair pre-specification.} The OOS pre-specified corroborative test focuses on the
-    economically motivated HML$\to$SMB pair. While the economic hypothesis
-    (liquidity-mediated contagion) provides a priori justification, the direction
-    of the link was also observed in in-sample screening of 30 pairs. The
-    economic and data-based motivations are not fully independent, and without
+    \item \textbf{Pair selection.} The OOS corroborative test focuses on the
+    economically motivated HML$\to$SMB pair (informed by both economic prior and
+    in-sample screening of 30 pairs; formal pre-registration was not performed).
+    While the economic hypothesis (liquidity-mediated contagion) provides a priori
+    justification, the direction of the link was also observed in in-sample screening.
+    The economic and data-based motivations are not fully independent, and without
     pre-registration this caveat cannot be entirely eliminated.
 
     \item \textbf{Regime redistribution and seed sensitivity.}
@@ -1512,7 +1527,7 @@ The leakage-safe primary fit supports the following conclusions. HML$\to$SMB is 
 ($p = 8.75 \times 10^{-9}$; HAC $p = 9.45 \times 10^{-8}$). Elevated evidence is
 suggestive but below the Bonferroni-significant threshold,
 and Crisis evidence is null at lag 1 ($p = 0.695$). The frozen out-of-sample
-Elevated-regime test is suggestive at conventional levels ($p = 0.038$, Andrews HAC;
+Elevated-regime test is suggestive at conventional levels ($p = 0.041$, HAC;
 not Bonferroni-significant across 30 pairs), and event-level
 results remain mixed.
 

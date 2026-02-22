@@ -1165,7 +1165,10 @@ data. This corrects the frozen HMM's COVID-2020 detection failure
 ($p_{\text{CC}} = 0.336$). Note: these results use the sensitivity fit
 (seed 42), whose frozen OOS Granger result is null (Elevated $p = 0.466$);
 the VaR improvement therefore reflects the volatility-override mechanism rather
-than direct Granger-signal transmission.
+than direct Granger-signal transmission. Under the primary fit (seed 28), the
+hybrid detector achieves 5.70\% violation rate ($p_{\text{CC}} = 0.083$,
+adequate conditional coverage), confirming that one model simultaneously
+delivers Bonferroni-significant Granger evidence and adequate VaR calibration.
 
 \textbf{Tick loss and model selection.}
 Despite superior coverage, the HML-informed model has higher mean tick loss

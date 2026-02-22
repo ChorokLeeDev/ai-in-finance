@@ -286,7 +286,7 @@ Oelschl{\"a}ger, Adam and Michels~\cite{oelschlager2024fhmm} provide a recent
 open-source implementation (\texttt{fHMM}) validating this model class on financial data.
 Shu, Yu and Mulvey~\cite{shu2024downside} compare statistical jump models against HMMs
 for equity regime detection, finding jump models reduce downside risk in specific settings;
-Shu, Yu and Mulvey~\cite{shu2025dynamic} apply regime-switching signals to dynamic allocation
+Shu and Mulvey~\cite{shu2025dynamic} apply regime-switching signals to dynamic allocation
 across six equity factors (value, size, momentum, quality, low-vol, growth) --- selecting which factor
 to hold per regime --- whereas the present paper examines Granger predictive \emph{precedence between}
 factors within shared multi-factor regimes.
@@ -466,6 +466,12 @@ $\hat{z}_{t-\ell} = k$ for all $\ell \in \{1, \ldots, L\}$. The exclusion varies
 by analysis: Table~\ref{tab:main} uses BIC-selected lags (lag 1 for all rows);
 Table~\ref{tab:r2} uses 15 lags; Tables~\ref{tab:neural} and \ref{tab:te} use
 9 lags; Table~\ref{tab:var} uses model-specific warm-up requirements.
+For the lag-1 Granger analysis, exclusion also removes observations lacking a
+consecutive-trading-day predecessor (e.g., Mondays and post-holiday days), which
+accounts for the majority of the 22\% rate. The higher-lag neural and transfer
+entropy analyses use trading-day-indexed lags and apply regime-consistency
+checks only, yielding lower per-table exclusion rates despite longer lag windows
+(e.g., Normal: $n=4{,}496$ at lag~9 vs.\ $n\approx3{,}680$ under lag-1 calendar exclusion).
 
 \textbf{Quantified impact.} With lag-1 Granger tests, 22.2\% of observations (1,956
 of 8,817) are excluded at regime boundaries---distributed as Normal: 22.1\%
@@ -1008,7 +1014,7 @@ decomposition of where in the regime structure the predictive link concentrates.
 \label{sec:trading}
 
 We evaluate whether the predictive relationship translates to profits via a simple
-strategy: during Crisis regime, go long SMB when HML return over the past 9 days
+strategy using the primary fit (seed 28): during Crisis regime, go long SMB when HML return over the past 9 days
 is positive, short SMB when negative. The Crisis-regime Granger test is
 null ($p = 0.695$), so we expect no edge; this test serves as a falsification check
 confirming that an absent statistical signal does not produce trading profits.
@@ -1048,7 +1054,7 @@ $\neq$ \emph{economic predictability}. Several factors explain the gap:
     directional strategy cannot capture.
 
     \item \textbf{Regime detection lag:} The HMM assigns regimes using filtered
-    (smoothed) probabilities. Real-time regime detection would be noisier, introducing
+    probabilities (past data only). Real-time regime detection would be noisier, introducing
     additional error.
 
     \item \textbf{Transaction costs:} Not modeled, but would further erode returns.

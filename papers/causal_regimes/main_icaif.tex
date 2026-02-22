@@ -37,27 +37,29 @@
 
 \begin{abstract}
 We evaluate regime-dependent predictive structure between equity factors using
-35 years of Fama-French daily data (1990--2024, 8,817 trading
-days) and a Student-$t$ Hidden Markov Model with 50 multi-start initializations.
+35 years of Fama-French daily data (1990--2024, 8,817 trading days) and a
+Student-$t$ HMM with 50 multi-start initializations.
 To eliminate regime-identification circularity, the \emph{primary} analysis
-uses a frozen out-of-sample design: the HMM is trained on 1990--2012 ($n =
-5{,}797$ days) and applied without refitting to classify 2013--2024 ($n =
-3{,}020$ days), after which Granger tests are run on the held-out labels.
-The central finding is a post-GFC regime shift in factor predictive architecture.
-In-sample, HML$\to$SMB concentrates in Normal (pre-GFC: $p = 6.66 \times 10^{-16}$,
-$\Delta R^2 = 2.06\%$; post-GFC Normal: $p = 0.73$, null), consistent with
-Dodd-Frank/Basel III constraining leverage in calm conditions post-crisis.
-In the frozen OOS evaluation (2013--2024), the signal migrates to the Elevated
-regime: $F$-$p = 0.014$ (surviving $\alpha/3 = 0.0167$), HAC $p = 0.041$
-(not Bonferroni-significant across 30 pairs), $\Delta R^2 = 0.73\%$, $n = 836$;
-Normal and Crisis null (``Crisis'' reflects a high-kurtosis statistical state,
-not calendar crises). The full in-sample Normal-regime $p = 8.75 \times 10^{-9}$ (HAC $p = 9.45 \times 10^{-8}$) is Bonferroni-significant but pre-GFC only (Chow-confirmed; post-2008 $p = 0.73$).
-Two of 3 distinct local optima (41/50 seeds) confirm Elevated OOS significance. Event validation shows 2/6 marginally significant ($p < 0.10$), 4/6
-directional. Exploratory FF25 mechanism analysis ($\rho_s = 0.35$, $p = 0.046$)
-is consistent with portfolio overlap. The trading strategy is not profitable
-(Sharpe $= -0.07$). A hybrid VaR detector yields 5.60\% violations with
-Christoffersen CC~\cite{christoffersen1998evaluating} $p = 0.336$. We treat
-Granger findings as predictive precedence, not structural causality.
+uses a frozen out-of-sample (OOS) design: HMM trained on 1990--2012
+($n = 5{,}797$ days), applied without refitting to 2013--2024 ($n = 3{,}020$ days).
+
+The central finding is a post-GFC regime shift: HML$\to$SMB is strongly significant
+in the Normal regime (full-sample $p = 8.75 \times 10^{-9}$, Bonferroni-significant)
+but \emph{pre-GFC only} (Chow $p = 2.29\times10^{-6}$; post-2008: $p = 0.73$).
+In the frozen OOS evaluation, HML$\to$SMB shows suggestive evidence in the
+Elevated regime: $F$-$p = 0.014$, HAC $p = 0.041$, permutation $p = 0.049$,
+$\Delta R^2 = 0.73\%$, $n = 836$;
+Normal and Crisis null.
+Two of 3 local optima (41/50 seeds) corroborate this.
+Trivariate robustness (MKT-RF control) slightly strengthens the Elevated result
+($F$-$p = 0.012$, HAC $p = 0.035$); MKT-RF is non-significant in Elevated and
+Normal ($F$-$p \geq 0.43$), marginally so in Crisis ($F$-$p = 0.077$).
+A four-model diagnostic (Linear, RF, MLP, LSTM) finds no nonlinear improvement over
+the linear baseline; transfer entropy identifies an additional reverse nonlinear
+channel (SMB$\to$HML, empirical $p < 0.005$, sensitivity fit, seed~42) in Normal.
+The effect does not translate to profitable trading (Sharpe $= -0.07$), but a hybrid
+VaR detector achieves 5.60\% violations (CC $p = 0.336$).
+We treat Granger findings as predictive precedence, not structural causality.
 \end{abstract}
 
 \begin{CCSXML}
@@ -85,7 +87,7 @@ Granger findings as predictive precedence, not structural causality.
 \section{Introduction}
 
 The August 2007 quantitative meltdown, in which systematic equity strategies lost
-approximately 30\% in three days~\cite{khandani2011quants}, revealed a critical
+more than 27\% in three trading days (August 7--9, 2007)~\cite{khandani2011quants}, revealed a critical
 blind spot in factor-based risk management.
 When multiple quantitative funds held similar factor exposures, forced liquidation
 by one fund created price pressure that cascaded to all others.
@@ -115,15 +117,14 @@ the target's own history. If such predictive relationships vary by regime, we co
 \textbf{Important caveat.} Granger causality establishes \emph{predictive precedence},
 not \emph{structural causality}. A statistically significant Granger relationship
 could arise from: (1) direct causal influence, (2) a common driver affecting both
-series with different lags, or (3) omitted variables. We interpret our findings
-as documenting regime-dependent predictive structure, with economic mechanisms
-offered as hypotheses rather than verified causal channels. This distinction between predictive precedence and structural causality is
-foundational in the causal inference literature~\cite{pearl2009causality} and
-has been formalized in the recent factor investing
-literature~\cite{lopezdeprado2023causal}; we adopt the Granger framework for
-its tractability on high-dimensional daily factor series while acknowledging
-that L\'opez de Prado advocates structural causal models (SCMs/DAGs) as the
-more rigorous alternative for factor research.
+series with different lags, or (3) omitted variables. We interpret our findings as documenting regime-dependent predictive structure,
+with economic mechanisms offered as hypotheses rather than verified causal channels---a
+distinction foundational in the causal inference literature~\cite{pearl2009causality}
+and articulated for factor research by L\'opez de Prado~\cite{lopezdeprado2023causal}.
+We adopt the Granger framework for its tractability on high-dimensional daily
+factor series. L\'opez de Prado advocates structural causal models (SCMs/DAGs)
+as the more rigorous alternative for factor research; we acknowledge this
+distinction throughout.
 
 \subsection{Our Findings}
 
@@ -137,24 +138,28 @@ circularity (not Bonferroni-significant across 30 pairs; economically motivated 
 \begin{itemize}
     \item \emph{Elevated (OOS, $n = 836$):} $p = 0.014$, HAC $p = 0.041$ (Newey--West, bandwidth~1),
     $\Delta R^2 = 0.73\%$ (lag 1, pre-fixed from in-sample BIC); permutation $p = 0.049$
-    (1{,}000 label shuffles preserving regime counts~\cite{good2005permutation}).
+    (1{,}000 label shuffles preserving regime counts~\cite{good2005permutation};
+    conditional on the pre-selected HML--SMB pair; does not address 30-pair multiplicity).
     \item \emph{Normal (OOS):} $p = 0.149$ (null).
     \item \emph{Crisis (OOS):} $p = 0.281$ (null).
 \end{itemize}
-A full 50-seed sensitivity analysis finds that 2 of 3 local optima
-(covering 41 of 50 seeds; $F$-$p < 0.05$) show Elevated significance;
-the 9 null seeds all share the lowest-LL local optimum.
+A full 50-seed sensitivity analysis finds that 2 of 3 local optima show Elevated
+significance ($F$-$p < 0.05$), covering 41 of 50 seeds---these represent 2 distinct
+HMM solutions, not 41 independent ones.
+The 9 null seeds all share the lowest-LL local optimum.
 In-sample analysis (1990--2024) provides higher-power corroboration: Normal-regime
 $p = 8.75 \times 10^{-9}$ (HAC $p = 9.45 \times 10^{-8}$), surviving Bonferroni
 correction across 30 directed pairs.
 A single-stage Markov-Switching VAR further supports HML lags ($p < 10^{-12}$),
 and event tests are mixed (2/6 marginally significant at $p < 0.10$, 4/6 in the predicted direction)
-(Section~\ref{sec:frozen_oos}).
+(Section~\ref{sec:oos}).
 
 \textbf{Predominantly linear.} A four-model diagnostic protocol (Linear, RF,
 MLP, LSTM) finds that no nonlinear method improves HML$\to$SMB prediction beyond
 the linear baseline. However, transfer entropy reveals an additional nonlinear
-reverse channel (SMB$\to$HML, $z = 5.37$, $p < 0.005$ empirical) in Normal,
+reverse channel (SMB$\to$HML, $p < 0.005$ empirical; sensitivity fit, seed~42;
+non-significant under primary fit; $z = 5.37$ under Gaussian approximation,
+unreliable for heavy-tailed data) in Normal,
 invisible to standard Granger tests (Section~\ref{sec:robustness}).
 
 \textbf{Mechanism evidence (sensitivity fit, seed~42).} Granger significance
@@ -174,33 +179,35 @@ violation rate ($p_{\text{CC}} = 0.336$)---the best among all specifications
 \begin{enumerate}
     \item \textbf{Empirical (circularity-free):} Suggestive OOS evidence for HML$\to$SMB in
     the Elevated regime (frozen design, 2013--2024, $n = 836$): $p = 0.014$,
-    HAC $p = 0.041$, permutation $p = 0.049$; not Bonferroni-significant across 30 pairs;
+    HAC $p = 0.041$, permutation $p = 0.049$ (conditional on pre-selected pair;
+    30-pair multiplicity not addressed); not Bonferroni-significant across 30 pairs;
     Normal and Crisis null. In-sample analysis (1990--2024)
     corroborates with higher power ($p = 8.75 \times 10^{-9}$, Normal regime,
     Bonferroni-significant)
-    (Sections~\ref{sec:frozen_oos} and~\ref{sec:main_result})
+    (Sections~\ref{sec:main_result} and~\ref{sec:frozen_oos}).
 
     \item \textbf{Methodological:} Student-$t$ HMM with multi-start selection
     (50 initializations) for reproducible regime detection
-    (Sections~\ref{sec:hmm}, \ref{sec:gaussian_comparison})
+    (Sections~\ref{sec:hmm}, \ref{sec:gaussian_comparison}).
 
 \item \textbf{Complexity Characterization:} A four-model diagnostic protocol
     (Linear, RF, MLP, LSTM) maps the complexity boundary of the predictive link,
     establishing the forward HML$\to$SMB link as predominantly linear while
     identifying a nonlinear reverse-direction channel via transfer entropy
-    (SMB$\to$HML, $z = 5.37$, $p < 0.005$ empirical), demonstrating the protocol's
-    diagnostic value (Section~\ref{sec:robustness})
+    (SMB$\to$HML, $p < 0.005$ empirical; sensitivity fit, seed~42;
+    non-significant under primary fit), demonstrating the protocol's
+    diagnostic value (Section~\ref{sec:robustness}).
 
     \item \textbf{Exploratory Mechanism Evidence:} Portfolio overlap analysis of the FF 25
     Size$\times$BM grid provides exploratory evidence consistent with the hypothesis that the
     HML$\to$SMB link is mediated by small-value portfolios loading on both factors (sensitivity
     fit, seed~42; spatial gradient test: $\rho_s = 0.35$, permutation $p = 0.046$;
-    asymptotic $p = 0.086$; Section~\ref{sec:overlap_evidence})
+    asymptotic $p = 0.086$; Section~\ref{sec:overlap_evidence}).
 
     \item \textbf{Honest Assessment:} Transparent evaluation showing the finding
     supports risk monitoring rather than alpha generation, with clear acknowledgment
     of what Granger causality can and cannot establish
-    (Sections~\ref{sec:trading}, \ref{sec:limitations})
+    (Sections~\ref{sec:trading}, \ref{sec:limitations}).
 \end{enumerate}
 
 \section{Related Work}
@@ -224,7 +231,7 @@ Haddad, Kozak and Santosh~\cite{haddad2020factor} show that individual factor re
 are predictable from conditioning variables representing the stochastic discount factor
 (the most predictable SDF components achieve out-of-sample $R^2 \approx 4\%$ at the monthly frequency)---a within-factor SDF-based timing result.
 Fl{\"o}gel, Schlag and Zunft~\cite{flogel2022momentum} exploit within-factor (own) first-order
-autocorrelations to construct momentum-managed factor portfolios.
+autocorrelations in \emph{monthly} factor returns to construct momentum-managed factor portfolios.
 Barroso and Santa-Clara~\cite{barroso2015momentum} and Daniel and
 Moskowitz~\cite{daniel2016momentum} document that momentum profits are
 regime-dependent: high in tranquil periods, negative during momentum-crash episodes.
@@ -259,6 +266,15 @@ stocks with common mutual fund ownership exhibit correlated returns. Lou and
 Polk~\cite{lou2022comomentum} measure arbitrage activity through return comovement.
 Marks and Shang~\cite{marks2019factor} provide direct empirical evidence that HML/SMB
 crowding leads to liquidity exhaustion and factor-level crash risk.
+Kang, Rouwenhorst and Tang~\cite{kang2021crowding} show that factor crowding
+(measured via CFTC positioning data in commodity futures markets) negatively predicts factor returns.
+Volpati et al.~\cite{volpati2020zooming} construct equity-specific crowding measures
+using order flow imbalance and metaorder data, providing the closest methodological precedent for
+equity factor crowding measurement.
+Hua and Sun~\cite{hua2024dynamics} examine the temporal dynamics of factor crowding
+and its risk-return implications, focusing on within-factor alpha decay.
+All three establish the within-factor crowding-and-returns link that precedes our
+cross-factor regime-conditional spillover contribution.
 Chincarini, Lazo-Paz and Moneta~\cite{chincarini2026crowded} show that anomaly returns
 concentrate among the most crowded stocks and that crowding positively predicts crash risk,
 corroborating the HML$\to$SMB contagion channel proposed here.
@@ -291,6 +307,10 @@ Bulla~\cite{bulla2011hidden} introduces Student-$t$ HMMs for financial returns,
 motivated by excess kurtosis documented by Cont~\cite{cont2001empirical};
 Oelschl{\"a}ger, Adam and Michels~\cite{oelschlager2024fhmm} provide a recent
 open-source implementation (\texttt{fHMM}) validating this model class on financial data.
+Baitinger and Hoch~\cite{baitinger2024simplicity} compare standard HMMs against
+Hidden Semi-Markov Models (HSMMs) for regime-based allocation and find the HMM class
+competitive in OOS settings (HSMM's in-sample advantage disappears out-of-sample),
+supporting our use of the HMM framework.
 Shu, Yu and Mulvey~\cite{shu2024downside} compare statistical jump models against HMMs
 for equity regime detection, finding jump models reduce downside risk in specific settings;
 Shu and Mulvey~\cite{shu2025dynamic} apply regime-switching signals to dynamic allocation
@@ -300,11 +320,11 @@ factors within shared multi-factor regimes.
 Our two-stage Granger design motivates the HMM choice for its interpretable latent-state structure.
 Wang, Lin and Mikhelson~\cite{wang2020regime} combine HMMs with Fama-French factors
 to switch factor strategies across regimes.
-Nuriyev, Duan and Yi~\cite{nuriyev2024regime} augment factor allocation with global macro regimes via HMMs, selecting which factor to hold per regime---the closest ICAIF-adjacent precedent; our distinction is that we examine Granger predictive \emph{precedence between} factors within shared regimes, not regime-based factor allocation.
-\textbf{Gap:} Existing regime-switching research focuses on regime-dependent
-\emph{distributions} or regime-conditional \emph{strategy allocation}
-(Wang et al.\ 2020; Nuriyev et al.\ 2024), but does not examine whether Granger predictive
-\emph{structure between factors} changes across regimes---which is our focus.
+Nuriyev, Duan and Yi~\cite{nuriyev2024regime} augment factor allocation with global macro regimes via HMMs, selecting which factor to hold per regime---the closest ICAIF-adjacent precedent.
+Both focus on \emph{which factor to hold} per regime, not on \emph{whether factors Granger-predict each other} within shared regimes.
+\textbf{Gap:} Existing regime-switching research examines regime-dependent
+\emph{distributions} or regime-conditional \emph{strategy allocation}, but not
+Granger predictive \emph{structure between factors} across regimes---which is our focus.
 
 \textbf{Granger causality and connectedness.}
 Lo and MacKinlay~\cite{lo1990contrarian} establish cross-autocorrelation
@@ -329,19 +349,25 @@ unconditional networks or regime-conditional strategy allocation).
 Tank et al.~\cite{tank2022neural} extend Granger causality to nonlinear settings
 using neural networks (MLP, LSTM), enabling detection of nonlinear predictive
 relationships that linear $F$-tests miss. Howard, Lohre and
-Mudde~\cite{howard2025causal} apply causal discovery algorithms (DAG-based) to factor investing,
-constructing unconditional causal networks among factors that are static across time.
-Their primary finding identifies value and momentum factors as key hubs in the
-factor causal graph (including value-momentum and value-size linkages)---a result
-that our HML$\to$SMB (value leads size) finding corroborates for the value-size
-pair specifically, and extends: we show this predictive precedence is
-\emph{regime-dependent}, active in Normal conditions but null during Crisis
-($p=0.695$), a distinction their unconditional design cannot detect.
+Mudde~\cite{howard2025causal} apply causal discovery algorithms (DAG-based) to
+equity investing, constructing \emph{stock-level} causal networks within the S\&P~500
+universe and using network centrality as signals for long-short factor construction
+and market timing.
+Their approach operates at the individual-stock level---mapping causal influences
+among equities---rather than examining Granger predictive precedence between
+Fama-French factor portfolios. By contrast, the present paper tests whether HML
+temporally precedes SMB at the factor level and shows this relationship is
+\emph{regime-conditional}: active in Normal conditions ($p = 8.75\times10^{-9}$)
+but null during Crisis ($p=0.695$)---a distinction an unconditional, stock-level
+design cannot detect.
 We apply the neural Granger framework alongside
-Random Forest and transfer entropy~\cite{schreiber2000measuring,frenzel2007partial} not to discover
+Random Forest and transfer entropy~\cite{schreiber2000measuring,marschinski2002analysing,frenzel2007partial} not to discover
 new nonlinear links, but to \emph{characterize the complexity boundary} of
 a known linear relationship. \textit{Gap:} No prior work maps the complexity
 boundary of regime-conditional factor Granger links.
+Together, these gaps motivate a two-stage design: HMM-based regime classification
+followed by regime-conditional Granger tests and a complexity diagnostic protocol
+(Section~\ref{sec:robustness}).
 
 \section{Methodology}
 
@@ -352,6 +378,13 @@ Market excess return (MKT-RF), Size (SMB), Value (HML), Profitability (RMW),
 Investment (CMA), and Momentum (MOM)~\cite{jegadeesh1993returns,carhart1997persistence}.
 
 \textbf{Sample:} January 2, 1990 -- December 31, 2024 (8,817 trading days).
+Factor returns are used as downloaded (daily percentages; e.g., 0.10 = 0.1\%).
+Granger $F$-statistics are scale-invariant. The HMM fits and Granger tests for the
+in-sample analysis use percentage units. The frozen OOS pipeline converts to decimal form
+before HMM fitting and Granger testing (e.g., 0.001 $= 0.1\%$); the frozen HMM is trained
+on rescaled data, so all computations within that pipeline are internally consistent.
+This scale difference does not affect conclusions: Granger $F$-statistics and HAC $t$-ratios
+are scale-invariant, and the OOS Elevated $F$-$p < 0.05$ under both conventions.
 Daily factor returns are stationary by construction; ADF tests confirm unit-root
 rejection ($p < 0.001$) for all six series (BIC lag selection, intercept included,
 no trend).
@@ -385,8 +418,7 @@ assumption beyond what is needed for asymptotic normality of OLS coefficients.
 \textbf{Model selection.} The number of regimes ($K=3$) was selected by the Bayesian
 Information Criterion, which favored three regimes over two
 ($\Delta\text{BIC} = \text{BIC}(K{=}2) - \text{BIC}(K{=}3) = 847$) or
-four ($\Delta\text{BIC} = \text{BIC}(K{=}4) - \text{BIC}(K{=}3) = 312$). Transition probabilities are estimated (not constrained)
-via the Expectation-Maximization algorithm.\footnote{We fit Student-$t$ HMMs with 50
+four ($\Delta\text{BIC} = \text{BIC}(K{=}4) - \text{BIC}(K{=}3) = 312$). Transition probabilities are freely estimated via the Expectation-Maximization algorithm.\footnote{We fit Student-$t$ HMMs with 50
 EM initializations.
 \emph{Primary selection (leakage-safe):} the fit with highest log-likelihood across
 all 50 starts, regardless of event detection. Three seeds (28, 20, 6) reach the same
@@ -407,7 +439,6 @@ Table~\ref{tab:detection} compares against a Gaussian HMM baseline
 (also multi-start, 10 seeds).}
 
 \subsection{Sample Overlap Consideration}
-\label{sec:overlap}
 
 A methodological concern is that regime labels are identified using the full sample,
 then Granger tests are conducted within those regimes. This means regime assignments
@@ -452,11 +483,14 @@ $H_0: r_{j,t} \perp \{r_{i,t-\ell}\}_{\ell=1}^{L} \mid \{r_{j,t-\ell}\}_{\ell=1}
 Significance threshold: $\alpha = 0.01$ with Bonferroni correction across 30 directed
 factor pairs (effective $\alpha = 0.00033$). HAC standard errors use Newey--West
 with bandwidth equal to the Granger lag (bandwidth~1) as the primary specification,
-applied consistently across all Granger tests. As a robustness check,
-Andrews's~\cite{andrews1991heteroskedasticity} AR(1) plug-in data-driven bandwidth
-for the OOS Elevated series ($n = 836$, residual autocorrelation near zero) is also~1,
-yielding HAC $p = 0.021$---consistent with and stronger than the primary Newey--West
-$p = 0.041$, confirming the result is not an artefact of the bandwidth choice.
+applied consistently across all Granger tests. As a cross-convention check,
+under the percentage-unit specification ($n = 953$, residual autocorrelation near zero),
+Andrews's~\cite{andrews1991heteroskedasticity} AR(1) plug-in bandwidth for the
+OOS Elevated series is also~1, yielding HAC $p = 0.021$---consistent with
+the primary Newey--West $p = 0.041$.
+Within-convention bandwidth sensitivity (percentage-unit; bandwidths 1, 4, 7
+(rule-of-thumb for $n \approx 953$: $\lfloor 0.75 n^{1/3} \rfloor = 7$), 10, and 14)
+yields $p < 0.05$ throughout (range: 0.017--0.025), confirming robustness to bandwidth choice.
 
 \textbf{Regime boundary handling.} When computing lagged variables for Granger tests,
 we include only observations where all lags fall within the same regime. Specifically,
@@ -465,26 +499,23 @@ $\hat{z}_{t-\ell} = k$ for all $\ell \in \{1, \ldots, L\}$. The exclusion varies
 by analysis: Table~\ref{tab:main} uses BIC-selected lags (lag 1 for all rows);
 Table~\ref{tab:r2} uses 15 lags; Tables~\ref{tab:neural} and \ref{tab:te} use
 9 lags; Table~\ref{tab:var} uses model-specific warm-up requirements.
-For the lag-1 Granger analysis, exclusion also removes observations lacking a
-consecutive-trading-day predecessor (e.g., Mondays and post-holiday days), which
-accounts for the majority of the 22\% rate. The higher-lag neural and transfer
-entropy analyses use trading-day-indexed lags and apply regime-consistency
-checks only, yielding lower per-table exclusion rates despite longer lag windows
-(e.g., Normal: $n=4{,}496$ at lag~9 vs.\ $n\approx3{,}680$ under lag-1 calendar exclusion).
+All analyses use trading-day-indexed lags; higher-lag analyses yield lower per-table $n$
+(e.g., Normal: $n = 4{,}496$ at lag~9 vs.\ $n = 4{,}697$ at lag~1).
 
-\textbf{Quantified impact.} With lag-1 Granger tests, 22.2\% of observations (1,956
-of 8,817) are excluded at regime boundaries---distributed as Normal: 22.1\%
-(1,043/4,723), Elevated: 22.4\% (676/3,023), Crisis: 22.1\% (237/1,071). The gap
-distribution is highly concentrated at short durations: for all three regimes,
-the median gap is 3~calendar days and the 95th percentile is 4~days (weekend and
-holiday breaks). Only 1.2--3.3\% of inter-regime gaps exceed 20 trading days
-($\approx$1 month), indicating that the vast majority of ``non-consecutive''
-observations are separated by at most a weekend---not by long regime interruptions
-that would undermine the economic interpretation of lag-1 prediction. The
-maximum gaps (1,568 days Normal, 2,423 days Elevated, 4,957 days Crisis) reflect
-rare long intervals between \emph{separate} regime episodes, not typical gaps.
-Boundary exclusion rates are uniform across regimes ($\approx$22\%), indicating no
-systematic bias against any particular regime.
+\textbf{Quantified impact.} With lag-1 Granger tests, this rule excludes only the
+first observation of each new regime episode (where the lag-1 predecessor falls in a
+different regime), yielding low in-sample exclusion rates:
+Normal 0.55\% (26/4,723), Elevated 0.89\% (27/3,023), Crisis 0.56\% (6/1,071),
+overall 0.67\% (59/8,817).
+Frozen OOS exclusion is higher at 7.4\% (224/3,020), reflecting more frequent
+regime transitions in the 2013--2024 test period.
+An auxiliary analysis of calendar-day gaps between consecutive same-regime
+observations confirms that excluded observations are structurally minor:
+median gap 3~calendar days, 95th percentile 4~days (weekend and holiday breaks);
+only 1.2--3.3\% of inter-regime gaps exceed 20 trading days ($\approx$1 month).
+Maximum gaps (1,568 days Normal, 2,423 days Elevated, 4,957 days Crisis) reflect
+rare intervals between \emph{separate} regime episodes.
+Exclusion rates across regimes are not systematically biased toward any particular regime.
 
 \emph{Limitation:} This approach may introduce selection bias by systematically
 excluding days immediately following regime transitions---precisely when predictive
@@ -519,6 +550,16 @@ post-GFC locus from in-sample temporal analysis prior to the OOS evaluation,
 a one-directional confirmatory test warrants $\alpha = 0.05$ rather than a
 three-regime adjustment; under that framing both results are significant. We
 report both perspectives.
+\textbf{Permutation test scope.} The permutation $p = 0.049$ (1,000 label shuffles
+preserving regime counts; Monte Carlo SE $\approx 0.007$, 95\% CI $\approx$[0.035, 0.063])
+tests whether the OOS Elevated $F$-statistic is extreme
+conditional on the pre-selected HML--SMB pair; it does not correct for
+the selection of this pair from 30 directed pairs via in-sample screening.
+A max-statistic correction across all 30 pairs would be more conservative.
+A complementary permutation test under the percentage-unit convention
+($n = 953$~clean Elevated observations; 10 RNG seeds $\times$ 2{,}000 permutations each)
+gives median $p = 0.022$ (range 0.016--0.028), providing a more stable estimate
+and confirming robustness across scaling conventions.
 
 \section{Results}
 
@@ -548,7 +589,8 @@ Crisis & 1,071 & 12.1\% & 2.09 & 5.5 & 0.993 \\
 \includegraphics[width=\columnwidth]{figures/regime_timeline.pdf}
 \caption{Regime assignments over sample period (1990--2024). Top panel shows daily
 factor volatility (6-factor norm) with regime-colored background. Bottom panel shows
-regime classifications. Vertical dashed lines mark major stress events. Under the
+regime classifications. Vertical dashed lines mark major stress events (LTCM/Russia 1998, dot-com 2000--02,
+GFC 2008, COVID-2020, 2022 rate shock). Under the
 primary (leakage-safe) fit, Crisis regime (red) reflects a high-kurtosis statistical
 state; the 2008-screened sensitivity fit aligns it with calendar crises (see
 Section~\ref{sec:gaussian_comparison}). Elevated regime (yellow) captures moderate
@@ -642,8 +684,11 @@ non-significant ($p = 0.711$ HAC vs.\ $p = 0.695$ standard).
 
 \textbf{Temporal stability and structural break.}
 Pre-GFC Normal ($n = 3{,}140$): $p = 6.66\times10^{-16}$ ($\Delta R^2 = 2.06\%$).
-Post-GFC Normal ($n = 1{,}557$): $p = 0.73$ ($\Delta R^2 < 0.01\%$). A
-GFC-motivated Chow test at January 2008 confirms this break: $F(3,n{-}6) = 9.68$,
+Post-GFC Normal ($n = 1{,}557$): $p = 0.73$ ($\Delta R^2 < 0.01\%$).
+(The sum $3{,}140 + 1{,}557 = 4{,}697$ is 26 days fewer than Table~\ref{tab:regimes}'s
+Normal total of 4{,}723, due to standard regime-boundary exclusion at lag~1
+removing the first observation of each Normal-regime episode.)
+A GFC-motivated Chow test at January 2008 confirms this break: $F(3,n{-}6) = 9.68$,
 $p = 2.29\times10^{-6}$; $\hat{\beta}_{\text{HML}}$ shifts from $-0.189$
 (pre-GFC) to $+0.010$ (post-GFC, Wald $z = 5.05$, $p = 9.2\times10^{-7}$).
 The Quandt-Andrews~\cite{andrews1993tests} sup-$F = 22.1$ exceeds the 5\% CV
@@ -651,7 +696,7 @@ The Quandt-Andrews~\cite{andrews1993tests} sup-$F = 22.1$ exceeds the 5\% CV
 with a sharp break. The sup-$F$-maximising date (June 1998, LTCM/Russia)
 suggests possible multi-break structure~\cite{bai1998estimating}. Whether the post-GFC attenuation
 reflects a regulatory structural change or a regime redistribution artifact
-(Limitations item~5) remains open; the OOS Elevated result ($F$-$p = 0.014$,
+(Limitations item~4) remains open; the OOS Elevated result ($F$-$p = 0.014$,
 HAC $p = 0.041$) is consistent with but does not confirm a post-GFC migration.
 
 \textbf{Incremental $R^2$.} Table~\ref{tab:r2} quantifies the economic magnitude. Adding
@@ -735,6 +780,12 @@ factor-level Granger tests are not significant in the leakage-safe fit.
 Greenwood and Thesmar~\cite{greenwood2011stock} document that stocks with
 concentrated institutional ownership exhibit correlated fragility during
 liquidation events---consistent with our hypothesized deleveraging channel.
+Chordia, Roll and Subrahmanyam~\cite{chordia2000commonality} establish commonality
+in liquidity across stocks, providing the micro-foundation for how a liquidity shock
+to one factor can propagate across overlapping portfolios.
+Adrian and Brunnermeier~\cite{adrian2016covar} formalize systemic risk as the
+Value-at-Risk contribution of one institution conditional on another's distress (CoVaR),
+a measure directly relevant to the regime-dependent factor contagion channel we study.
 We provide exploratory portfolio-level evidence for this overlap in
 Section~\ref{sec:overlap_evidence}.
 
@@ -809,7 +860,6 @@ score vs.\ Granger significance ($\rho_s = 0.35$, permutation $p = 0.046$).}
 \end{figure}
 
 \subsection{Early Warning Assessment}
-\label{sec:early_warning}
 
 The Student-$t$ HMM detects crisis regimes before market peaks (Table~\ref{tab:warning}).
 The 60-day windows were determined by identifying the first sustained crisis detection
@@ -818,7 +868,7 @@ The 60-day windows were determined by identifying the first sustained crisis det
 \begin{table}[t]
 \centering
 \caption{Early Warning Lead Time. First Detection = first day of 3+ consecutive
-Crisis regime assignments.}
+Crisis regime assignments. Lead = calendar days from first detection to volatility peak.}
 \label{tab:warning}
 \scriptsize
 \begin{tabular}{@{}lccc@{}}
@@ -832,7 +882,8 @@ COVID-2020 & None & Mar 23, 2020 & None \\
 \end{tabular}
 \end{table}
 
-Under the primary fit, early warning is absent for EU Crisis 2011 and COVID-2020 (Table~\ref{tab:warning}), consistent with the primary fit's
+Under the primary fit, early warning is absent for EU Crisis 2011 and COVID-2020
+(Table~\ref{tab:warning}). This is consistent with the primary fit's
 non-alignment to these calendar events (Table~\ref{tab:detection}).
 
 \section{Discussion}
@@ -873,7 +924,7 @@ Note: three events (2015, 2020, 2022) also appear in the frozen OOS Table~\ref{t
 differences in $p$-values reflect distinct HMM fits (full-sample vs.\ 1990--2012 frozen). Two additional events (2008, 2015)
 show the correct direction ($p_{\text{HML}\to\text{SMB}} < p_{\text{SMB}\to\text{HML}}$)
 but lack statistical power. Under the null hypothesis of no directional preference,
-the probability of 4+ correct-direction events out of 6 by chance is approximately
+the probability of 4+ correct-direction events out of 6 by chance is
 0.34 ($P(X \geq 4 \mid n{=}6, p{=}0.5) = 0.34$, binomial test), so the directional
 pattern alone provides limited statistical evidence against the null.
 
@@ -907,9 +958,10 @@ to Crisis in the held-out period (vs.\ 21.5\%, 13.7\%, 64.8\% in training).
 Notably, the Elevated-regime share more than doubles from 13.7\% (training)
 to 30.7\% (test), consistent with the OOS Elevated significance.
 After lag-1 boundary exclusion (same rule as Section~\ref{sec:granger_method}),
-the OOS retains 661$+$836$+$1{,}299$=2{,}796$ of 3,020 days (7.4\% excluded),
-lower than the full-sample 22.2\% because the frozen classifier produces longer
-regime runs in the OOS period (fewer transitions when parameters are fixed).
+the OOS retains 661$+$836$+$1{,}299$=2{,}796$ of 3,020 days (7.4\% excluded).
+The OOS exclusion rate (7.4\%) is higher than the full-sample lag-1 Granger exclusion
+(0.67\%; 59/8,817), reflecting more frequent regime transitions when the
+frozen 1990--2012 classifier is applied to the unseen 2013--2024 period.
 
 \begin{table}[t]
 \centering
@@ -931,7 +983,7 @@ Crisis    & 1,299 & 0.281 & 0.290 & 0.09\% \\
 \end{tabular}
 \end{table}
 
-\textbf{Result.} HML$\to$SMB shows suggestive evidence in the Elevated regime
+\textbf{Result} (Table~\ref{tab:frozen_granger}). HML$\to$SMB shows suggestive evidence in the Elevated regime
 ($p = 0.014$; HAC $p = 0.041$; $\Delta R^2 = 0.73\%$ at lag~1),
 while Normal ($p = 0.149$) and Crisis ($p = 0.281$) are null.
 (Note: Table~\ref{tab:r2} reports $\Delta R^2 = 1.32\%$ for Elevated using the
@@ -1001,7 +1053,7 @@ stress-period signal more reliably than individual events.
 \label{sec:msvar}
 
 Our two-stage procedure (fit HMM, then test Granger) invites comparison with
-Markov-Switching VARs~\cite{krolzig1997markov,droumaguet2017granger}, which jointly estimate
+Markov-Switching VARs~\cite{krolzig1997markov,droumaguet2017granger,cavicchioli2025forecasting}, which jointly estimate
 regime-dependent dynamics in a single stage.
 
 We fit two Markov-Switching regression models for SMB with switching variance
@@ -1023,7 +1075,7 @@ under a parsimony criterion.
 within a principled single-stage framework ($p < 10^{-12}$), but its economic magnitude
 is too small to justify a complex regime-switching prediction model---consistent with
 our $\Delta R^2 \approx 1\%$ finding and the trading strategy failure.
-The LR test is aggregate; the MS-VAR does not separately decompose per-regime HML significance,
+The LR test pools all regimes; the MS-VAR does not separately decompose per-regime HML significance,
 so the two-stage regime-conditional Granger results (Table~\ref{tab:main}) remain the primary
 decomposition of where in the regime structure the predictive link concentrates.\footnote{LR
 tests in regime-switching models have non-standard asymptotics due to unidentified nuisance
@@ -1034,7 +1086,7 @@ not exact.}
 \label{sec:trading}
 
 We evaluate whether the predictive relationship translates to profits via a simple
-strategy using the primary fit (seed 28): during Crisis regime, go long SMB when HML return over the past 9 days
+strategy (Table~\ref{tab:trading}) using the primary fit (seed 28): during Crisis regime, go long SMB when HML return over the past 9 days
 is positive, short SMB when negative. The Crisis-regime Granger test is
 null ($p = 0.695$), so we expect no edge; this test serves as a falsification check
 confirming that an absent statistical signal does not produce trading profits.
@@ -1088,7 +1140,7 @@ large negative returns, a risk manager might:
     \item Pre-arrange liquidity for potential SMB hedging
 \end{itemize}
 
-These are qualitative adjustments informed by the Elevated-regime predictive evidence (not the null Crisis Granger result, which serves as a falsification check), not mechanical trading rules. We formalize this intuition in Section~\ref{sec:risk_monitoring}.
+These qualitative adjustments are informed by the Elevated-regime predictive evidence rather than the null Crisis result (which serves as a falsification check); they do not constitute mechanical trading rules. We formalize this intuition in Section~\ref{sec:risk_monitoring}.
 
 \subsection{Risk Monitoring Application (Sensitivity Fit, Seed 42)}
 \label{sec:risk_monitoring}
@@ -1110,7 +1162,7 @@ interpretable specifications.}
 
 \begin{enumerate}
     \item \textbf{Unconditional:} 60-day rolling historical VaR.
-    \item \textbf{GARCH(1,1):} One-step volatility forecast with parametric VaR.
+    \item \textbf{GARCH(1,1)~\cite{bollerslev1986generalized}:} One-step volatility forecast with parametric VaR.
     \item \textbf{Regime-conditional:} VaR window adapts to regime
     (Crisis: 30 days, Elevated: 50, Normal: 75).
     \item \textbf{HML-informed:} Regime-conditional, plus a $2.3\times$ stress
@@ -1125,7 +1177,9 @@ interpretable specifications.}
 \centering
 \setlength{\tabcolsep}{4pt}
 \caption[Out-of-Sample VaR Backtest (2013--2024)]{Out-of-Sample VaR Backtest (2013--2024). Target violation rate: 5\%.
-Christoffersen CC~\cite{christoffersen1998evaluating} tests conditional coverage (extending Kupiec's~\cite{kupiec1995techniques} unconditional coverage test with a serial-independence component).}
+Christoffersen CC~\cite{christoffersen1998evaluating} tests conditional coverage (extending Kupiec's~\cite{kupiec1995techniques} unconditional coverage test with a serial-independence component).
+All VaR models use the sensitivity fit (seed 42); seed 42 frozen OOS Granger is null (Elevated $p = 0.466$),
+so VaR improvements reflect the volatility-override mechanism.}
 \label{tab:var}
 \small
 \begin{tabular}{lccc}
@@ -1145,9 +1199,9 @@ Hybrid (HMM+Vol) & \textbf{5.60\%} & $\mathbf{+0.60}$ \textbf{pp} & \textbf{0.33
 Both the HML-informed and hybrid models pass the Christoffersen conditional
 coverage test ($p > 0.05$); all other specifications are rejected.
 The CC test evaluates both unconditional coverage (Kupiec) and serial independence
-of violations; a complementary Dynamic Quantile (DQ)
+of violations. A complementary Dynamic Quantile (DQ)
 test~\cite{engle2004caviar} conditioning on lagged violations and the VaR level
-would provide additional validation beyond the CC result but is left for future work. The hybrid
+would provide additional validation; this is left for future work. The hybrid
 model (Algorithm~\ref{alg:monitor}) adds a realized-volatility override that
 activates when 20-day realized vol exceeds the 95th percentile of training
 data. This corrects the frozen HMM's COVID-2020 detection failure
@@ -1186,7 +1240,9 @@ The alternative (GARCH) avoids regime labels entirely and achieves
 3.91\% violation rate with no false-alarm mechanism, but its over-coverage means
 capital is consistently over-reserved. In practice, the choice depends on whether
 the institution prefers fewer but louder alerts (HML-informed) or consistently
-conservative risk limits (GARCH). Both outperform unconditional VaR; neither
+conservative risk limits (GARCH). Both achieve violation rates closer to the 5\%
+target than the unconditional baseline (6.42\%), though GARCH remains
+over-conservative and also fails the CC test ($p = 0.014$); neither
 dominates on all criteria.
 We note that the HML-informed model's success may partly reflect conservative
 VaR widening during high-volatility regimes rather than the Granger link per se,
@@ -1204,7 +1260,7 @@ fallback: when realized vol exceeds the 95th percentile of the \emph{training pe
 The volatility threshold ($\sigma_{95} = 1.446$) is a fixed design choice locked
 before test evaluation---no search over thresholds on the holdout period.
 
-\textbf{Hybrid detector results.} The volatility override activates on 44 of 92
+\textbf{Hybrid detector results} (Table~\ref{tab:algo_params}). The volatility override activates on 44 of 92
 COVID trading days (47.8\% detection rate vs.\ 0\% for HMM alone;
 Table~\ref{tab:hybrid_sensitivity}). VaR performance improves further:
 violation rate 5.60\% (deviation from 5\% target: $+0.60$ pp), Christoffersen
@@ -1313,6 +1369,12 @@ HML lookback & --- & 9 days \\
 \subsection{Robustness}
 \label{sec:robustness}
 
+The primary permutation test ($p = 0.049$; 1,000 shuffles, decimal-unit convention;
+Section~\ref{sec:pairselection}) is complemented by an alternative run under
+the percentage-unit data convention ($n = 953$ clean Elevated observations,
+2,000 permutations, 10 RNG seeds), which yields median $p = 0.022$ (range 0.016--0.028),
+confirming the result is not an artefact of the scaling convention.
+
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/rolling_granger.pdf}
@@ -1346,6 +1408,22 @@ Crisis regime (red) remains non-significant across the tested lag range.}
 \Description{Line chart of HML-to-SMB p-values by lag for each regime, highlighting strong Normal-regime significance and weak Crisis-regime evidence.}
 \label{fig:lag_sensitivity}
 \end{figure}
+
+\textbf{Trivariate robustness (MKT-RF control).}
+To rule out a common market factor driving both HML and SMB with different lags,
+we condition on one lag of MKT-RF in addition to SMB's own lag.
+Results (frozen OOS, 2013--2024): Normal F-$p = 0.034$, HAC-$p = 0.041$;
+Elevated F-$p = 0.012$, HAC-$p = 0.035$;
+Crisis F-$p = 0.239$ (null). The Elevated signal \emph{strengthens} slightly after
+controlling for MKT-RF (bivariate F-$p = 0.014$; trivariate F-$p = 0.012$; post-hoc),
+and MKT-RF itself is non-significant in Elevated and Normal
+(MKT-RF$\to$SMB: Elevated F-$p = 0.78$; Normal F-$p = 0.43$)
+and marginally so in Crisis (F-$p = 0.077$).
+The OOS Normal bivariate result is clearly null (HAC $p = 0.153$, F-$p = 0.149$).
+Adding MKT-RF nominally yields trivariate HAC $p = 0.041$, but this was not
+pre-specified, does not survive Bonferroni correction, and should not be interpreted
+as evidence for OOS Normal predictive structure.
+A common market factor therefore does not subsume the HML$\to$SMB predictive link.
 
 \textbf{Subsample stability.} Splitting at 2008: Crisis HML$\to$SMB
 pre-2008 ($n = 659$, $p = 0.335$) and post-2008 ($n = 322$, $p = 0.599$)
@@ -1425,15 +1503,16 @@ Elevated & 2,792 & 0.92\%$^{**}$ & 1.00 & 1.00 & 0.93$^\dagger$ \\
 \end{table}
 
 \textbf{Transfer entropy triangulation.}
-As a model-free check, we compute transfer entropy~\cite{schreiber2000measuring,frenzel2007partial}
-(Frenzel--Pompe kNN, $k=5$, 200 permutations).
-Normal shows significant bidirectional TE (HML$\to$SMB $z = 2.45$, $p = 0.007$;
-SMB$\to$HML $z = 5.37$, $p < 0.005$ empirical bound with 200 permutations;
-note the minimum achievable empirical $p$ is $1/201 \approx 0.005$, and
-the $z$-score is computed under a Gaussian approximation that may not hold in
-heavy tails). Elevated is weakly bidirectional at
-conventional levels (HML$\to$SMB $p = 0.008$; SMB$\to$HML $p = 0.049$), while
-Crisis is non-significant in both directions. The reverse-direction Normal TE
+As a model-free check, we compute transfer entropy~\cite{schreiber2000measuring,marschinski2002analysing,frenzel2007partial}
+(Frenzel--Pompe kNN estimator~\cite{frenzel2007partial}, $k=5$, 200 permutations).
+Normal shows significant bidirectional TE (HML$\to$SMB $z = 2.45$, $p = 0.007$
+(Gaussian CDF); SMB$\to$HML $z = 5.37$, empirical $p < 0.005$ [0/200 permutations exceeded];
+the minimum achievable empirical $p$ is $1/201 \approx 0.005$ and the $z$-score
+magnitude should not be interpreted---it is computed under a Gaussian approximation
+that is unreliable for heavy-tailed factor returns; the reliable statement is
+that the reverse channel exceeds all 200 null permutations). Elevated is weakly bidirectional at
+conventional levels (HML$\to$SMB $p = 0.008$; SMB$\to$HML $p = 0.049$; both Gaussian CDF),
+while Crisis is non-significant in both directions. The reverse-direction Normal TE
 signal appears despite non-significant reverse linear Granger
 ($p = 0.864$, Table~\ref{tab:main}).
 This bidirectional pattern is consistent with information flowing in both directions
@@ -1446,11 +1525,13 @@ predictive precedence.
 
 \begin{table}[t]
 \centering
-\caption{Transfer Entropy: Multi-Lag (1--9) by Regime.
+\caption{Transfer Entropy: Multi-Lag (1--9) by Regime (sensitivity fit, seed~42).
 $z$-scores are standardized against the permutation mean/SD (200 shuffles);
-$p$-values use the standard normal CDF approximation.
-Note: with 200 permutations the minimum empirical $p$ is $0.005$;
-$p < 10^{-6}$ reflects the normal-approximation tail.}
+$p$-values use the standard normal CDF approximation unless noted ($^\dagger$ = empirical bound).
+\textbf{Caution:} $z$-score magnitudes are unreliable under this Gaussian approximation for heavy-tailed data;
+interpret only empirical $p$-values. With 200 permutations, minimum empirical $p = 0.005$;
+Normal SMB$\to$HML exceeds all 200 permutations.
+Under the primary fit (seed~28), Normal SMB$\to$HML is non-significant ($z = 1.38$, $p = 0.084$).}
 \label{tab:te}
 \scriptsize
 \begin{tabular}{@{}lccccc@{}}
@@ -1498,8 +1579,8 @@ The finding is qualitatively consistent across classification methods.
     in-sample screening of 30 pairs; formal pre-registration was not performed).
     While the economic hypothesis (liquidity-mediated contagion) provides a priori
     justification, the direction of the link was also observed during in-sample screening.
-    The economic and data-based motivations are not fully independent, and without
-    pre-registration this caveat cannot be entirely eliminated.
+    The economic and data-based motivations are not fully independent; without
+    pre-registration this potential circularity cannot be fully resolved.
 
     \item \textbf{Regime redistribution and seed sensitivity.}
     The frozen-parameter OOS design (Section~\ref{sec:frozen_oos}) resolves
@@ -1514,12 +1595,18 @@ The finding is qualitatively consistent across classification methods.
     Additionally, regime \emph{semantic drift} is a concern: a classifier trained on
     1990--2012 (64.8\% Crisis) and applied frozen to 2013--2024 (45.3\% Crisis,
     30.7\% Elevated) may use the Elevated label to capture conditions that, in-sample,
-    fell in Normal. We directly test this via three-statistic distributional comparison (KS,
-    Levene, $t$-test) of HML returns: Training Normal vs.\ OOS Elevated differs significantly
-    on 2/3 tests (KS $p = 4.5\times10^{-29}$, Levene $p = 3.7\times10^{-175}$), while
-    Training Elevated vs.\ OOS Elevated does not (2/3 tests $p \geq 0.05$). Verdict:
-    \emph{low drift}---OOS Elevated is more consistent with training Elevated than training Normal,
-    supporting regime label stability across the split.
+    fell in Normal. We test this via three-statistic distributional comparison
+    (KS, Levene, $t$-test) of HML returns.
+    Training Normal vs.\ OOS Elevated differs significantly on 2/3 tests
+    (KS $p = 4.5\times10^{-29}$, Levene $p = 3.7\times10^{-175}$;
+    primary decimal-unit convention, seed~28; percentage-unit convention yields
+    comparable magnitudes: KS $p \approx 1.2\times10^{-28}$,
+    Levene $p \approx 5.3\times10^{-184}$).
+    Training Elevated vs.\ OOS Elevated does \emph{not} differ significantly
+    on 2/3 tests ($p \geq 0.05$; Levene rejects at $p < 10^{-5}$,
+    reflecting higher OOS Elevated variance, but KS and $t$-test do not reject).
+    \emph{Verdict: low drift}---OOS Elevated is more consistent with training
+    Elevated than training Normal, supporting regime label stability across the split.
 
     \item \textbf{Regime boundary exclusion and sample size.} Boundary cleaning
     (1--15 lags excluded per table) reduces effective samples. Crisis contains
@@ -1530,9 +1617,6 @@ The finding is qualitatively consistent across classification methods.
     Pre-GFC: $p = 6.66\times10^{-16}$ ($\Delta R^2 = 2.06\%$); post-GFC Normal:
     $p = 0.73$ ($\Delta R^2 < 0.01\%$). A pre-specified Chow test at January 2008
     confirms the break ($F = 9.68$, $p = 2.29\times10^{-6}$; see Section~\ref{sec:main_result}).
-    The mechanism did not disappear---the frozen OOS test identifies the Elevated
-    regime as the post-GFC locus ($F$-$p = 0.014$, HAC $p = 0.041$). Reporting
-    this temporal evolution transparently is itself a methodological contribution.
 
     \item \textbf{Risk monitoring scope.} VaR improvement is modest
     (6.42\%$\to$5.60\% with hybrid detector) and may partly reflect
@@ -1544,17 +1628,29 @@ The finding is qualitatively consistent across classification methods.
 
 \section{Conclusion}
 
-The leakage-safe primary fit supports the following conclusions. HML$\to$SMB is strongly significant in the Normal regime at lag 1
-($p = 8.75 \times 10^{-9}$; HAC $p = 9.45 \times 10^{-8}$; Bonferroni-significant).
-\emph{This signal is pre-GFC}: post-2008 Normal $p = 0.73$ (Chow $F = 9.68$, $p = 2.29\times10^{-6}$); practitioners should note post-GFC attenuation. Elevated evidence is
-suggestive but below the Bonferroni-significant threshold,
-and Crisis evidence is null at lag 1 ($p = 0.695$). The frozen OOS
-Elevated-regime test is suggestive ($p = 0.041$, HAC; not Bonferroni-significant),
-and event-level results remain mixed.
+The following conclusions hold under the leakage-safe primary fit.
+
+HML$\to$SMB is strongly significant in the Normal regime at lag 1
+($p = 8.75 \times 10^{-9}$; HAC $p = 9.45 \times 10^{-8}$; Bonferroni-significant),
+but \emph{pre-GFC only}: post-2008 Normal $p = 0.73$ (Chow $F = 9.68$, $p = 2.29\times10^{-6}$).
+Practitioners should note this post-GFC attenuation.
+Elevated evidence is suggestive but below the Bonferroni-significant threshold;
+Crisis is null at lag 1 ($p = 0.695$).
+The frozen OOS Elevated-regime test is suggestive ($F$-$p = 0.014$; HAC $p = 0.041$;
+permutation $p = 0.049$, $n = 836$; complementary percentage-unit median $p = 0.022$, $n = 953$;
+not Bonferroni-significant across 30 pairs); event-level results remain mixed.
+Trivariate robustness (MKT-RF control) confirms the Elevated signal does not reflect
+a common market-factor confounder (Elevated trivariate F-$p = 0.012$, HAC $p = 0.035$).
 
 \textbf{Does establish:}
 \begin{itemize}
     \item Bonferroni-significant Normal-regime HML$\to$SMB predictive precedence
+    (corroborated by MS-VAR, $p < 10^{-12}$)
+    \item Suggestive Elevated-regime OOS predictive precedence; post-hoc trivariate MKT-RF control
+    does not attenuate the signal (F-$p = 0.012$, HAC $p = 0.035$; not pre-specified)
+    \item Transfer entropy triangulation: forward channel confirmed in Normal and Elevated;
+    additional reverse nonlinear channel (SMB$\to$HML, empirical $p < 0.005$; sensitivity fit, seed~42;
+    non-significant under primary fit) in Normal
     \item Exploratory FF25 overlap evidence ($\rho_s = 0.35$, permutation $p = 0.046$; sensitivity fit, seed~42)
     \item No evidence of tradable alpha (Sharpe $= -0.07$)
     \item Practical utility of a hybrid detector for VaR calibration
@@ -1572,7 +1668,7 @@ and event-level results remain mixed.
 \textbf{Practical value:} A hybrid VaR model combining HMM regime detection
 with a realized-volatility fallback achieves the closest coverage to the 5\%
 target (5.60\%, $p_{\text{CC}} = 0.336$), detecting 47.8\% of COVID-2020
-where the HMM alone detected 0\%. Algorithm~\ref{alg:monitor} formalizes
+(seed 42 sensitivity fit; HMM alone detected 0\%). Algorithm~\ref{alg:monitor} formalizes
 the monitoring protocol with all parameters calibrated on training data.
 
 \section*{Funding}

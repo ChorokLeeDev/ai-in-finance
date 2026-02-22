@@ -243,7 +243,8 @@ momentum profits vary systematically with the business cycle (larger in expansio
 attenuated or reversed in downturns when macro-risk factors dominate)---the closest
 single-paper precedent for our regime-conditional predictability finding; we extend
 this to the cross-factor Granger structure and apply a circularity-free OOS design
-absent from prior work.
+absent from prior work (Chordia and Shivakumar use observed macroeconomic conditioning,
+not a latent-state frozen classifier).
 
 \textbf{Factor crowding and systemic risk.}
 Shleifer and Vishny~\cite{shleifer1997limits} establish theoretically that capital
@@ -328,7 +329,7 @@ between Fama-French equity \emph{factors} (as opposed to institution-level
 unconditional networks or regime-conditional strategy allocation).
 
 \textbf{Neural Granger causality and complexity characterization.}
-Tank et al.~\cite{tank2021neural} extend Granger causality to nonlinear settings
+Tank et al.~\cite{tank2022neural} extend Granger causality to nonlinear settings
 using neural networks (MLP, LSTM), enabling detection of nonlinear predictive
 relationships that linear $F$-tests miss. Howard, Lohre and
 Mudde~\cite{howard2025causal} apply causal discovery algorithms (DAG-based) to factor investing,
@@ -970,7 +971,7 @@ Windows: 2015 China Aug--Oct~2015 (37 days), 2020 COVID Feb--Jun~2020 (94 Elevat
 Event & Days & Crisis\% & $p$(H$\to$S) & $p$(S$\to$H) \\
 \midrule
 2015 China & 37 & 54\% & 0.165 & 0.123 \\
-2020 COVID & 94 & 0\% & 0.032 & 0.107 \\
+2020 COVID & 94 (Elevated) & 0\% & 0.032 & 0.107 \\
 2022 Rate Hikes & 124 & 100\% & 0.472 & 0.186 \\
 \bottomrule
 \end{tabular}
@@ -992,7 +993,7 @@ We fit two Markov-Switching regression models for SMB with switching variance
 predictors, and an \emph{unrestricted} model that adds 9 lagged HML terms.
 
 \textbf{Likelihood ratio test:} The unrestricted model significantly improves fit
-($\text{LR} = 114.95$, $df = 27$ [3 regimes $\times$ 9 HML lag coefficients], $p = 8.0 \times 10^{-13}$), confirming that
+($\text{LR} = 114.95$, $df = 27$ [3 regimes $\times$ 9 HML lag coefficients; variance parameters identical across restricted/unrestricted], $p = 8.0 \times 10^{-13}$), confirming that
 HML lags contain information about SMB dynamics not captured by SMB's own history,
 even within a single-stage regime-switching framework.
 

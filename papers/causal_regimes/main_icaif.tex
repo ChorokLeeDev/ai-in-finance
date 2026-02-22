@@ -58,7 +58,7 @@ redistribution under the frozen classifier: Crisis shrinks from 64.8\% (train)
 to 45.3\% (test) while Elevated grows from 13.7\% to 30.7\%. Event validation shows 2/6 significant, 4/6
 directional. Exploratory FF25 mechanism analysis ($\rho_s = 0.35$, $p = 0.046$)
 is consistent with portfolio overlap. The trading strategy is not profitable
-(Sharpe $=-0.07$). A hybrid VaR detector yields 5.60\% violations with
+(Sharpe $= -0.07$). A hybrid VaR detector yields 5.60\% violations with
 Christoffersen CC~\cite{christoffersen1998evaluating} $p = 0.336$. We treat
 Granger findings as predictive precedence, not structural causality.
 \end{abstract}
@@ -241,7 +241,7 @@ the Granger test conditions on SMB's own lags, ruling out within-factor SMB
 autocorrelation as an explanation; the HML coefficient tests \emph{incremental}
 cross-factor content beyond SMB's history, and our regime conditioning reveals
 Normal-regime significance invisible to the unconditional autocorrelation approach of Fl{\"o}gel et al.
-This design reveals regime-dependence invisible to unconditional tests:
+This design reveals regime-dependence that unconditional tests miss:
 significant at $p = 8.75 \times 10^{-9}$ in Normal (Bonferroni-significant)
 but null in Crisis ($p = 0.695$; the Crisis regime contains only 1,071 days,
 limiting power relative to Normal's 4,723 days).
@@ -285,7 +285,7 @@ Autoregressions (MS-VARs), which jointly model regime-dependent dynamics---the
 single-stage analog of our two-stage approach (we compare against MS-VAR
 in Section~\ref{sec:msvar}).
 Guidolin and Timmermann~\cite{guidolin2007asset} apply regime models to asset allocation.
-Chincoli and Guidolin~\cite{chincoli2017linear} show that Markov-switching VARs modestly
+Chincoli and Guidolin~\cite{chincoli2017linear} show that Markov-Switching VARs modestly
 improve out-of-sample factor-return predictability for size, value, and momentum,
 though without examining Granger causal direction between factors.
 Bulla~\cite{bulla2011hidden} introduces Student-$t$ HMMs for financial returns,
@@ -316,17 +316,16 @@ we employ. Psaradakis, Ravn and Sola~\cite{psaradakis2005markov} pioneered
 regime-switching Granger causality by modeling time-varying causal structure via a
 Markov chain in a macroeconomic context. Droumaguet et al.~\cite{droumaguet2017granger}
 extend this to full MS-VAR with Bayesian inference, jointly estimating
-regime-dependent predictive densities---the single-stage analog of our two-stage
-approach; we compare against this benchmark in Section~\ref{sec:msvar}.
+regime-dependent predictive densities; we compare against this benchmark in Section~\ref{sec:msvar}.
 We adopt a two-stage approach (HMM then regime-conditional Granger) that allows
 the regime model and causality test to be estimated separately.\footnote{For recent
 developments in MS-VAR forecasting, see Cavicchioli~\cite{cavicchioli2025forecasting}.
 The Bayesian MS-VAR of Droumaguet et al.\ (2017) has a finite-sample advantage for
 small-regime subsets: posterior inference is exact regardless of subsample size.
 Our asymptotic $F$-tests with HAC correction partially address finite-sample
-concerns; results are consistent across HAC bandwidths (primary: Newey--West bandwidth-1 gives Elevated $p = 0.041$, reported in Table~\ref{tab:frozen_granger} caption),
+concerns; results are consistent across HAC bandwidths (primary: Newey--West bandwidth~1 gives Elevated $p = 0.041$, reported in Table~\ref{tab:frozen_granger} caption),
 supporting the reliability of asymptotic inference given regime sample sizes
-($n \geq 800$ for Primary fit in-sample tests).}
+($n \geq 800$ for primary fit in-sample tests).}
 Billio et al.~\cite{billio2012econometric} construct Granger causality
 networks among financial institutions to measure systemic connectedness.
 Diebold and Yilmaz~\cite{diebold2012better} develop directional spillover measures
@@ -824,12 +823,12 @@ Event & First Det. & Vol. Peak & Lead \\
 \midrule
 Lehman 2008 & May 9, 2008 & Sep 15, 2008 & 129 days \\
 EU Crisis 2011 & None & Aug 8, 2011 & None \\
-COVID 2020 & None & Mar 23, 2020 & None \\
+COVID-2020 & None & Mar 23, 2020 & None \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Under the primary fit, early warning is absent for EU Crisis 2011 and COVID 2020 (Table~\ref{tab:warning}), consistent with the primary fit's
+Under the primary fit, early warning is absent for EU Crisis 2011 and COVID-2020 (Table~\ref{tab:warning}), consistent with the primary fit's
 non-alignment to these calendar events (Table~\ref{tab:detection}).
 
 \section{Discussion}
@@ -1379,7 +1378,7 @@ Table~\ref{tab:neural} and Figure~\ref{fig:complexity} present the results.
 Linear improvements are modest (Normal 0.86\%, Elevated 0.92\%, Crisis 0.43\%).
 However, \emph{no nonlinear method improves prediction in any regime}: RF,
 MLP, and LSTM permutation tests are uniformly non-significant.\footnote{The LSTM was estimated under a separate
-HMM initialization (see footnote 1); qualitative conclusions are consistent
+HMM initialization (see Section~\ref{sec:hmm}); qualitative conclusions are consistent
 across fits.}
 This complexity characterization supports a conservative conclusion:
 incremental predictive content in the HML$\to$SMB direction is captured by linear

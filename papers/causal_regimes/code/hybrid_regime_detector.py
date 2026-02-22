@@ -657,6 +657,7 @@ def main():
         ax2.plot(zoom_dates, zoom_hml, 'g-', linewidth=1, alpha=0.7, label='HML-Informed VaR')
         ax2.plot(zoom_dates, zoom_hybrid, 'r-', linewidth=1.2, alpha=0.8, label='Hybrid VaR')
         ax2.axvspan(covid_start, covid_end, alpha=0.1, color='purple')
+        ax2.set_xlim(zoom_start, zoom_end)
         ax2.set_ylabel('Return / VaR')
         ax2.set_title('Panel B: VaR Models During COVID Period')
         ax2.legend(loc='lower left', fontsize=8)

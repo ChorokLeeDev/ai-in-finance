@@ -277,7 +277,7 @@ Autoregressions (MS-VARs), which jointly model regime-dependent dynamics---the
 single-stage analog of our two-stage approach (we compare against MS-VAR
 in Section~\ref{sec:msvar}).
 Guidolin and Timmermann~\cite{guidolin2007asset} apply regime models to asset allocation.
-Chincoli and Guidolin~\cite{chincoli2018linear} show that Markov-switching VARs modestly
+Chincoli and Guidolin~\cite{chincoli2017linear} show that Markov-switching VARs modestly
 improve out-of-sample factor-return predictability for size, value, and momentum,
 though without examining Granger causal direction between factors.
 Bulla~\cite{bulla2011hidden} introduces Student-$t$ HMMs for financial returns,
@@ -522,7 +522,7 @@ shows regime assignments over the sample period with major crisis events marked.
 
 \begin{table}[t]
 \centering
-\caption[Regime statistics]{Regime Summary Statistics (1990--2024, full-sample primary fit). Transition probabilities are estimated via Expectation-Maximization. The frozen OOS analysis (Section~\ref{sec:frozen_oos}) uses a separate fit trained on 1990--2012 only, yielding different regime counts.}
+\caption[Regime statistics]{Regime Summary Statistics (1990--2024, full-sample primary fit). Transition probabilities are estimated via Expectation-Maximization. The frozen OOS analysis (Section~\ref{sec:frozen_oos}) uses a separate fit trained on 1990--2012 only, yielding different regime counts. Elevated and Crisis regimes have similar mean norms (2.03 vs.\ 2.09) but are distinguished by tail shape ($\nu = 3.9$ vs.\ $5.5$) and covariance structure.}
 \label{tab:regimes}
 \small
 \begin{tabular}{lccccc}
@@ -986,7 +986,7 @@ We fit two Markov-Switching regression models for SMB with switching variance
 predictors, and an \emph{unrestricted} model that adds 9 lagged HML terms.
 
 \textbf{Likelihood ratio test:} The unrestricted model significantly improves fit
-($\text{LR} = 114.95$, $df = 27$, $p = 8.0 \times 10^{-13}$), confirming that
+($\text{LR} = 114.95$, $df = 27$ [3 regimes $\times$ 9 HML lag coefficients], $p = 8.0 \times 10^{-13}$), confirming that
 HML lags contain information about SMB dynamics not captured by SMB's own history,
 even within a single-stage regime-switching framework.
 
@@ -1063,8 +1063,7 @@ large negative returns, a risk manager might:
     \item Pre-arrange liquidity for potential SMB hedging
 \end{itemize}
 
-These are qualitative adjustments informed by the 9-day lead time, not mechanical
-trading rules. We formalize this intuition in Section~\ref{sec:risk_monitoring}.
+These are qualitative adjustments informed by the Elevated-regime predictive evidence (not the null Crisis Granger result, which serves as a falsification check), not mechanical trading rules. We formalize this intuition in Section~\ref{sec:risk_monitoring}.
 
 \subsection{Risk Monitoring Application (Sensitivity Fit, Seed 42)}
 \label{sec:risk_monitoring}

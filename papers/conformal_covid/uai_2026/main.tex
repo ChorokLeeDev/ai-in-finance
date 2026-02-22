@@ -37,12 +37,13 @@
 \maketitle
 
 \begin{abstract}
-Conformal prediction provides distribution-free coverage guarantees, but these degrade under distribution shift---and practitioners lack tools to anticipate \textit{which} gradient-boosted models will fail before observing test data.
-We propose SHAP concentration---the fraction of feature importance concentrated
-in the top feature---as a \textbf{pre-deployment diagnostic} for conformal
-prediction vulnerability. Using COVID-19 as a case study across 8
-supply chain tasks experiencing identical temporal shift yet coverage drops ranging from 0.1\% to 77.1\% (all paired $p \leq 0.005$, 50
-seeds), we show that, for gradient-boosted models, SHAP concentration is strongly associated with failure severity: $\rho = 0.853$, $p < 0.001$ across 16 multiclass tasks in 9 domains (bootstrap 95\% CI $[0.50, 0.96]$; Kendall $\tau = 0.667$, $p < 0.001$). Standard shift detectors (MMD, C2ST) detect shift for all tasks uniformly but do not distinguish catastrophic from robust outcomes ($\rho \leq 0.19$, all $p > 0.6$); among evaluated pre-deployment diagnostics, SHAP concentration shows the strongest association with failure severity. External validation across 9 non-supply-chain datasets shows partial transfer with asymmetric evidence: Covertype ($C=49.8\%$, 81.8~pp drop) is deterministic across 10 seeds, most low-concentration datasets are coverage-robust, Shuttle is near-deterministic (9/10), KDDCup99 is a seed-dependent intermediate case, and Stack Overflow ($K=3$) exhibits a near-binary ceiling effect and is excluded from the multiclass primary endpoint ($n=16$). We prove a formal score-inflation theorem under explicit assumptions showing that Adaptive Prediction Sets (APS) conformity-score bounds worsen monotonically with concentration, verified on all applicable tasks. A decision framework operationalizes the diagnostic as an exploratory rule: compute SHAP concentration pre-deployment; use a conservative uncertainty band around the 40\% threshold; suggest that quarterly retraining may partially recover coverage when vulnerable (+19~pp, $p = 0.036$ unadjusted, single-seed experiment; Holm-corrected $p=0.11$); and defer routine retraining for lower-risk tasks.
+Conformal prediction provides distribution-free coverage guarantees, but these degrade under distribution shift---and practitioners lack tools to anticipate which deployed models will fail before observing test data.
+We propose SHapley Additive exPlanations (SHAP) concentration---the fraction of feature importance concentrated in the top feature---as a pre-deployment diagnostic for conformal prediction vulnerability in gradient-boosted classifiers.
+Using COVID-19 as a naturalistic case study, eight supply chain tasks experience identical temporal shift yet coverage drops ranging from negligible to catastrophic.
+Feature-importance concentration is strongly associated with failure severity across 16 multiclass tasks in 9 domains, while standard distributional shift detectors detect shift uniformly across tasks but cannot distinguish catastrophic from robust outcomes.
+External validation across 9 non-supply-chain datasets shows partial transfer.
+We prove a formal theorem showing that Adaptive Prediction Sets conformity-score bounds worsen monotonically with concentration under explicit assumptions, verified empirically.
+A decision framework operationalizes the diagnostic as an exploratory pre-deployment rule with an uncertainty band around a concentration threshold.
 \end{abstract}
 
 \section{Introduction}\label{sec:intro}
@@ -204,7 +205,7 @@ i-incoterms & 13 & 95.0 [94.9, 95.2] & 83.7 [80.9, 86.6] & 11.3 [8.5, 14.1] & $<
 s-office & 25 & 99.9 [99.9, 100.0] & 99.9 [99.9, 99.9] & 0.1 [0.0, 0.1] & $<$0.001 & ROB \\
 \bottomrule
 \end{tabular}
-\vspace{1mm}
+
 
 \raggedright
 \footnotesize
@@ -233,7 +234,7 @@ i-incoterms & PRODUCT, PARTY & 0.58 & 11.3\% \\
 s-office & SALESORG & 0.61 & 0.1\% \\
 \bottomrule
 \end{tabular}
-\vspace{1mm}
+
 
 \raggedright
 \footnotesize
@@ -269,7 +270,7 @@ Multiclass (8 dom.) & 15 & 0.882$^\ddagger$ & 0.714 & $<$0.001 & $[0.60, 0.97]$ 
 Combined (10 dom.)$^\S$ & 17 & 0.654 & --- & 0.004 & --- \\
 \bottomrule
 \end{tabular}}
-\vspace{1mm}
+
 
 \raggedright
 \footnotesize
@@ -281,13 +282,13 @@ $^\S$Combined row includes all 17 tasks (8 SALT + 9 external, 10 domains: SALT $
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/figure3_feature_importance.pdf}
+\includegraphics[width=0.85\textwidth]{figures/figure3_feature_importance}
 \caption{\textbf{Feature Importance Dynamics Under Shift.} (A) Catastrophic task: dominant feature explodes 4.5$\times$ while maintaining top rank (concentrated dependence). (B) Robust task: importance redistributes across features with ranking reshuffle (diversified dependence). (C--D) Importance dynamics and ranking stability. Despite $\sim$0\% Jaccard similarity, coverage drops range from negligible to catastrophic.}\label{fig:shap}
 \end{figure*}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{results/figure_n16_correlation.pdf}
+\includegraphics[width=\linewidth]{results/figure_n16_correlation}
 \caption{\textbf{SHAP Concentration Correlates with Coverage Degradation (Primary Result).} Spearman $\rho=0.853$, $p<0.001$ across all 16 multiclass tasks in 9 domains (dark circles: 8 SALT supply-chain tasks; orange triangles: 8 external domains, 10-seed means). The 40\% threshold (dashed) is derived from validation data only. Within SALT alone: $\rho=0.833$, $p=0.010$ ($n=8$).}\label{fig:n16_correlation}
 \end{figure}
 
@@ -321,7 +322,7 @@ We additionally compare against two \textit{post-hoc} baselines computed from 10
 
 \textbf{Prediction entropy change}: $\Delta H = H_{\text{test}} - H_{\text{val}}$, where $H = -\sum_c p_c \log p_c$ averaged over instances.
 
-\textbf{Expected Calibration Error change}: $\Delta \text{ECE} = \text{ECE}_{\text{test}} - \text{ECE}_{\text{val}}$.
+\textbf{Expected Calibration Error change}: \mbox{$\Delta \text{ECE} = \text{ECE}_{\text{test}} - \text{ECE}_{\text{val}}$}.
 
 Both metrics can detect shift \textit{after} test data is observed, but neither is available at deployment time. SHAP concentration is computed solely on validation data, making it actionable for pre-deployment risk assessment. Comparison across 7 tasks in Appendix~\ref{app:baselines}.
 
@@ -433,7 +434,7 @@ Satimage        & Null-shift control: satellite image; 60/20/20 random split & N
 Stack Overflow  & Category shift (3-class subset); excluded from $n=16$ primary endpoint (near-binary ceiling effect) & --- & 3 & 65,105 & 127,370 & \citep{dua2017uci} \\
 \bottomrule
 \end{tabular}
-\vspace{1mm}
+
 
 \raggedright
 \footnotesize
@@ -444,7 +445,7 @@ For Covertype, train uses wilderness areas 1--2 (Spruce-Fir and Lodgepole Pine);
 
 \begin{table}[htbp]
 \centering
-\caption{Placebo Test: Pre-COVID vs COVID Degradation (50-seed mean drops).}\label{tab:placebo}
+\caption{Placebo Test: Pre-COVID vs COVID Degradation (50-Seed Mean Drops).}\label{tab:placebo}
 \begin{tabular}{lccc}
 \toprule
 Task & Placebo & COVID & Ratio \\
@@ -475,7 +476,7 @@ Table~\ref{tab:threshold_sensitivity} shows threshold performance across $n=16$ 
 
 \begin{table}[htbp]
 \centering
-\caption{Threshold Sensitivity for SHAP Concentration across 16 multiclass tasks (8 SALT + 8 external; Step 2 only, no protective-factor check). At-risk defined as coverage drop $>$15\%.}\label{tab:threshold_sensitivity}
+\caption{Threshold Sensitivity for SHAP Concentration Across 16 Multiclass Tasks (8 SALT + 8 external; Step 2 only, no protective-factor check). At-risk defined as coverage drop $>$15\%.}\label{tab:threshold_sensitivity}
 \small
 \begin{tabular}{lcccccc}
 \toprule
@@ -489,7 +490,7 @@ Threshold & Prec & Rec & F1 & TP & FP & FN \\
 50\% & 1.00 & 0.33 & 0.50 & 2 & 0 & 4 \\
 \bottomrule
 \end{tabular}
-\vspace{1mm}
+
 
 \raggedright
 \footnotesize
@@ -528,7 +529,7 @@ Gas Sensor & 7.3 & ROB & ROB & 10/10 seeds \\
 Stack Overflow & 48.9 & VULN & ROB & Near-binary ceiling$^\P$ \\
 \bottomrule
 \end{tabular}
-\vspace{1mm}
+
 
 \raggedright
 \footnotesize
@@ -551,7 +552,7 @@ SHAP concentration is computed on validation data \textit{before} deployment. Pr
 
 \begin{table}[htbp]
 \centering
-\caption{Pre-Deployment (SHAP) vs Post-Hoc (Entropy, ECE) Shift Diagnostics (10-seed ACI experiments). SHAP concentration is computed on validation data only. $\Delta$Entropy and $\Delta$ECE require test-time observations.}\label{tab:baselines}
+\caption{Pre-Deployment (SHAP) vs Post-Hoc (Entropy, ECE) Shift Diagnostics (10-Seed ACI Experiments). SHAP concentration is computed on validation data only. $\Delta$Entropy and $\Delta$ECE require test-time observations.}\label{tab:baselines}
 \small
 \begin{tabular}{@{}lcccc@{}}
 \toprule
@@ -569,7 +570,7 @@ s-incoterms & ROB & 23.7\% & +0.364 & +0.350 \\
 s-office & ROB & 42.6\% & +0.032 & +0.104 \\
 \bottomrule
 \end{tabular}
-\vspace{1mm}
+
 
 \raggedright
 \footnotesize
@@ -618,7 +619,7 @@ i-shippoint & $-$0.10 & 0.90 & 55 \\
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{figures/conformity_score_cdfs.pdf}
+\includegraphics[width=\linewidth]{figures/conformity_score_cdfs}
 \caption{\textbf{Conformity score CDFs (seed=42).} Catastrophic tasks show rightward test-score shifts (stochastic dominance), while robust tasks can show near-degenerate or left-shift behavior.}\label{fig:cdfs}
 \end{figure}
 
@@ -628,7 +629,7 @@ Table~\ref{tab:ks} reports two-sample KS statistics comparing calibration and te
 
 \begin{table}[htbp]
 \centering
-\caption{KS Tests: Calibration vs.\ Test Conformity Score Distributions (seed=42).}\label{tab:ks}
+\caption{KS Tests: Calibration vs.\ Test Conformity Score Distributions (Seed=42).}\label{tab:ks}
 \small
 \begin{tabular}{@{}lcccc@{}}
 \toprule
@@ -647,7 +648,7 @@ i-incoterms & 0.559 & $<10^{-10}$ & 0.78 & 0.66 \\
 i-shippoint & 0.505 & $<10^{-10}$ & 0.71 & 0.58 \\
 \bottomrule
 \end{tabular}
-\vspace{1mm}
+
 
 \raggedright
 \footnotesize
@@ -660,7 +661,7 @@ Table~\ref{tab:raps} compares APS and RAPS coverage drops across all 8 tasks wit
 
 \begin{table}[htbp]
 \centering
-\caption{APS vs.\ RAPS Coverage Drop (10-seed means $\pm$ std). $\lambda=0.01$, $k_{\text{reg}}=5$.}\label{tab:raps}
+\caption{APS vs.\ RAPS Coverage Drop (10-Seed Means $\pm$ Std). $\lambda=0.01$, $k_{\text{reg}}=5$.}\label{tab:raps}
 \small
 \begin{tabular}{@{}lccccc@{}}
 \toprule
@@ -679,7 +680,7 @@ s-incoterms & 13 & $6.7\pm6.8$ & $6.7\pm6.8$ & 0.0 & Identical \\
 s-office & 25 & $0.04\pm0.03$ & $0.04\pm0.03$ & 0.0 & Identical \\
 \bottomrule
 \end{tabular}
-\vspace{1mm}
+
 
 \raggedright
 \footnotesize

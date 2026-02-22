@@ -48,12 +48,11 @@ In-sample, HML$\to$SMB concentrates in Normal (pre-GFC: $p = 6.66 \times 10^{-16
 $\Delta R^2 = 2.06\%$; post-GFC Normal: $p = 0.73$, null), consistent with
 Dodd-Frank/Basel III constraining leverage in calm conditions post-crisis.
 In the frozen OOS evaluation (2013--2024), the signal migrates to the Elevated
-regime: $F$-$p = 0.014$ (surviving $\alpha/3 = 0.0167$), HAC $p = 0.041$,
-$\Delta R^2 = 0.73\%$, $n = 836$; Normal and Crisis null (``Crisis'' reflects a
-high-kurtosis statistical state, not calendar crises). The full in-sample
-Normal-regime $p = 8.75 \times 10^{-9}$ (HAC $p = 9.45 \times 10^{-8}$) is
-Bonferroni-significant across 30 pairs. Two of 3 distinct local optima (41/50
-seeds) confirm Elevated OOS significance. Event validation shows 2/6 marginally significant ($p < 0.10$), 4/6
+regime: $F$-$p = 0.014$ (surviving $\alpha/3 = 0.0167$), HAC $p = 0.041$
+(not Bonferroni-significant across 30 pairs), $\Delta R^2 = 0.73\%$, $n = 836$;
+Normal and Crisis null (``Crisis'' reflects a high-kurtosis statistical state,
+not calendar crises). The full in-sample Normal-regime $p = 8.75 \times 10^{-9}$ (HAC $p = 9.45 \times 10^{-8}$) is Bonferroni-significant but pre-GFC only (Chow-confirmed; post-2008 $p = 0.73$).
+Two of 3 distinct local optima (41/50 seeds) confirm Elevated OOS significance. Event validation shows 2/6 marginally significant ($p < 0.10$), 4/6
 directional. Exploratory FF25 mechanism analysis ($\rho_s = 0.35$, $p = 0.046$)
 is consistent with portfolio overlap. The trading strategy is not profitable
 (Sharpe $= -0.07$). A hybrid VaR detector yields 5.60\% violations with
@@ -313,19 +312,10 @@ our work extends this cross-portfolio predictability to the factor level and
 conditions it on latent market regimes.
 Granger~\cite{granger1969investigating} introduced the predictive-precedence test
 we employ. Psaradakis, Ravn and Sola~\cite{psaradakis2005markov} pioneered
-regime-switching Granger causality by modeling time-varying causal structure via a
-Markov chain in a macroeconomic context. Droumaguet et al.~\cite{droumaguet2017granger}
-extend this to full MS-VAR with Bayesian inference, jointly estimating
-regime-dependent predictive densities; we compare against this benchmark in Section~\ref{sec:msvar}.
-We adopt a two-stage approach (HMM then regime-conditional Granger) that allows
-the regime model and causality test to be estimated separately.\footnote{For recent
-developments in MS-VAR forecasting, see Cavicchioli~\cite{cavicchioli2025forecasting}.
-The Bayesian MS-VAR of Droumaguet et al.\ (2017) has a finite-sample advantage for
-small-regime subsets: posterior inference is exact regardless of subsample size.
-Our asymptotic $F$-tests with HAC correction partially address finite-sample
-concerns; results are consistent across HAC bandwidths (primary: Newey--West bandwidth~1 gives Elevated $p = 0.041$, reported in Table~\ref{tab:frozen_granger} caption),
-supporting the reliability of asymptotic inference given regime sample sizes
-($n \geq 800$ for primary fit in-sample tests).}
+regime-switching Granger causality via a Markov chain in macroeconomics.
+Shi, Phillips and Hurn~\cite{shi2018change} detect causal change-points with recursive-evolving tests; we differ by conditioning on HMM latent states for within-regime pooling.
+Droumaguet et al.~\cite{droumaguet2017granger} extend to full MS-VAR with Bayesian inference; we compare against this in Section~\ref{sec:msvar}.
+We adopt a two-stage approach (HMM then regime-conditional Granger) for separate estimation.
 Billio et al.~\cite{billio2012econometric} construct Granger causality
 networks among financial institutions to measure systemic connectedness.
 Diebold and Yilmaz~\cite{diebold2012better} develop directional spillover measures
@@ -463,9 +453,9 @@ factor pairs (effective $\alpha = 0.00033$). HAC standard errors use Newey--West
 with bandwidth equal to the Granger lag (bandwidth~1) as the primary specification,
 applied consistently across all Granger tests. As a robustness check,
 Andrews's~\cite{andrews1991heteroskedasticity} AR(1) plug-in data-driven bandwidth
-($\approx$9--10 for $n \approx 800$) yields $p < 0.05$ in the same direction
-for the Elevated OOS regime, confirming the result is not driven by the
-conservative bandwidth~1 specification.
+for the OOS Elevated series ($n = 836$, residual autocorrelation near zero) is also~1,
+yielding HAC $p = 0.021$---consistent with and stronger than the primary Newey--West
+$p = 0.041$, confirming the result is not an artefact of the bandwidth choice.
 
 \textbf{Regime boundary handling.} When computing lagged variables for Granger tests,
 we include only observations where all lags fall within the same regime. Specifically,
@@ -1554,12 +1544,12 @@ The finding is qualitatively consistent across classification methods.
 \section{Conclusion}
 
 The leakage-safe primary fit supports the following conclusions. HML$\to$SMB is strongly significant in the Normal regime at lag 1
-($p = 8.75 \times 10^{-9}$; HAC $p = 9.45 \times 10^{-8}$). Elevated evidence is
+($p = 8.75 \times 10^{-9}$; HAC $p = 9.45 \times 10^{-8}$; Bonferroni-significant).
+\emph{This signal is pre-GFC}: post-2008 Normal $p = 0.73$ (Chow $F = 9.68$, $p = 2.29\times10^{-6}$); practitioners should note post-GFC attenuation. Elevated evidence is
 suggestive but below the Bonferroni-significant threshold,
-and Crisis evidence is null at lag 1 ($p = 0.695$). The frozen out-of-sample
-Elevated-regime test is suggestive at conventional levels ($p = 0.041$, HAC;
-not Bonferroni-significant across 30 pairs), and event-level
-results remain mixed.
+and Crisis evidence is null at lag 1 ($p = 0.695$). The frozen OOS
+Elevated-regime test is suggestive ($p = 0.041$, HAC; not Bonferroni-significant),
+and event-level results remain mixed.
 
 \textbf{Does establish:}
 \begin{itemize}
@@ -1583,15 +1573,6 @@ with a realized-volatility fallback achieves the closest coverage to the 5\%
 target (5.60\%, $p_{\text{CC}} = 0.336$), detecting 47.8\% of COVID-2020
 where the HMM alone detected 0\%. Algorithm~\ref{alg:monitor} formalizes
 the monitoring protocol with all parameters calibrated on training data.
-
-For practitioners, the key insight is that factor lead-lag relationships are not
-merely stronger or weaker across regimes. In the primary fit,
-the clearest actionable signal is Normal-regime lag-1 HML$\to$SMB. Crisis-regime
-monitoring is better treated as stress-sensitivity analysis than as a
-statistically established directional signal. Real-time implementation still benefits from
-the volatility override: the frozen HMM alone classified 0\% of COVID-2020 as
-Crisis, while the hybrid detector reached 47.8\% detection with one
-pre-specified threshold parameter.
 
 \section*{Funding}
 

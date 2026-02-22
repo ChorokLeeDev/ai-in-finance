@@ -46,16 +46,17 @@ uses a frozen out-of-sample design: the HMM is trained on 1990--2012 ($n =
 In this frozen OOS evaluation, HML$\to$SMB shows suggestive evidence in the
 Elevated regime ($p = 0.014$; HAC-robust $p = 0.041$;
 $\Delta R^2 = 0.73\%$; $n = 836$; not Bonferroni-significant across 30 pairs),
-with Normal and Crisis null ($p = 0.149$ and $p = 0.281$).
+with Normal and Crisis null ($p = 0.149$ and $p = 0.281$; the ``Crisis'' label
+reflects a high-kurtosis statistical state, not calendar crises under the primary fit).
 A full 50-seed sensitivity analysis finds that 2 of 3 local optima
 (covering 41 of 50 seeds; $F$-$p$ and HAC-$p < 0.05$) show Elevated significance;
 the 9 null seeds all share the lowest-LL local optimum, so effective
 robustness is across distinct optima rather than independent initializations.
-Full-sample in-sample analysis corroborates the directional finding with higher
+In-sample analysis (1990--2024) corroborates the directional finding with higher
 power: Normal-regime HML$\to$SMB $p = 8.75 \times 10^{-9}$ (HAC $p = 9.45
 \times 10^{-8}$); the shift from Normal (in-sample) to Elevated (OOS) reflects regime
 redistribution under the frozen classifier: Crisis shrinks from 64.8\% (train)
-to 45.3\% (test) while Elevated grows from 13.7\% to 30.7\%. Event validation shows 2/6 significant, 4/6
+to 45.3\% (test) while Elevated grows from 13.7\% to 30.7\%. Event validation shows 2/6 marginally significant ($p < 0.10$), 4/6
 directional. Exploratory FF25 mechanism analysis ($\rho_s = 0.35$, $p = 0.046$)
 is consistent with portfolio overlap. The trading strategy is not profitable
 (Sharpe $= -0.07$). A hybrid VaR detector yields 5.60\% violations with
@@ -98,7 +99,7 @@ measure \emph{co-movement} but not \emph{temporal precedence}.
 \textbf{The Missing Piece: Which Factor Moves First?}
 
 Existing research establishes three stylized facts:
-(1) Factor correlations increase during market stress~\cite{ang2002asymmetric};
+(1) Equity return correlations increase during market stress~\cite{ang2002asymmetric};
 (2) Returns exhibit regime-switching behavior~\cite{hamilton1989new};
 (3) Factor crowding amplifies drawdowns during liquidation~\cite{stein2009presidential}.
 
@@ -146,11 +147,11 @@ circularity (not Bonferroni-significant across 30 pairs; economically motivated 
 A full 50-seed sensitivity analysis finds that 2 of 3 local optima
 (covering 41 of 50 seeds; $F$-$p < 0.05$) show Elevated significance;
 the 9 null seeds all share the lowest-LL local optimum.
-Full-sample in-sample analysis provides higher-power corroboration: Normal-regime
+In-sample analysis (1990--2024) provides higher-power corroboration: Normal-regime
 $p = 8.75 \times 10^{-9}$ (HAC $p = 9.45 \times 10^{-8}$), surviving Bonferroni
 correction across 30 directed pairs.
 A single-stage Markov-Switching VAR further supports HML lags ($p < 10^{-12}$),
-and event tests are mixed (2/6 significant, 4/6 in the predicted direction)
+and event tests are mixed (2/6 marginally significant at $p < 0.10$, 4/6 in the predicted direction)
 (Section~\ref{sec:frozen_oos}).
 
 \textbf{Predominantly linear.} A four-model diagnostic protocol (Linear, RF,
@@ -177,10 +178,10 @@ violation rate ($p_{\text{CC}} = 0.336$)---the best among all specifications
     \item \textbf{Empirical (circularity-free):} Suggestive OOS evidence for HML$\to$SMB in
     the Elevated regime (frozen design, 2013--2024, $n = 836$): $p = 0.014$,
     HAC $p = 0.041$; not Bonferroni-significant across 30 pairs;
-    Normal and Crisis null. Full-sample in-sample analysis
+    Normal and Crisis null. In-sample analysis (1990--2024)
     corroborates with higher power ($p = 8.75 \times 10^{-9}$, Normal regime,
     Bonferroni-significant)
-    (Section~\ref{sec:frozen_oos}, \ref{sec:main_result})
+    (Sections~\ref{sec:frozen_oos} and~\ref{sec:main_result})
 
     \item \textbf{Methodological:} Student-$t$ HMM with multi-start selection
     (50 initializations) for reproducible regime detection
@@ -356,7 +357,7 @@ additional predictive structure beyond the linear baseline.
 
 \subsection{Data}
 
-We use daily returns for the Fama-French six factors from Kenneth French's data library~\cite{french2024data}:
+We use daily returns for six equity factors from Kenneth French's data library~\cite{french2024data} (five Fama-French factors~\cite{fama2015five} plus Carhart Momentum):
 Market excess return (MKT-RF), Size (SMB), Value (HML), Profitability (RMW),
 Investment (CMA), and Momentum (MOM)~\cite{jegadeesh1993returns,carhart1997persistence}.
 
@@ -463,8 +464,9 @@ factor pairs (effective $\alpha = 0.00033$). HAC standard errors use Newey--West
 with bandwidth equal to the Granger lag (bandwidth~1) as the primary specification,
 applied consistently across all Granger tests. As a robustness check,
 Andrews's~\cite{andrews1991heteroskedasticity} AR(1) plug-in data-driven bandwidth
-($\approx$9--10 for $n \approx 800$) yields directionally consistent results
-at conventional significance levels for the Elevated OOS regime.
+($\approx$9--10 for $n \approx 800$) yields $p < 0.05$ in the same direction
+for the Elevated OOS regime, confirming the result is not driven by the
+conservative bandwidth~1 specification.
 
 \textbf{Regime boundary handling.} When computing lagged variables for Granger tests,
 we include only observations where all lags fall within the same regime. Specifically,
@@ -527,9 +529,11 @@ evaluation and is consistent with the FF25 mechanism evidence
 note that applying a 30-pair Bonferroni penalty to the OOS HAC $p = 0.041$ would
 yield a corrected $p > 1$; the OOS result's strength rests on the economic motivation
 for the HML--SMB pair, not on the unadjusted $p$-value alone.
-Additionally, adjusting only for the 3 regimes (not the 30 pairs) gives a threshold
-of $\alpha/3 = 0.0167$; the $F$-$p = 0.014$ result barely survives this
-regime-adjusted threshold while the HAC-$p = 0.041$ does not.
+Additionally, under a conventional $\alpha = 0.05$, adjusting only for the 3 regimes
+(not the 30 pairs) gives a threshold of $\alpha/3 = 0.0167$; the $F$-$p = 0.014$ result
+barely survives this regime-adjusted threshold while the HAC-$p = 0.041$ does not.
+Under the paper's own family-wise $\alpha = 0.01$, the regime-adjusted threshold
+tightens to $0.01/3 = 0.0033$, which neither result survives.
 
 \section{Results}
 
@@ -648,7 +652,7 @@ $F$-test significance. We recompute at lag 1 (BIC-optimal) using Newey--West~\ci
 heteroskedasticity-and-autocorrelation-consistent (HAC) standard errors.
 Normal-regime HML$\to$SMB survives HAC correction
 ($p = 9.45 \times 10^{-8}$ HAC vs.\ $p = 8.75 \times 10^{-9}$ standard).
-Elevated HML$\to$SMB weakens under HAC (full-sample in-sample: $p = 0.034$), and Crisis remains
+Elevated HML$\to$SMB weakens under HAC (1990--2024 in-sample: $p = 0.034$), and Crisis remains
 non-significant ($p = 0.711$ HAC vs.\ $p = 0.695$ standard).
 
 \textbf{Incremental $R^2$.} Table~\ref{tab:r2} quantifies the economic magnitude. Adding
@@ -879,7 +883,7 @@ policy-driven episodes distinct from the liquidity-driven crises (2008, 2011, 20
 where the HML$\to$SMB direction is supported. This distinction between crisis
 types is speculative---we lack direct evidence for the underlying mechanisms.
 
-\textbf{Elevated regime finding.} In the primary fit (full-sample in-sample), Elevated shows nominal
+\textbf{Elevated regime finding.} In the primary fit (1990--2024, in-sample), Elevated shows nominal
 HML$\to$SMB evidence at lag 1 ($p = 0.004$) but this does not survive the
 paper's Bonferroni threshold ($\alpha/30 = 0.00033$), and reverse direction
 remains null ($p = 0.897$). Annual splits are mixed (67\% of years show SMB$\to$HML dominant, not tabulated),
@@ -931,7 +935,7 @@ Crisis    & 1,299 & 0.281 & 0.290 & 0.09\% \\
 ($p = 0.014$; HAC $p = 0.041$; $\Delta R^2 = 0.73\%$ at lag~1),
 while Normal ($p = 0.149$) and Crisis ($p = 0.281$) are null.
 (Note: Table~\ref{tab:r2} reports $\Delta R^2 = 1.32\%$ for Elevated using the
-full-sample in-sample fit with lags~1--15; the OOS $\Delta R^2 = 0.73\%$ uses
+in-sample (1990--2024) fit with lags~1--15; the OOS $\Delta R^2 = 0.73\%$ uses
 lag~1 only on the 2013--2024 held-out period.)
 This result does not survive Bonferroni correction across 30 pairs
 (threshold $\alpha/30 = 0.00033$, family-wise $\alpha = 0.01$); its evidential weight
@@ -942,12 +946,13 @@ by regime identification, lag selection, and pair screening on the same data;
 the OOS result is therefore the more informative---if more modest---test of
 generalization.
 A full 50-seed sensitivity
-analysis finds that \textbf{2 of 3 local optima} (covering 41 of 50 seeds;
-$F$-$p$ and HAC-$p < 0.05$; median $p = 0.0075$) show Elevated significance.
+analysis finds that \textbf{2 of 3 local optima} show Elevated significance.
 The 50 seeds converge to three local optima (train LL$\approx$138,002: 28 seeds,
-all significant; LL$\approx$137,942: 13 seeds, all significant;
-LL$\approx$137,712: 9 seeds, all null); significance arises in the two higher-LL
-optima, each representing a distinct HMM solution rather than an independent initialization.
+$F$-$p < 0.05$, HAC-$p < 0.05$; LL$\approx$137,942: 13 seeds,
+$F$-$p < 0.05$, HAC-$p < 0.05$; LL$\approx$137,712: 9 seeds, all null);
+significance arises in the two higher-LL optima, each representing a distinct
+HMM solution. Because seeds within an optimum converge to identical parameter estimates,
+effective robustness is across 2 distinct optima rather than 41 independent initializations.
 These results use forward-only (filtered)
 HMM probabilities and train-period relabeling, eliminating all forms
 of look-ahead and circularity.
@@ -1009,8 +1014,8 @@ HML lags contain information about SMB dynamics not captured by SMB's own histor
 even within a single-stage regime-switching framework.
 
 \textbf{BIC comparison:} Despite the significant likelihood improvement, BIC favors
-the restricted model ($\Delta\text{BIC} = -130$), reflecting the penalty for 27
-additional parameters across 3 regimes. This indicates that while HML lags are
+the restricted model ($\Delta\text{BIC} = \text{BIC}_{\text{unrestricted}} - \text{BIC}_{\text{restricted}} = +130$),
+reflecting the penalty for 27 additional parameters across 3 regimes. This indicates that while HML lags are
 statistically informative, the improvement does not justify the model complexity
 under a parsimony criterion.
 

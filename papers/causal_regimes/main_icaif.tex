@@ -229,16 +229,19 @@ momentum factor loading on lagged returns across all other factors.
 Gupta and Kelly~\cite{gupta2019factor} extend this finding across asset classes.
 Haddad, Kozak and Santosh~\cite{haddad2020factor} show that individual factor returns
 are predictable from conditioning variables representing the stochastic discount factor
-(the most predictable SDF components achieve out-of-sample $R^2 \approx 4\%$ at the monthly frequency)---a within-factor SDF-based timing result.
+(the most predictable SDF components achieve out-of-sample $R^2 \approx 4\%$ at the monthly frequency)---a result on factor-level predictability from SDF-motivated conditioning variables.
 Fl{\"o}gel, Schlag and Zunft~\cite{flogel2022momentum} exploit within-factor (own) first-order
 autocorrelations in \emph{monthly} factor returns to construct momentum-managed factor portfolios.
 Barroso and Santa-Clara~\cite{barroso2015momentum} and Daniel and
 Moskowitz~\cite{daniel2016momentum} document that momentum profits are
 regime-dependent: high in tranquil periods, negative during momentum-crash episodes.
+Neuhierl et al.~\cite{neuhierl2024timing} show that past factor returns predict future
+factor returns across 300+ factors, with value and profitability timing improving most---a
+general cross-factor predictability result.
 \textbf{Gap:} These papers establish within-factor time-series momentum,
-regime-dependent momentum \emph{returns}, SDF-based factor timing, and cross-factor
-autocorrelation-based portfolio management (Fl{\"o}gel et al.),
-but do not examine whether the
+regime-dependent momentum \emph{returns}, SDF-based factor timing, cross-factor
+autocorrelation-based portfolio management (Fl{\"o}gel et al.), and general
+cross-factor predictability (Neuhierl et al.), but do not examine whether the
 \emph{Granger predictive structure between distinct factors}---which factor leads
 the other, and under which regime---changes qualitatively across market states.
 Our contribution is distinct from factor momentum by econometric construction:
@@ -278,6 +281,9 @@ cross-factor regime-conditional spillover contribution.
 Chincarini, Lazo-Paz and Moneta~\cite{chincarini2026crowded} show that anomaly returns
 concentrate among the most crowded stocks and that crowding positively predicts crash risk,
 corroborating the HML$\to$SMB contagion channel proposed here.
+Betermier et al.~\cite{betermier2025investor} document that institutional portfolio tilts
+generate common HML/SMB exposures through a demand-side mechanism, providing direct evidence
+for the liquidity-mediated contagion channel underlying our regime-conditional results.
 Stein~\cite{stein2009presidential} formalizes how crowded trades amplify drawdowns;
 Brunnermeier and Pedersen~\cite{brunnermeier2009market} establish the theoretical
 mechanism linking margin constraints to funding-liquidity spirals;
@@ -340,7 +346,10 @@ We adopt a two-stage approach (HMM then regime-conditional Granger) for separate
 Billio et al.~\cite{billio2012econometric} construct Granger causality
 networks among financial institutions to measure systemic connectedness.
 Diebold and Yilmaz~\cite{diebold2012better} develop directional spillover measures
-based on forecast error variance decompositions.
+based on forecast error variance decompositions; Buchwalter, Diebold and
+Yilmaz~\cite{buchwalter2025clustered} show theoretically that within-cluster shocks
+(HML and SMB share a value/size cluster) are under-identified by standard FEVD approaches,
+explaining why FEVD spillover is regime-insensitive in direction (Section~\ref{sec:robustness}).
 \textbf{Gap:} No prior work examines \emph{regime-conditional} Granger causality
 between Fama-French equity \emph{factors} (as opposed to institution-level
 unconditional networks or regime-conditional strategy allocation).
@@ -1619,6 +1628,11 @@ The finding is qualitatively consistent across classification methods.
     Pre-GFC: $p = 6.66\times10^{-16}$ ($\Delta R^2 = 2.06\%$); post-GFC Normal:
     $p = 0.73$ ($\Delta R^2 < 0.01\%$). A pre-specified Chow test at January 2008
     confirms the break ($F = 9.68$, $p = 2.29\times10^{-6}$; see Section~\ref{sec:main_result}).
+    The Volcker Rule (2013) and Dodd-Frank (2014) restrictions on proprietary trading
+    and risk arbitrage provide a plausible regulatory mechanism for this attenuation:
+    reduced arbitrage capacity limits the deleveraging contagion channel in the post-GFC
+    period. We treat this as a secondary empirical regularity warranting future study,
+    not as a confirmed causal claim.
 
     \item \textbf{Risk monitoring scope.} VaR improvement is modest
     (6.42\%$\to$5.60\% with hybrid detector) and may partly reflect
@@ -1672,6 +1686,9 @@ with a realized-volatility fallback achieves the closest coverage to the 5\%
 target (5.60\%, $p_{\text{CC}} = 0.336$), detecting 47.8\% of COVID-2020
 (seed 42 sensitivity fit; HMM alone detected 0\%). Algorithm~\ref{alg:monitor} formalizes
 the monitoring protocol with all parameters calibrated on training data.
+The June--October 2025 quant crowding episode---in which quality factors diverged
+sharply from value and size (MSCI documented widespread HML/SMB drawdowns)---constitutes
+a prospective out-of-sample test of the hybrid detector design described here.
 
 \section*{Funding}
 

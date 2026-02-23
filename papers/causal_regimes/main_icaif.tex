@@ -1538,6 +1538,20 @@ pre-specified, does not survive Bonferroni correction, and should not be interpr
 as evidence for OOS Normal predictive structure.
 A common market factor therefore does not subsume the HML$\to$SMB predictive link.
 
+\textbf{Regime count sensitivity ($K$).}
+To assess whether the Granger result is an artifact of choosing $K = 3$, we fit
+Student-$t$ HMMs with $K = 2$ and $K = 4$ on 1990--2012 training data
+(10 seeds each, selecting by log-likelihood) and apply frozen OOS classification
+to 2013--2024.
+With $K = 2$ (Low-Vol/High-Vol), HML$\to$SMB is non-significant in both regimes
+(F-$p \geq 0.22$).
+With $K = 4$ (Calm/Low-Elevated/High-Elevated/Crisis), the Low-Elevated regime
+approaches marginal significance (F-$p = 0.056$, HAC $p = 0.11$) but does not
+reach the $p < 0.05$ threshold; other regimes are null (F-$p \geq 0.31$).
+This suggests the $K = 3$ parameterization captures a distinct intermediate volatility
+state where predictive structure concentrates; coarser ($K = 2$) or finer ($K = 4$)
+partitions dilute or fragment this signal.
+
 \textbf{Secondary factor pair validation (MOM$\to$SMB).}
 To assess whether regime-dependent predictive structure is specific to HML$\to$SMB or a
 more general phenomenon, we apply the identical frozen OOS methodology to MOM$\to$SMB---the

@@ -1,0 +1,255 @@
+{
+  "metadata": {
+    "description": "K sensitivity analysis: fits K=2 and K=4 HMMs on 1990-2012, tests Granger causality on 2013-2024 frozen OOS.",
+    "fixed_lag": 1,
+    "train_period": "1990-2012",
+    "test_period": "2013-2024",
+    "timestamp": "2026-02-23 10:58:17.925677"
+  },
+  "K2": {
+    "K": 2,
+    "n_seeds": 10,
+    "best_seed": 2,
+    "best_log_likelihood": 137010.16864493434,
+    "train_counts": {
+      "Low-Vol": 3976,
+      "High-Vol": 1821
+    },
+    "test_counts": {
+      "Low-Vol": 1380,
+      "High-Vol": 1640
+    },
+    "granger": {
+      "Low-Vol": {
+        "n_clean": 1309,
+        "hml_to_smb": {
+          "n_obs": 1309,
+          "lag": 1,
+          "f_stat": 1.5127576582161713,
+          "f_p_value": 0.21894028311887126,
+          "hac_wald_stat": 1.374680722492221,
+          "hac_p_value": 0.24100929596747667,
+          "delta_r2": 0.0011569361350758367
+        },
+        "smb_to_hml": {
+          "n_obs": 1309,
+          "lag": 1,
+          "f_stat": 0.004827619546266603,
+          "f_p_value": 0.9446173342142371,
+          "hac_wald_stat": 0.004640031791138243,
+          "hac_p_value": 0.9456918777776006,
+          "delta_r2": 3.695567814987477e-06
+        }
+      },
+      "High-Vol": {
+        "n_clean": 1569,
+        "hml_to_smb": {
+          "n_obs": 1569,
+          "lag": 1,
+          "f_stat": 0.8228385053946383,
+          "f_p_value": 0.3644911157750045,
+          "hac_wald_stat": 0.578658320726395,
+          "hac_p_value": 0.4468386973959485,
+          "delta_r2": 0.0005251043917008369
+        },
+        "smb_to_hml": {
+          "n_obs": 1569,
+          "lag": 1,
+          "f_stat": 1.7664718620454825,
+          "f_p_value": 0.18401292016984316,
+          "hac_wald_stat": 1.3519450914537894,
+          "hac_p_value": 0.2449383609597402,
+          "delta_r2": 0.0011237202811414937
+        }
+      }
+    },
+    "all_fits": [
+      {
+        "seed": 0,
+        "log_likelihood": 137010.16798367564
+      },
+      {
+        "seed": 1,
+        "log_likelihood": 137010.16796734638
+      },
+      {
+        "seed": 2,
+        "log_likelihood": 137010.16864493434
+      },
+      {
+        "seed": 3,
+        "log_likelihood": 137010.1679128787
+      },
+      {
+        "seed": 4,
+        "log_likelihood": 137010.16798586384
+      },
+      {
+        "seed": 5,
+        "log_likelihood": 137010.16864480093
+      },
+      {
+        "seed": 6,
+        "log_likelihood": 137010.16793288
+      },
+      {
+        "seed": 7,
+        "log_likelihood": 137010.16797301575
+      },
+      {
+        "seed": 8,
+        "log_likelihood": 137010.16797956923
+      },
+      {
+        "seed": 9,
+        "log_likelihood": 137010.16795650148
+      }
+    ]
+  },
+  "K4": {
+    "K": 4,
+    "n_seeds": 10,
+    "best_seed": 0,
+    "best_log_likelihood": 138653.66841297515,
+    "train_counts": {
+      "Calm": 3623,
+      "Low-Elevated": 677,
+      "High-Elevated": 704,
+      "Crisis": 793
+    },
+    "test_counts": {
+      "Calm": 401,
+      "Low-Elevated": 930,
+      "High-Elevated": 1382,
+      "Crisis": 307
+    },
+    "granger": {
+      "Calm": {
+        "n_clean": 353,
+        "hml_to_smb": {
+          "n_obs": 353,
+          "lag": 1,
+          "f_stat": 0.2824975652609069,
+          "f_p_value": 0.5954060358124078,
+          "hac_wald_stat": 0.2763694291044524,
+          "hac_p_value": 0.599090755673007,
+          "delta_r2": 0.0008063332766580222
+        },
+        "smb_to_hml": {
+          "n_obs": 353,
+          "lag": 1,
+          "f_stat": 0.013816520563081846,
+          "f_p_value": 0.9064966431179843,
+          "hac_wald_stat": 0.013205262902282383,
+          "hac_p_value": 0.9085131657590255,
+          "delta_r2": 3.939259867846712e-05
+        }
+      },
+      "Low-Elevated": {
+        "n_clean": 855,
+        "hml_to_smb": {
+          "n_obs": 855,
+          "lag": 1,
+          "f_stat": 3.671942708578003,
+          "f_p_value": 0.05566998565428505,
+          "hac_wald_stat": 2.4990600594613017,
+          "hac_p_value": 0.11391426768686552,
+          "delta_r2": 0.004291238097227534
+        },
+        "smb_to_hml": {
+          "n_obs": 855,
+          "lag": 1,
+          "f_stat": 0.039945043306801896,
+          "f_p_value": 0.8416357632858616,
+          "hac_wald_stat": 0.030190841403165147,
+          "hac_p_value": 0.8620579175525082,
+          "delta_r2": 4.6592465424488694e-05
+        }
+      },
+      "High-Elevated": {
+        "n_clean": 1309,
+        "hml_to_smb": {
+          "n_obs": 1309,
+          "lag": 1,
+          "f_stat": 1.0368428884407057,
+          "f_p_value": 0.3087454612093191,
+          "hac_wald_stat": 0.8747667946971874,
+          "hac_p_value": 0.3496390297587625,
+          "delta_r2": 0.0007930133242316506
+        },
+        "smb_to_hml": {
+          "n_obs": 1309,
+          "lag": 1,
+          "f_stat": 0.19186747253501166,
+          "f_p_value": 0.6614392959818345,
+          "hac_wald_stat": 0.15779082955305032,
+          "hac_p_value": 0.691198644171096,
+          "delta_r2": 0.0001468375809760003
+        }
+      },
+      "Crisis": {
+        "n_clean": 299,
+        "hml_to_smb": {
+          "n_obs": 299,
+          "lag": 1,
+          "f_stat": 0.032255845564858644,
+          "f_p_value": 0.8575901736593612,
+          "hac_wald_stat": 0.029736536158690888,
+          "hac_p_value": 0.8630893880917234,
+          "delta_r2": 0.0001089004603956889
+        },
+        "smb_to_hml": {
+          "n_obs": 299,
+          "lag": 1,
+          "f_stat": 0.2532213480006851,
+          "f_p_value": 0.615190146907721,
+          "hac_wald_stat": 0.20969638973563065,
+          "hac_p_value": 0.6470054747187857,
+          "delta_r2": 0.0008529695675205673
+        }
+      }
+    },
+    "all_fits": [
+      {
+        "seed": 0,
+        "log_likelihood": 138653.66841297515
+      },
+      {
+        "seed": 1,
+        "log_likelihood": 138653.6684041359
+      },
+      {
+        "seed": 2,
+        "log_likelihood": 138653.6683751947
+      },
+      {
+        "seed": 3,
+        "log_likelihood": 138639.32493411412
+      },
+      {
+        "seed": 4,
+        "log_likelihood": 138639.3249512496
+      },
+      {
+        "seed": 5,
+        "log_likelihood": 138639.32495792184
+      },
+      {
+        "seed": 6,
+        "log_likelihood": 138555.96447287124
+      },
+      {
+        "seed": 7,
+        "log_likelihood": 138500.0190650654
+      },
+      {
+        "seed": 8,
+        "log_likelihood": 138639.32493143482
+      },
+      {
+        "seed": 9,
+        "log_likelihood": 138653.66836042417
+      }
+    ]
+  }
+}

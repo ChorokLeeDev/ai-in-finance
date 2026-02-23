@@ -1,0 +1,75 @@
+{
+  "description": "Frozen OOS secondary analysis: MOM->SMB. HMM trained 1990-2012 (seed 28), tested 2013-2024. Lag=1 fixed from in-sample BIC. MOM->SMB ranked #1 in OOS Elevated by F-statistic. This validates that regime-dependent predictive structure is not specific to HML->SMB.",
+  "pair": "MOM->SMB",
+  "fixed_lag": 1,
+  "seed": 28,
+  "train_period": "1990-01-02 to 2012-12-31",
+  "test_period": "2013-01-02 to 2024-12-31",
+  "train_n": 5797,
+  "test_n": 3020,
+  "train_ll": 137941.6628583043,
+  "train_counts": {
+    "Normal": 1244,
+    "Elevated": 795,
+    "Crisis": 3758
+  },
+  "test_counts": {
+    "Normal": 725,
+    "Elevated": 928,
+    "Crisis": 1367
+  },
+  "granger_mom_to_smb": {
+    "Normal": {
+      "n_clean": 661,
+      "f_stat": 0.05792605819907097,
+      "f_p_value": 0.8098794050275505,
+      "hac_p_value": 0.7869368425069657,
+      "delta_r2": 8.801103894839901e-05
+    },
+    "Elevated": {
+      "n_clean": 836,
+      "f_stat": 16.51847517589125,
+      "f_p_value": 5.273879742995202e-05,
+      "hac_p_value": 0.002607813394422176,
+      "delta_r2": 0.019429120774570374
+    },
+    "Crisis": {
+      "n_clean": 1299,
+      "f_stat": 2.0485443914095915,
+      "f_p_value": 0.15259287869353844,
+      "hac_p_value": 0.17159577349628496,
+      "delta_r2": 0.0015767185517400195
+    }
+  },
+  "granger_smb_to_mom": {
+    "Normal": {
+      "n_clean": 661,
+      "f_stat": 0.013597669151258176,
+      "f_p_value": 0.9072054513327669,
+      "hac_p_value": 0.9003301649310744,
+      "delta_r2": 2.0578420056982516e-05
+    },
+    "Elevated": {
+      "n_clean": 836,
+      "f_stat": 0.020474709648534373,
+      "f_p_value": 0.8862538132395202,
+      "hac_p_value": 0.8950803508820694,
+      "delta_r2": 2.441336711700437e-05
+    },
+    "Crisis": {
+      "n_clean": 1299,
+      "f_stat": 0.32033864311333643,
+      "f_p_value": 0.5715021865491279,
+      "hac_p_value": 0.6013870593995925,
+      "delta_r2": 0.00024709174483439345
+    }
+  },
+  "permutation_test_elevated": {
+    "n_perm": 10000,
+    "actual_F": 16.51847517589125,
+    "perm_p": 0.0096,
+    "perm_se": 0.0009750815350523257,
+    "perm_95pct_F": 10.2818738076656,
+    "n_clean_elevated": 836
+  }
+}

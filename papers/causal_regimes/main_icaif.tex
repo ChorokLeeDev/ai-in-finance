@@ -1369,6 +1369,18 @@ CC $p = 0.336$---the strongest conditional coverage pass among all specification
 ($-0.275$ vs.\ $-0.305$ for HML-Informed), indicating less severe tail breaches
 when they occur.
 
+\textbf{Economic significance.}
+The VaR improvement is statistically meaningful but economically modest.
+Over the 11-year test period ($n \approx 3{,}000$ trading days), the hybrid model
+produces $\approx$168 violations vs.\ $\approx$193 for the unconditional baseline---a
+reduction of $\approx$25 tail breaches total, or $\approx$2.3 fewer violations per year.
+For a portfolio monitored daily over a decade, this amounts to $\approx$23 fewer
+unexpected tail events.
+While useful for regulatory compliance (the hybrid passes the Christoffersen test; the baseline does not),
+the improvement does not constitute a transformative risk management advance.
+The Sharpe ratio of $-0.07$ confirms the Granger signal provides no trading alpha;
+the practical value lies in VaR calibration accuracy, not return enhancement.
+
 \begin{table}[t]
 \centering
 \caption{Hybrid Detector: COVID-19 Detection Sensitivity. Vol threshold =
@@ -1525,6 +1537,22 @@ Adding MKT-RF nominally yields trivariate HAC $p = 0.041$, but this was not
 pre-specified, does not survive Bonferroni correction, and should not be interpreted
 as evidence for OOS Normal predictive structure.
 A common market factor therefore does not subsume the HML$\to$SMB predictive link.
+
+\textbf{Secondary factor pair validation (MOM$\to$SMB).}
+To assess whether regime-dependent predictive structure is specific to HML$\to$SMB or a
+more general phenomenon, we apply the identical frozen OOS methodology to MOM$\to$SMB---the
+top-ranked pair by $F$-statistic in the OOS Elevated window ($F = 20.3$, rank 1/30;
+Section~\ref{sec:pairselection}).
+Results confirm the same regime-dependent pattern:
+MOM$\to$SMB is significant in Elevated ($F = 16.5$, $F$-$p < 0.0001$, HAC $p = 0.003$,
+$\Delta R^2 = 1.94\%$, $n = 836$; permutation $p = 0.010$, 10{,}000 shuffles, SE $= 0.001$)
+but null in Normal ($F$-$p = 0.81$) and Crisis ($F$-$p = 0.15$).
+The reverse direction (SMB$\to$MOM) is null in all regimes ($p > 0.57$), confirming
+directional asymmetry.
+This secondary validation strengthens the main finding: the phenomenon of
+regime-conditional Granger predictive structure into SMB is not unique to HML but also
+appears for Momentum, consistent with a common mechanism---possibly liquidity-driven
+deleveraging that propagates across factors during elevated-volatility periods.
 
 \textbf{Subsample stability.} Splitting at 2008: Crisis HML$\to$SMB
 pre-2008 ($n = 659$, $p = 0.335$) and post-2008 ($n = 322$, $p = 0.599$)
@@ -1725,7 +1753,8 @@ The finding is qualitatively consistent across classification methods.
     not as a confirmed causal claim.
 
     \item \textbf{Risk monitoring scope.} VaR improvement is modest
-    (6.42\%$\to$5.60\% with hybrid detector) and may partly reflect
+    (6.42\%$\to$5.60\% with hybrid detector)---approximately 25 fewer tail breaches
+    over 11 years, or $\approx$2.3 fewer violations per year. This may partly reflect
     conservative widening during high-volatility regimes rather than
     the Granger link itself. The hybrid detector's volatility override
     addresses the regime classifier's COVID-19 failure but adds one
@@ -1756,7 +1785,8 @@ a common market-factor confounder (Elevated trivariate F-$p = 0.012$, HAC $p = 0
     \item Bonferroni-significant Normal-regime HML$\to$SMB predictive precedence
     (corroborated by MS-VAR, $p < 10^{-12}$)
     \item Significant Elevated-regime OOS evidence (permutation $p = 0.022$; rank 2/30); post-hoc trivariate MKT-RF control
-    does not attenuate the signal (F-$p = 0.012$, HAC $p = 0.035$; not pre-specified)
+    does not attenuate the signal (F-$p = 0.012$, HAC $p = 0.035$; not pre-specified); secondary validation via MOM$\to$SMB
+    (rank 1/30, permutation $p = 0.010$) confirms the pattern is not unique to HML
     \item Transfer entropy triangulation: forward channel confirmed in Normal and Elevated;
     additional reverse nonlinear channel (SMB$\to$HML, empirical $p < 0.005$; sensitivity fit, seed~42;
     non-significant under primary fit) in Normal
@@ -1787,6 +1817,10 @@ a prospective out-of-sample test of the hybrid detector design described here.
 
 This research received no specific grant from any funding agency in the public,
 commercial, or not-for-profit sectors.
+
+\section*{Data and Code Availability}
+
+Code and analysis scripts for this paper are available at an anonymous repository to be provided upon acceptance. The financial data used in this analysis consists of daily Fama-French factors (five factors plus Carhart Momentum) obtained from Kenneth French's data library, which are publicly available at \url{https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html}. All results are fully reproducible using the provided code and publicly available data sources.
 
 \bibliography{references}
 

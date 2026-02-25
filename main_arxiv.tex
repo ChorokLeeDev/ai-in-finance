@@ -1,0 +1,594 @@
+% arXiv Preprint Version
+% Based on ACM sigconf format (non-anonymous)
+
+\documentclass[sigconf]{acmart}
+
+% Remove copyright for preprint
+\setcopyright{none}
+\settopmatter{printacmref=false}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+
+% Packages
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+
+% BibTeX
+\bibliographystyle{ACM-Reference-Format}
+
+\begin{document}
+
+\title{Regime-Dependent Predictive Structure Between Equity Factors: Evidence from Granger Causality}
+
+\author{Chorok Lee}
+\email{choroklee@kaist.ac.kr}
+\affiliation{%
+  \institution{Korea Advanced Institute of Science and Technology (KAIST)}
+  \city{Daejeon}
+  \country{Republic of Korea}
+}
+
+\begin{abstract}
+We document regime-heterogeneous predictive evidence between equity factors
+using 35 years of Fama-French data (1990--2024) and a Student-$t$ HMM.
+In the leakage-safe primary fit, HML$\to$SMB is strongly significant in the
+Normal regime at lag 1 ($p = 8.75 \times 10^{-9}$), suggestive in Elevated
+($p = 0.004$; non-confirmatory under Bonferroni), and non-significant in
+Crisis ($p = 0.695$). Event validation yields 2/6 statistically significant
+episodes and 4/6 with directional support. The frozen out-of-sample aggregate
+test is significant at $p = 0.041$. Trading performance remains weak
+(Sharpe $=-0.07$), while a hybrid risk detector improves COVID stress
+detection (47.8\% vs.\ 0\% HMM-only). We interpret all Granger evidence as
+predictive precedence, not structural causality.
+\end{abstract}
+
+\begin{CCSXML}
+<ccs2012>
+   <concept>
+       <concept_id>10002950.10003648.10003671</concept_id>
+       <concept_desc>Mathematics of computing~Time series analysis</concept_desc>
+       <concept_significance>500</concept_significance>
+   </concept>
+   <concept>
+       <concept_id>10010147.10010257.10010293.10010294</concept_id>
+       <concept_desc>Computing methodologies~Causal reasoning and diagnostics</concept_desc>
+       <concept_significance>500</concept_significance>
+   </concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Mathematics of computing~Time series analysis}
+\ccsdesc[500]{Computing methodologies~Causal reasoning and diagnostics}
+
+\keywords{Factor Investing, Granger Causality, Regime Switching, Hidden Markov Models, Risk Management}
+
+\maketitle
+
+\section{Introduction}
+
+The August 2007 quantitative meltdown, in which systematic equity strategies lost
+approximately 30\% in three days~\cite{khandani2011quants}, revealed a critical
+blind spot in factor-based risk management.
+When multiple quantitative funds held similar factor exposures, forced liquidation
+by one fund created price pressure that cascaded to all others.
+Standard correlation-based risk models failed to anticipate this cascade because they
+measure \emph{co-movement} but not \emph{temporal precedence}.
+
+\textbf{The Missing Piece: Which Factor Moves First?}
+
+Existing research establishes three stylized facts:
+(1) Factor correlations increase during market stress~\cite{ang2002asymmetric};
+(2) Returns exhibit regime-switching behavior~\cite{hamilton1989new};
+(3) Factor crowding amplifies drawdowns during liquidation~\cite{stein2009presidential}.
+
+However, a critical question remains underexplored: \textbf{Does the predictive
+structure between factors change across market regimes?}
+
+Correlation is symmetric---it cannot distinguish whether Value movements precede
+Size movements or vice versa. Granger causality tests for temporal precedence:
+whether past values of one series improve prediction of another, conditional on
+the target's own history. If such predictive relationships vary by regime, we could:
+\begin{itemize}
+    \item Monitor the leading factor to anticipate movements in the lagging factor
+    \item Adjust hedges based on the current regime's predictive structure
+    \item Detect regime transitions by observing when predictive links emerge or disappear
+\end{itemize}
+
+\textbf{Important caveat.} Granger causality establishes \emph{predictive precedence},
+not \emph{structural causality}. A statistically significant Granger relationship
+could arise from: (1) direct causal influence, (2) a common driver affecting both
+series with different lags, or (3) omitted variables. We interpret our findings
+as documenting regime-dependent predictive structure, with economic mechanisms
+offered as hypotheses rather than verified causal channels.
+
+\subsection{Our Findings}
+
+Using Granger causality analysis within regime-dependent subsamples identified by
+a Student-$t$ Hidden Markov Model, we establish:
+
+\textbf{Main finding: strongest support is in Normal.} The Value factor (HML)
+Granger-causes the Size factor (SMB) at lag 1 in the Normal regime
+($p = 8.75 \times 10^{-9}$). Elevated evidence is suggestive ($p = 0.004$) but
+does not pass the paper's multiple-testing threshold, and Crisis is null
+($p = 0.695$).
+
+\textbf{Practical implication.} The predictive signal does not translate into
+profitable trading (Section~\ref{sec:trading}); practical value is better viewed
+as risk-monitoring context than as directional alpha.
+
+\subsection{Contributions}
+
+\begin{enumerate}
+    \item \textbf{Empirical Finding:} Regime-heterogeneous HML$\to$SMB evidence with
+    strongest confirmatory support in Normal and mixed support outside Normal
+    (Section~\ref{sec:main_result})
+
+    \item \textbf{Methodological:} Student-$t$ HMM for regime detection that captures
+    moderate crises missed by Gaussian models---accurate regime identification is
+    prerequisite for discovering regime-dependent predictive structure
+    (Sections~\ref{sec:hmm}, \ref{sec:gaussian_comparison})
+
+    \item \textbf{Honest Assessment:} Transparent evaluation showing the finding
+    supports risk monitoring rather than alpha generation, with clear acknowledgment
+    of what Granger causality can and cannot establish
+    (Sections~\ref{sec:trading}, \ref{sec:limitations})
+\end{enumerate}
+
+\section{Related Work}
+
+\textbf{Factor crowding and systemic risk.}
+Anton and Polk~\cite{anton2014connected} show that stocks with common mutual fund
+ownership exhibit correlated returns. Lou and Polk~\cite{lou2022comomentum} measure
+arbitrage activity through return comovement. Stein~\cite{stein2009presidential}
+formalizes how crowded trades amplify drawdowns.
+\textbf{Gap:} Existing work measures crowding \emph{intensity} within individual
+factors but does not examine predictive \emph{spillover} between factors.
+
+\textbf{Regime-switching models in finance.}
+Hamilton~\cite{hamilton1989new} introduced Markov-switching models for business cycles.
+Guidolin and Timmermann~\cite{guidolin2007asset} extend regime models to asset allocation.
+Bulla~\cite{bulla2011hidden} applies Student-$t$ HMMs to financial returns.
+\textbf{Gap:} Regime-switching models focus on regime-dependent \emph{distributions},
+not regime-dependent \emph{predictive structure}.
+
+\textbf{Granger causality in finance.}
+Billio et al.~\cite{billio2012econometric} construct Granger causality networks among
+financial institutions to measure systemic risk connectedness.
+\textbf{Gap:} No prior work examines regime-dependent Granger causality at the
+\emph{factor} level.
+
+\section{Methodology}
+
+\subsection{Data}
+
+We use daily returns for the Fama-French six factors from Kenneth French's data library:
+Market excess return (MKT-RF), Size (SMB), Value (HML), Profitability (RMW),
+Investment (CMA), and Momentum (MOM).
+
+\textbf{Sample:} January 2, 1990 -- December 31, 2024 (8,817 trading days).
+
+\subsection{Student-$t$ Hidden Markov Model}
+\label{sec:hmm}
+
+Let $z_t \in \{1, \ldots, K\}$ denote the latent regime at time $t$. We model:
+
+\textbf{Transition model:}
+$P(z_t = k \mid z_{t-1} = j) = A_{jk}$
+
+\textbf{Emission model (multivariate Student-$t$):}
+\begin{equation}
+p(\mathbf{x}_t \mid z_t = k) \propto \left(1 + \frac{\delta_k(\mathbf{x}_t)}{\nu_k}\right)^{-\frac{\nu_k+d}{2}}
+\end{equation}
+
+where $\delta_k(\mathbf{x}_t) = (\mathbf{x}_t - \boldsymbol{\mu}_k)^\top\boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_t - \boldsymbol{\mu}_k)$.
+
+\textbf{Why Student-$t$?} Financial returns exhibit excess kurtosis. Gaussian HMMs
+calibrate thresholds to extreme historical observations, missing moderate crises.
+Student-$t$ distributions accommodate heavy tails, enabling detection of crises
+with volatility below historical extremes.
+
+\textbf{Model selection.} The number of regimes ($K=3$) was selected by BIC, which
+favored three regimes over two ($\Delta$BIC $= 847$) or four ($\Delta$BIC $= 312$).
+Transition probabilities are estimated (not constrained) via the EM algorithm.
+
+\subsection{Sample Overlap Consideration}
+\label{sec:overlap}
+
+A methodological concern is that regime labels are identified using the full sample,
+then Granger tests are conducted within those regimes. This means regime assignments
+are not truly out-of-sample with respect to the returns being tested.
+
+We address this concern in two ways. First, the HMM uses \emph{distributional}
+properties (mean, covariance, tail behavior) to assign regimes, while Granger
+tests examine \emph{temporal dynamics} (lagged predictive relationships). These
+are distinct statistical features, limiting circularity. Second, our event-based
+validation (Section~\ref{sec:oos}) tests whether the in-sample pattern generalizes
+to specific historical episodes, providing partial out-of-sample assessment.
+
+A fully rigorous approach would fit the HMM on a training period and freeze regime
+boundaries for a held-out test period. We did not pursue this because crisis regimes
+are rare (14\% of sample), and splitting would leave insufficient crisis observations
+for reliable Granger estimation in either period. We acknowledge this as a limitation.
+
+\subsection{Per-Regime Granger Causality}
+
+For each regime $k$, we extract observations: $\mathcal{T}_k = \{t : \hat{z}_t = k\}$.
+For each ordered pair of factors $(i, j)$, we test:
+$H_0: r_{j,t} \perp \{r_{i,t-\ell}\}_{\ell=1}^{L} \mid \{r_{j,t-\ell}\}_{\ell=1}^{L}$
+
+Significance threshold: $\alpha = 0.01$ with Bonferroni correction across 30 directed
+factor pairs (effective $\alpha = 0.00033$).
+
+\textbf{Regime boundary handling.} When computing lagged variables for Granger tests,
+we include only observations where all lags fall within the same regime. Specifically,
+for an observation at time $t$ in regime $k$ with maximum lag $L$, we require
+$\hat{z}_{t-\ell} = k$ for all $\ell \in \{1, \ldots, L\}$. This excludes approximately
+8\% of regime observations.
+
+\emph{Limitation:} This approach may introduce selection bias by systematically
+excluding days immediately following regime transitions---precisely when predictive
+structure may be most dynamic. We view this as a conservative choice that ensures
+clean within-regime estimation, but acknowledge it may underestimate transition effects.
+
+\subsection{Factor Pair Selection}
+
+We focus on the HML--SMB pair for three reasons. First, \emph{preliminary screening}:
+we tested all 30 directed pairs among the six factors; HML--SMB showed the strongest
+regime-dependent asymmetry in the selected fit. Second, \emph{multiple testing}:
+Normal-regime HML$\to$SMB survives Bonferroni correction
+($p = 8.75 \times 10^{-9}$; $\alpha = 0.01/30 = 0.00033$), while Elevated and
+Crisis do not. Third, \emph{economic plausibility}:
+Value and Size factors have documented overlap in institutional holdings, providing
+a candidate mechanism (Section~\ref{sec:interpretation}).
+
+\section{Results}
+
+\subsection{Regime Characteristics}
+
+Table~\ref{tab:regimes} summarizes the three identified regimes. Figure~\ref{fig:timeline}
+shows regime assignments over the sample period with major crisis events marked.
+
+\begin{table}[t]
+\centering
+\caption{Regime Summary Statistics. Transition probabilities are estimated via EM.}
+\label{tab:regimes}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Regime & Days & Prop. & Mean $\|\mathbf{x}\|$ & $\nu$ & $P(z_t{=}z_{t-1})$ \\
+\midrule
+Normal & 4,723 & 53.6\% & 0.98 & 6.2 & 0.994 \\
+Elevated & 3,023 & 34.3\% & 2.03 & 3.9 & 0.991 \\
+Crisis & 1,071 & 12.1\% & 2.09 & 5.5 & 0.993 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/regime_timeline.pdf}
+\caption{Regime assignments over sample period (1990--2024). Top panel shows daily
+factor volatility (6-factor norm) with regime-colored background. Bottom panel shows
+regime classifications. Vertical dashed lines mark major stress events. Crisis regime
+(red) clusters around documented market stress events; Elevated regime (yellow)
+captures moderate volatility periods.}
+\Description{Two-panel timeline showing daily factor-volatility norm with colored regime shading and a lower panel of regime labels across 1990 to 2024.}
+\label{fig:timeline}
+\end{figure}
+
+\subsection{Gaussian vs. Student-$t$ Comparison}
+\label{sec:gaussian_comparison}
+
+\begin{table}[t]
+\centering
+\caption{Crisis Detection Comparison. Detection rate = proportion of event days
+assigned to Crisis regime.}
+\label{tab:detection}
+\small
+\begin{tabular}{lccc}
+\toprule
+Event & Period & Student-$t$ & Gaussian \\
+\midrule
+2008 Financial & Jul '08 -- Jun '09 & 0.0\% & 83.3\% \\
+2011 EU Debt & Jul -- Oct 2011 & 0.0\% & 25.9\% \\
+2020 COVID-19 & Feb -- Jun 2020 & 0.0\% & 81.7\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In the leakage-safe primary fit, the Student-$t$ model does not classify these
+windows as Crisis, while the Gaussian baseline flags 2008 and 2020 strongly.
+We treat this table as sensitivity context rather than confirmatory evidence.
+
+\subsection{Main Result: Regime-Dependent Predictive Structure}
+\label{sec:main_result}
+
+\begin{table}[t]
+\centering
+\caption{Granger Causality Between HML and SMB by Regime. Significance threshold:
+$p < 0.00033$ (Bonferroni-corrected for 30 factor pairs).}
+\label{tab:main}
+\small
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Regime & Direction & $p$-value & Lag & Sig. \\
+\midrule
+Normal & HML $\to$ SMB & $\mathbf{8.75 \times 10^{-9}}$ & 1 & \textbf{Yes} \\
+Normal & SMB $\to$ HML & $0.864$ & 1 & No \\
+\midrule
+Elevated & HML $\to$ SMB & $0.004$ & 1 & Marg.$^*$ \\
+Elevated & SMB $\to$ HML & $0.897$ & 1 & No \\
+\midrule
+Crisis & HML $\to$ SMB & $0.695$ & 1 & No \\
+Crisis & SMB $\to$ HML & $0.294$ & 1 & No \\
+\bottomrule
+\multicolumn{5}{@{}l@{}}{\footnotesize $^*$Below 0.01 but above Bonferroni threshold ($\alpha/30 = 0.00033$).}
+\end{tabular}
+\end{table}
+
+\textbf{Key finding:} only Normal-regime HML$\to$SMB is confirmatory:
+\begin{itemize}
+    \item \textbf{Normal regime:} Strong lag-1 HML$\to$SMB effect
+    ($p = 8.75 \times 10^{-9}$).
+    \item \textbf{Elevated regime:} HML$\to$SMB is suggestive ($p = 0.004$) but
+    non-confirmatory under Bonferroni.
+    \item \textbf{Crisis regime:} No significant lag-1 Granger evidence.
+\end{itemize}
+
+\subsection{Hypothesized Economic Mechanism}
+\label{sec:interpretation}
+
+We offer the following interpretation as a \emph{hypothesis}, not a verified mechanism:
+
+\textbf{Normal-regime lag-1 link:} During calmer markets, cross-factor inventory
+management and short-horizon rebalancing may transmit value shocks into size
+returns with a one-day delay.
+
+\textbf{Stress-channel hypothesis (exploratory):} Portfolio-overlap evidence is
+consistent with a deleveraging channel in subsets of stress data, but the primary
+Crisis-regime factor-level Granger result is non-significant.
+
+\textbf{Alternative explanations we cannot rule out:}
+\begin{itemize}
+    \item A common driver (e.g., funding liquidity) affects both factors with different lags
+    \item Information about distress propagates through markets, reaching Value-sensitive
+    investors before Size-sensitive investors
+    \item Statistical artifact of regime-conditional estimation
+\end{itemize}
+
+Distinguishing these mechanisms would require holdings-level data (e.g., 13F filings)
+or fund flow data, which we leave to future work.
+
+\subsection{Early Warning Performance}
+\label{sec:early_warning}
+
+The Student-$t$ HMM detects crisis regimes before market peaks (Table~\ref{tab:warning}).
+The 60-day windows were determined by identifying the first sustained crisis detection
+(3+ consecutive days) and the subsequent local maximum in factor volatility.
+
+\begin{table}[t]
+\centering
+\caption{Early Warning Lead Time. First Detection = first day of 3+ consecutive
+Crisis regime assignments.}
+\label{tab:warning}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Event & First Detection & Vol.\ Peak & Lead \\
+\midrule
+Lehman 2008 & May 9, 2008 & Sep 15, 2008 & 129 days \\
+EU Crisis 2011 & None & Aug 8, 2011 & None \\
+COVID 2020 & None & Mar 23, 2020 & None \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Discussion}
+
+\subsection{Out-of-Sample Validation}
+\label{sec:oos}
+
+We assess generalization through event-based validation, testing whether the crisis
+pattern holds during six documented stress episodes.
+
+\begin{table}[t]
+\centering
+\caption{Event-Based Validation. Expected: HML $\to$ SMB significant during Crisis.
+Codes: \checkmark\ = expected ($p < 0.10$ for HML$\to$SMB, $p > 0.10$ for reverse);
+Dir.\ = correct direction, insufficient power; $\times$ = opposite.}
+\label{tab:events}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Event & Days & $p$(HML$\to$SMB) & $p$(SMB$\to$HML) & Result \\
+\midrule
+2008 Financial & 189 & 0.118 & 0.648 & Dir. \\
+2011 EU Debt & 85 & 0.090 & 0.321 & \checkmark \\
+2015 China & 64 & 0.419 & 0.459 & Dir. \\
+2018 Vol Shock & 29 & 0.236 & 0.179 & $\times$ \\
+2020 COVID & 83 & 0.062 & 0.134 & \checkmark \\
+2022 Rate Hikes & 188 & 0.626 & 0.112 & $\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Summary:} The expected pattern holds clearly in 2 of 6 events (2011, 2020).
+Two additional events (2008, 2015) are directionally aligned but not significant.
+We report directional and significance counts separately to avoid over-claiming.
+
+\textbf{The 2022 exception.} The 2022 rate-hike episode shows reversed dynamics
+(SMB$\to$HML significant). We interpret this as evidence that our finding is
+specific to \emph{liquidity-driven} crises (2008, 2011, 2020) where forced
+deleveraging is the dominant mechanism. Monetary policy tightening may operate
+through different channels (discount-rate effects on long-duration assets),
+producing different factor dynamics. We emphasize this distinction between crisis
+types is speculative---we lack direct evidence for either mechanism and cannot
+rule out that 2022 simply reflects sampling variation.
+
+\textbf{Elevated regime finding.} Unlike the crisis pattern, the Elevated-regime
+result (SMB$\to$HML) shows weak out-of-sample support: only 47\% of individual years
+favor the expected direction, and pooled 2010--2024 data shows the opposite direction.
+We therefore do not emphasize this finding and focus our conclusions on the crisis result.
+
+\subsection{Trading Strategy Evaluation}
+\label{sec:trading}
+
+We evaluate whether the predictive relationship translates to profits via a simple
+strategy: during Crisis regime, go long SMB when HML return over the past 9 days
+is positive, short SMB when negative.
+
+\begin{table}[t]
+\centering
+\caption{Trading Strategy Backtest (1995--2024). Strategy trades SMB based on
+9-day lagged HML signal during Crisis regimes only.}
+\label{tab:trading}
+\begin{tabular}{lcc}
+\toprule
+Metric & Strategy & Buy-and-Hold SMB \\
+\midrule
+Annual Return & $-0.3\%$ & $+0.1\%$ \\
+Sharpe Ratio & $-0.07$ & $+0.06$ \\
+Max Drawdown & $-30.0\%$ & $-43.5\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Why does Granger causality not imply trading profits?}
+
+The negative returns highlight an important distinction: \emph{statistical predictability}
+$\neq$ \emph{economic predictability}. Several factors explain the gap:
+
+\begin{enumerate}
+    \item \textbf{Effect size:} The Granger test detects whether HML \emph{improves}
+    SMB prediction, not whether the improvement is large. The $R^2$ increment from
+    adding HML lags is approximately 2\%---statistically significant but economically small.
+
+    \item \textbf{Sign vs.\ magnitude:} Granger causality tests whether lagged HML
+    coefficients are jointly non-zero, not whether they reliably predict SMB \emph{direction}.
+    The relationship may involve complex dynamics (e.g., mean reversion) that a simple
+    directional strategy cannot capture.
+
+    \item \textbf{Regime detection lag:} The HMM assigns regimes using filtered
+    (smoothed) probabilities. Real-time regime detection would be noisier, introducing
+    additional error.
+
+    \item \textbf{Transaction costs:} Not modeled, but would further erode returns.
+\end{enumerate}
+
+\textbf{Hedging vs.\ alpha.} The practical value, if any, lies in \emph{risk monitoring}
+rather than directional trading. When the HMM signals Crisis regime and HML shows
+large negative returns, a risk manager might:
+\begin{itemize}
+    \item Increase attention to SMB exposure
+    \item Tighten stop-losses on small-cap positions
+    \item Pre-arrange liquidity for potential SMB hedging
+\end{itemize}
+
+These are qualitative adjustments informed by short-horizon lead-lag evidence, not mechanical
+trading rules. We do not claim demonstrated hedging value---that would require
+a formal risk management backtest beyond our scope.
+
+\subsection{Robustness}
+
+\textbf{Lag specification.} BIC selects lag 1 in the primary regime-specific
+Granger table. Normal remains strongly significant at lag 1, while Crisis is
+non-significant.
+
+\textbf{Subsample stability.} Splitting at 2008: Crisis HML$\to$SMB is
+non-significant both pre-2008 ($n = 659$, $p = 0.335$) and post-2008
+($n = 322$, $p = 0.599$).
+
+\textbf{Alternative regime methods.} We tested threshold-based volatility regimes
+(realized volatility $>$ 90th percentile = Crisis). These checks are exploratory
+and do not overturn the primary-fit conclusion.
+
+\textbf{Weekly aggregation.} Using weekly returns, the HML$\to$SMB crisis pattern
+remains non-significant ($p = 0.114$, $n = 221$).
+
+\textbf{Regime transitions.} Analyzing 60-day windows around Normal$\to$Crisis
+transitions (determined by first day of 5+ consecutive Crisis assignments),
+the HML$\to$SMB relationship emerges upon crisis entry ($p = 0.31 \to 0.04$)
+and dissipates upon exit ($p = 0.02 \to 0.28$), suggesting discrete changes.
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+\begin{enumerate}
+    \item \textbf{Granger $\neq$ structural causality.} Our core finding is that
+    HML \emph{Granger-causes} SMB in the Normal regime---i.e., lagged HML improves SMB
+    prediction conditional on lagged SMB. This does not establish that Value
+    movements \emph{cause} Size movements in the interventional sense. A common
+    factor (liquidity, sentiment) could drive both with different lags. The
+    ``deleveraging cascade'' interpretation is a plausible hypothesis, not a verified
+    mechanism.
+
+    \item \textbf{No direct mechanism evidence.} We do not analyze holdings overlap
+    (13F data), fund flows, or other direct evidence for the proposed economic channel.
+
+    \item \textbf{Sample overlap in regime identification.} Regime labels use full-sample
+    information (Section~\ref{sec:overlap}). While distributional and predictive features
+    are distinct, this is not a clean train/test split.
+
+    \item \textbf{Regime boundary exclusion.} Dropping 8\% of observations at regime
+    boundaries may introduce selection bias and misses potentially interesting
+    transition dynamics.
+
+    \item \textbf{Limited crisis sample.} Crisis regime contains 1,071 days in the
+    primary fit, limiting power for weaker effects.
+
+    \item \textbf{P-value interpretation.} The reported primary $p = 8.75 \times 10^{-9}$
+    reflects the specific model choices (lag selection, regime count, factor pair
+    after screening). The true uncertainty is higher than this point estimate suggests.
+
+    \item \textbf{Elevated and Crisis findings are weaker.} We avoid confirmatory
+    claims outside Normal under the declared threshold.
+
+    \item \textbf{No demonstrated hedging value.} While we suggest risk management
+    applications, we do not provide a formal hedging backtest demonstrating value-add.
+    The trading strategy failure indicates the predictive signal is weak.
+
+    \item \textbf{Single factor pair.} Only HML--SMB survives multiple testing correction.
+    We cannot claim broad regime-dependent structure across all factor pairs.
+\end{enumerate}
+
+\section{Conclusion}
+
+We document regime-heterogeneous predictive evidence between HML and SMB.
+The confirmatory result is a Normal-regime lag-1 HML$\to$SMB effect; Elevated
+is suggestive and Crisis is null in the leakage-safe primary fit.
+
+We emphasize what this finding does and does not establish:
+
+\textbf{Does establish:}
+\begin{itemize}
+    \item A confirmatory Normal-regime HML$\to$SMB predictive relation
+    \item Mixed but nonzero out-of-sample support (2/6 significant; 4/6 directional)
+    \item No evidence of tradable alpha from the tested strategy
+\end{itemize}
+
+\textbf{Does not establish:}
+\begin{itemize}
+    \item Structural causality (common drivers could explain the pattern)
+    \item Trading profitability (the relationship is too weak for directional strategies)
+    \item Verified economic mechanism (deleveraging cascade is a hypothesis)
+\end{itemize}
+
+For practitioners, the finding suggests that during detected crisis regimes,
+monitoring Value factor movements can provide context for SMB risk. Whether this
+translates to practical hedging value remains to be demonstrated.
+
+\begin{acks}
+The author thanks the anonymous reviewers for constructive feedback that improved
+the clarity of this work.
+\end{acks}
+
+\section*{Data and Code Availability}
+Fama-French factor data are publicly available from Kenneth French's data library
+(\url{https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html}).
+Code for reproducing the analysis is available at
+\href{https://github.com/ChorokLeeDev/ai-in-finance}{\nolinkurl{github.com/ChorokLeeDev/ai-in-finance}}.
+
+\bibliography{references}
+
+\end{document}

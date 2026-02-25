@@ -16,18 +16,16 @@
 *.bcf
 *.run.xml
 
-# Local project artifacts not intended for paper commits
-/code/
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Data (public dataset, too large to track)
 /data/
+
+# Generated outputs (regenerable from code)
 /figures/
 /results/
-
-main_arxiv.tex
-main_uai.tex
-main_uai_main_only.tex
-requirements.txt
-review_r27_synthesis.md
-uai2026.cls
 
 # PDFs not tracked unless explicitly added
 *.pdf

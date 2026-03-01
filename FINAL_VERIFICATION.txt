@@ -1,0 +1,55 @@
+FINAL EDITORIAL REVISION VERIFICATION
+======================================
+
+ISSUE 1: Replace "causality" with "Granger predictability"
+-----------------------------------------------------------
+
+Title check:
+\title{The Rise and Fall of Cross-Factor Predictability: Regime-Conditional HML$\to$SMB Granger Predictability}
+
+Keywords check:
+\keywords{Factor Investing, Granger Predictability, Regime Switching, Hidden Markov Models, Structural Break, Out-of-Sample Validation}
+
+Abstract Granger-predicts check:
+we find that HML Granger-predicts SMB in the Normal regime pre-crisis
+
+
+ISSUE 2: Standardize scale convention
+-----------------------------------------
+Scale convention clarity note added:
+We report the decimal-unit result ($n = 836$) as a robustness check in Section~\ref{sec:robustness}.
+
+\textbf{Convention clarity for main text.} Unless explicitly noted otherwise, all primary results in the main text use the percentage-unit convention. Decimal-unit results appear only in robustness checks and sensitivity analyses.
+Daily factor returns are stationary by construction; ADF tests confirm unit-root
+rejection ($p < 0.001$) for all six series (BIC lag selection, intercept included,
+
+
+ISSUE 3: Replace regime-dependent with regime-conditional
+----------------------------------------------------------
+No 'regime-dependent' instances remaining:
+FAILED - instances found:
+916:Cross-factor predictive structure exhibits regime-dependent dynamics with documented
+
+Sample regime-conditional instances:
+90:Using daily Fama-French factor returns (1990--2024) and regime-conditional
+118:and points to regime-conditional structure.
+148:    regime-conditional re-emergence extends beyond HML--SMB
+158:establish regime-conditional momentum using observable macro states; our Granger test
+167:This work measures crowding \emph{intensity} but not regime-conditional
+
+
+ISSUE 4: Condense trading/VaR appendix
+--------------------------------------
+VaR section (condensed):
+($p < 0.01$), with three surviving Bonferroni correction ($\alpha/25 = 0.002$):
+S/L ($p = 2.5 \times 10^{-6}$, $\Delta R^2 = 1.47\%$),
+S/3 ($p = 0.0014$), and S/H ($p \approx 0$, $\Delta R^2 = 1.79\%$).
+
+Trading backtest preserved (Sharpe = -0.07):
+assessed by spatial permutation (10{,}000 shuffles of grid assignments;
+time series are never touched).
+
+\textbf{Result:} $\rho_s = 0.35$, permutation $p = 0.046$
+(Figure~\ref{fig:ff25}). Granger significance concentrates in small-cap
+portfolios: all five Small quintile portfolios are nominally significant
+

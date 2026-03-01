@@ -1,0 +1,331 @@
+===============================================================================
+BAI-PERRON STRUCTURAL BREAK ANALYSIS - FILE INDEX & GUIDE
+===============================================================================
+
+Project: Causal Regimes - Factor Causality Analysis
+Task: Bai-Perron structural break test on HML→SMB Granger causality
+Date: March 1, 2026
+Status: COMPLETED
+
+===============================================================================
+1. MAIN DELIVERABLES
+===============================================================================
+
+SCRIPT FILE:
+  Location: /sessions/sweet-dazzling-heisenberg/mnt/causal_regimes/code/bai_perron.py
+  Lines: 596 total
+  Size: 22 KB
+  Language: Python 3.10
+  
+  What it does:
+    1. Downloads Fama-French 5-factor + Momentum data (1990-2024)
+    2. Loads 8,817 daily observations
+    3. Fits Gaussian HMM with K=3 states (seed=28)
+    4. Identifies Normal regime (regime 2: near-zero mean)
+    5. Runs Granger regression: SMB_t = alpha + beta*HML_{t-1} + gamma*SMB_{t-1}
+    6. Implements Bai-Perron sequential structural break test
+       - Tests: 0 vs 1 break, 1 vs 2 breaks, 2 vs 3 breaks
+       - Trimming parameter h=0.15 (15% minimum segment)
+       - Critical values: 11.47, 14.88, 16.14
+    7. Analyzes both Normal regime and full sample
+    8. Reports break dates, Sup-F statistics, and interpretation
+  
+  Key classes:
+    - BaiPerronTest: Implements structural break detection
+    - Functions: load_french_data(), fit_hmm_and_extract_regimes(), run_granger_regression()
+
+RESULTS FILES:
+  Main Results:
+    /sessions/sweet-dazzling-heisenberg/mnt/causal_regimes/results/bai_perron.txt
+    Size: 3.0 KB
+    Content: Data summary, HMM results, Bai-Perron test statistics, break dates
+  
+  Executive Summary:
+    /sessions/sweet-dazzling-heisenberg/mnt/causal_regimes/results/BAI_PERRON_ANALYSIS_SUMMARY.txt
+    Size: 11 KB
+    Content: 12-section comprehensive analysis with methodology and recommendations
+  
+  Completion Report:
+    /sessions/sweet-dazzling-heisenberg/COMPLETION_REPORT_BAI_PERRON.txt
+    Size: 9 KB
+    Content: Deliverables checklist, QA report, technical specifications
+
+===============================================================================
+2. QUICK START GUIDE
+===============================================================================
+
+To Run the Analysis:
+
+Step 1 - Install Dependencies:
+  $ pip install --break-system-packages hmmlearn pandas scipy numpy
+
+Step 2 - Execute Script:
+  $ python /sessions/sweet-dazzling-heisenberg/mnt/causal_regimes/code/bai_perron.py
+
+Step 3 - View Results:
+  $ cat /sessions/sweet-dazzling-heisenberg/mnt/causal_regimes/results/bai_perron.txt
+
+Output:
+  - Console progress updates
+  - Detailed results saved to results/bai_perron.txt
+  - Reproducible (fixed seed=28)
+
+===============================================================================
+3. KEY RESULTS SNAPSHOT
+===============================================================================
+
+NORMAL REGIME ANALYSIS:
+  Sample: 3,435 observations (within normal market conditions)
+  Test 1 (0 vs 1 break):
+    Sup-F = 79.89 >> critical value 11.47
+    Break point: June 22, 2000
+  Test 2 (1 vs 2 breaks):
+    Sup-F = 86.87 >> critical value 14.88
+    Additional break: August 18, 2008
+
+FULL SAMPLE ANALYSIS:
+  Sample: 8,816 observations (1990-2024)
+  Test 1 (0 vs 1 break):
+    Sup-F = 197.37 >> critical value 11.47 (VERY STRONG)
+    Break point: June 22, 2000
+  Test 2 (1 vs 2 breaks):
+    Sup-F = 205.56 >> critical value 14.88 (VERY STRONG)
+    Additional break: September 22, 2008
+
+GRANGER REGRESSION (Normal Regime):
+  Model: SMB_t = 0.0144 - 0.0536*HML_{t-1} + 0.0337*SMB_{t-1} + eps_t
+  Interpretation:
+    - Value factor (HML) predicts lower small-cap returns (-0.054)
+    - Size factor (SMB) shows positive autocorrelation (0.034)
+    - Relationship is unstable over time (breaks identified)
+
+HMM REGIME CLASSIFICATION:
+  Regime 0: Negative mean (-0.1360) = Stress/Distress periods
+  Regime 1: Positive mean (+0.0989) = Boom periods
+  Regime 2: Near-zero mean (-0.0044) = Normal periods (39% of sample)
+
+===============================================================================
+4. DETAILED SECTION DESCRIPTIONS
+===============================================================================
+
+bai_perron.py:
+  Lines 1-30:       Docstring and imports
+  Lines 31-45:      Package installation function
+  Lines 47-156:     Data loading (download and parsing)
+  Lines 158-208:    HMM regime classification
+  Lines 210-385:    BaiPerronTest class implementation
+  Lines 387-430:    Granger regression function
+  Lines 432-515:    Main analysis orchestration
+  Lines 517-596:    Entry point and file output
+
+bai_perron.txt:
+  Sections:
+    1. Title and metadata
+    2. Data summary (8,817 obs, 1990-2024)
+    3. HMM results (regime parameters)
+    4. PART 1: Normal Regime Analysis (3 tests)
+    5. PART 2: Full Sample Robustness Check (3 tests)
+    6. PART 3: Literature Comparison
+    7. Summary and interpretation
+
+BAI_PERRON_ANALYSIS_SUMMARY.txt:
+  Sections:
+    1. Overview and key features
+    2. Data summary and sources
+    3. HMM regime classification results
+    4. Bai-Perron results (Normal regime)
+    5. Bai-Perron results (Full sample)
+    6. Key findings and interpretation
+    7. Methodological notes
+    8. Practitioner recommendations
+    9. Computational details
+    10. Reproducibility instructions
+    11. Summary statistics
+    12. File outputs and contacts
+
+===============================================================================
+5. DATA SOURCES
+===============================================================================
+
+Downloaded from Kenneth French's Data Library:
+  https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/
+
+Files:
+  1. F-F_Research_Data_5_Factors_2x3_daily_CSV.zip
+     Contains: Mkt-RF, SMB, HML, RMW, CMA, RF (daily returns)
+  
+  2. F-F_Momentum_Factor_daily_CSV.zip
+     Contains: Mom (daily momentum factor)
+
+Coverage: 1926-present, filtered to 1990-2024 (8,817 observations)
+Format: Daily percentage returns
+Frequency: Trading days only (weekends/holidays excluded)
+
+===============================================================================
+6. TECHNICAL SPECIFICATIONS
+===============================================================================
+
+Programming Language: Python 3.10
+Required Packages:
+  - pandas: Data manipulation (v1.3+)
+  - numpy: Numerical arrays (v1.20+)
+  - scipy: Linear algebra and statistics (v1.7+)
+  - hmmlearn: Hidden Markov Models (v0.2+)
+  - urllib, zipfile: Built-in for data download
+
+Key Algorithms:
+  - HMM: Baum-Welch algorithm (hmmlearn)
+  - Regression: OLS via scipy.linalg.solve
+  - Break detection: Grid search over all candidate break points
+  - Sup-F: Maximum F-statistic over trimmed range
+
+Numerical Methods:
+  - Trimming: h=0.15 means minimum 15% of sample per segment
+  - F-statistic: (SSR_full - SSR_break) / (SSR_break / dof)
+  - Critical values: Bai-Perron (2003) asymptotic distribution
+
+Reproducibility:
+  - Random seed: 28 (fixed in HMM)
+  - No stochasticity in break-finding
+  - Data always downloaded fresh
+  - Results deterministic across runs
+
+===============================================================================
+7. INTERPRETATION GUIDE
+===============================================================================
+
+What the Sup-F Statistics Mean:
+  
+  Sup-F = 79.89 (Normal regime, 0 vs 1 break):
+    - Comparing single-equation model vs. 2-regime model
+    - Value of 79.89 far exceeds critical value 11.47
+    - Conclusion: Strong evidence HML→SMB relationship changed around June 2000
+  
+  Sup-F = 197.37 (Full sample, 0 vs 1 break):
+    - Even stronger evidence when all regimes included
+    - Higher Sup-F due to more volatility in full sample
+    - Conclusion: Very strong structural break in full dataset
+
+What the Break Dates Mean:
+  
+  June 22, 2000:
+    - Marks peak of dot-com bubble burst
+    - Tech stocks (Nasdaq) decline sharply
+    - Shift in small-cap vs. value dynamics
+    - Risk appetite changes (flight to quality)
+  
+  August/September 2008:
+    - Financial crisis (Lehman collapse Sept 15)
+    - Credit markets freeze, liquidity crisis
+    - Correlation structures change dramatically
+    - Risk-off environment (deleveraging)
+
+What the Granger Coefficients Mean:
+  
+  Beta = -0.0536 (HML lag coefficient):
+    - Past value premium predicts lower SMB (size premium)
+    - Negative relationship: value and size move opposite
+    - This coefficient changes before/after breaks
+  
+  Gamma = 0.0337 (SMB lag coefficient):
+    - Size premium shows slight positive autocorrelation
+    - Tomorrow's SMB partly determined by today's SMB
+    - Momentum in size effect
+
+===============================================================================
+8. COMPARISON TO LITERATURE
+===============================================================================
+
+Our Analysis:
+  Method: Bai-Perron sequential structural break test
+  Sample: 1990-2024 (8,817 daily observations)
+  Test statistic: Sup-F = 197.37 (single break)
+  Conclusion: REJECT no structural breaks (p < 0.0001)
+  Break dates: June 2000, September 2008
+
+Reference Paper:
+  Title: "Do factor premia vanish?" 
+  Method: Quandt-Andrews sup-F test
+  Sample: Depends on paper period
+  Test statistic: Sup-F reported, p-value = 1.23e-13 (June 1998)
+  Conclusion: REJECT no structural breaks
+  
+Alignment:
+  - Both tests reject no breaks (hypothesis confirmed)
+  - Both find strong statistical evidence
+  - Different break dates likely due to:
+    * Different sample periods
+    * Different regression models
+    * Different data definitions
+  - Both validate existence of structural instability
+
+===============================================================================
+9. RECOMMENDATIONS & NEXT STEPS
+===============================================================================
+
+For Researchers:
+  1. Test other factor pairs (HML→MOM, RMW→SMB, etc.)
+  2. Compute confidence intervals for break dates
+  3. Compare Bai-Perron to other break tests (CUSUM, CHOW)
+  4. Extend to multivariate framework (VAR model)
+  5. Test regime-switching GARCH models
+  6. Use HAC-corrected standard errors for breaks
+
+For Practitioners:
+  1. Implement regime-aware factor allocation strategies
+  2. Monitor for structural breaks in real time
+  3. Adjust hedging ratios based on regimes
+  4. Use normal regime parameters for base case
+  5. Include break scenarios in stress testing
+  6. Consider dynamic rebalancing based on regime switches
+
+For Extensions:
+  1. Integrate into trading system (daily regime updates)
+  2. Extend to other markets (international)
+  3. Add more factors (profitability, quality)
+  4. Test on sub-portfolios (industry, size quintiles)
+  5. Combine with machine learning for break prediction
+
+===============================================================================
+10. TROUBLESHOOTING
+===============================================================================
+
+If you encounter issues:
+
+Issue: Import errors with hmmlearn
+  Solution: pip install --break-system-packages hmmlearn
+
+Issue: Data download fails
+  Solution: Check internet connection, Kenneth French's site status
+  Fallback: Manually download and place CSV files in /tmp/french_data/
+
+Issue: Memory issues with HMM fitting
+  Solution: Reduce n_iter parameter or use GPU-accelerated alternatives
+
+Issue: Break point search takes too long
+  Solution: Increase trimming parameter h (e.g., h=0.20) for larger segments
+
+Issue: Results differ from expected
+  Solution: Check random seed is 28, ensure data period is 1990-2024
+
+===============================================================================
+11. REFERENCES
+===============================================================================
+
+Bai, J., & Perron, P. (2003). "Computation and analysis of multiple structural 
+  change models." Journal of Applied Econometrics, 18(1), 1-22.
+
+Bai, J., & Perron, P. (2006). "Multiple structural change models: A simulation 
+  analysis." In Econometric theory and practice (pp. 212-237). Cambridge University Press.
+
+Fama, E. F., & French, K. R. (2015). "A five-factor asset pricing model." 
+  Journal of Financial Economics, 116(1), 1-25.
+
+Lewellen, J., Nagel, S., & Shanken, J. (2010). "A skeptical appraisal of asset 
+  pricing tests." Journal of Financial Economics, 96(2), 175-194.
+
+================================================================================
+
+For questions or updates, refer to the main script or results files.
+All files are in: /sessions/sweet-dazzling-heisenberg/mnt/causal_regimes/
+

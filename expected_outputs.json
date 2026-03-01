@@ -1,0 +1,249 @@
+{
+  "description": "Expected numerical outputs for causal_regimes paper reproducibility",
+  "generated_date": "2026-02-28",
+  "python_version": "3.10+",
+  "data_period": "1990-01-02 to 2024-12-31",
+  "total_observations": 8817,
+
+  "hmm_primary_fit": {
+    "description": "Primary HMM fit: Student-t, K=3 regimes, seed=28, full sample 1990-2024",
+    "seed": 28,
+    "n_regimes": 3,
+    "log_likelihood": {
+      "value": -37375.77,
+      "tolerance": 0.5,
+      "notes": "EM algorithm convergence may vary slightly"
+    },
+    "bic": {
+      "value": 75587,
+      "tolerance": 10,
+      "formula": "-2*LL + k*log(n), where k=92 parameters (mu:18 + Sigma:63 + nu:3 + A:6 + pi:2)",
+      "notes": "Cluster 1 with seeds 28, 20, 6 (highest LL cluster, 0% GFC detection)"
+    },
+    "regime_distribution": {
+      "Normal": {
+        "count": 4723,
+        "count_tolerance": 50,
+        "pct": 53.6,
+        "pct_tolerance": 0.5
+      },
+      "Elevated": {
+        "count": 3023,
+        "count_tolerance": 50,
+        "pct": 34.3,
+        "pct_tolerance": 0.5
+      },
+      "Crisis": {
+        "count": 1071,
+        "count_tolerance": 50,
+        "pct": 12.1,
+        "pct_tolerance": 0.5
+      }
+    },
+    "convergence": {
+      "note": "Converged at iteration 46",
+      "tolerance_notes": "Different random seed or initialization may affect iteration count"
+    }
+  },
+
+  "granger_causality_lag1": {
+    "description": "Granger causality tests (HML→SMB) at lag=1, full sample by regime",
+    "test": "HML (cause) → SMB (effect)",
+    "lag": 1,
+    "methodology": "Standard F-test + HAC Wald test with Andrews (1991) bandwidth",
+
+    "Normal_regime": {
+      "n_obs": {
+        "value": 4697,
+        "tolerance": 10,
+        "notes": "Boundary-clean observations where current and prior lag days in Normal regime"
+      },
+      "f_stat": {
+        "value": 33.222,
+        "tolerance": 0.1,
+        "notes": "Standard F-test statistic"
+      },
+      "f_p_value": {
+        "value": 8.749e-09,
+        "tolerance": 1e-11,
+        "significance": "Bonferroni-significant (p < 0.001)"
+      },
+      "hac_p_value_lag": {
+        "value": 9.446e-08,
+        "tolerance": 1e-10,
+        "notes": "HAC Wald test with bandwidth=lag=1"
+      },
+      "hac_p_value_andrews": {
+        "value": 9.446e-08,
+        "tolerance": 1e-10,
+        "notes": "HAC Wald test with Andrews data-driven bandwidth"
+      },
+      "andrews_bandwidth": {
+        "value": 1,
+        "notes": "AR(1) bandwidth estimate"
+      }
+    },
+
+    "Elevated_regime": {
+      "n_obs": {
+        "value": 2996,
+        "tolerance": 10
+      },
+      "f_stat": {
+        "value": 8.208,
+        "tolerance": 0.05
+      },
+      "f_p_value": {
+        "value": 0.004,
+        "tolerance": 0.001,
+        "significance": "Suggestive (below 0.01 but above Bonferroni threshold)"
+      },
+      "hac_p_value_lag": {
+        "value": 0.0341,
+        "tolerance": 0.002
+      },
+      "hac_p_value_andrews": {
+        "value": 0.0341,
+        "tolerance": 0.002
+      },
+      "andrews_bandwidth": {
+        "value": 1
+      }
+    },
+
+    "Crisis_regime": {
+      "n_obs": {
+        "value": 1065,
+        "tolerance": 10
+      },
+      "f_stat": {
+        "value": 0.153,
+        "tolerance": 0.01
+      },
+      "f_p_value": {
+        "value": 0.6954,
+        "tolerance": 0.01,
+        "significance": "Not significant"
+      },
+      "hac_p_value_lag": {
+        "value": 0.7108,
+        "tolerance": 0.01
+      },
+      "hac_p_value_andrews": {
+        "value": 0.7108,
+        "tolerance": 0.01
+      }
+    }
+  },
+
+  "frozen_oos_validation": {
+    "description": "Frozen out-of-sample test: train HMM on 1990-2012, classify 2013-2024 using filtered (no-lookahead) probabilities",
+    "train_period": "1990-01-02 to 2012-12-31",
+    "oos_period": "2013-01-01 to 2024-12-31",
+    "seed": 28,
+
+    "training_phase": {
+      "train_observations": 5797,
+      "train_observations_tolerance": 10,
+      "train_log_likelihood": {
+        "value": -21965.05,
+        "tolerance": 1.0,
+        "notes": "LL on training data only"
+      }
+    },
+
+    "oos_regime_distribution": {
+      "Normal": {
+        "count": 1036,
+        "count_tolerance": 30,
+        "pct": 34.3,
+        "pct_tolerance": 1.0,
+        "notes": "Frozen OOS (trained 1990-2012, predicted 2013-2024): lowest mean norm"
+      },
+      "Elevated": {
+        "count": 930,
+        "count_tolerance": 30,
+        "pct": 30.8,
+        "pct_tolerance": 1.0,
+        "notes": "Frozen OOS: middle mean norm (1.927)"
+      },
+      "Crisis": {
+        "count": 1054,
+        "count_tolerance": 30,
+        "pct": 34.9,
+        "pct_tolerance": 1.0,
+        "notes": "Frozen OOS: highest mean norm (1.905, very close to Elevated)"
+      },
+      "total_oos_observations": 3020,
+      "total_oos_tolerance": 10
+    },
+
+    "oos_elevated_hml_to_smb_lag1": {
+      "description": "Granger test on OOS Elevated regime only (HML→SMB at lag=1)",
+      "n_obs": {
+        "value": 844,
+        "tolerance": 30,
+        "notes": "Boundary-clean observations in OOS Elevated regime (2013-2024, frozen HMM trained on 1990-2012)"
+      },
+      "f_stat": {
+        "value": 2.15,
+        "tolerance": 0.5,
+        "notes": "F-test statistic for HML→SMB in OOS Elevated"
+      },
+      "f_p_value": {
+        "value": 0.142,
+        "tolerance": 0.05,
+        "significance": "Not significant in this replication run; paper reports 0.014 with different regime assignment"
+      },
+      "hac_p_value_andrews": {
+        "value": 0.149,
+        "tolerance": 0.05,
+        "notes": "HAC Wald test with Andrews bandwidth"
+      }
+    }
+  },
+
+  "structural_break_tests": {
+    "description": "Bai-Perron / Quandt-Andrews sup-F tests for structural breaks in Normal-regime HML→SMB coefficient",
+    "notes": "See results/bai_perron_normal.json for full results",
+    "test_variable": "HML lag-1 coefficient in Normal regime",
+    "sample": "Normal-regime boundary-clean observations (n~3000)"
+  },
+
+  "reproducibility_checklist": {
+    "step_1_data_download": {
+      "status": "PASS",
+      "notes": "FF5 + MOM factors downloaded from Kenneth French data library",
+      "source": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html",
+      "date_range": "1990-01-02 to 2024-12-31"
+    },
+    "step_2_regime_detection": {
+      "status": "PASS",
+      "notes": "Student-t HMM with K=3 regimes, EM algorithm",
+      "expected_output": "Log-likelihood and regime assignments",
+      "seed": 28
+    },
+    "step_3_granger_analysis": {
+      "status": "PASS",
+      "notes": "Per-regime Granger causality with F-tests and HAC standard errors",
+      "expected_output": "Test statistics and p-values for HML→SMB"
+    },
+    "step_4_oos_validation": {
+      "status": "PASS",
+      "notes": "Train/test split at 2012/2013 boundary",
+      "expected_output": "Out-of-sample regime assignments and Granger test results"
+    },
+    "step_5_structural_breaks": {
+      "status": "PASS",
+      "notes": "Bai-Perron sup-F and Chow tests on Normal regime",
+      "expected_output": "Break dates and test statistics"
+    }
+  },
+
+  "tolerance_rationale": {
+    "log_likelihood": "EM convergence tolerances and floating-point arithmetic",
+    "regime_counts": "Stochastic initialization may lead to ±1-2% variation",
+    "p_values": "Small p-values have multiplicative tolerance; larger p-values have absolute tolerance",
+    "granger_statistics": "Numerical precision and sampling variation"
+  }
+}

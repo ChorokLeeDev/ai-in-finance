@@ -20,6 +20,7 @@ import io
 import numpy as np
 import pandas as pd
 from datetime import datetime
+from pathlib import Path
 from scipy import stats
 from scipy.special import gammaln
 from scipy.optimize import minimize_scalar
@@ -29,7 +30,8 @@ import statsmodels.api as sm
 
 warnings.filterwarnings('ignore')
 
-RESULTS_DIR = '/sessions/modest-elegant-knuth/mnt/causal_regimes/results'
+_ROOT = Path(__file__).resolve().parent.parent
+RESULTS_DIR = str(_ROOT / 'results')
 REGIME_NAMES = ['Normal', 'Elevated', 'Crisis']
 PRIMARY_SEED = 28
 

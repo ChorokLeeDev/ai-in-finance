@@ -29,6 +29,7 @@ import warnings
 import numpy as np
 import pandas as pd
 from datetime import datetime
+from pathlib import Path
 from scipy import stats
 from scipy.special import gammaln
 from scipy.optimize import minimize_scalar
@@ -39,7 +40,8 @@ import pandas_datareader.data as web
 
 warnings.filterwarnings('ignore')
 
-RESULTS_DIR = '/sessions/modest-elegant-knuth/mnt/causal_regimes/results'
+_ROOT = Path(__file__).resolve().parent.parent
+RESULTS_DIR = str(_ROOT / 'results')
 REGIME_NAMES = ['Normal', 'Elevated', 'Crisis']
 PRIMARY_SEED = 28
 
@@ -412,17 +414,14 @@ def quandt_andrews_test(y_all, x_all, clean_indices, lag, trim=0.15):
     if len(usable) < 2 * lag + 10:
         return None, None
 
-    n = len(usable)
-    n_trim = int(np.ceil(trim * n))
-    min_t = lag + n_trim
-    max_t = n - n_trim
-
+    n_usable = len(usable)
+    n_trim = max(int(np.ceil(trim * n_usable)), 2)
     sup_f = -np.inf
     break_date = None
 
-    for t in range(min_t, max_t + 1):
-        idx_before = usable[:t]
-        idx_after = usable[t:]
+    for split_idx in range(n_trim, n_usable - n_trim):
+        idx_before = usable[:split_idx]
+        idx_after = usable[split_idx:]
 
         # Test before
         y_b = y_all[idx_before]
@@ -457,11 +456,11 @@ def quandt_andrews_test(y_all, x_all, clean_indices, lag, trim=0.15):
 
             rss_split = rss_b + rss_a
             k = X_full.shape[1]
-            f_break = ((rss_full - rss_split) / k) / (rss_split / (n - 2*k))
+            f_break = ((rss_full - rss_split) / k) / (rss_split / (n_usable - 2*k))
 
             if f_break > sup_f:
                 sup_f = f_break
-                break_date = t
+                break_date = split_idx
         except Exception:
             pass
 
@@ -674,7 +673,7 @@ def main():
     output = {
         'description': (
             'Pre-registered Granger causality analysis for emerging market Fama-French factors. '
-            'Tests ALL directed pairs (12 total) with Bonferroni correction. '
+            'Tests ALL directed pairs (20 total) with Bonferroni correction. '
             'HMM trained on Fold A (first 33%), Granger tested on Fold B (middle 33%), '
             'OOS validated on Fold C (final 33%). '
             'Reports full matrix of results, not cherry-picked pairs.'

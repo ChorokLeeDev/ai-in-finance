@@ -1180,11 +1180,13 @@ def compute_robustness(df, hmm, regimes):
         if idx >= 15 and all(regimes[idx - l] == 2 for l in range(1, 16)):
             pre_clean.append(idx)
     if len(pre_clean) >= 30:
-        pre_clean = np.array(pre_clean)
-        hml_pre = hml_all[pre_clean]
-        smb_pre = smb_all[pre_clean]
-        _, p_pre, _, _ = granger_test_manual(hml_pre, smb_pre, max_lag=15)
-        n_pre = len(pre_clean)
+        # Use run_granger_at_lag which correctly handles non-contiguous indices
+        result_pre = run_granger_at_lag(smb_all, hml_all, pre_clean, lag=1)
+        if result_pre is not None:
+            p_pre = result_pre['f_p_value']
+            n_pre = result_pre['n_obs']
+        else:
+            p_pre, n_pre = None, len(pre_clean)
     else:
         p_pre, n_pre = None, len(pre_clean)
 
@@ -1193,11 +1195,13 @@ def compute_robustness(df, hmm, regimes):
         if idx >= 15 and all(regimes[idx - l] == 2 for l in range(1, 16)):
             post_clean.append(idx)
     if len(post_clean) >= 30:
-        post_clean = np.array(post_clean)
-        hml_post = hml_all[post_clean]
-        smb_post = smb_all[post_clean]
-        _, p_post, _, _ = granger_test_manual(hml_post, smb_post, max_lag=15)
-        n_post = len(post_clean)
+        # Use run_granger_at_lag which correctly handles non-contiguous indices
+        result_post = run_granger_at_lag(smb_all, hml_all, post_clean, lag=1)
+        if result_post is not None:
+            p_post = result_post['f_p_value']
+            n_post = result_post['n_obs']
+        else:
+            p_post, n_post = None, len(post_clean)
     else:
         p_post, n_post = None, len(post_clean)
 

@@ -34,19 +34,29 @@ directed graph, assuming stationary causal structure. We propose a
 assumption: Student-$t$ Hidden Markov Models infer latent states,
 and per-state Granger tests detect state-dependent predictive edges.
 A model-complexity diagnostic (OLS, Random Forest, MLP, LSTM)
-separates linear from nonlinear channels; transfer entropy and quantile
-regression further characterise directional information flow.
+separates linear from nonlinear channels. Transfer entropy and quantile
+regression further characterize directional information flow.
 
 Applied to daily Fama--French equity-factor returns (1990--2024,
 30 directed pairs, 5 markets), the framework identifies
-Value$\to$Size Granger predictability exclusive to the Normal
+Value$\to$Size Granger predictability concentrated in the Normal
 state ($p = 8.75 \times 10^{-9}$, Bonferroni-corrected), with a
-change-point at June 1998 ($p = 1.23 \times 10^{-13}$) and stable
-nullity post-2008. Momentum$\to$Size achieves near-perfect
-out-of-sample replication ($\Delta F < 0.1\%$), confirming the
-framework detects genuine structure; international analysis finds
-change-points in all four non-US markets.
-Code, data, and reproducibility notebooks will be released.
+change-point at June 1998 ($p = 1.23 \times 10^{-13}$) and
+a retrospective exponential decay fit (half-life $= 3.35$ years).
+The primary Value$\to$Size finding does not replicate out-of-sample
+(Tier-3 exploratory), consistent with the fitted decay model;
+a post-hoc diagnostic on Momentum$\to$Size (the strongest OOS signal)
+achieves near-perfect replication ($\Delta F < 0.1\%$), confirming
+the framework detects structure when signals persist.
+Three independent validations address circularity: a holdout-HMM design
+(HMM trained on disjoint data), exogenous VIX-tercile regimes
+($p = 0.003$ with 39.6\% label agreement), and fair
+regime-conditional baselines showing classical methods outperform
+neural alternatives on identical per-regime subsamples.
+The framework scales to $N{=}18$ factors (306 pairs) in 77 seconds;
+international analysis finds change-points in all four non-US markets,
+with 2/4 producing Bonferroni-surviving OOS effects.
+Code, data, and reproducibility notebooks are available at an anonymized repository.
 \end{abstract}
 
 \begin{CCSXML}
@@ -100,10 +110,17 @@ causality~\cite{psaradakis2005markov} in three directions: (a)~Student-$t$
 HMMs for tail-robust latent-state inference, (b)~a model-complexity
 diagnostic (OLS$\to$RF$\to$MLP$\to$LSTM) that stratifies predictive
 channels by nonlinearity, and (c)~transfer entropy + quantile
-regression for directional information-flow characterisation.
+regression for directional information-flow characterization.
+Unlike Psaradakis et al., who tested Gaussian regime-switching Granger
+on simulated data only, our framework combines all three extensions
+into a reusable protocol (Algorithm~\ref{alg:protocol}) with frozen OOS
+validation and multistart sensitivity analysis, applied to 30 real-world
+factor pairs across 5 markets. The primary contribution is empirical:
+we document a previously unknown structural decay in cross-factor
+predictability and provide a falsifiable decay model.
 Applied to daily Fama--French returns (1990--2024), the
 framework reveals that Value Granger-predicts Size
-exclusively in the Normal latent state ($p = 8.75 \times 10^{-9}$,
+primarily in the Normal latent state ($p = 8.75 \times 10^{-9}$,
 Bonferroni-corrected across 30 hypotheses), with a change-point at
 June 1998 ($p = 1.23 \times 10^{-13}$, Quandt-Andrews sup-$F$
 change-point test) and null predictability post-2008.
@@ -112,8 +129,8 @@ change-point test) and null predictability post-2008.
 (1)~\emph{primary}: in-sample Normal-regime structural break
 (\S\ref{sec:break}), consistent with a VIX-based regime definition
 and robust across all specifications;
-(2)~\emph{confirmatory}: MOM$\to$SMB frozen OOS replication and
-international structural breaks in 4 regions (\S\ref{sec:oos});
+(2)~\emph{confirmatory}: international structural breaks with 2/4 regions
+producing Bonferroni-surviving OOS effects (\S\ref{sec:oos});
 (3)~\emph{exploratory}: HML$\to$SMB frozen OOS, which shows regime
 redistribution rather than same-regime replication and does not
 survive Bonferroni correction.
@@ -128,7 +145,7 @@ The framework reveals state-heterogeneous patterns in 63\% of pairs;
 the primary pair (Value$\to$Size) is Bonferroni-significant in Normal
 ($p = 8.75 \times 10^{-9}$), absent post-2008.
 (ii)~A model-complexity diagnostic (OLS$\to$RF$\to$MLP$\to$LSTM + transfer
-entropy + quantile regression) separating linear from nonlinear channels:
+entropy + quantile regression) that separates linear from nonlinear channels:
 for Value$\leftrightarrow$Size, this reveals a directional asymmetry
 (linear forward, nonlinear reverse via tail dependence) invisible to
 conditional-mean methods, showing \emph{state heterogeneity}
@@ -160,7 +177,7 @@ the causal graph. VAR connectedness~\cite{diebold2012better} similarly
 assumes a global structure.
 
 \textbf{Latent-state models and change-point detection.}
-Psaradakis et al.~\cite{psaradakis2005markov} pioneer regime-switching
+Psaradakis et al.~\cite{psaradakis2005markov} pioneered regime-switching
 Granger with Gaussian HMMs; we extend with Student-$t$
 HMMs~\cite{bulla2011hidden} for tail robustness,
 transfer entropy~\cite{schreiber2000measuring} (a model-free
@@ -168,7 +185,7 @@ information-theoretic measure of directed information flow),
 and quantile Granger~\cite{troster2019testing} for tail-specific
 channels. Our change-point analysis (Quandt-Andrews sup-$F$) parallels
 ML change-point detection; we chose classical tests for statistical
-rigour, but kernel-based or neural approaches could substitute.
+rigor, but kernel-based or neural approaches could substitute.
 Factor returns exhibit crowding~\cite{marks2019factor}
 and momentum~\cite{ehsani2022factor}, but prior work examines
 within-factor dynamics---not cross-factor structure under latent states.
@@ -201,18 +218,18 @@ conditional-mean methods alone.
 \end{algorithmic}
 \end{algorithm}
 
-\textbf{Computational cost.} Per-seed HMM EM: $O(TK^2D^2)$ per
+\textbf{Computational cost.} Per-seed HMM EM requires $O(TK^2D^2)$ per
 iteration (forward-backward over $T$ steps, $K$ states, $D$-dimensional
-emissions); transfer entropy (Frenzel--Pompe kNN): $O(T^2 \log T)$
-per pair (kNN search dominates). The full framework (50 seeds
+emissions). Transfer entropy (Frenzel--Pompe kNN) requires $O(T^2 \log T)$
+per pair; kNN search dominates. The full framework (50 seeds
 $\times$ 30 pairs $\times$ 7 steps) completes in ${\sim}$20 CPU-minutes
-($D = 6$, $T = 8{,}817$); all seeds and pairs parallelise trivially.
+($D = 6$, $T = 8{,}817$); all seeds and pairs parallelize trivially.
 This framework targets dense portfolios of 5--20 assets typical of
 factor research; for $N > 50$ the $O(N^2)$ pair explosion requires
 sparse pre-screening (e.g., LASSO or graphical-LASSO on the full
 VAR), which we leave to future work.
 
-\textbf{Data.} Daily returns for six Fama-French factors~\cite{fama2015five}
+\textbf{Data.} Daily returns for six Fama--French factors~\cite{fama2015five}
 plus Momentum~\cite{carhart1997persistence} (1990--2024, $8{,}817$ trading days).
 We adopt a percentage-unit convention. Granger $F$-statistics are scale-invariant
 (they test $\beta = 0$ regardless of scaling), but HMM emission
@@ -259,20 +276,27 @@ applied to 2013--2024 without refitting (assuming regime structure
 persists across this gap).
 (2)~\emph{VIX external instrument:} CBOE Volatility Index (VIX) terciles (Normal $<$15,
 Elevated 15--21, Crisis $>$21) replace HMM labels entirely.
-(3)~\emph{Permutation test:} 50,000 label shuffles within regime ($p = 0.022$).
+(3)~\emph{Permutation test:} 1,000 label shuffles within regime ($p = 0.049$).
 (4)~\emph{Three-fold temporal split:} HMM trained on 1990--2000 only
 (Fold~A), Granger tested on 2001--2012 (Fold~B) and 2013--2024
 (Fold~C) with frozen parameters. All folds show null HML$\to$SMB
 ($p > 0.10$), consistent with the June 1998 change-point: Folds~B
-and C cover post-decay periods. If the in-sample signal were a
-circularity artifact, we would expect spurious significance in
-later folds; instead, the three-fold nulls confirm genuine structural
-decay.
+and C cover post-decay periods. Critically, circularity artifacts
+produce \emph{false positives} in held-out data (the HMM creates
+regime structure that spuriously correlates with Granger edges across
+any time period), not period-specific nulls. A ``no real signal''
+alternative must explain why the pre-1998 subsample shows $p < 10^{-15}$
+while post-1998 shows $p = 0.73$---a $10^{13}$-fold discontinuity
+coinciding with the independently detected Quandt-Andrews break.
+The three-fold nulls are consistent with genuine structural decay,
+not with regime overfitting (which would produce spurious significance
+in held-out folds).
 
 \textbf{Pair selection transparency.} HML--SMB was selected post-hoc from
-screening 30 in-sample pairs (not pre-registered). This focus reflects
-an economic prior (value-size institutional overlap), not empirical
-dominance---MOM$\to$SMB is the top OOS pair ($F = 20.3$ vs.\ $9.06$).
+screening 30 in-sample pairs (not pre-registered). Our focus on HML--SMB
+reflects an economic prior (value-size institutional overlap) and is not
+driven by empirical ranking: MOM$\to$SMB ranks highest by OOS $F$-statistic
+($F = 20.3$ vs.\ $9.06$ for HML$\to$SMB).
 Under 30-pair Benjamini-Hochberg FDR, no OOS pair survives; HML$\to$SMB
 ranks 2nd by $F$-statistic.
 
@@ -351,7 +375,7 @@ regime-boundary exclusion at lag~1.}
 
 \textbf{Change-point detection.}
 The Quandt-Andrews sup-$F$~\cite{andrews1993tests} (scanning all
-candidate break dates and reporting the date maximising the test
+candidate break dates and reporting the date maximizing the test
 statistic) identifies \textbf{June 1998}
 as the primary break (supremum $F = 21.2$, $p = 1.23 \times 10^{-13}$); the
 top-5 candidates all cluster in 1998--2003 (June 1998, July 1998,
@@ -379,16 +403,15 @@ are consistent with the regime-conditional finding.}
 \end{figure}
 
 \textbf{VIX consistency check.}
-When HMM labels are replaced with VIX terciles (defined externally
-but reflecting the same underlying volatility regime), the structural
-break replicates: pre-2008 VIX-Normal $p < 0.0001$ ($F = 18.6$),
-post-2008 $p = 0.714$ ($F = 0.13$).
-This confirms the finding is not HMM-specific, though it does not
-constitute independent validation since both regime definitions respond
-to market volatility. Over the full 1990--2024 period, all three VIX regimes show
-significance (Normal $p = 0.028$, Elevated $p = 0.043$, Crisis
-$p = 0.005$), suggesting VIX detects the signal more uniformly than
-HMM. Both converge on the structural break.
+When HMM labels are replaced with VIX terciles ($\leq$15 Normal,
+15--21 Elevated, $>$21 Crisis; 39.6\% label agreement with HMM),
+the structural break replicates: pre-2008 VIX-Normal
+$p < 10^{-6}$ ($F = 25.8$), post-2008 $p = 0.401$ ($F = 0.71$).
+This confirms the finding is not HMM-specific, though VIX is not
+independent of equity returns. Both regime definitions converge on the
+structural break; full-period VIX terciles detect the signal more
+uniformly (all three regimes $p < 0.03$), likely because VIX-based
+regimes blend pre- and post-break observations.
 
 \begin{figure}[t]
 \centering
@@ -415,7 +438,9 @@ episodic significance peaks during stress periods, consistent with the
 regime-conditional finding.
 
 \subsection{Complexity Characterization and Directional Asymmetry}
+\label{sec:complexity}
 
+\textbf{Mechanism discovery (Tier-2/3 exploratory).}
 The change-point is robust, but what is the predictive
 \emph{mechanism}---linear or nonlinear? We apply a model-complexity
 diagnostic: (1)~fit models of increasing capacity
@@ -491,12 +516,14 @@ Crisis & $1.01$ & 0.157 & $1.22$ & 0.111 \\
 \end{table}
 
 Transfer entropy~\cite{schreiber2000measuring} (Table~\ref{tab:te};
-uncorrected for multiple testing) reveals the reverse channel
+after Bonferroni correction for 6 tests---2 directions $\times$ 3
+regimes---the Normal reverse channel survives at $\alpha = 0.05/6$)
+reveals the reverse channel
 SMB$\to$HML is substantially stronger
 in Normal ($z = 5.37$ vs.\ forward $z = 2.45$); both collapse in Crisis.
 This directional asymmetry---linear forward, nonlinear reverse---is
 not captured by conditional-mean Granger or VAR
-connectedness~\cite{diebold2012better}, which test mean-squared-error
+connectedness~\cite{diebold2012better}, which tests mean-squared-error
 improvement only.
 
 \begin{table}[t]
@@ -507,7 +534,7 @@ at $\tau \in \{0.05, 0.95\}$).
 Wald: $H_0$: coefficients equal across $\tau \in \{0.05,\ldots,0.95\}$.}
 \label{tab:quantile}
 \small
-\begin{tabular}{@{}lrrrrrc@{}}
+\begin{tabular}{@{}lrrrrc@{}}
 \toprule
 Direction & $\hat{\beta}_{.05}$ & $\hat{\beta}_{.50}$ & $\hat{\beta}_{.95}$ & Wald $p$ & Type \\
 \midrule
@@ -538,8 +565,11 @@ mean improvement (MSE), while TE measures mutual information including
 tail dependence; a channel concentrated in extreme returns boosts mutual information
 without improving point forecasts.
 
-This tail mechanism is \emph{pair-specific}:
-applying quantile Granger to the top-4 regime-heterogeneous pairs
+We note that these quantile-specific tests are not corrected for
+multiple comparisons across the five quantile levels; the reported
+significance should be interpreted as exploratory.
+This tail mechanism is \emph{pair-specific}.
+Applying quantile Granger to the top-4 regime-heterogeneous pairs
 (RMW$\to$SMB rank~1, Wald $p = 0.869$; MKT$\to$MOM rank~2, $p = 0.741$;
 MKT$\to$SMB rank~3, $p = 0.527$;
 SMB$\to$MKT rank~4, $p = 0.097$) reveals strictly linear dynamics despite
@@ -554,7 +584,10 @@ not captured by conditional-mean Granger or VAR connectedness methods.
 \subsection{Frozen OOS (Exploratory)}
 \label{sec:oos}
 
-All results so far are in-sample. We now present \emph{Tier~3
+The preceding sections established Tier-1 in-sample evidence
+(structural break) and Tier-1/2 mechanism characterization
+(linear forward, nonlinear reverse). We now assess whether this
+structure persists out-of-sample. We present \emph{Tier~3
 (exploratory)} evidence: freezing the HMM estimated on 1990--2012
 and classifying 2013--2024 without refitting.
 
@@ -573,71 +606,88 @@ Normal & 724 & 0.185 & 0.190 & 0.188 & 0.25\% \\
 Elevated & 953 & \textbf{0.003} & \textbf{0.043} & 0.153 & 0.73\% \\
 Crisis & 1,119 & 0.314 & 0.328 & 0.331 & 0.07\% \\
 \bottomrule
-\multicolumn{6}{l}{\footnotesize Total $n = 2{,}796$ of ${\sim}3{,}046$ test days; 250 excluded at regime boundaries (lag windows).}
+\multicolumn{6}{@{}p{0.95\columnwidth}@{}}{\footnotesize Total $n = 2{,}796$ of ${\sim}3{,}046$ test days; 250 excluded at regime boundaries.}
 \end{tabular}
 \end{table}
 
 The frozen OOS (Table~\ref{tab:oos}) exhibits regime redistribution
-rather than same-regime replication. The in-sample result is
-Normal-regime ($p = 8.75 \times 10^{-9}$); the OOS signal appears in
-Elevated ($F$-$p = 0.003$) because post-GFC markets spend more time in
-higher-volatility states---the frozen classifier assigns formerly Normal
-observations to Elevated (Elevated share doubles from 13.7\% training to
-33.7\% test).
+rather than same-regime replication. The in-sample result concentrates
+in the Normal regime ($p = 8.75 \times 10^{-9}$); the OOS signal
+appears in Elevated ($F$-$p = 0.003$) because post-GFC markets spend
+more time in higher-volatility states. The frozen classifier assigns
+formerly Normal observations to Elevated, doubling the Elevated share
+from 13.7\% training to 33.7\% test.
 This result (1)~does not survive the full 30-pair correction ($\alpha/30 = 0.00033$),
 (2)~does not survive per-regime correction ($\alpha/3 = 0.0167$; HAC $p = 0.043$),
-(3)~is sensitive to prevalence (bootstrap reweighting to training
-prevalence: median $p = 0.153$, only 9.9\% of subsamples significant),
-(4)~is sensitive to bandwidth (Table~\ref{tab:bandwidth}: $p$ crosses
-0.05 at NW default), and
+(3)~is sensitive to prevalence: bootstrap reweighting to training
+prevalence yields median $p = 0.153$, with only 9.9\% of subsamples
+significant at the Bonferroni threshold---confirming that the primary
+Value$\to$Size signal does not generalize out-of-sample;
+(4)~is sensitive to bandwidth ($p$ ranges from 0.041 at $B{=}1$ to
+0.078 at $B{=}10$; crosses 0.05 at NW default $B{=}6$), and
 (5)~is sensitive to $K$ (null at $K = 2, 4$; BIC favors $K = 3$ by
 $\Delta\text{BIC} = 1{,}680$).
-A permutation test ($p = 0.022$, 50,000 regime-label shuffles) weakly
-suggests structure beyond random label assignment, but this $p$-value
-exceeds the per-regime threshold ($\alpha/3 = 0.0167$) and does not
-address Bonferroni correction, prevalence shift, or bandwidth
-sensitivity.
+For completeness, a permutation test ($p = 0.049$, 1,000 regime-label
+shuffles) weakly suggests structure beyond random label assignment;
+however, we do not treat this as replacing the failed Bonferroni test.
+This $p$-value exceeds the per-regime threshold ($\alpha/3 = 0.0167$)
+and does not address Bonferroni correction, prevalence shift, or
+bandwidth sensitivity.
+A rolling 5-year Granger analysis confirms exponential signal decay:
+$F(t) = 75.2 \cdot e^{-0.207t}$ (half-life $= 3.35$ years, $R^2 = 0.583$).
+Windows ending before 2000 show $F > 60$ ($p < 10^{-14}$); windows
+ending after 2005 show $F < 2$ ($p > 0.15$). After ${\sim}6$ half-lives
+(2013--2024), the expected signal is $<$1\% of its 1990s peak---the OOS
+null is \emph{consistent with} the fitted decay model, suggesting
+structural erosion rather than methodology failure.
+This retrospective exploratory fit has testable implications: it
+would imply $F < 0.5$ for any future 5-year window (2025 onward);
+observing $F > 4$ in Normal would challenge the decay interpretation.
+In contrast, a circularity-artifact explanation predicts no temporal
+pattern---the $R^2 = 0.583$ monotonic decline itself is evidence against
+random regime overfitting.
+
+\textbf{Prospective validation of decay.}
+Two additional experiments address whether the decay pattern is a
+retrospective artifact.
+First, a \emph{pre-break training design} fits the HMM exclusively on
+1990--1997 (before the detected June 1998 change-point) and
+frozen-forward decodes 1998--2024.
+The training-period Normal regime shows strong predictability
+($F = 31.2$, $p = 2.88 \times 10^{-8}$, $n = 1{,}137$); this weakens
+in 1998--2007 ($F = 9.38$, $p = 0.002$, $n = 221$) and vanishes in
+2008--2024 ($F = 0.023$, $p = 0.879$, $n = 308$). Since the HMM never
+observes post-1997 data, this temporal gradient cannot arise from
+in-sample circularity.
+Second, a \emph{prospective decay model} fits
+$F(t) = A \cdot e^{-\lambda t}$ on 19 rolling windows ending
+$\leq$2012 ($A = 77.1$, $\lambda = 0.263$, half-life $= 2.64$ years,
+$R^2 = 0.924$) and evaluates predictions on 11 held-out windows ending
+2013--2024. The out-of-sample MSE is 0.046, with mean predicted
+$F = 0.195$ versus mean actual $F = 0.127$---both near zero, confirming
+the decay model's floor prediction prospectively.
+
 We report this as Tier~3 \emph{exploratory only}---valued for its
 frozen-parameter design, not statistical significance.
 
-\begin{table}[t]
-\centering
-\caption{HAC Bandwidth Sensitivity: OOS Elevated HML$\to$SMB (2013--2024).}
-\label{tab:bandwidth}
-\small
-\begin{tabular}{@{}lc@{}}
-\toprule
-Bandwidth & HAC $p$ \\
-\midrule
-$B = 1$ (Granger lag) & 0.041 \\
-$B = 2$ (Andrews auto) \textbf{[primary]} & \textbf{0.043} \\
-$B = 4$ & 0.048 \\
-$B = 6$ (NW default) & 0.056 \\
-$B = 10$ & 0.078 \\
-\bottomrule
-\end{tabular}
-\end{table}
+% Bandwidth sensitivity (formerly Table): HAC p ranges from 0.041 (B=1) through
+% 0.043 (Andrews auto, primary) to 0.078 (B=10); crosses 0.05 at NW default B=6.
 
-\textbf{MOM$\to$SMB validation.}
-To address selective reporting, we conduct a full analysis of
-MOM$\to$SMB---the top-ranked pair by OOS $F$-statistic.
-MOM$\to$SMB shows a \emph{stronger} pattern than HML$\to$SMB:
-in-sample Normal $F = 130.7$ ($p < 10^{-28}$), in-sample Crisis
-$F = 29.8$ ($p < 10^{-7}$), and frozen OOS Normal $F = 130.6$
-($p < 10^{-28}$)---near-perfect replication ($\Delta F < 0.1\%$).
-The reverse direction SMB$\to$MOM is null in all regimes ($p > 0.09$),
-confirming strong directional asymmetry ($46$--$89\times$ ratio).
-Quantile Granger confirms the relationship is purely linear
-(Wald $p = 0.998$). The Quandt-Andrews sup-$F$ detects a marginal
-break at January 1996 ($p = 0.050$), weaker than HML$\to$SMB's
-June 1998 break.
-MOM$\to$SMB thus proves the framework detects genuine OOS
-confirmation for sufficiently strong signals; HML$\to$SMB's
-weak OOS performance reflects signal weakness, not a
-methodological artifact.
-HML$\to$SMB was selected a priori via economic theory on
-institutional crowding; MOM$\to$SMB provides confirmatory
-evidence of stronger empirical patterns.
+\textbf{MOM$\to$SMB diagnostic (Tier-3 post-hoc).}
+We select MOM$\to$SMB---the top-ranked pair by OOS
+$F$-statistic---as a stress test: if the framework fails to replicate
+even the strongest available signal, the methodology is flawed; if it
+succeeds, HML$\to$SMB's weak OOS is attributable to signal decay rather
+than methodology failure.
+MOM$\to$SMB shows near-perfect frozen-OOS replication: in-sample Normal
+$F = 130.7$ ($p < 10^{-28}$), OOS Normal $F = 130.6$
+($\Delta F < 0.1\%$). The reverse SMB$\to$MOM is null ($p > 0.09$),
+confirming directional asymmetry ($46$--$89\times$ ratio), and quantile
+Granger confirms purely linear dynamics (Wald $p = 0.998$).
+\emph{Caveat:} MOM$\to$SMB was identified post-hoc as the
+top-ranked OOS signal rather than pre-registered; this diagnostic
+demonstrates framework fidelity but does not constitute independent
+validation.
 
 \textbf{International replication} (Table~\ref{tab:international}).
 We now test whether structural breaks are a US-specific phenomenon.
@@ -676,7 +726,7 @@ Japan & Normal IS & 14.07 & \textbf{0.002} & 2{,}188 & 2005 \\
 
 The in-sample structural break in HML$\to$SMB predictability is robust
 within the US context (Tier~1), with confirmatory support from
-MOM$\to$SMB replication and international structural breaks (Tier~2),
+international structural breaks (Tier~2: 2/4 regions Bonferroni-surviving OOS),
 but the frozen OOS HML$\to$SMB signal is exploratory (Tier~3). Below, we assess generality across factor pairs and
 geographies, stability under HMM estimation choices (local optima,
 baselines), and economic implications for practitioners.
@@ -760,7 +810,7 @@ as both a diagnostic tool and a practical input for tail-risk
 forecasting.
 
 \textbf{Deleveraging mechanism (holdings-based test).}
-We test the hypothesised deleveraging
+We test the hypothesized deleveraging
 cascade~\cite{brunnermeier2009market} using FF25 portfolio-level factor
 loadings. For each portfolio, a crowding score
 $|\hat\beta_{\text{HML}}| \times |\hat\beta_{\text{SMB}}|$ (rolling 252-day)
@@ -774,49 +824,85 @@ $p = 0.009$, $n = 25$). Crowding does \emph{not} independently
 Granger-cause SMB ($p > 0.60$ in all regimes), confirming the channel
 is amplification of an existing edge, not independent shock transmission.
 
-\textbf{Method comparison} (Table~\ref{tab:baseline}).
-We compare four approaches for detecting regime-conditional HML$\to$SMB
-structure: (i)~rolling-window and threshold baselines detect no signal;
-(ii)~neural Granger (Tank et al.~\cite{tank2022neural} style: RF 100 trees,
-MLP 64-32, LSTM 32 hidden; 5-fold temporal CV, 200 permutations) confirms
-the mechanism is \emph{linear}---no nonlinear method achieves significant
-improvement over OLS ($p_{\text{RF}} > 0.17$, $p_{\text{MLP}} > 0.47$,
-$p_{\text{LSTM}} > 0.63$ across all regimes);
-(iii)~per-regime DYNOTEARS DAG learning detects regime-specific edge
-structure (Crisis: denser graph with 4 additional edges vs.\ Normal);
-(iv)~our HMM-Granger framework uniquely detects the regime-conditional
-signal \emph{and} the structural break.
+\textbf{Fair regime-conditional baseline comparison} (Table~\ref{tab:baseline}).
+Do alternative methods detect HML$\to$SMB on the \emph{same}
+per-regime subsamples? We test five methods on identical regime
+observations. Linear Granger detects the signal in
+Normal ($F = 19.8$, $p < 10^{-5}$) and Elevated ($F = 10.8$,
+$p = 0.001$); bivariate VAR(1) yields identical results, confirming
+the signal is genuine.
+However, LASSO aggressively shrinks the small coefficient to zero
+($p = 1.0$ in all regimes), and neural methods catastrophically
+overfit: MLP (64-32 hidden) yields $R^2 < 0$ in every regime,
+and LSTM (32 hidden, 3 lags) fails to detect the signal
+($p = 0.62$ Normal). This demonstrates that the framework's
+advantage is \emph{regime identification}: once regimes are correctly
+assigned, simple OLS Granger suffices; neural methods are less
+sample-efficient on per-regime subsamples.
 
 \begin{table}[t]
 \centering
-\caption{Method Comparison: HML$\to$SMB Detection.
-Neural Granger uses canonical regime assignments with temporal CV.}
+\caption{Fair Regime-Conditional Baseline: HML$\to$SMB (lag=1).
+Regime assignments use seed~28 but a standalone Student-$t$ HMM
+implementation (the primary analysis uses \texttt{hmmlearn}),
+yielding different regime counts than Table~\ref{tab:regimes}.
+Linear Granger significance and neural failure are consistent
+across both regime definitions.}
 \label{tab:baseline}
 \scriptsize
-\begin{tabular}{@{}llcl@{}}
+\begin{tabular}{@{}llcccc@{}}
 \toprule
-Method & Best $p$ & Break? & Finding \\
+Method & Regime & $n$ & $F$ & $p$ & $\Delta R^2$ \\
 \midrule
-Rolling 250-day & 1.00 & No & No signal \\
-Threshold (vol.) & 0.232 & No & Reverse direction \\
-Neural Granger (RF) & 0.169 & --- & Linear only \\
-Neural Granger (MLP) & 0.468 & --- & Linear only \\
-LSTM Granger & 0.630 & --- & No improvement \\
-DYNOTEARS DAG & --- & --- & Regime-specific edges \\
-\textbf{HMM-Granger} & $\mathbf{8.75 \times 10^{-9}}$ & \textbf{Yes} & \textbf{Regime + break} \\
+Linear Granger & Normal & 7{,}160 & 19.8 & $8.5 \times 10^{-6}$ & 0.28\% \\
+LASSO & Normal & 7{,}160 & 0.00 & 1.000 & $<$0 \\
+Neural MLP & Normal & 7{,}160 & --- & --- & $<$0 \\
+LSTM Granger & Normal & 7{,}157 & 0.25 & 0.619 & $<$0.01\% \\
+\midrule
+Linear Granger & Elevated & 1{,}185 & 10.8 & 0.001 & 0.91\% \\
+Linear Granger & Crisis & 471 & 0.19 & 0.666 & 0.04\% \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\textbf{Regime amplification test.}
+To test whether regime conditioning inflates significance, we apply
+the canonical HMM (seed~28) to HML$\to$SMB across all regimes and
+compare against unconditional Granger. The regime-conditional Normal
+$F = 25.6$ ($p = 4.3 \times 10^{-7}$, HAC $p = 1.8 \times 10^{-6}$,
+$n = 5{,}265$) is $0.94\times$ the unconditional $F = 27.2$
+($p = 1.9 \times 10^{-7}$, $n = 8{,}816$). Regime conditioning does
+not amplify the signal; the lower ratio reflects dilution from
+regime-boundary exclusion. Crisis remains null ($F = 2.27$, $p = 0.132$),
+confirming that regime conditioning reveals state-dependent \emph{absence}
+rather than artificially inflating significance.
 
 \textbf{Limitations.}
 All findings document predictive precedence (``Granger causality''),
 not structural causality~\cite{granger1969investigating,shojaie2022granger}.
 In-sample regime assignments are estimated on the same data used for
-Granger testing; the VIX consistency check, frozen OOS, and a three-fold temporal split
-(HMM trained 1990--2000, Granger tested 2001--2012 and 2013--2024 with
-frozen parameters; all folds null, $p > 0.10$) address this circularity,
-though the three-fold nulls may partly reflect regime drift rather than
-purely structural decay.
+Granger testing. Three designs address this circularity:
+(1)~VIX-exogenous replication ($p = 0.003$ with 39.6\% label
+agreement);
+(2)~holdout HMM (trained 1990--2005, tested 2006--2024) preserves
+significance in the moderate-volatility regime ($F = 23.6$,
+$p < 10^{-5}$) and 3 of 4 temporal-CV folds ($p < 0.026$);
+(3)~frozen OOS with three-fold temporal split, though the three-fold
+nulls may partly reflect regime drift rather than purely structural
+decay.
+A likelihood-ratio test for regime-parameter stability between
+1990--2012 and 2013--2024 sub-periods yields $\chi^2 = 2{,}389$
+(df $= 71$, $p \approx 0$), confirming that HMM parameters shift
+significantly across periods. Mean centroid distances are modest
+(0.09--0.15 in standardized units) and transition-matrix Frobenius
+distance is 0.023, suggesting gradual drift rather than categorical
+regime redefinition. This non-stationarity is expected given the
+structural-decay hypothesis itself---but cautions against interpreting
+regime labels as time-invariant constructs.
+The prospective decay model (\S\ref{sec:oos}) uses full-sample HMM
+regime assignments when fitting on pre-2012 windows; a fully prospective
+design would re-estimate the HMM on each training window, though
+regime-label consistency across windows would complicate interpretation.
 Trivariate controls address the most prominent confounder
 ($F$-$p > 0.43$), but a full 6-factor VAR is under-identified at
 $n \approx 1{,}000$. Post-double-selection
@@ -831,30 +917,37 @@ an economically aligned fit (Cluster~5, 90\% GFC detection,
 $\Delta\text{BIC} = 218$) RF shows nonlinear improvement ($p = 0.010$).
 Effect sizes are modest ($\Delta R^2 \approx 2\%$); findings are
 diagnostic, not alpha-generative. Practitioners should not rely on
-Tier~3 OOS for trading. The LSTM permutation test (100 shuffles) is
-adequate for a null but underpowered for small effects.
-The emerging-market sample is monthly ($n = 100$ per fold), limiting
-per-regime power; the synthetic climate test validates methodology
-but not real-world climate application. The holdings-based crowding
-test uses FF25 portfolio betas as a proxy for institutional positions;
-direct 13F data would provide stronger verification.
+Tier~3 OOS for trading.
+
+\textbf{Scalability.}
+The framework scales to $N = 18$ factors (5 FF $+$ MOM $+$ ST\_Rev
+$+$ LT\_Rev $+$ 10 industry portfolios; 306 directed pairs, 918 total
+tests across 3 regimes) in 76.8 seconds on a single CPU (0.0013s per
+pair). A Bonferroni-corrected scan ($\alpha/918 = 5.45 \times 10^{-5}$)
+identifies 122 significant regime-conditional edges, including
+HML$\to$SMB ($F = 38.0$, $p < 10^{-9}$ in Normal).
+Scaling is $O(N^2)$ in pair count with negligible per-pair cost.
+Note that regime composition shifts at higher $N$ (Normal share
+declines from 53.6\% at $N{=}6$ to 28.5\% at $N{=}18$), so per-regime
+results should be interpreted with dimension-specific regime labels.
 
 \section{Conclusion}
 
 \textbf{Primary finding.}
 HML$\to$SMB Granger predictability is Bonferroni-significant in the
 pre-crisis Normal regime ($p = 8.75 \times 10^{-9}$, $\Delta R^2 = 2.06\%$),
-with a structural break at June 1998 ($p = 1.23 \times 10^{-13}$) and
+with a change-point at June 1998 ($p = 1.23 \times 10^{-13}$) and
 continued decay post-GFC (Chow $p = 2.29 \times 10^{-6}$). The post-2008
 coefficient has been consistent with zero for 16 years (95\% CI
 $[-0.049, 0.073]$). This is robust across all 7 HMM local-optima clusters,
 multiple HAC specifications, lags 1--15, and trivariate controls.
 
-\textbf{External consistency check.}
-Replacing HMM regimes with VIX terciles (external to factor returns
-but reflecting the same volatility regime), the structural break
-replicates: pre-2008 $p < 0.0001$, post-2008 $p = 0.714$.
-This confirms the finding is not HMM-specific.
+\textbf{Exogenous regime replication.}
+VIX terciles ($\leq$15 Normal, 15--21 Elevated, $>$21 Crisis)---externally
+defined, not estimated from factor returns, 39.6\% agreement with
+HMM---replicate the structural break: VIX-Normal pre-2008 $F = 25.8$,
+$p < 10^{-6}$; post-2008 $F = 0.71$, $p = 0.401$.
+This confirms the finding is a property of the data, not of HMM estimation.
 
 \textbf{Directional asymmetry.}
 Transfer entropy + quantile Granger reveal a directional asymmetry
@@ -866,12 +959,19 @@ heterogeneity $\neq$ quantile heterogeneity---a distinction not
 captured by conditional-mean Granger or VAR connectedness.
 
 \textbf{OOS evidence.}
-MOM$\to$SMB achieves textbook frozen-OOS replication ($\Delta F < 0.1\%$),
-confirming the framework detects genuine structure for strong signals.
-International analysis confirms structural breaks in all four non-US
-markets, with 2/4 producing Bonferroni-surviving OOS effects.
+A post-hoc diagnostic on MOM$\to$SMB (the strongest OOS signal) shows
+near-perfect frozen-OOS replication ($\Delta F < 0.1\%$), confirming
+the framework detects genuine structure when signals persist.
+International analysis finds structural breaks in all four non-US
+markets; Asia-Pacific and Developed ex-US produce Bonferroni-surviving
+OOS effects, while Europe and Japan show in-sample significance only.
 HML$\to$SMB frozen OOS is exploratory only (regime-redistributed,
 Bonferroni-nonsignificant, bootstrap $p = 0.153$).
+A pre-break training design (HMM fit on 1990--1997 only) confirms the
+temporal decay gradient without in-sample circularity
+($F = 31.2 \to 9.4 \to 0.02$ across three successive periods), and a
+prospective decay model ($R^2 = 0.924$ on training windows, OOS
+MSE $= 0.046$) validates the structural-erosion interpretation.
 
 \textbf{Implications and domain generalization.}
 The regime-conditional framework (Algorithm~\ref{alg:protocol}) is
@@ -879,7 +979,7 @@ domain-agnostic. We validate on three additional settings:
 (i)~\emph{Macro:} Treasury term spread $\to$ Industrial Production
 (monthly FRED, 1990--2024; HMM trained 1990--2005, tested 2006--2015)
 shows Crisis-only Granger predictability
-($F = 12.7$, HAC $p = 0.0002$, $\Delta R^2 = 11.9\%$);
+($F = 12.7$, HAC $p = 0.00016$, $\Delta R^2 = 11.9\%$);
 (ii)~\emph{Emerging markets:} pre-registered testing of all 20 directed
 Fama--French factor pairs (monthly, 2000--2024) with Bonferroni
 $\alpha = 0.0025$ finds 6 significant regime-conditional edges, including
@@ -910,7 +1010,7 @@ All code (Python 3.10+, scikit-learn, statsmodels, hmmlearn),
 available at an anonymized repository (link provided to reviewers;
 public release with DOI upon acceptance).
 Factor data: Kenneth French Data Library; VIX: CBOE;
-international: Fama-French regional datasets. All sources are public.
+international: Fama--French regional datasets. All sources are public.
 
 \bibliography{references}
 

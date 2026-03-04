@@ -46,8 +46,8 @@ a retrospective exponential decay fit (half-life $= 3.35$ years).
 The primary Value$\to$Size finding does not replicate out-of-sample
 (Tier-3 exploratory), consistent with the fitted decay model;
 a post-hoc diagnostic on Momentum$\to$Size (the strongest OOS signal)
-achieves strong replication ($\Delta F = 19\%$, permutation $p = 0.01$),
-confirming the framework detects structure when signals persist.
+achieves partial replication ($\Delta F = 19\%$, permutation $p = 0.01$),
+suggesting the framework detects residual structure in persistent signals.
 Three independent validations address circularity: a holdout-HMM design
 (HMM trained on disjoint data), exogenous VIX-tercile regimes
 ($p = 0.003$ with 39.6\% label agreement), and fair
@@ -618,7 +618,7 @@ more time in higher-volatility states. The frozen classifier assigns
 formerly Normal observations to Elevated, doubling the Elevated share
 from 13.7\% training to 33.7\% test.
 This result (1)~does not survive the full 30-pair correction ($\alpha/30 = 0.00033$),
-(2)~does not survive per-regime correction ($\alpha/3 = 0.0167$; HAC $p = 0.043$),
+(2)~does not survive per-regime correction ($\alpha/3 = 0.0167$; HAC $p = 0.041$),
 (3)~is sensitive to prevalence: bootstrap reweighting to training
 prevalence yields median $p = 0.153$, with only 9.9\% of subsamples
 significant at the Bonferroni threshold---confirming that the primary
@@ -679,7 +679,7 @@ $F$-statistic in Elevated---as a stress test: if the framework fails to replicat
 even the strongest available signal, the methodology is flawed; if it
 succeeds, HML$\to$SMB's weak OOS is attributable to signal decay rather
 than methodology failure.
-MOM$\to$SMB shows strong frozen-OOS replication in Elevated: in-sample
+MOM$\to$SMB shows partial frozen-OOS replication in Elevated: in-sample
 $F = 20.3$ ($p = 7.4 \times 10^{-6}$), OOS $F = 16.5$
 ($p = 5.3 \times 10^{-5}$, $\Delta F = 19\%$). The reverse SMB$\to$MOM is null ($p > 0.09$),
 confirming directional asymmetry, and permutation test confirms
@@ -763,7 +763,7 @@ Rank & Pair & $p_{\text{Norm}}$ & $p_{\text{Elev}}$ & $p_{\text{Crisis}}$ & Het.
 3 & MKT$\to$SMB & 0.985 & 0.491 & 0.067 & 0.92 \\
 4 & MOM$\to$SMB & 0.880 & \textbf{$<$0.001} & 0.101 & 0.88 \\
 \midrule
-27 & HML$\to$SMB & 0.142 & \textbf{0.003} & 0.317 & 0.31 \\
+27 & HML$\to$SMB & 0.149 & \textbf{0.014} & 0.281 & 0.27 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -960,8 +960,8 @@ captured by conditional-mean Granger or VAR connectedness.
 
 \textbf{OOS evidence.}
 A post-hoc diagnostic on MOM$\to$SMB (the strongest OOS signal) shows
-strong frozen-OOS replication ($\Delta F = 19\%$, permutation $p = 0.01$),
-confirming the framework detects genuine structure when signals persist.
+partial frozen-OOS replication ($\Delta F = 19\%$, permutation $p = 0.01$),
+suggesting the framework detects residual structure in persistent signals.
 International analysis finds structural breaks in all four non-US
 markets; Asia-Pacific and Developed ex-US produce Bonferroni-surviving
 OOS effects, while Europe and Japan show in-sample significance only.

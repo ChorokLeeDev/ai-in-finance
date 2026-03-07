@@ -522,7 +522,7 @@ def fix_issue3(ctx):
 
     print(f"\nReweighting approach: subsample Elevated from {actual_n_elev} to {target_n_elev}")
 
-    np.random.seed(42)
+    np.random.seed(28)
     n_bootstrap = 1000
     boot_F_stats = []
     boot_p_values = []

@@ -557,7 +557,7 @@ def main():
     print("\n" + "=" * 80)
     print("STEP 1: FULL-SAMPLE HMM (1990-2024)")
     print("=" * 80)
-    hmm_full = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=42)
+    hmm_full = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=28)
     hmm_full.fit(df.values)
 
     regimes_hard = hmm_full.predict(df.values, use_filtered=False)
@@ -580,7 +580,7 @@ def main():
     print(f"Training set: {len(df_train)} days ({df_train.index[0].date()} to {df_train.index[-1].date()})")
     print(f"OOS test set: {len(df_oos)} days ({df_oos.index[0].date()} to {df_oos.index[-1].date()})")
 
-    hmm_frozen = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=42)
+    hmm_frozen = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=28)
     hmm_frozen.fit(df_train.values)
 
     _ = hmm_frozen.predict_oos(df_oos.values)

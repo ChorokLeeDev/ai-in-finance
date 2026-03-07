@@ -627,7 +627,7 @@ def main():
     factor_cols = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
     X_train = df.loc[train_mask, factor_cols].values
     
-    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=42)
+    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=28)
     hmm.fit(X_train)
     
     regime_names = {0: 'Calm', 1: 'Normal', 2: 'Crisis'}

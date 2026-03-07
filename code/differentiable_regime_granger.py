@@ -43,14 +43,14 @@ print(f"[INFO] Results will be saved to: {RESULTS_DIR}")
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"[INFO] Using device: {device}")
 
-def set_seed(seed=42):
+def set_seed(seed=28):
     """Set seed for reproducibility"""
     np.random.seed(seed)
     torch.manual_seed(seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed(seed)
 
-set_seed(42)
+set_seed(28)
 
 
 # ============================================================================
@@ -133,7 +133,7 @@ class DifferentiableRegimeGranger(nn.Module):
 # SYNTHETIC DATA GENERATION
 # ============================================================================
 
-def generate_synthetic_data(T=5000, seed=42):
+def generate_synthetic_data(T=5000, seed=28):
     """
     Generate 3-regime synthetic data with known causal structure:
     - Regime 1: x → y (β=0.3)
@@ -200,7 +200,7 @@ def generate_fama_french_data():
 
     print("[WARNING] FF data not found. Using synthetic proxy data.")
     T = 5000
-    np.random.seed(42)
+    np.random.seed(28)
     hml = np.random.normal(0, 1, T)
     smb = 0.4 * hml + np.random.normal(0, 1, T)
     return hml, smb

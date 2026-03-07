@@ -413,7 +413,7 @@ def fix1_held_out_validation(df):
 
     # Fit HMM on training data only
     print("\n  Fitting Student-t HMM on training data...")
-    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=42)
+    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=28)
     hmm.fit(train_df.values)
 
     print(f"  Training HMM parameters:")
@@ -651,7 +651,7 @@ def fix3_incremental_r2(df, hmm=None):
     # Fit HMM on full sample for regime assignments
     if hmm is None:
         print("  Fitting HMM on full sample...")
-        hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=42)
+        hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=28)
         hmm.fit(df.values)
 
     regimes = hmm.predict(df.values)

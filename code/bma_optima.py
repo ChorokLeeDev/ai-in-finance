@@ -173,7 +173,7 @@ def run_bma_analysis():
 
     # Compute confidence interval for BMA estimate
     # Using bootstrap-like approach with posterior sample
-    np.random.seed(42)
+    np.random.seed(28)
     n_bootstrap = 10000
     p_bootstrap = []
     for _ in range(n_bootstrap):

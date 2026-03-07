@@ -264,7 +264,7 @@ def main():
     print(f"{'='*60}")
     actual_F, perm_Fs, perm_p = run_permutation_test(
         test_regimes, smb_test, hml_test,
-        n_perm=N_PERM, lag=FIXED_LAG, seed=42
+        n_perm=N_PERM, lag=FIXED_LAG, seed=28
     )
 
     sig_str = ('***' if perm_p < 0.001 else '**' if perm_p < 0.01

@@ -84,7 +84,7 @@ def download_fama_french_data():
         print("[DATA] Using synthetic data for demonstration...")
         dates = pd.date_range('1990-01-01', '2024-12-31', freq='B')
         n = len(dates)
-        np.random.seed(42)
+        np.random.seed(28)
 
         df = pd.DataFrame({
             'MKT_RF': np.random.normal(0.0003, 0.01, n),
@@ -508,7 +508,7 @@ def main():
     # Model 1: Fit HMM (Student-t) for regime detection
     # =====================================================================
     print("[MODEL 1] Fitting Student-t HMM (K=3)...")
-    hmm_model = StudentTHMM(n_states=3, random_state=42)
+    hmm_model = StudentTHMM(n_states=3, random_state=28)
     hmm_model.fit(smb_train)
 
     # Predict regimes on test data

@@ -73,7 +73,7 @@ def granger_f(smb, hml, clean_idx, lag=1):
     return ((rr - ru) / df1) / (ru / df2)
 
 
-def run_permutation_test(test_regimes, smb, hml, n_perm=1000, lag=FIXED_LAG, seed=42):
+def run_permutation_test(test_regimes, smb, hml, n_perm=1000, lag=FIXED_LAG, seed=28):
     """
     Permute OOS regime labels (preserving counts) n_perm times.
     Computes Granger F on the permuted 'Elevated' (idx=1) set each time.

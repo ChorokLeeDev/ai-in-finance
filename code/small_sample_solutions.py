@@ -557,13 +557,13 @@ def main():
     print(f"\nNormal regime OOS: n={n_normal}")
 
     smb = test_df['SMB'].values
-    hml = test_df['HML'].values
+    mom = test_df['MOM'].values
 
-    # Prepare data for tests
+    # Prepare data for tests (MOM->SMB in Normal regime)
     if n_normal > 20:
         y_curr = smb[clean_normal]
         y_lag = smb[clean_normal - 1].reshape(-1, 1)
-        x_lag = hml[clean_normal - 1].reshape(-1, 1)
+        x_lag = mom[clean_normal - 1].reshape(-1, 1)
 
     results = {
         'timestamp': datetime.now().isoformat(),

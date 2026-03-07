@@ -19,7 +19,7 @@
 \sloppy
 \emergencystretch 1.5em
 
-\title{Structural Decay of Cross-Factor Predictability: Regime-Conditional Granger Analysis with Complexity Characterization}
+\title{Cross-Factor Predictability Has a Half-Life: Value-to-Size Granger Causality Collapsed Around 1998}
 
 \author{Anonymous}
 \affiliation{%
@@ -28,36 +28,31 @@
 }
 
 \begin{abstract}
-Causal discovery in time series typically learns a single global
-directed graph, assuming stationary causal structure. We propose a
-\emph{regime-conditional Granger framework} that relaxes this
-assumption: Student-$t$ Hidden Markov Models infer latent states,
-and per-state Granger tests detect state-dependent predictive edges.
-A model-complexity diagnostic (OLS, Random Forest, MLP, LSTM)
-separates linear from nonlinear channels. Transfer entropy and quantile
-regression further characterize directional information flow.
+Value-to-Size (HML$\to$SMB) Granger predictability in US equity factors
+collapsed around June 1998 and has remained null for over two decades.
+Using a regime-conditional Granger framework with Student-$t$ Hidden
+Markov Models, we document this structural break ($p = 1.23 \times 10^{-13}$,
+Quandt-Andrews sup-$F$; 90\% bootstrap CI: 1993--2014) and estimate an
+exponential decay with half-life $= 3.35$ years. The pre-break signal
+is highly significant ($p = 8.75 \times 10^{-9}$, Bonferroni-corrected
+across 30 factor pairs); the post-2008 coefficient is indistinguishable
+from zero (95\% CI $[-0.049, 0.073]$).
 
-Applied to daily Fama--French equity-factor returns (1990--2024,
-30 directed pairs, 5 markets), the framework identifies
-Value$\to$Size Granger predictability concentrated in the Normal
-state ($p = 8.75 \times 10^{-9}$, Bonferroni-corrected), with a
-change-point at June 1998 ($p = 1.23 \times 10^{-13}$) and
-a retrospective exponential decay fit (half-life $= 3.35$ years).
-The primary Value$\to$Size finding does not replicate out-of-sample
-(Tier-3 exploratory), consistent with the fitted decay model;
-a post-hoc diagnostic on Momentum$\to$Size (the strongest OOS signal)
-achieves partial replication ($\Delta F = 19\%$, permutation $p = 0.01$);
-analysis of all 30 directed pairs finds decay concentrated in Size-target
-relationships (4 of 7 decaying pairs).
-Three independent validations address circularity: a holdout-HMM design
-(HMM trained on disjoint data), exogenous VIX-tercile regimes
-($p = 0.003$ with 39.6\% label agreement), and fair
-regime-conditional baselines showing classical methods outperform
-neural alternatives on identical per-regime subsamples.
-The framework scales to $N{=}18$ factors (306 pairs) in 77 seconds;
-international analysis finds change-points in all four non-US markets,
-with 2/4 producing Bonferroni-surviving OOS effects.
-Code, data, and reproducibility notebooks are available at an anonymized repository.
+Three validations address circularity concerns: (1)~VIX-exogenous regimes
+replicate the break ($p = 0.003$); (2)~a holdout HMM (trained 1990--2005)
+preserves significance; (3)~Markov-Switching VAR comparison shows 64\%
+regime agreement with consistent break detection.
+International analysis finds structural breaks in all four non-US markets,
+with 2/4 producing Bonferroni-surviving out-of-sample effects.
+Analysis of all 30 directed pairs reveals decay concentrated in
+Size-target relationships (4/7 decaying pairs).
+
+The primary finding does not replicate out-of-sample---consistent with
+the decay model predicting $<$1\% residual signal by 2013.
+For risk management, adding HML as a regime-conditional stress indicator
+reduces VaR violation-rate deviation from $+1.42$pp to $+0.98$pp
+(Christoffersen $p = 0.083$).
+Code and reproducibility notebooks available at an anonymized repository.
 \end{abstract}
 
 \begin{CCSXML}
@@ -79,7 +74,7 @@ Code, data, and reproducibility notebooks are available at an anonymized reposit
 \ccsdesc[500]{Mathematics of computing~Time series analysis}
 \ccsdesc[500]{Computing methodologies~Causal reasoning and diagnostics}
 
-\keywords{Causal Inference, Latent-State Models, Granger Causality, Hidden Markov Models, Transfer Entropy, Time Series}
+\keywords{Factor Returns, Structural Break, Granger Causality, Hidden Markov Models, Regime-Switching, Time Series}
 
 \maketitle
 
@@ -124,7 +119,7 @@ framework reveals that Value Granger-predicts Size
 primarily in the Normal latent state ($p = 8.75 \times 10^{-9}$,
 Bonferroni-corrected across 30 hypotheses), with a change-point at
 June 1998 ($p = 1.23 \times 10^{-13}$, Quandt-Andrews sup-$F$
-change-point test) and null predictability post-2008.
+change-point test; 90\% bootstrap CI: March 1993--January 2014) and null predictability post-2008.
 
 \textbf{Evidence tiers.} We organize findings by statistical strength:
 (1)~\emph{primary}: in-sample Normal-regime structural break
@@ -142,9 +137,13 @@ transparency, not claimed as validation.
 (i)~A reusable regime-conditional Granger framework
 (Algorithm~\ref{alg:protocol}) that detects latent-state-dependent
 predictive structure, validated on 30 directed pairs across 5 markets.
-The framework reveals state-heterogeneous patterns (defined as $\max_k(p_k) - \min_k(p_k) > 0.10$ across regimes $k$) in 63\% of pairs;
-the primary pair (Value$\to$Size) is Bonferroni-significant in Normal
-($p = 8.75 \times 10^{-9}$), absent post-2008.
+The framework reveals state-heterogeneous patterns (defined as $\max_k(p_k) - \min_k(p_k) > 0.10$ across regimes $k$) in 63\% of pairs.
+The all-pairs analysis is primary: among 30 directed factor pairs,
+7 exhibit decay ($R^2 > 0.3$, half-life $< 50$ years), with 4/7
+concentrated in Size-target relationships. Value$\to$Size is illustrative
+of this pattern (Bonferroni-significant in Normal, $p = 8.75 \times 10^{-9}$,
+absent post-2008), selected for economic interpretability rather than
+extreme statistical heterogeneity (ranks 27th of 30 by heterogeneity score).
 (ii)~A model-complexity diagnostic (OLS$\to$RF$\to$MLP$\to$LSTM + transfer
 entropy + quantile regression) that separates linear from nonlinear channels:
 for Value$\leftrightarrow$Size, this reveals a directional asymmetry
@@ -920,6 +919,23 @@ regime-boundary exclusion. Crisis remains null ($F = 2.27$, $p = 0.132$),
 confirming that regime conditioning reveals state-dependent \emph{absence}
 rather than artificially inflating significance.
 
+\textbf{Markov-Switching VAR comparison.}
+We compare our two-stage approach (Student-$t$ HMM $\to$ regime-conditional
+Granger) against a Markov-Switching VAR(1) baseline that jointly estimates
+regimes and dynamics. On HML--SMB bivariate data (1990--2024), MS-VAR(1)
+achieves BIC $= 28{,}106$ vs.\ our 6-factor HMM's BIC $= 75{,}568$---though
+this comparison is not directly comparable (2 vs.\ 6 factors, Gaussian
+vs.\ Student-$t$ errors). More informatively, regime labels show 63.6\%
+agreement between the two methods, and both detect all major structural
+breaks (2008 GFC, 2000 dot-com, 2020 COVID, 2022 tightening).
+MS-VAR cross-variable coefficients show regime-varying dynamics
+(HML$\to$SMB: $-0.128$ Normal, $-0.026$ Elevated, $-0.044$ Crisis),
+consistent with our finding that predictive structure is regime-dependent.
+The two-stage approach offers interpretability (explicit regime labels
+with economic meaning) and flexibility (any downstream test), while
+MS-VAR provides a unified likelihood; both reach qualitatively similar
+conclusions about regime-dependent cross-factor dynamics.
+
 \textbf{Limitations.}
 All findings document predictive precedence (``Granger causality''),
 not structural causality~\cite{granger1969investigating,shojaie2022granger}.
@@ -985,7 +1001,9 @@ results should be interpreted with dimension-specific regime labels.
 \textbf{Primary finding.}
 HML$\to$SMB Granger predictability is Bonferroni-significant in the
 pre-crisis Normal regime ($p = 8.75 \times 10^{-9}$, $\Delta R^2 = 2.06\%$),
-with a change-point at June 1998 ($p = 1.23 \times 10^{-13}$) and
+a change-point at
+June 1998 ($p = 1.23 \times 10^{-13}$, sup-$F = 98.3$; 90\% bootstrap
+CI: 1993--2014, based on 1{,}000 residual-resampling iterations) and
 continued decay post-GFC (Chow $p = 2.29 \times 10^{-6}$). The post-2008
 coefficient has been consistent with zero for 16 years (95\% CI
 $[-0.049, 0.073]$). This is robust across all 7 HMM local-optima clusters,

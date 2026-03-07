@@ -142,7 +142,7 @@ transparency, not claimed as validation.
 (i)~A reusable regime-conditional Granger framework
 (Algorithm~\ref{alg:protocol}) that detects latent-state-dependent
 predictive structure, validated on 30 directed pairs across 5 markets.
-The framework reveals state-heterogeneous patterns in 63\% of pairs;
+The framework reveals state-heterogeneous patterns (defined as $\max_k(p_k) - \min_k(p_k) > 0.10$ across regimes $k$) in 63\% of pairs;
 the primary pair (Value$\to$Size) is Bonferroni-significant in Normal
 ($p = 8.75 \times 10^{-9}$), absent post-2008.
 (ii)~A model-complexity diagnostic (OLS$\to$RF$\to$MLP$\to$LSTM + transfer
@@ -249,16 +249,19 @@ $K = 3$ is selected by BIC on the main training window (1990--2012;
 $\Delta\text{BIC} = 1{,}680$ over $K = 2$; $K = 4$ also disfavored)
 and pre-specified for all subsequent analyses including the three-fold
 temporal validation.
+\emph{Regime naming convention:} Labels (Normal, Elevated, Crisis) are
+statistical descriptors based on volatility and kurtosis, not calendar
+events---``Crisis'' denotes a high-kurtosis distributional state, not
+necessarily financial crisis periods.
 Estimated degrees of freedom
 ($\hat{\nu}_{\text{Normal}} = 6.2$, $\hat{\nu}_{\text{Elevated}} = 3.9$,
 $\hat{\nu}_{\text{Crisis}} = 5.5$) are well below the Gaussian limit,
 confirming that heavy-tail accommodation is empirically necessary.
 EM with 50 random seeds; primary fit: seed~28
 (sorted-order convention among 3 seeds reaching identical LL).
-Under the BIC-optimal fit, ``Crisis'' denotes a high-kurtosis
-statistical state (0\% of 2008 GFC assigned); sensitivity fits
-aligning with calendar crises use Cluster~5 ($\Delta\text{BIC} = 218$,
-90\% GFC detection; see Table~\ref{tab:optima}).
+Under the BIC-optimal fit, the Crisis state captures 0\% of 2008 GFC
+days; sensitivity fits aligning with calendar crises use Cluster~5
+($\Delta\text{BIC} = 218$, 90\% GFC detection; see Table~\ref{tab:optima}).
 
 \textbf{Per-regime Granger testing.}
 For each regime $k$, we extract $\mathcal{T}_k = \{t : \hat{z}_t = k\}$
@@ -397,7 +400,10 @@ with stable post-2008 nullity for 16 years.
 \centering
 \includegraphics[width=\columnwidth]{figures/rolling_granger.pdf}
 \caption{Rolling 3-year unconditional Granger ($-\log_{10}(p)$, HML$\to$SMB,
-lag=9) with regime-colored background. Episodic peaks during stress periods
+lag=9) with regime-colored background. Lag=9 (approximately two trading weeks)
+is used to capture medium-horizon dynamics in rolling windows; the primary
+BIC-selected lag=1 analysis (Table~\ref{tab:main}) confirms significance
+across all lags 1--15 (Figure~\ref{fig:lag}). Episodic peaks during stress periods
 are consistent with the regime-conditional finding.}
 \Description{Time-series plot of rolling Granger significance with regime bands.}
 \label{fig:rolling}
@@ -478,7 +484,7 @@ Figure~\ref{fig:complexity}) finds no significant nonlinear improvement for forw
 HML$\to$SMB under the primary fit (all $p > 0.13$; LSTM uses 100 shuffles,
 adequate to confirm a null but underpowered for small effects). LSTM attention concentrates 68.2\% on lag~1 in Normal, decaying to
 52.9\% (Elevated) and 44.2\% in Crisis (approaching the uniform baseline
-$1/9 = 11.1\%$), mirroring the Granger structural break at the
+of $1/9 = 11.1\%$ per lag, since the model uses 9 lags), mirroring the Granger structural break at the
 mechanism level.
 RF permutation importance shows HML lag-1 as the dominant feature in
 Crisis (importance $= 0.043$, four times the mean feature importance).
@@ -755,6 +761,9 @@ baselines), and economic implications for practitioners.
 \centering
 \includegraphics[width=\columnwidth]{figures/granger_heatmap.pdf}
 \caption{All-pairs Granger causality by regime ($-\log_{10}(p)$, lag=5).
+Lag=5 (one trading week) balances short-horizon dynamics with adequate
+degrees of freedom for the 30-pair comparison; results are qualitatively
+robust across lags 1--15 for the primary HML$\to$SMB pair (Figure~\ref{fig:lag}).
 Asterisks: Bonferroni-surviving cells. HML$\to$SMB is one of several
 regime-sensitive pairs.}
 \Description{Three heatmaps of pairwise Granger significance by regime.}
@@ -764,8 +773,11 @@ regime-sensitive pairs.}
 \textbf{Multi-pair generalizability} (Figure~\ref{fig:heatmap},
 Table~\ref{tab:generalize}).
 Of 30 directed factor pairs, 19 (63\%) show regime-heterogeneous Granger
-patterns in frozen OOS. HML$\to$SMB ranks 27th by heterogeneity
-($0.31$), confirming that our selection reflects an economic prior rather than
+patterns in frozen OOS, where regime-heterogeneous is defined as
+$\text{Het} = \max_k(p_k) - \min_k(p_k) > 0.10$ across regimes $k$
+(i.e., Granger significance varies substantially by regime).
+HML$\to$SMB ranks 27th by heterogeneity
+($0.27$), confirming that our selection reflects an economic prior rather than
 extreme heterogeneity.
 
 \begin{table}[t]
@@ -864,8 +876,10 @@ sample-efficient on per-regime subsamples.
 \centering
 \caption{Fair Regime-Conditional Baseline: HML$\to$SMB (lag=1).
 Regime assignments use seed~28 but a standalone Student-$t$ HMM
-implementation (the primary analysis uses \texttt{hmmlearn}),
-yielding different regime counts than Table~\ref{tab:regimes}.
+implementation (the primary analysis uses \texttt{hmmlearn});
+the standalone implementation enables explicit degrees-of-freedom
+estimation, providing an independent verification of regime structure.
+This yields different regime counts than Table~\ref{tab:regimes}.
 Linear Granger significance and neural failure are consistent
 across both regime definitions.}
 \label{tab:baseline}
@@ -938,6 +952,12 @@ $\Delta\text{BIC} = 218$) RF shows nonlinear improvement ($p = 0.010$).
 Effect sizes are modest ($\Delta R^2 \approx 2\%$); findings are
 diagnostic, not alpha-generative. Practitioners should not rely on
 Tier~3 OOS for trading.
+The multiple testing burden may be understated: tests across regimes,
+lags, and kernel specifications are not fully corrected via Bonferroni
+or false discovery rate adjustment. Given the specification search
+involved (regime count, lag order, kernel choice), results should be
+interpreted as exploratory hypothesis-generating findings rather than
+confirmatory evidence.
 
 \textbf{Scalability.}
 The framework scales to $N = 18$ factors (5 FF $+$ MOM $+$ ST\_Rev

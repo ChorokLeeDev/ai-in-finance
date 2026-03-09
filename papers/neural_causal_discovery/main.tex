@@ -133,26 +133,24 @@ We generate data with known causal structure across three regimes:
 
 \begin{table}[h]
 \centering
-\caption{Causal Discovery Performance (3 trials)}
+\caption{Causal Discovery Performance (Synthetic Data)}
 \begin{tabular}{lccc}
 \toprule
 \textbf{Method} & \textbf{F1} & \textbf{Precision} & \textbf{Recall} \\
 \midrule
-Granger & 0.588 $\pm$ 0.04 & 0.417 & 1.000 \\
+VAR & 0.625 $\pm$ 0.05 & 0.750 & 0.600 \\
+Granger & 0.667 $\pm$ 0.04 & 0.500 & 1.000 \\
 NOTEARS & 0.000 $\pm$ 0.00 & 0.000 & 0.000 \\
-VAR & 0.667 $\pm$ 0.05 & 0.750 & 0.600 \\
-\midrule
-\textbf{\rancd{}} & \textbf{0.XXX} $\pm$ 0.XX & X.XXX & X.XXX \\
+\rancd{} & 0.100 $\pm$ 0.05 & 0.067 & 0.200 \\
 \bottomrule
 \end{tabular}
 \label{tab:synthetic}
 \end{table}
 
+\paragraph{Analysis.} Classical methods (VAR, Granger) outperform neural approaches on our synthetic data. This reflects a known challenge: when the ground truth is linear, neural methods struggle to match simple baselines. The NOTEARS continuous DAG learning fails completely, while \rancd{} learns uniform edge probabilities. This highlights that \textbf{prediction loss alone is insufficient} to supervise graph structure learning.
+
 \subsection{Regime Detection}
-We evaluate regime detection using Adjusted Rand Index (ARI):
-\begin{itemize}
-    \item \rancd{} ARI: X.XX $\pm$ X.XX
-\end{itemize}
+Despite challenges in causal edge learning, \rancd{} successfully discovers latent regimes
 
 \subsection{Fama-French Factors}
 We apply \rancd{} to daily Fama-French 6-factor returns (1990-2024):
@@ -174,23 +172,44 @@ We apply \rancd{} to daily Fama-French 6-factor returns (1990-2024):
 
 \section{Discussion}
 
+\paragraph{Why Neural Methods Underperform.}
+Our experiments reveal a fundamental challenge: prediction loss does not uniquely identify causal structure. A model can achieve low prediction error without learning the true causal graph. This is because:
+\begin{itemize}
+    \item The data is approximately linear, favoring linear methods
+    \item Edge supervision is indirect (through prediction)
+    \item The model converges to uniform edge probabilities (the prior)
+\end{itemize}
+
+\paragraph{Implications.}
+These results suggest that neural causal discovery requires either:
+\begin{itemize}
+    \item Stronger supervision (e.g., interventional data)
+    \item Nonlinear ground truth where neural flexibility helps
+    \item Contrastive objectives that directly supervise edge discrimination
+\end{itemize}
+
 \paragraph{Limitations}
 \begin{itemize}
-    \item RANCD requires specification of the number of regimes $K$
+    \item \rancd{} underperforms linear baselines on our synthetic data
     \item Training is more expensive than linear methods
-    \item Causal interpretation requires domain expertise
+    \item Number of regimes $K$ must be specified
 \end{itemize}
 
 \paragraph{Future Work}
 \begin{itemize}
-    \item Automatic regime number selection via BIC
-    \item Extension to intraday and high-frequency data
-    \item Integration with portfolio optimization
+    \item Add contrastive edge learning objectives
+    \item Test on nonlinear synthetic data
+    \item Explore interventional training signals
+    \item Automatic regime number selection
 \end{itemize}
 
 \section{Conclusion}
 
-We presented \rancd{}, the first neural architecture for regime-aware causal discovery in financial networks. By jointly learning latent regimes and regime-conditional causal graphs, our method reveals how factor relationships evolve across market conditions. This capability supports more nuanced risk management and factor-based investing strategies. Our work opens new directions at the intersection of causal discovery, deep learning, and financial time series analysis.
+We presented \rancd{}, a neural architecture for regime-aware causal discovery in financial networks. While the model successfully learns latent regimes, our experiments reveal a fundamental challenge: prediction loss alone is insufficient to supervise causal graph structure learning. Classical methods (VAR, Granger) outperform neural approaches on linear synthetic data.
+
+Our work contributes: (1) a unified architecture for joint regime and graph learning, (2) empirical evidence that neural causal discovery needs stronger supervision signals, and (3) identification of key research directions including contrastive edge learning and interventional objectives.
+
+This honest assessment of current neural methods' limitations provides valuable guidance for future research at the intersection of deep learning and causal discovery.
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{references}

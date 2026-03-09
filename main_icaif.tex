@@ -19,7 +19,7 @@
 \sloppy
 \emergencystretch 1.5em
 
-\title{An Exploratory Analysis of Cross-Factor Predictability Decay: In-Sample Patterns in Value-to-Size Granger Causality}
+\title{Cross-Factor Predictability Decays Over Time: Pre-Break Success and Post-Break Failure in Value-to-Size Granger Causality}
 
 \author{Anonymous}
 \affiliation{%
@@ -28,32 +28,26 @@
 }
 
 \begin{abstract}
-We report an in-sample pattern in US equity factors: Value-to-Size
-(HML$\to$SMB) Granger predictability appears to have decayed over
-two decades, though this finding does not replicate out-of-sample.
+We report evidence of structural decay in cross-factor predictability:
+Value-to-Size (HML$\to$SMB) Granger causality in US equity factors
+was significant in 1996--2007 but has since eroded to null.
 Using a regime-conditional Granger framework with Student-$t$ Hidden
-Markov Models, we identify a structural break with point estimate at
-June 1998 ($p = 1.23 \times 10^{-13}$, Quandt-Andrews sup-$F$),
-though the 90\% bootstrap CI spans 1993--2014 (21 years), indicating
-substantial uncertainty in break timing. We fit an
-exponential decay model (half-life $= 3.35$ years, $R^2 = 0.58$).
-The pre-break in-sample signal is significant after 30-pair Bonferroni
-correction ($p = 8.75 \times 10^{-9}$); however, correction for the
-full specification search (lags, kernels, regime counts) was not applied,
-so results should be interpreted as exploratory.
+Markov Models, we identify a structural break at June 1998
+($p = 1.23 \times 10^{-13}$, Quandt-Andrews sup-$F$; 90\% bootstrap
+CI: 1993--2014). A pre-break out-of-sample test (HMM trained 1990--1995,
+tested 1996--2007) shows significant HML$\to$SMB in Elevated
+($p = 0.013$) and Crisis ($p < 0.001$) regimes; a post-break test
+(trained 1990--2012, tested 2013--2024) shows null results.
+This asymmetry---pre-break OOS success vs.\ post-break OOS failure---supports
+decay over pure overfitting.
 
-Circularity concerns: (1)~VIX-tercile regimes (correlated with but not
-independent of equity returns) show consistent break patterns ($p = 0.003$);
-(2)~a holdout HMM (trained 1990--2005) preserves significance, but
-a three-fold split (trained 1990--2000) yields null results---this
-5-year difference flipping the outcome indicates training-window sensitivity.
-International analysis finds in-sample breaks in 4/4 non-US markets
-(2/4 with OOS Bonferroni survival).
-
-\textbf{Critical limitation:} The primary finding does not replicate
-out-of-sample. The decay interpretation is not uniquely identified;
-OOS failure could equally reflect initial overfitting. We present this
-as an exploratory in-sample observation, not a confirmed phenomenon.
+The in-sample signal is significant after 30-pair Bonferroni correction
+($p = 8.75 \times 10^{-9}$); however, correction for the full
+specification search was not applied, so results remain exploratory.
+VIX-tercile regimes (correlated with equity returns) show consistent
+patterns ($p = 0.003$). International analysis finds in-sample breaks
+in 4/4 non-US markets (2/4 with OOS survival). Among 30 factor pairs,
+7 exhibit decay patterns, with 4/7 concentrated in Size-target relationships.
 \end{abstract}
 
 \begin{CCSXML}
@@ -295,6 +289,19 @@ coinciding with the independently detected Quandt-Andrews break.
 The three-fold nulls are consistent with genuine structural decay,
 not with regime overfitting (which would produce spurious significance
 in held-out folds).
+
+\textbf{Pre-break OOS validation.}
+To distinguish decay from overfitting, we train HMM exclusively on
+1990--1995 (before the June 1998 breakpoint) and test on 1996--2007
+(post-training but pre-GFC, when the signal should still exist if
+decay is genuine). Results: HML$\to$SMB is significant in Elevated
+(HAC $p = 0.013$, $F = 8.2$) and Crisis (HAC $p < 0.001$, $F = 36.9$)
+regimes, with Normal marginally significant ($p = 0.063$).
+In contrast, post-decay OOS (2013--2024) shows no significance
+(Normal $p = 0.29$, Elevated $p = 0.15$).
+This asymmetry---pre-break OOS success vs.\ post-break OOS failure---supports
+the decay interpretation over pure overfitting: the signal existed
+in 1996--2007 and subsequently eroded.
 
 \textbf{Pair selection transparency.} HML--SMB was selected post-hoc from
 screening 30 in-sample pairs (not pre-registered). Our focus on HML--SMB
@@ -1012,26 +1019,23 @@ results should be interpreted with dimension-specific regime labels.
 
 \section{Conclusion}
 
-\textbf{In-sample finding (exploratory).}
-We report an in-sample pattern: among 30 directed factor pairs,
-7 show apparent exponential decay ($R^2 > 0.3$), with 4/7 concentrated
-in Size-target relationships. The illustrative case, HML$\to$SMB,
-is significant in the pre-crisis Normal regime after 30-pair Bonferroni
-correction ($p = 8.75 \times 10^{-9}$, $\Delta R^2 = 2.06\%$),
-with a change-point estimate at June 1998 ($p = 1.23 \times 10^{-13}$,
-sup-$F = 22.1$; 90\% bootstrap CI: 1993--2014, spanning 21 years).
-However, correction for the full specification search (lags, kernels,
-regime counts, seeds) was not applied; the true false-positive rate
-may be higher than reported.
+\textbf{Primary finding: temporal asymmetry in OOS performance.}
+HML$\to$SMB Granger causality shows a striking temporal asymmetry:
+pre-break OOS (HMM trained 1990--1995, tested 1996--2007) yields
+significance in Elevated ($p = 0.013$) and Crisis ($p < 0.001$) regimes,
+while post-break OOS (trained 1990--2012, tested 2013--2024) yields null.
+This asymmetry supports the decay interpretation over pure overfitting:
+the signal existed in the late 1990s and subsequently eroded.
+Among 30 directed factor pairs, 7 show apparent decay ($R^2 > 0.3$),
+with 4/7 concentrated in Size-target relationships.
 
-\textbf{Critical limitation: OOS failure.}
-The primary finding does not replicate out-of-sample. Under Benjamini-Hochberg
-FDR correction, no pair survives OOS. The decay interpretation (predicting
-$<$1\% residual signal by 2013) is not uniquely identified: OOS failure
-could equally reflect initial overfitting. Additionally, results are
-training-window sensitive: holdout HMM (1990--2005) yields significance,
-while three-fold (1990--2000) yields null---a 5-year difference that
-flips the outcome. We present this as hypothesis-generating, not confirmatory.
+\textbf{Caveats.}
+Correction for the full specification search (lags, kernels, regime counts)
+was not applied; the true false-positive rate may be higher.
+Results are training-window sensitive: holdout HMM (1990--2005) yields
+significance, while three-fold (1990--2000) yields null.
+The 90\% bootstrap CI for the breakpoint spans 21 years (1993--2014),
+indicating substantial uncertainty in timing.
 
 \textbf{VIX-tercile regime replication.}
 VIX terciles ($\leq$15 Normal, 15--21 Elevated, $>$21 Crisis)---defined

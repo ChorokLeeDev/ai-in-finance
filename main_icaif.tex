@@ -113,8 +113,8 @@ on simulated data only, our framework combines all three extensions
 into a reusable protocol (Algorithm~\ref{alg:protocol}) with frozen OOS
 validation and multistart sensitivity analysis, applied to 30 real-world
 factor pairs across 5 markets. The primary contribution is empirical:
-we document a previously unknown structural decay in cross-factor
-predictability and provide a falsifiable decay model.
+we report an in-sample pattern suggesting structural decay in cross-factor
+predictability, though this does not replicate out-of-sample.
 Applied to daily Fama--French returns (1990--2024), the
 framework reveals that Value Granger-predicts Size
 primarily in the Normal latent state ($p = 8.75 \times 10^{-9}$,
@@ -123,7 +123,7 @@ June 1998 ($p = 1.23 \times 10^{-13}$, Quandt-Andrews sup-$F$
 change-point test; 90\% bootstrap CI: 1993--2014) and null predictability post-2008.
 
 \textbf{Evidence tiers.} We organize findings by statistical strength:
-(1)~\emph{primary}: in-sample Normal-regime structural break
+(1)~\emph{in-sample primary}: Normal-regime structural break
 (\S\ref{sec:break}), consistent with a VIX-based regime definition
 and robust across all specifications;
 (2)~\emph{confirmatory}: international structural breaks with 2/4 regions
@@ -391,10 +391,11 @@ $\hat{\beta}_{\text{HML}}$ shifts from $-0.189$ (pre-GFC) to $+0.012$
 (post-GFC, Wald $z = 5.05$, $p = 9.2 \times 10^{-7}$).
 Post-2008 coefficient: $\hat{\beta} = 0.012$,
 95\% CI $[-0.049, 0.073]$---consistent with zero for 16 years.
-Together, the evidence documents a two-stage decline: initial
+Together, the in-sample evidence suggests a two-stage decline: initial
 weakening around June 1998 (LTCM era, Quandt-Andrews primary break),
 followed by continued erosion through the GFC (Chow break January 2008),
-with stable post-2008 nullity for 16 years.
+with stable post-2008 nullity for 16 years. However, this pattern
+does not replicate out-of-sample.
 A recursive analysis validates that June 1998 is not an artifact of look-ahead bias.
 Running Bai-Perron (the multi-break extension of Quandt-Andrews sup-$F$) on data available at each year-end from 2000 to 2020, the break is detected in 17 of 21 years (81\%).
 The break first appears in 2004 (six years post-break) and remains stable thereafter---once detected, the break date never shifts.
@@ -941,7 +942,7 @@ MS-VAR provides a unified likelihood; both reach qualitatively similar
 conclusions about regime-dependent cross-factor dynamics.
 
 \textbf{Limitations.}
-All findings document predictive precedence (``Granger causality''),
+All findings report predictive precedence (``Granger causality''),
 not structural causality~\cite{granger1969investigating,shojaie2022granger}.
 In-sample regime assignments are estimated on the same data used for
 Granger testing. Three designs address this circularity:
@@ -1012,7 +1013,7 @@ results should be interpreted with dimension-specific regime labels.
 \section{Conclusion}
 
 \textbf{In-sample finding (exploratory).}
-We document an in-sample pattern: among 30 directed factor pairs,
+We report an in-sample pattern: among 30 directed factor pairs,
 7 show apparent exponential decay ($R^2 > 0.3$), with 4/7 concentrated
 in Size-target relationships. The illustrative case, HML$\to$SMB,
 is significant in the pre-crisis Normal regime after 30-pair Bonferroni

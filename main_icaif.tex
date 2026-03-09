@@ -19,7 +19,7 @@
 \sloppy
 \emergencystretch 1.5em
 
-\title{Cross-Factor Predictability Has a Half-Life: Evidence of Structural Decay in Value-to-Size Granger Causality}
+\title{An Exploratory Analysis of Cross-Factor Predictability Decay: In-Sample Patterns in Value-to-Size Granger Causality}
 
 \author{Anonymous}
 \affiliation{%
@@ -28,36 +28,32 @@
 }
 
 \begin{abstract}
-Value-to-Size (HML$\to$SMB) Granger predictability in US equity factors
-underwent structural decay beginning in the late 1990s and has remained
-null for over two decades.
+We report an in-sample pattern in US equity factors: Value-to-Size
+(HML$\to$SMB) Granger predictability appears to have decayed over
+two decades, though this finding does not replicate out-of-sample.
 Using a regime-conditional Granger framework with Student-$t$ Hidden
-Markov Models, we document a structural break with point estimate at
-June 1998 ($p = 1.23 \times 10^{-13}$, Quandt-Andrews sup-$F$;
-90\% bootstrap CI: 1993--2014, reflecting substantial uncertainty in
-break timing) and estimate an
-exponential decay with half-life $= 3.35$ years. The pre-break signal
-is highly significant ($p = 8.75 \times 10^{-9}$, Bonferroni-corrected
-across 30 factor pairs); the post-2008 coefficient is indistinguishable
-from zero (95\% CI $[-0.049, 0.073]$).
+Markov Models, we identify a structural break with point estimate at
+June 1998 ($p = 1.23 \times 10^{-13}$, Quandt-Andrews sup-$F$),
+though the 90\% bootstrap CI spans 1993--2014 (21 years), indicating
+substantial uncertainty in break timing. We fit an
+exponential decay model (half-life $= 3.35$ years, $R^2 = 0.58$).
+The pre-break in-sample signal is significant after 30-pair Bonferroni
+correction ($p = 8.75 \times 10^{-9}$); however, correction for the
+full specification search (lags, kernels, regime counts) was not applied,
+so results should be interpreted as exploratory.
 
-Three validations address circularity concerns: (1)~VIX-exogenous regimes
-replicate the break ($p = 0.003$); (2)~a holdout HMM (trained 1990--2005)
-preserves significance; (3)~Markov-Switching VAR comparison shows 64\%
-regime agreement with consistent break detection.
-International analysis finds in-sample structural breaks in all four non-US markets,
-with 2/4 producing Bonferroni-surviving out-of-sample effects.
-Analysis of all 30 directed pairs reveals decay concentrated in
-Size-target relationships (4/7 decaying pairs).
+Circularity concerns: (1)~VIX-tercile regimes (correlated with but not
+independent of equity returns) show consistent break patterns ($p = 0.003$);
+(2)~a holdout HMM (trained 1990--2005) preserves significance, but
+a three-fold split (trained 1990--2000) yields null results---this
+5-year difference flipping the outcome indicates training-window sensitivity.
+International analysis finds in-sample breaks in 4/4 non-US markets
+(2/4 with OOS Bonferroni survival).
 
-The primary finding does not replicate out-of-sample. While consistent with
-the decay model predicting $<$1\% residual signal by 2013, we acknowledge
-this interpretation is not uniquely identified: OOS failure could also reflect
-initial overfitting or sample-specific patterns.
-For risk management, adding HML as a regime-conditional stress indicator
-reduces VaR violation-rate deviation from $+1.42$pp to $+0.98$pp
-(Christoffersen $p = 0.083$).
-Code and reproducibility notebooks available at an anonymized repository.
+\textbf{Critical limitation:} The primary finding does not replicate
+out-of-sample. The decay interpretation is not uniquely identified;
+OOS failure could equally reflect initial overfitting. We present this
+as an exploratory in-sample observation, not a confirmed phenomenon.
 \end{abstract}
 
 \begin{CCSXML}
@@ -702,8 +698,9 @@ $F = 20.3$ ($p = 7.4 \times 10^{-6}$), OOS $F = 16.5$
 confirming directional asymmetry, and permutation test confirms
 robustness ($p = 0.010$, 10{,}000 shuffles).
 A Bayesian Granger test in the Elevated regime ($n = 836$) yields $\text{BF}_{10} > 10^5$
-(decisive evidence for MOM$\to$SMB predictability on Jeffreys' scale),
-with posterior $P(H_1) > 0.9999$ under equal priors.
+using a unit-information prior on the regression coefficient and comparing
+nested models via Schwarz approximation; this should be interpreted cautiously
+as BF magnitude is sensitive to prior specification.
 
 \textbf{Decay rate comparison.}
 Rolling 5-year Granger analysis in Normal regime reveals differential decay rates
@@ -948,7 +945,7 @@ All findings document predictive precedence (``Granger causality''),
 not structural causality~\cite{granger1969investigating,shojaie2022granger}.
 In-sample regime assignments are estimated on the same data used for
 Granger testing. Three designs address this circularity:
-(1)~VIX-exogenous replication ($p = 0.003$ with 39.6\% label
+(1)~VIX-tercile replication ($p = 0.003$ with 39.6\% label
 agreement);
 (2)~holdout HMM (trained 1990--2005, tested 2006--2024) preserves
 significance in the moderate-volatility regime ($F = 23.6$,
@@ -990,12 +987,15 @@ Tier~3 OOS for trading.
 The power analysis (\S\ref{sec:oos}) is post-hoc and uses observed
 effect sizes, which may understate true uncertainty; a priori power
 calculations were not performed.
-The multiple testing burden may be understated: tests across regimes,
-lags, and kernel specifications are not fully corrected via Bonferroni
-or false discovery rate adjustment. Given the specification search
-involved (regime count, lag order, kernel choice), results should be
-interpreted as exploratory hypothesis-generating findings rather than
-confirmatory evidence.
+The multiple testing burden is substantially understated: we applied
+Bonferroni correction only to 30 pairs, but the actual specification
+search includes 30 pairs $\times$ 3 regimes $\times$ 15 lags $\times$
+90 HAC specifications $\times$ 7 local-optima clusters, potentially
+yielding thousands of implicit tests. A conservative estimate of the
+true Bonferroni threshold would be $\alpha/1000 \approx 0.00001$ or lower.
+While the in-sample $p = 8.75 \times 10^{-9}$ survives even this stricter
+threshold, results should be interpreted as exploratory hypothesis-generating
+findings rather than confirmatory evidence.
 
 \textbf{Scalability.}
 The framework scales to $N = 18$ factors (5 FF $+$ MOM $+$ ST\_Rev
@@ -1011,26 +1011,35 @@ results should be interpreted with dimension-specific regime labels.
 
 \section{Conclusion}
 
-\textbf{Primary finding.}
-Cross-factor Granger predictability exhibits structural decay: among 30
-directed factor pairs, 7 show exponential decay ($R^2 > 0.3$), with 4/7
-concentrated in Size-target relationships. The illustrative case,
-HML$\to$SMB, is Bonferroni-significant in the
-pre-crisis Normal regime ($p = 8.75 \times 10^{-9}$, $\Delta R^2 = 2.06\%$),
-with a change-point at
-June 1998 ($p = 1.23 \times 10^{-13}$, sup-$F = 22.1$; 90\% bootstrap
-CI: 1993--2014) and exponential decay (half-life $= 3.35$ years, $R^2 = 0.583$).
-The post-2008
-coefficient has been consistent with zero for 16 years (95\% CI
-$[-0.049, 0.073]$). This is robust across all 7 HMM local-optima clusters,
-multiple HAC specifications, lags 1--15, and trivariate controls.
+\textbf{In-sample finding (exploratory).}
+We document an in-sample pattern: among 30 directed factor pairs,
+7 show apparent exponential decay ($R^2 > 0.3$), with 4/7 concentrated
+in Size-target relationships. The illustrative case, HML$\to$SMB,
+is significant in the pre-crisis Normal regime after 30-pair Bonferroni
+correction ($p = 8.75 \times 10^{-9}$, $\Delta R^2 = 2.06\%$),
+with a change-point estimate at June 1998 ($p = 1.23 \times 10^{-13}$,
+sup-$F = 22.1$; 90\% bootstrap CI: 1993--2014, spanning 21 years).
+However, correction for the full specification search (lags, kernels,
+regime counts, seeds) was not applied; the true false-positive rate
+may be higher than reported.
 
-\textbf{Exogenous regime replication.}
-VIX terciles ($\leq$15 Normal, 15--21 Elevated, $>$21 Crisis)---externally
-defined, not estimated from factor returns, 39.6\% agreement with
-HMM---replicate the structural break: VIX-Normal pre-2008 $F = 25.8$,
+\textbf{Critical limitation: OOS failure.}
+The primary finding does not replicate out-of-sample. Under Benjamini-Hochberg
+FDR correction, no pair survives OOS. The decay interpretation (predicting
+$<$1\% residual signal by 2013) is not uniquely identified: OOS failure
+could equally reflect initial overfitting. Additionally, results are
+training-window sensitive: holdout HMM (1990--2005) yields significance,
+while three-fold (1990--2000) yields null---a 5-year difference that
+flips the outcome. We present this as hypothesis-generating, not confirmatory.
+
+\textbf{VIX-tercile regime replication.}
+VIX terciles ($\leq$15 Normal, 15--21 Elevated, $>$21 Crisis)---defined
+separately from factor returns but not independent (VIX derives from
+equity options), 39.6\% agreement with
+HMM---show consistent break patterns: VIX-Normal pre-2008 $F = 25.8$,
 $p < 10^{-6}$; post-2008 $F = 0.71$, $p = 0.401$.
-This confirms the finding is a property of the data, not of HMM estimation.
+This suggests the pattern is not purely an HMM artifact, though VIX
+correlation with equity returns means this is not a true exogeneity test.
 
 \textbf{Directional asymmetry.}
 Transfer entropy + quantile Granger reveal a directional asymmetry

@@ -36,6 +36,9 @@ stronger signals decay faster (``regression to the mean''). An \emph{online regi
 real-time classification with 6.6-day average detection delay. Prior
 work explains \emph{why} factors decay (arbitrage, publication effects);
 we predict \emph{when} decay will occur.
+\textbf{Limitation:} The primary HML$\to$SMB signal does not replicate
+in post-break OOS (2013--2024); this null result is consistent with
+genuine decay but limits confirmatory claims.
 
 \textbf{Motivation:} Among 30 directed Fama-French factor pairs (1990--2024),
 predictability targeting the Size factor (SMB) decays fastest. Of 7 pairs
@@ -47,8 +50,10 @@ This SMB-concentration pattern motivates the predictive models.
 Student-$t$ HMMs, we document structural breaks clustering around June 1998
 ($p < 10^{-10}$). A pre-break OOS test (HMM trained 1990--1995, tested
 1996--2007) confirms signals existed: HML$\to$SMB shows $p = 0.013$ (Elevated)
-and $p < 0.001$ (Crisis). Post-break OOS (2013--2024) yields null results,
-supporting genuine decay over overfitting. International analysis finds
+and $p < 0.001$ (Crisis). \textbf{The primary HML$\to$SMB signal does not
+replicate in post-break OOS (2013--2024), consistent with genuine decay
+rather than overfitting---after ${\sim}6$ half-lives, the expected signal
+is $<$1\% of its 1990s peak.} International analysis finds
 2/4 non-US markets with Bonferroni-surviving OOS effects; correction for
 full specification search was not applied, so results remain exploratory.
 \end{abstract}
@@ -259,7 +264,9 @@ $(\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k, \nu_k)$.
 $K = 3$ is selected by BIC on the main training window (1990--2012;
 $\Delta\text{BIC} = 1{,}680$ over $K = 2$; $K = 4$ also disfavored)
 and pre-specified for all subsequent analyses including the three-fold
-temporal validation.
+temporal validation.\footnote{$K=3$ was selected by BIC on the full 1990--2024
+sample; for the pre-break OOS design (training 1990--1995), this represents
+a form of look-ahead that should temper interpretation of those results.}
 \emph{Regime naming convention:} Labels (Normal, Elevated, Crisis) are
 statistical descriptors based on volatility and kurtosis, not calendar
 events---``Crisis'' denotes a high-kurtosis distributional state, not
@@ -497,6 +504,8 @@ effect where extreme signals tend to erode. \emph{$F$-stat volatility}
 ranks second (importance $= 0.61$), suggesting unstable relationships
 decay faster. Pair-level OOS accuracy is 60\% (6/10), reflecting the
 small sample challenge (7 decay events in 30 pairs).
+\emph{Reliability caveat:} with only 7 events, this C-index has wide
+uncertainty; results are hypothesis-generating, not confirmatory.
 
 \begin{table}[t]
 \centering
@@ -1203,6 +1212,9 @@ reduces VaR violation-rate deviation from $+1.42$pp to $+0.98$pp
 (Christoffersen conditional coverage $p = 0.083$ vs.\ $p = 0.002$ unconditional).
 Effect sizes are modest ($\Delta R^2 \approx 2\%$, Sharpe $= -0.07$);
 the contribution is diagnostic, not economically tradable.
+For practitioners, the decay predictor serves as a \emph{risk monitoring signal}
+rather than a trading signal---flagging factor pairs for closer scrutiny
+when decay probability exceeds a threshold (e.g., 70\%).
 
 \textbf{Future work:}
 (1)~direct 13F institutional holdings verification of the deleveraging

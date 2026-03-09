@@ -195,11 +195,9 @@ Neural methods require more computation and hyperparameter tuning. Our experimen
 We present a comprehensive study of neural causal discovery for financial time series. Our key contributions are:
 
 \begin{enumerate}
-    \item \textbf{Empirical characterization}: We demonstrate that neural methods significantly outperform linear baselines on nonlinear data (smooth: +15.9\%, $p=0.015$; threshold: +12.8\%, $p < 10^{-5}$), while classical methods remain preferable for linear relationships.
+    \item \textbf{Empirical characterization}: We demonstrate that neural methods significantly outperform linear baselines on nonlinear data (threshold: +12.8\%, $p < 10^{-5}$; smooth: +23.2\%, $p=0.015$), while classical methods remain preferable for linear relationships.
 
     \item \textbf{Threshold nonlinearity insight}: We show that neural methods are \textit{most} valuable when causal mechanisms involve discontinuities---a common feature in finance (margin calls, circuit breakers, rebalancing triggers).
-
-    \item \textbf{Architecture analysis}: We show that end-to-end learning with prediction loss alone fails to learn causal structure, while component-wise neural Granger succeeds by directly comparing predictive power.
 
     \item \textbf{Practical guidance}: Our results provide clear criteria for method selection---use neural methods when threshold behaviors are suspected, classical methods otherwise.
 \end{enumerate}

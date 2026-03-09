@@ -452,7 +452,7 @@ def main():
     # ---- 5. Fit Student-t HMM on training data ----
     print("\n  Fitting Student-t HMM (K=3) on training data...")
     X_train = df.loc[train_mask, factor_cols].values
-    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=42)
+    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=28)
     hmm.fit(X_train)
 
     regime_names = {0: 'Calm', 1: 'Normal', 2: 'Crisis'}

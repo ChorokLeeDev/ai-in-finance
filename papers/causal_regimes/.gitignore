@@ -1,0 +1,31 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.lof
+*.lot
+*.toc
+*.nav
+*.snm
+*.vrb
+*.bcf
+*.run.xml
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Data (public dataset, too large to track)
+/data/
+
+# Generated outputs (regenerable from code)
+/figures/
+/results/
+
+# PDFs not tracked unless explicitly added
+*.pdf

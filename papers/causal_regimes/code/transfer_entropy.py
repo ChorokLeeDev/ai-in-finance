@@ -309,7 +309,7 @@ def transfer_entropy_multilag(source, target, max_lag=9, k=5):
     return frenzel_pompe_cmi(y_t, x_past, y_past, k=k)
 
 
-def permutation_test_te(source, target, lag, k=5, n_perms=200, rng_seed=42):
+def permutation_test_te(source, target, lag, k=5, n_perms=200, rng_seed=28):
     """
     Permutation test for TE significance.
     Shuffle source to destroy temporal dependence.
@@ -325,7 +325,7 @@ def permutation_test_te(source, target, lag, k=5, n_perms=200, rng_seed=42):
     return te_observed, p_value, null_dist
 
 
-def permutation_test_te_multilag(source, target, max_lag, k=5, n_perms=200, rng_seed=42):
+def permutation_test_te_multilag(source, target, max_lag, k=5, n_perms=200, rng_seed=28):
     """Permutation test for multi-lag TE."""
     rng = np.random.RandomState(rng_seed)
     te_observed = transfer_entropy_multilag(source, target, max_lag=max_lag, k=k)
@@ -391,7 +391,7 @@ def main():
     
     # 2. Fit Student-t HMM
     print("\nFitting Student-t HMM (3 regimes)...")
-    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=42)
+    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=28)
     hmm.fit(X)
     regimes = hmm.predict(X)
     
@@ -443,8 +443,8 @@ def main():
         
         # Permutation tests at lag=1 (most informative for daily data)
         print(f"  Permutation test (n={N_PERMS}) at lag=1...")
-        te_obs_1f, p_1f, null_1f = permutation_test_te(hml_r, smb_r, lag=1, k=K_NN, n_perms=N_PERMS, rng_seed=42+r)
-        te_obs_1r, p_1r, null_1r = permutation_test_te(smb_r, hml_r, lag=1, k=K_NN, n_perms=N_PERMS, rng_seed=142+r)
+        te_obs_1f, p_1f, null_1f = permutation_test_te(hml_r, smb_r, lag=1, k=K_NN, n_perms=N_PERMS, rng_seed=28+r)
+        te_obs_1r, p_1r, null_1r = permutation_test_te(smb_r, hml_r, lag=1, k=K_NN, n_perms=N_PERMS, rng_seed=128+r)
         
         # Multi-lag TE with embedding (lags 1-9 of source, conditioning on lag-1 of target)
         print(f"  Multi-lag TE (max_lag=9)...")
@@ -454,9 +454,9 @@ def main():
         # Permutation test for multi-lag
         print(f"  Permutation test for multi-lag TE...")
         te_ml_fwd_obs, p_ml_fwd, null_ml_fwd = permutation_test_te_multilag(
-            hml_r, smb_r, max_lag=9, k=K_NN, n_perms=N_PERMS, rng_seed=242+r)
+            hml_r, smb_r, max_lag=9, k=K_NN, n_perms=N_PERMS, rng_seed=228+r)
         te_ml_rev_obs, p_ml_rev, null_ml_rev = permutation_test_te_multilag(
-            smb_r, hml_r, max_lag=9, k=K_NN, n_perms=N_PERMS, rng_seed=342+r)
+            smb_r, hml_r, max_lag=9, k=K_NN, n_perms=N_PERMS, rng_seed=328+r)
         
         z_1f = (te_obs_1f - np.mean(null_1f)) / np.std(null_1f) if np.std(null_1f) > 0 else 0
         z_1r = (te_obs_1r - np.mean(null_1r)) / np.std(null_1r) if np.std(null_1r) > 0 else 0

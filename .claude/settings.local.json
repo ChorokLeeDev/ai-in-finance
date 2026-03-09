@@ -50,9 +50,22 @@
       "Bash(timeout 120 python:*)",
       "Bash(pkill:*)",
       "Bash(unzip:*)",
-      "Bash(git status:*)"
+      "Bash(git status:*)",
+      "Bash(bibtex:*)",
+      "Bash(grep:*)",
+      "Bash(PYTHONPATH=/Users/i767700/Github/ai-in-finance:$PYTHONPATH python3:*)",
+      "Bash(file:*)",
+      "Bash(xargs:*)",
+      "Bash(for key in fisch2021efficient vovk2012conditional lei2018distribution park2021pac foygel2021limits papadopoulos2002inductive lei2014distribution shafer2008tutorial)",
+      "Bash(do if grep -q \"$key\" main.tex)",
+      "Bash(then echo \"USED: $key\")",
+      "Bash(else echo \"UNUSED: $key\")",
+      "Bash(fi)",
+      "Bash(done)",
+      "Bash(PYTHONPATH=/Users/i767700/Github/ai-in-finance:$PYTHONPATH /usr/bin/python3:*)"
     ],
     "deny": [],
     "ask": []
-  }
+  },
+  "outputStyle": "Explanatory"
 }

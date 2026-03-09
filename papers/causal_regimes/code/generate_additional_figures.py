@@ -608,7 +608,7 @@ def main():
 
     # 2. Fit Student-t HMM with 3 regimes
     print("\nFitting Student-t HMM (3 regimes)...")
-    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=42)
+    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=28)
     hmm.fit(X)
 
     regimes = np.argmax(hmm.gamma, axis=1)

@@ -54,7 +54,7 @@ def granger_f(target, predictor, clean_idx, lag=1):
     return ((rr - ru) / df1) / (ru / df2)
 
 
-def run_permutation_test(test_regimes, target, predictor, n_perm=10000, lag=FIXED_LAG, seed=42):
+def run_permutation_test(test_regimes, target, predictor, n_perm=10000, lag=FIXED_LAG, seed=28):
     """
     Permute OOS regime labels (preserving counts) n_perm times.
     Computes Granger F on the permuted 'Elevated' (idx=1) set each time.
@@ -160,7 +160,7 @@ def main():
     # Permutation test for Elevated regime (MOM -> SMB)
     print(f"\n--- Permutation test (Elevated, MOM -> SMB, n_perm=10000) ---")
     actual_F, perm_p, perm_95, perm_se = run_permutation_test(
-        test_regimes, smb, mom, n_perm=10000, lag=FIXED_LAG, seed=42)
+        test_regimes, smb, mom, n_perm=10000, lag=FIXED_LAG, seed=28)
 
     # Compile results
     elevated_result = granger['Elevated']['result']

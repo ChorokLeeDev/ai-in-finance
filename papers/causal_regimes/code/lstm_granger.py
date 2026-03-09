@@ -828,9 +828,9 @@ def main():
     hml = ff5["HML"].values
 
     # --- Fit HMM ---
-    print("\n[2/4] Fitting Student-t HMM (3 regimes, random_state=42)...")
+    print("\n[2/4] Fitting Student-t HMM (3 regimes, random_state=28)...")
     obs = ff5[["Mkt-RF", "SMB", "HML"]].values
-    hmm = StudentTHMM(n_regimes=3, random_state=42)
+    hmm = StudentTHMM(n_regimes=3, random_state=28)
     hmm.fit(obs)
     regimes = hmm.predict(obs)
 

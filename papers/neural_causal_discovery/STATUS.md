@@ -1,9 +1,9 @@
 # Status
 
-## Current Phase: 2 → 3 (Transitioning)
-## Iteration: 3
-## Last Action: Completed RANCD architecture design and implementation
-## Next Action: Start Phase 3 - Baseline Implementation
+## Current Phase: 3 → 4 (Transitioning)
+## Iteration: 11
+## Last Action: Completed Phase 3 - Baseline Implementation
+## Next Action: Start Phase 4 - Full Experiments
 ## Blockers: None
 
 ### Phase 1 Completion ✅
@@ -19,6 +19,26 @@
 - [x] Combined RANCD model with 4 loss terms
 - [x] Model test passed ✅
 
+### Phase 3 Completion ✅
+- [x] Implement Linear Granger Causality (baselines.py)
+- [x] Implement NOTEARS (baselines.py)
+- [x] Implement VAR Model (baselines.py)
+- [x] Implement SimpleLSTM baseline (baselines.py)
+- [x] Create data_loader.py with:
+  - [x] SyntheticCausalData (regime-switching)
+  - [x] FamaFrenchLoader
+  - [x] TimeSeriesDataset + DataLoader
+- [x] Quick baseline tests passed:
+  - Granger F1: 0.588
+  - VAR F1: 0.667
+
+### Phase 4 TODO
+- [ ] Full synthetic experiments (5 trials)
+- [ ] Regime detection experiments (ARI)
+- [ ] Fama-French real data experiments
+- [ ] Crisis analysis
+- [ ] Save all results
+
 ### Architecture Summary
 ```
 RANCD: Regime-Aware Neural Causal Discovery
@@ -27,4 +47,10 @@ RANCD: Regime-Aware Neural Causal Discovery
 ├── GraphStructureLearner: Regime-conditioned edge prediction
 ├── DAGConstraint: NOTEARS acyclicity
 └── CausalPredictor: Graph-masked Granger prediction
+
+Baselines:
+├── LinearGrangerCausality: VAR + F-test
+├── NOTEARS: Continuous DAG learning
+├── VARModel: Vector autoregression
+└── SimpleLSTM: Sequence prediction (no structure)
 ```

@@ -7,7 +7,7 @@ Produces two outputs:
 2. hac_granger_results.json — standard F-test vs HAC (Newey-West) Wald test
 
 Uses the SAME StudentTHMM implementation as critical_fixes_analysis.py
-(K=3, random_state=42, regime ordering by mean factor norm).
+(K=3, random_state=28, regime ordering by mean factor norm).
 """
 
 import numpy as np
@@ -479,9 +479,9 @@ def main():
     assert len(df) == 8817, f"Expected 8,817 trading days, got {len(df)}"
     print(f"Data verification: {len(df)} trading days -- matches paper's 8,817")
 
-    # Step 2: Fit Student-t HMM (K=3, random_state=42)
-    print("\nFitting Student-t HMM (K=3, random_state=42)...")
-    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=42)
+    # Step 2: Fit Student-t HMM (K=3, random_state=28)
+    print("\nFitting Student-t HMM (K=3, random_state=28)...")
+    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=28)
     hmm.fit(df.values)
 
     regimes = hmm.predict(df.values, use_filtered=False)

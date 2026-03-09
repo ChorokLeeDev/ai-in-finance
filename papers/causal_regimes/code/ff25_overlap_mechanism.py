@@ -409,7 +409,7 @@ def main():
     print("\n  Fitting Student-t HMM (K=3) on full sample...")
     factor_cols = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
     X = df_factors[factor_cols].values
-    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=42)
+    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=28)
     hmm.fit(X)
     regimes = hmm.predict(X, use_filtered=False)
 
@@ -530,7 +530,7 @@ def main():
 
     # Spatial permutation test (10,000 shuffles)
     n_perms = 10000
-    np.random.seed(42)
+    np.random.seed(28)
     rho_perms = np.zeros(n_perms)
     for perm_i in range(n_perms):
         # Shuffle the assignment of Granger p-values to grid positions

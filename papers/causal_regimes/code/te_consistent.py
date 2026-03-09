@@ -291,7 +291,7 @@ def transfer_entropy_multilag(source, target, max_lag=9, k=5):
     return frenzel_pompe_cmi(y_t, x_past, y_past, k=k)
 
 
-def permutation_test_te(source, target, lag, k=5, n_perms=200, rng_seed=42):
+def permutation_test_te(source, target, lag, k=5, n_perms=200, rng_seed=28):
     """Permutation test for TE significance."""
     rng = np.random.RandomState(rng_seed)
     te_observed = transfer_entropy(source, target, lag=lag, k=k)
@@ -305,7 +305,7 @@ def permutation_test_te(source, target, lag, k=5, n_perms=200, rng_seed=42):
     return te_observed, p_value, z_score, null_dist
 
 
-def permutation_test_te_multilag(source, target, max_lag, k=5, n_perms=200, rng_seed=42):
+def permutation_test_te_multilag(source, target, max_lag, k=5, n_perms=200, rng_seed=28):
     """Permutation test for multi-lag TE."""
     rng = np.random.RandomState(rng_seed)
     te_observed = transfer_entropy_multilag(source, target, max_lag=max_lag, k=k)
@@ -377,8 +377,8 @@ def main():
     print(f"\nTotal trading days: {len(X)}")
 
     # 2. Fit Student-t HMM (K=3)
-    print("\nFitting Student-t HMM (K=3, random_state=42)...")
-    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=42)
+    print("\nFitting Student-t HMM (K=3, random_state=28)...")
+    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=28)
     hmm.fit(X)
     regimes = hmm.predict(X)
 
@@ -446,11 +446,11 @@ def main():
 
             # HML -> SMB with permutation test
             te_f, p_f, z_f, null_f = permutation_test_te(
-                hml_r, smb_r, lag=lag, k=K_NN, n_perms=N_PERMS, rng_seed=42+r*100+lag)
+                hml_r, smb_r, lag=lag, k=K_NN, n_perms=N_PERMS, rng_seed=28+r*100+lag)
 
             # SMB -> HML with permutation test
             te_r, p_r, z_r, null_r = permutation_test_te(
-                smb_r, hml_r, lag=lag, k=K_NN, n_perms=N_PERMS, rng_seed=142+r*100+lag)
+                smb_r, hml_r, lag=lag, k=K_NN, n_perms=N_PERMS, rng_seed=128+r*100+lag)
 
             sig_f = "***" if p_f < 0.01 else ("**" if p_f < 0.05 else ("*" if p_f < 0.1 else ""))
             sig_r = "***" if p_r < 0.01 else ("**" if p_r < 0.05 else ("*" if p_r < 0.1 else ""))
@@ -472,9 +472,9 @@ def main():
         print(f"  Multi-lag (1-9): ", end="", flush=True)
         t_ml = time.time()
         te_ml_f, p_ml_f, z_ml_f, null_ml_f = permutation_test_te_multilag(
-            hml_r, smb_r, max_lag=9, k=K_NN, n_perms=N_PERMS, rng_seed=242+r)
+            hml_r, smb_r, max_lag=9, k=K_NN, n_perms=N_PERMS, rng_seed=228+r)
         te_ml_r, p_ml_r, z_ml_r, null_ml_r = permutation_test_te_multilag(
-            smb_r, hml_r, max_lag=9, k=K_NN, n_perms=N_PERMS, rng_seed=342+r)
+            smb_r, hml_r, max_lag=9, k=K_NN, n_perms=N_PERMS, rng_seed=328+r)
         print(f"HML->SMB={te_ml_f:+.5f} (p={p_ml_f:.3f}, z={z_ml_f:+.2f})  "
               f"SMB->HML={te_ml_r:+.5f} (p={p_ml_r:.3f}, z={z_ml_r:+.2f})  "
               f"[{time.time()-t_ml:.1f}s]")

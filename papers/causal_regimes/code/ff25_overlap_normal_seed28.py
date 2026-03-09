@@ -7,8 +7,7 @@ but uses the PRIMARY HMM fit (seed=28, full-sample 1990-2024) and tests the
 Normal regime (Bonferroni-significant Granger: p=8.75e-9).
 
 Motivation:
-  The existing analysis (ff25_overlap_mechanism.py) uses seed=42 (sensitivity
-  fit) on the Crisis regime. The method critic identified this as a structural
+  The existing analysis (ff25_overlap_mechanism.py) tests the Crisis regime. The method critic identified this as a structural
   weakness: the mechanism evidence and the primary statistical claim come from
   different model fits. This script runs the spatial gradient test under the
   primary fit, in the Normal regime, which carries the Bonferroni-significant

@@ -9,7 +9,7 @@ Extends the risk monitoring backtest with:
   4. COVID-19 drill-down (why all models show identical 20% violation rate)
   5. False alarm cost analysis for HML-Informed model
 
-Uses the same Student-t HMM (K=3, random_state=42), trained on 1990-2012,
+Uses the same Student-t HMM (K=3, random_state=28), trained on 1990-2012,
 tested out-of-sample 2013-2024.
 
 Output: results/var_fixes_results.json
@@ -628,12 +628,12 @@ def main():
     # 2. FIT STUDENT-T HMM
     # ================================================================
     print("\n" + "=" * 78)
-    print("FITTING STUDENT-T HMM (K=3, random_state=42)")
+    print("FITTING STUDENT-T HMM (K=3, random_state=28)")
     print("=" * 78)
 
     factor_cols = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
     X_train = df.loc[train_mask, factor_cols].values
-    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=42)
+    hmm = StudentTHMM(n_regimes=3, n_iter=100, tol=1e-4, random_state=28)
     hmm.fit(X_train)
 
     regime_names = {0: 'Calm', 1: 'Normal', 2: 'Crisis'}

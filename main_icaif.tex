@@ -19,7 +19,7 @@
 \sloppy
 \emergencystretch 1.5em
 
-\title{Cross-Factor Predictability Has a Half-Life: Value-to-Size Granger Causality Collapsed Around 1998}
+\title{Cross-Factor Predictability Has a Half-Life: Evidence of Structural Decay in Value-to-Size Granger Causality}
 
 \author{Anonymous}
 \affiliation{%
@@ -29,10 +29,13 @@
 
 \begin{abstract}
 Value-to-Size (HML$\to$SMB) Granger predictability in US equity factors
-collapsed around June 1998 and has remained null for over two decades.
+underwent structural decay beginning in the late 1990s and has remained
+null for over two decades.
 Using a regime-conditional Granger framework with Student-$t$ Hidden
-Markov Models, we document this structural break ($p = 1.23 \times 10^{-13}$,
-Quandt-Andrews sup-$F$; 90\% bootstrap CI: 1993--2014) and estimate an
+Markov Models, we document a structural break with point estimate at
+June 1998 ($p = 1.23 \times 10^{-13}$, Quandt-Andrews sup-$F$;
+90\% bootstrap CI: 1993--2014, reflecting substantial uncertainty in
+break timing) and estimate an
 exponential decay with half-life $= 3.35$ years. The pre-break signal
 is highly significant ($p = 8.75 \times 10^{-9}$, Bonferroni-corrected
 across 30 factor pairs); the post-2008 coefficient is indistinguishable
@@ -41,14 +44,16 @@ from zero (95\% CI $[-0.049, 0.073]$).
 Three validations address circularity concerns: (1)~VIX-exogenous regimes
 replicate the break ($p = 0.003$); (2)~a holdout HMM (trained 1990--2005)
 preserves significance; (3)~Markov-Switching VAR comparison shows 64\%
-regime agreement with consistent break detection (both detect 2008 GFC, 2000 dot-com, 2020 COVID).
+regime agreement with consistent break detection.
 International analysis finds in-sample structural breaks in all four non-US markets,
 with 2/4 producing Bonferroni-surviving out-of-sample effects.
 Analysis of all 30 directed pairs reveals decay concentrated in
 Size-target relationships (4/7 decaying pairs).
 
-The primary finding does not replicate out-of-sample---consistent with
-the decay model predicting $<$1\% residual signal by 2013.
+The primary finding does not replicate out-of-sample. While consistent with
+the decay model predicting $<$1\% residual signal by 2013, we acknowledge
+this interpretation is not uniquely identified: OOS failure could also reflect
+initial overfitting or sample-specific patterns.
 For risk management, adding HML as a regime-conditional stress indicator
 reduces VaR violation-rate deviation from $+1.42$pp to $+0.98$pp
 (Christoffersen $p = 0.083$).
@@ -702,7 +707,9 @@ with posterior $P(H_1) > 0.9999$ under equal priors.
 
 \textbf{Decay rate comparison.}
 Rolling 5-year Granger analysis in Normal regime reveals differential decay rates
-across factor pairs. HML$\to$SMB decays rapidly (half-life $= 3.57$ years, $R^2 = 0.886$),
+across factor pairs. HML$\to$SMB decays rapidly (Normal-regime-specific half-life $= 3.57$ years, $R^2 = 0.886$;
+this differs from the full-sample half-life of 3.35 years reported in the abstract
+due to regime-conditional subsetting),
 while MOM$\to$SMB decays more slowly (half-life $= 11.85$ years, $R^2 = 0.428$).
 Both pairs show significant structural breaks at 2008 (HML$\to$SMB: pre-2008 mean $F = 7.0$,
 post-2008 mean $F = 1.3$, $p = 2.3 \times 10^{-7}$; MOM$\to$SMB: pre-2008 mean $F = 3.6$,
@@ -946,9 +953,12 @@ agreement);
 (2)~holdout HMM (trained 1990--2005, tested 2006--2024) preserves
 significance in the moderate-volatility regime ($F = 23.6$,
 $p < 10^{-5}$) and 3 of 4 temporal-CV folds ($p < 0.026$);
-(3)~frozen OOS with three-fold temporal split, though the three-fold
-nulls may partly reflect regime drift rather than purely structural
-decay.
+(3)~frozen OOS with three-fold temporal split (trained 1990--2000),
+where all folds show null ($p > 0.10$). The discrepancy between
+holdout (significant) and three-fold (null) reflects training-window
+sensitivity: the 1990--2005 window captures more pre-decay signal
+than 1990--2000, enabling better regime calibration. This sensitivity
+is a limitation, though both designs agree that post-2008 signal is null.
 A likelihood-ratio test for regime-parameter stability between
 1990--2012 and 2013--2024 sub-periods yields $\chi^2 = 2{,}389$
 (df $= 71$, $p \approx 0$), confirming that HMM parameters shift
@@ -977,6 +987,9 @@ $\Delta\text{BIC} = 218$) RF shows nonlinear improvement ($p = 0.010$).
 Effect sizes are modest ($\Delta R^2 \approx 2\%$); findings are
 diagnostic, not alpha-generative. Practitioners should not rely on
 Tier~3 OOS for trading.
+The power analysis (\S\ref{sec:oos}) is post-hoc and uses observed
+effect sizes, which may understate true uncertainty; a priori power
+calculations were not performed.
 The multiple testing burden may be understated: tests across regimes,
 lags, and kernel specifications are not fully corrected via Bonferroni
 or false discovery rate adjustment. Given the specification search

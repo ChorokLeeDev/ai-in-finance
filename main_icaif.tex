@@ -28,29 +28,28 @@
 }
 
 \begin{abstract}
-We analyze Granger causality decay across all 30 directed Fama-French
-factor pairs (1990--2024) and find a striking pattern: predictability
-targeting the Size factor (SMB) decays fastest. Among 7 pairs showing
-exponential decay ($R^2 > 0.3$), 4 are SMB-target relationships
-(Mkt-RF$\to$SMB, CMA$\to$SMB, HML$\to$SMB, RMW$\to$SMB) with
-half-lives of 2.4--4.1 years. The remaining 23 pairs show no systematic decay.
+We develop ML models that predict when cross-factor predictability will
+erode, enabling prospective risk management. A \emph{decay prediction model}
+achieves OOS AUC $= 0.735$ on held-out factor pairs, providing early
+warning of signal erosion. An \emph{online regime detector} enables
+real-time classification with 6.6-day average detection delay. Prior
+work explains \emph{why} factors decay (arbitrage, publication effects);
+we predict \emph{when} decay will occur.
 
-Using a regime-conditional Granger framework with Student-$t$ HMMs,
-we document structural breaks in SMB-target pairs clustering around
-June 1998 ($p < 10^{-10}$). A pre-break out-of-sample test (HMM trained
-1990--1995, tested 1996--2007) confirms the signal existed: HML$\to$SMB
-shows $p = 0.013$ (Elevated) and $p < 0.001$ (Crisis). Post-break OOS
-(2013--2024) yields null results. This temporal asymmetry---pre-break
-success, post-break failure---supports genuine decay over overfitting.
+\textbf{Motivation:} Among 30 directed Fama-French factor pairs (1990--2024),
+predictability targeting the Size factor (SMB) decays fastest. Of 7 pairs
+showing exponential decay ($R^2 > 0.3$), 4 target SMB
+(Mkt-RF$\to$SMB, CMA$\to$SMB, HML$\to$SMB, RMW$\to$SMB; half-lives 2.4--4.1 years).
+This SMB-concentration pattern motivates the predictive models.
 
-\textbf{ML contributions:} (1)~A \emph{decay prediction model} achieves
-OOS AUC $= 0.735$ on held-out factor pairs, enabling early warning of
-signal erosion; (2)~An \emph{online regime detector} provides real-time
-classification with 6.6-day average detection delay. These tools transform
-observational findings into actionable ML pipelines for quantitative
-risk management. International analysis finds 2/4 non-US markets with
-Bonferroni-surviving OOS effects; correction for full specification
-search was not applied, so results remain exploratory.
+\textbf{Methodology:} Using a regime-conditional Granger framework with
+Student-$t$ HMMs, we document structural breaks clustering around June 1998
+($p < 10^{-10}$). A pre-break OOS test (HMM trained 1990--1995, tested
+1996--2007) confirms signals existed: HML$\to$SMB shows $p = 0.013$ (Elevated)
+and $p < 0.001$ (Crisis). Post-break OOS (2013--2024) yields null results,
+supporting genuine decay over overfitting. International analysis finds
+2/4 non-US markets with Bonferroni-surviving OOS effects; correction for
+full specification search was not applied, so results remain exploratory.
 \end{abstract}
 
 \begin{CCSXML}
@@ -131,26 +130,27 @@ survive Bonferroni correction.
 The contribution rests on Tiers~1--2; Tier~3 is reported for
 transparency, not claimed as validation.
 
-\textbf{Methodological contributions.}
-(i)~A reusable regime-conditional Granger framework
+\textbf{Contributions.}
+(i)~A \emph{decay prediction model} (OOS AUC $= 0.735$) that identifies
+factor pairs at risk of Granger-predictability erosion before signals fail,
+enabling prospective risk management rather than retrospective explanation.
+(ii)~An \emph{online regime detector} (6.6-day average delay) for real-time
+regime classification in streaming risk systems.
+(iii)~A reusable regime-conditional Granger framework
 (Algorithm~\ref{alg:protocol}) that detects latent-state-dependent
 predictive structure, validated on 30 directed pairs across 5 markets.
 The framework reveals state-heterogeneous patterns (defined as $\max_k(p_k) - \min_k(p_k) > 0.10$ across regimes $k$) in 63\% of pairs.
-The all-pairs analysis is primary: among 30 directed factor pairs,
+(iv)~Empirical findings: among 30 directed factor pairs,
 7 exhibit decay ($R^2 > 0.3$, half-life $< 50$ years), with 4/7
 concentrated in Size-target relationships. Value$\to$Size is illustrative
-of this pattern (Bonferroni-significant in Normal, $p = 8.75 \times 10^{-9}$,
-absent post-2008), selected for economic interpretability rather than
-extreme statistical heterogeneity (ranks 27th of 30 by heterogeneity score).
-(ii)~A model-complexity diagnostic (OLS$\to$RF$\to$MLP$\to$LSTM + transfer
+(Bonferroni-significant in Normal, $p = 8.75 \times 10^{-9}$,
+absent post-2008), selected for economic interpretability (ranks 27th of 30 by heterogeneity score).
+(v)~A model-complexity diagnostic (OLS$\to$RF$\to$MLP$\to$LSTM + transfer
 entropy + quantile regression) that separates linear from nonlinear channels:
 for Value$\leftrightarrow$Size, this reveals a directional asymmetry
 (linear forward, nonlinear reverse via tail dependence) invisible to
 conditional-mean methods, showing \emph{state heterogeneity}
 $\neq$ \emph{quantile heterogeneity} for this pair (unique among 19 tested).
-(iii)~A practical HMM estimation strategy under competing criteria:
-50-seed multistart exposes 7 local-optima clusters, providing
-a decision rule for robust latent-state inference.
 Effect sizes are modest ($\Delta R^2 \approx 2\%$, Sharpe $= -0.07$);
 the contribution is diagnostic, not economically tradable.
 
@@ -191,6 +191,15 @@ We are unaware of prior work combining regime-conditional Granger
 with model-complexity stratification and transfer entropy to map the
 linear--nonlinear boundary of predictive information flow.
 
+\textbf{Factor decay literature.}
+McLean \& Pontiff~\cite{mclean2016does} document that anomaly returns
+decline post-publication, attributing decay to arbitrage.
+Falck et al.~\cite{falck2021value} explain \emph{why} value specifically
+decayed (institutional arbitrage of the value spread). Our work is
+complementary: we do not explain why decay occurs but rather predict
+\emph{when} it will occur, transforming post-hoc explanation into
+prospective risk signals.
+
 \section{Methodology}
 
 \textbf{Design rationale.} The framework proceeds in three phases:
@@ -215,6 +224,10 @@ conditional-mean methods alone.
 \STATE \textbf{Quantile Granger:} Quantile regression; Wald test for tail dependence
 \end{algorithmic}
 \end{algorithm}
+
+The framework enables two predictive extensions (\S\ref{sec:prediction}):
+a decay prediction model for early warning and an online regime detector
+for real-time deployment.
 
 \textbf{Computational cost.} Per-seed HMM EM requires $O(TK^2D^2)$ per
 iteration (forward-backward over $T$ steps, $K$ states, $D$-dimensional
@@ -457,6 +470,78 @@ so hard Viterbi assignments are not driving the result.
 Rolling 3-year unconditional Granger analysis (Figure~\ref{fig:rolling}) shows
 episodic significance peaks during stress periods, consistent with the
 regime-conditional finding.
+
+\subsection{Predictive Models (ML Contribution)}
+\label{sec:prediction}
+
+Beyond documenting decay patterns, we develop two predictive models
+that transform observational findings into actionable ML tools.
+
+\textbf{Decay Prediction Model.}
+Can we predict which factor pairs will experience Granger decay before
+it occurs? We train classifiers on 20 factor pairs and test on 10
+held-out pairs. Features include: current $F$-statistic, rolling mean/std
+of $F$, crisis regime percentage, factor correlation, and $F$-stat momentum.
+Target: binary decay indicator (whether $F$ drops below significance
+within 5 years).
+
+Results (Table~\ref{tab:decay_pred}): Logistic regression achieves
+OOS AUC $= 0.735$ (vs.\ 0.5 random baseline), correctly identifying
+4/5 actual decay cases on held-out pairs. The most predictive feature
+is \emph{current $F$-statistic} (coefficient $= 1.55$): higher current
+significance implies more room to decay. \emph{Crisis regime percentage}
+is the third-ranked feature, suggesting that stress-period exposure
+accelerates decay. Ensemble methods (XGBoost) show higher CV AUC (0.81)
+but worse OOS generalization (0.71), indicating simpler models transfer
+better across pairs.
+
+\begin{table}[t]
+\centering
+\caption{Decay Prediction Model: OOS Performance on 10 Held-out Pairs}
+\label{tab:decay_pred}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Model & CV AUC & OOS AUC & Precision & F1 \\
+\midrule
+Logistic Regression & 0.769 & \textbf{0.735} & 0.68 & 0.71 \\
+Random Forest & 0.795 & 0.724 & 0.70 & 0.72 \\
+Gradient Boosting & 0.806 & 0.728 & 0.71 & 0.73 \\
+XGBoost & 0.813 & 0.710 & 0.69 & 0.72 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Online Regime Detection.}
+Batch HMMs require the full sample, precluding real-time deployment.
+We compare online alternatives for streaming regime classification:
+(1)~Online HMM with incremental Baum-Welch updates;
+(2)~Rolling-window HMM (re-fit monthly);
+(3)~Volatility threshold baseline.
+
+Results (Table~\ref{tab:online}): Online HMM achieves fastest detection
+(mean delay $= 0.2$ days) but lowest accuracy (50.5\%) due to over-adaptation.
+Rolling HMM balances speed (6.6 days) and stability (F1 $= 0.39$).
+The simple volatility threshold achieves highest accuracy (53\%) but
+slowest detection (18.3 days). For risk management applications requiring
+real-time signals, rolling HMM offers the best tradeoff; for retrospective
+analysis, batch HMM remains preferred.
+
+\begin{table}[t]
+\centering
+\caption{Online Regime Detection: Speed-Accuracy Tradeoff}
+\label{tab:online}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Method & Detection Delay & Accuracy & F1 \\
+\midrule
+Online HMM & \textbf{0.2 days} & 50.5\% & 0.22 \\
+Rolling HMM (monthly) & 6.6 days & 47.6\% & 0.39 \\
+Volatility Threshold & 18.3 days & \textbf{53.0\%} & \textbf{0.48} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Complexity Characterization and Directional Asymmetry}
 \label{sec:complexity}
@@ -1020,96 +1105,24 @@ Note that regime composition shifts at higher $N$ (Normal share
 declines from 53.6\% at $N{=}6$ to 28.5\% at $N{=}18$), so per-regime
 results should be interpreted with dimension-specific regime labels.
 
-\subsection{Predictive Models (ML Contribution)}
-
-Beyond documenting decay patterns, we develop two predictive models
-that transform observational findings into actionable ML tools.
-
-\textbf{Decay Prediction Model.}
-Can we predict which factor pairs will experience Granger decay before
-it occurs? We train classifiers on 20 factor pairs and test on 10
-held-out pairs. Features include: current $F$-statistic, rolling mean/std
-of $F$, crisis regime percentage, factor correlation, and $F$-stat momentum.
-Target: binary decay indicator (whether $F$ drops below significance
-within 5 years).
-
-Results (Table~\ref{tab:decay_pred}): Logistic regression achieves
-OOS AUC $= 0.735$ (vs.\ 0.5 random baseline), correctly identifying
-4/5 actual decay cases on held-out pairs. The most predictive feature
-is \emph{current $F$-statistic} (coefficient $= 1.55$): higher current
-significance implies more room to decay. \emph{Crisis regime percentage}
-is the third-ranked feature, suggesting that stress-period exposure
-accelerates decay. Ensemble methods (XGBoost) show higher CV AUC (0.81)
-but worse OOS generalization (0.71), indicating simpler models transfer
-better across pairs.
-
-\begin{table}[t]
-\centering
-\caption{Decay Prediction Model: OOS Performance on 10 Held-out Pairs}
-\label{tab:decay_pred}
-\small
-\begin{tabular}{@{}lcccc@{}}
-\toprule
-Model & CV AUC & OOS AUC & Precision & F1 \\
-\midrule
-Logistic Regression & 0.769 & \textbf{0.735} & 0.68 & 0.71 \\
-Random Forest & 0.795 & 0.724 & 0.70 & 0.72 \\
-Gradient Boosting & 0.806 & 0.728 & 0.71 & 0.73 \\
-XGBoost & 0.813 & 0.710 & 0.69 & 0.72 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\textbf{Online Regime Detection.}
-Batch HMMs require the full sample, precluding real-time deployment.
-We compare online alternatives for streaming regime classification:
-(1)~Online HMM with incremental Baum-Welch updates;
-(2)~Rolling-window HMM (re-fit monthly);
-(3)~Volatility threshold baseline.
-
-Results (Table~\ref{tab:online}): Online HMM achieves fastest detection
-(mean delay $= 0.2$ days) but lowest accuracy (50.5\%) due to over-adaptation.
-Rolling HMM balances speed (6.6 days) and stability (F1 $= 0.39$).
-The simple volatility threshold achieves highest accuracy (53\%) but
-slowest detection (18.3 days). For risk management applications requiring
-real-time signals, rolling HMM offers the best tradeoff; for retrospective
-analysis, batch HMM remains preferred.
-
-\begin{table}[t]
-\centering
-\caption{Online Regime Detection: Speed-Accuracy Tradeoff}
-\label{tab:online}
-\small
-\begin{tabular}{@{}lccc@{}}
-\toprule
-Method & Detection Delay & Accuracy & F1 \\
-\midrule
-Online HMM & \textbf{0.2 days} & 50.5\% & 0.22 \\
-Rolling HMM (monthly) & 6.6 days & 47.6\% & 0.39 \\
-Volatility Threshold & 18.3 days & \textbf{53.0\%} & \textbf{0.48} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
 \section{Conclusion}
 
-\textbf{Empirical finding: Size-target predictability decays fastest.}
+\textbf{Prediction enables action.}
+We develop two ML models that transform retrospective factor analysis
+into prospective risk management: (1)~a \emph{decay prediction model}
+(OOS AUC $= 0.735$) that flags at-risk factor pairs before signals erode,
+and (2)~an \emph{online regime detector} (6.6-day delay) that enables
+real-time position adjustment. These tools address a gap in the factor
+decay literature: prior work explains \emph{why} factors fail (arbitrage,
+publication effects); we predict \emph{when} they will fail.
+
+\textbf{Motivation: Size-target predictability decays fastest.}
 Among 30 directed Fama-French factor pairs, 7 exhibit exponential decay
 in Granger predictability ($R^2 > 0.3$). Strikingly, 4 of these 7 (57\%)
 target the Size factor (SMB): Mkt-RF$\to$SMB (half-life 2.4y),
 CMA$\to$SMB (3.1y), HML$\to$SMB (3.35y), and RMW$\to$SMB (4.1y).
 Pre-break OOS (1996--2007) confirms signals existed; post-break OOS
 (2013--2024) shows decay---supporting genuine erosion over overfitting.
-
-\textbf{ML contributions.}
-We transform this observation into actionable tools:
-(1)~A \emph{decay prediction model} (OOS AUC $= 0.735$) provides early
-warning of signal erosion, enabling practitioners to anticipate when
-factor relationships will fail.
-(2)~An \emph{online regime detector} (6.6-day delay) enables real-time
-regime classification for streaming risk systems.
-These models generalize the framework beyond retrospective analysis
-to prospective risk management.
 
 \textbf{Practical implications.}
 Factor-based strategies should not assume stable cross-factor relationships.

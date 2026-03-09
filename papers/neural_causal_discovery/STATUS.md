@@ -1,18 +1,30 @@
 # Status
 
-## Current Phase: 1 → 2 (Transitioning)
-## Iteration: 2
-## Last Action: Completed literature review, created LITERATURE.md
-## Next Action: Start Phase 2 - Architecture Design
+## Current Phase: 2 → 3 (Transitioning)
+## Iteration: 3
+## Last Action: Completed RANCD architecture design and implementation
+## Next Action: Start Phase 3 - Baseline Implementation
 ## Blockers: None
 
 ### Phase 1 Completion ✅
-- [x] Tank et al. (2021) - Neural Granger
-- [x] Zheng et al. (2018) - NOTEARS
-- [x] Kipf et al. (2018) - NRI
-- [x] Runge et al. (2019) - PCMCI
-- [x] Xu et al. (2021) - DS³M
+- [x] Literature review (5 papers)
 - [x] Novelty claim defined
 
-### Novelty Claim
-> "We propose the first neural architecture that jointly learns causal graph structure and latent regime dynamics, enabling discovery of time-varying causal relationships in financial networks."
+### Phase 2 Completion ✅
+- [x] Factor Encoder (per-factor LSTM with attention pooling)
+- [x] Regime Encoder (Transformer + regime classifier)
+- [x] Graph Structure Learner (regime-conditional pair-wise MLP)
+- [x] DAG Constraint (NOTEARS-style tr(e^{W∘W}) - d)
+- [x] Causal Predictor (graph-masked prediction)
+- [x] Combined RANCD model with 4 loss terms
+- [x] Model test passed ✅
+
+### Architecture Summary
+```
+RANCD: Regime-Aware Neural Causal Discovery
+├── FactorEncoder: Per-factor LSTM embeddings
+├── RegimeEncoder: Transformer → regime probabilities
+├── GraphStructureLearner: Regime-conditioned edge prediction
+├── DAGConstraint: NOTEARS acyclicity
+└── CausalPredictor: Graph-masked Granger prediction
+```

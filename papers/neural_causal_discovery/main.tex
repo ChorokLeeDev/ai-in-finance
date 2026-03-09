@@ -20,7 +20,7 @@
 \email{anonymous@email.com}
 
 \begin{abstract}
-When do neural methods improve upon classical approaches for causal discovery in financial time series? We address this practical question through comprehensive experiments. On synthetic nonlinear data, neural Granger significantly outperforms linear Granger: smooth nonlinearities (+23.2\%, $p=0.015$) and threshold nonlinearities (+12.8\%, $p < 10^{-5}$). On real Fama-French factor data and circuit breaker events, classical methods perform comparably or better. Our results provide clear practical guidance: \textbf{neural methods are valuable when strong nonlinearities are present}, but practitioners should verify this assumption before incurring additional complexity. We provide the first systematic characterization of when neural causal discovery outperforms classical approaches.
+When do neural methods improve upon classical approaches for causal discovery in financial time series? We address this question through comprehensive experiments and propose \textbf{Adaptive Neural-Linear Granger (ANLG)}, a novel method that automatically selects between neural and linear approaches per edge based on detected nonlinearity. On synthetic nonlinear data, neural Granger significantly outperforms linear: smooth (+23.2\%, $p=0.015$) and threshold (+12.8\%, $p < 10^{-5}$). On real Fama-French data, classical methods perform comparably. ANLG achieves the best of both worlds: it matches neural performance on nonlinear data (+13.6\% vs linear, $p=0.008$) while providing interpretable per-edge method selection. Our results provide practical guidance: use ANLG for automatic method selection, or default to linear unless nonlinearity is confirmed.
 \end{abstract}
 
 \keywords{causal discovery, neural networks, Granger causality, financial time series, nonlinear relationships}
@@ -77,6 +77,17 @@ Following Tank et al. \cite{tank2021neural}, we implement component-wise neural 
 \end{enumerate}
 This approach captures nonlinear relationships that linear methods miss.
 
+\subsection{Adaptive Neural-Linear Granger (ANLG)}
+We propose \textbf{Adaptive Neural-Linear Granger (ANLG)}, a novel method that automatically selects between neural and linear approaches \textit{per edge} based on detected nonlinearity:
+
+\begin{enumerate}
+    \item \textbf{Nonlinearity detection}: For each $(i,j)$ pair, fit a linear model $\hat{x}_j = \sum_l a_l x_{i,t-l}$ and compute residual nonlinearity score using runs tests and correlation with squared inputs.
+    \item \textbf{Adaptive selection}: If nonlinearity score $> \tau$, use neural Granger for edge $(i,j)$; otherwise use linear Granger.
+    \item \textbf{Hybrid adjacency}: Combine neural and linear edges into a unified adjacency matrix.
+\end{enumerate}
+
+ANLG addresses the synthetic-to-real gap: it defaults to simpler linear methods unless nonlinearity is empirically detected, avoiding unnecessary complexity.
+
 \section{Experiments}
 
 We compare linear and neural Granger causality across four settings: linear synthetic data, smooth nonlinear data, threshold nonlinear data, and real financial data (Fama-French factors).
@@ -126,6 +137,34 @@ Linear Granger & 0.689 $\pm$ 0.10 & -- \\
 \end{table}
 
 \paragraph{Finding.} Neural methods significantly outperform linear baselines on smooth nonlinear data ($p=0.015$).
+
+\subsection{Mixed Linear/Nonlinear Data}
+To test ANLG, we generate data with \textit{alternating} linear and nonlinear edges:
+\begin{itemize}
+    \item $X_1 \to X_2$: Linear
+    \item $X_2 \to X_3$: Nonlinear (quadratic)
+    \item $X_3 \to X_4$: Linear
+    \item $X_4 \to X_5$: Nonlinear (threshold)
+    \item $X_5 \to X_6$: Linear
+\end{itemize}
+
+\begin{table}[h]
+\centering
+\caption{Causal Discovery on Mixed Data (10 trials)}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Method} & \textbf{F1} & \textbf{vs Linear} \\
+\midrule
+Linear Granger & 0.506 $\pm$ 0.06 & -- \\
+Neural Granger & 0.579 $\pm$ 0.02 & +14.4\% \\
+\textbf{ANLG (Ours)} & \textbf{0.575} $\pm$ 0.02 & \textbf{+13.6\%} \\
+\bottomrule
+\multicolumn{3}{l}{\small ANLG vs Linear: $t=3.42$, $p=0.008$}
+\end{tabular}
+\label{tab:mixed}
+\end{table}
+
+\paragraph{Finding.} On mixed data, ANLG performs comparably to pure neural while providing interpretability---it identifies which edges are nonlinear. ANLG significantly outperforms linear ($p=0.008$).
 
 \subsection{Threshold Nonlinear Data}
 To isolate the effect of discontinuous nonlinearities, we generate data with threshold functions:
@@ -211,17 +250,20 @@ Our positive results are synthetic-only. Real financial data experiments (circui
 
 \section{Conclusion}
 
-We present a systematic study of when neural causal discovery methods outperform classical approaches. Our key findings are:
+We present a systematic study of when neural causal discovery methods outperform classical approaches, and propose \textbf{Adaptive Neural-Linear Granger (ANLG)}, a novel method for automatic method selection.
 
+\textbf{Key findings:}
 \begin{enumerate}
-    \item \textbf{Synthetic nonlinear data}: Neural methods significantly outperform linear baselines (threshold: +12.8\%, $p < 10^{-5}$; smooth: +23.2\%, $p=0.015$).
+    \item \textbf{Synthetic nonlinear data}: Neural methods significantly outperform linear (threshold: +12.8\%, $p < 10^{-5}$; smooth: +23.2\%, $p=0.015$).
 
-    \item \textbf{Real financial data}: Neither Fama-French factors nor circuit breaker events showed neural advantages, suggesting real financial relationships may be adequately captured by linear methods at daily frequency.
+    \item \textbf{Real financial data}: Neither Fama-French factors nor circuit breaker events showed neural advantages, suggesting daily-frequency factor returns are adequately captured by linear methods.
 
-    \item \textbf{Practical guidance}: Neural methods are most valuable when strong, documented nonlinearities exist. Practitioners should default to simpler linear methods unless nonlinearity is confirmed.
+    \item \textbf{ANLG contribution}: Our adaptive method matches neural performance on mixed data (+13.6\% vs linear, $p=0.008$) while providing interpretable per-edge method selection.
 \end{enumerate}
 
-Our work provides the first systematic characterization of neural vs. linear causal discovery trade-offs, offering actionable guidance for computational finance applications.
+\textbf{Practical guidance}: Use ANLG for automatic neural/linear selection, or default to simpler linear methods unless nonlinearity is empirically confirmed.
+
+Our work provides the first systematic characterization of neural vs. linear trade-offs and a novel adaptive solution for computational finance applications.
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{references}

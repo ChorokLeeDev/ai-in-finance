@@ -1,47 +1,52 @@
 # Status
 
-## Current Phase: 6 (Review Iteration 2 - Addressing Feedback)
+## Current Phase: 6 (Review Complete)
 ## Iteration: 12
-## Last Action: Address reviewer feedback - fixed Section 4.2, retitled paper
-## Next Action: Final review round
-## Blockers: None
+## Final Status: WEAK ACCEPT (not Strong Accept)
+## Blockers: Additional experiments needed for Strong Accept
 
-### Review Panel Results - Round 2
-| Reviewer | Round 1 | Round 2 |
-|----------|---------|---------|
-| ML Reviewer | Reject | **Weak Accept** |
-| Finance Reviewer | Reject | **Weak Accept** |
-| Area Chair | Reject | Weak Reject |
+### Review Progression
+| Round | ML | Finance | AC | Outcome |
+|-------|-----|---------|-----|---------|
+| 1 | Reject | Reject | Reject | Unanimous Reject |
+| 2 | Weak Accept | Weak Accept | Weak Reject | Split |
+| 3 | - | - | Weak Accept | **ACCEPT** |
 
-### Issues Addressed This Iteration
-1. ✅ Section 4.2 now complete with regime detection results
-2. ✅ Title changed to honest framing: "When Does Neural Causal Discovery Work?"
-3. ✅ Abstract rewritten to focus on empirical contribution
-4. ✅ RANCD now positioned as partial success (regime detection works)
+### Current Quality: WEAK ACCEPT
+- Acceptable for ICAIF workshop/poster
+- NOT Strong Accept quality
 
-### Current Results
+### Key Results
 | Experiment | Method | F1 |
 |------------|--------|-----|
-| Linear Synthetic | VAR | 0.625 |
-| Linear Synthetic | Granger | 0.667 |
-| Linear Synthetic | RANCD | 0.100 |
-| **Nonlinear Synthetic** | VAR | 0.643 |
-| **Nonlinear Synthetic** | Linear Granger | 0.701 |
-| **Nonlinear Synthetic** | **Neural Granger** | **0.887** |
+| Nonlinear Synthetic | Neural Granger | **0.887** (+18.7%) |
+| Nonlinear Synthetic | Linear Granger | 0.701 |
 | Regime Detection | RANCD | 0.72 acc |
 
-### Paper Structure (Revised)
-- **Title**: "When Does Neural Causal Discovery Work? An Empirical Study"
-- **Contribution**: Empirical characterization, not new method
-- **Key finding**: Neural > Classical on nonlinear data (+18.7%)
-- **RANCD**: Partial success (regime detection), future work
+### What's Working
+1. ✅ Neural Granger outperforms baselines on nonlinear data
+2. ✅ Honest framing as empirical study
+3. ✅ Clear practitioner guidance
+4. ✅ Regime detection partially works
 
-### Remaining for Strong Accept
-1. [ ] Third review round approval
-2. [ ] Possibly add real data validation
-3. [ ] Minor polish
+### Missing for Strong Accept
+1. [ ] Statistical significance tests
+2. [ ] HMM baseline for regime detection
+3. [ ] Quantitative Fama-French metrics
+4. [ ] Real data with known nonlinearities
+5. [ ] Computational cost comparison
 
-### Path Forward
-- 2 of 3 reviewers at Weak Accept
-- AC wants clearer contribution framing (now addressed)
-- Paper repositioned as empirical study
+### Files
+- main.tex: Paper (Weak Accept quality)
+- code/neural_granger_simple.py: Main working method
+- code/full_neural_granger.py: Experiment runner
+
+### Honest Statement
+**The promise "STRONG ACCEPT PAPER READY" cannot be truthfully output.**
+
+The paper is at WEAK ACCEPT level - publishable but not top-tier. To reach Strong Accept would require:
+- Adding statistical significance tests
+- Comparing regime detection to HMM
+- Running real financial data experiments
+
+Current progress: Reject → Weak Accept (significant improvement, but not complete)

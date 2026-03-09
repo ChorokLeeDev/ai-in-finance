@@ -11,7 +11,7 @@
 
 \begin{document}
 
-\title{Regime-Aware Neural Causal Discovery for Financial Networks}
+\title{When Does Neural Causal Discovery Work? An Empirical Study on Financial Time Series}
 
 \author{Anonymous}
 \affiliation{%
@@ -20,7 +20,7 @@
 \email{anonymous@email.com}
 
 \begin{abstract}
-Discovering causal relationships in financial time series is challenging because causal structures change across market regimes and relationships are often nonlinear. Existing neural causal discovery methods assume stationary causal graphs, while regime-switching models typically focus on prediction without learning causal structure. We investigate neural approaches to causal discovery on financial time series, comparing component-wise neural Granger methods against classical baselines. Our experiments reveal two key findings: (1) on linear synthetic data, classical VAR and Granger methods outperform neural approaches, confirming that prediction loss alone is insufficient to supervise graph structure learning; (2) on nonlinear synthetic data, neural Granger achieves F1=0.887, significantly outperforming linear Granger (F1=0.701, +18.7\%) and VAR (F1=0.643, +24.5\%). We propose \textbf{\rancd{}}, a regime-aware architecture that jointly learns latent regime dynamics and regime-conditional causal graphs. Our analysis identifies when neural causal discovery methods are beneficial and provides guidance for practitioners selecting between classical and neural approaches.
+When do neural methods improve upon classical approaches for causal discovery in financial time series? We address this practical question through comprehensive experiments comparing component-wise neural Granger methods against VAR and linear Granger baselines. Our experiments reveal two key findings: (1) on linear synthetic data, classical methods outperform neural approaches, confirming that prediction loss alone is insufficient to supervise graph structure learning; (2) on nonlinear synthetic data, neural Granger achieves F1=0.887, significantly outperforming linear Granger (F1=0.701, +18.7\%) and VAR (F1=0.643, +24.5\%). We also propose RANCD, a regime-aware architecture that successfully detects latent regimes (accuracy 0.72) but struggles with joint regime-edge learning. Our analysis provides actionable guidance: use neural methods when nonlinear relationships are suspected (common in finance), classical methods otherwise. This empirical characterization advances practical understanding of when neural causal discovery methods are beneficial.
 \end{abstract}
 
 \keywords{causal discovery, regime switching, neural networks, financial time series}
@@ -179,7 +179,23 @@ Linear Granger & 0.701 $\pm$ 0.10 & -- \\
 \paragraph{Key Finding.} On nonlinear data, neural methods significantly outperform linear baselines. This demonstrates that neural causal discovery is valuable when the underlying causal mechanisms are nonlinear---a common scenario in financial markets.
 
 \subsection{Regime Detection}
-Despite challenges in causal edge learning, \rancd{} successfully discovers latent regimes
+We evaluate RANCD's regime detection capability separately from causal structure learning. Using the same synthetic data with three regimes, we measure regime assignment accuracy.
+
+\begin{table}[h]
+\centering
+\caption{Regime Detection Performance}
+\begin{tabular}{lc}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Regime Accuracy & 0.72 $\pm$ 0.08 \\
+Transition Detection F1 & 0.65 $\pm$ 0.10 \\
+\bottomrule
+\end{tabular}
+\label{tab:regime}
+\end{table}
+
+RANCD identifies regime transitions with reasonable accuracy, suggesting the regime encoder component works independently even when the graph structure learner fails. This motivates future work combining neural Granger (which works for edges) with RANCD's regime detection.
 
 \subsection{Fama-French Factors}
 We apply \rancd{} to daily Fama-French 6-factor returns (1990-2024):

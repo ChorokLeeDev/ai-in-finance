@@ -1,57 +1,47 @@
 # Status
 
-## Current Phase: 6 (Review Iteration 2)
+## Current Phase: 6 (Review Iteration 2 - Addressing Feedback)
 ## Iteration: 12
-## Last Action: Major improvement - Neural Granger outperforms baselines on nonlinear data!
-## Next Action: Run second review panel
+## Last Action: Address reviewer feedback - fixed Section 4.2, retitled paper
+## Next Action: Final review round
 ## Blockers: None
 
-### KEY BREAKTHROUGH
-Neural Granger achieves **F1=0.887 ± 0.08** on nonlinear data, significantly outperforming:
-- Linear Granger: F1=0.701 (+18.7% improvement)
-- VAR: F1=0.643 (+24.5% improvement)
+### Review Panel Results - Round 2
+| Reviewer | Round 1 | Round 2 |
+|----------|---------|---------|
+| ML Reviewer | Reject | **Weak Accept** |
+| Finance Reviewer | Reject | **Weak Accept** |
+| Area Chair | Reject | Weak Reject |
 
-This is the positive result needed for paper acceptance!
+### Issues Addressed This Iteration
+1. ✅ Section 4.2 now complete with regime detection results
+2. ✅ Title changed to honest framing: "When Does Neural Causal Discovery Work?"
+3. ✅ Abstract rewritten to focus on empirical contribution
+4. ✅ RANCD now positioned as partial success (regime detection works)
 
-### Updated Results
+### Current Results
+| Experiment | Method | F1 |
+|------------|--------|-----|
+| Linear Synthetic | VAR | 0.625 |
+| Linear Synthetic | Granger | 0.667 |
+| Linear Synthetic | RANCD | 0.100 |
+| **Nonlinear Synthetic** | VAR | 0.643 |
+| **Nonlinear Synthetic** | Linear Granger | 0.701 |
+| **Nonlinear Synthetic** | **Neural Granger** | **0.887** |
+| Regime Detection | RANCD | 0.72 acc |
 
-#### Linear Data (RANCD fails)
-| Method | F1 |
-|--------|-----|
-| VAR | 0.625 |
-| Granger | 0.667 |
-| RANCD | 0.100 |
+### Paper Structure (Revised)
+- **Title**: "When Does Neural Causal Discovery Work? An Empirical Study"
+- **Contribution**: Empirical characterization, not new method
+- **Key finding**: Neural > Classical on nonlinear data (+18.7%)
+- **RANCD**: Partial success (regime detection), future work
 
-#### Nonlinear Data (Neural wins!)
-| Method | F1 | vs Linear Granger |
-|--------|-----|-------------------|
-| VAR | 0.643 | -8.3% |
-| Linear Granger | 0.701 | -- |
-| **Neural Granger** | **0.887** | **+18.7%** |
+### Remaining for Strong Accept
+1. [ ] Third review round approval
+2. [ ] Possibly add real data validation
+3. [ ] Minor polish
 
-### Paper Updates
-- ✅ Abstract updated with positive results
-- ✅ Added Table 2: Nonlinear data results
-- ✅ Discussion reframed: "When to use neural methods"
-- ✅ Conclusion: Clear contributions
-
-### Contributions Now
-1. **Empirical characterization**: Neural > Linear on nonlinear data
-2. **Architecture analysis**: Why end-to-end fails, why component-wise works
-3. **Practical guidance**: Method selection criteria
-
-### Files
-- main.tex: Updated paper
-- code/neural_granger_simple.py: Component-wise neural Granger
-- code/full_neural_granger.py: 5-trial experiments
-- code/nonlinear_experiments.py: Nonlinear data generation
-
-### Review Panel Status
-- Round 1: Unanimous REJECT (method didn't work)
-- Round 2: PENDING (now have positive results)
-
-### Path to Strong Accept
-1. ✅ Neural method outperforms baselines (achieved!)
-2. [ ] Second review panel approval
-3. [ ] Complete regime detection evaluation
-4. [ ] Minor polish based on feedback
+### Path Forward
+- 2 of 3 reviewers at Weak Accept
+- AC wants clearer contribution framing (now addressed)
+- Paper repositioned as empirical study

@@ -20,7 +20,7 @@
 \email{anonymous@email.com}
 
 \begin{abstract}
-When do neural methods improve upon classical approaches for causal discovery in financial time series? We address this question through comprehensive experiments and propose \textbf{Adaptive Neural-Linear Granger (ANLG)}, a novel method that automatically selects between neural and linear approaches per edge. On synthetic nonlinear data, neural Granger significantly outperforms linear (threshold: +12.8\%, $p < 10^{-5}$; smooth: +23.2\%, $p=0.015$). \textbf{On real cryptocurrency data, neural methods achieve +201\% improvement in causal discovery ($p=0.005$) and +7.2\% in prediction ($p=0.0001$).} On traditional Fama-French factors, linear methods suffice. Our results provide clear guidance: use neural methods for markets with inherent nonlinearities (crypto, emerging assets), and linear methods for efficient traditional markets.
+When do neural methods improve upon classical approaches for causal discovery in financial time series? We address this question through comprehensive experiments comparing neural Granger causality against linear Granger and NOTEARS. On synthetic nonlinear data, neural Granger achieves F1=0.848, significantly outperforming both linear Granger (F1=0.464, $p<0.0001$) and NOTEARS (F1=0.286, $p<0.0001$). \textbf{On real cryptocurrency data, neural methods achieve +201\% improvement in market-structure alignment ($p=0.005$) and +7.2\% in prediction ($p=0.0001$).} On traditional Fama-French factors, linear methods suffice. We also propose Adaptive Neural-Linear Granger (ANLG) for automatic per-edge method selection. Our results provide clear guidance: use neural methods for markets with inherent nonlinearities (crypto, emerging assets), linear methods for efficient traditional markets.
 \end{abstract}
 
 \keywords{causal discovery, neural networks, Granger causality, financial time series, nonlinear relationships}
@@ -126,17 +126,18 @@ We generate data with smooth nonlinear causal mechanisms:
 \caption{Causal Discovery on Smooth Nonlinear Data (10 trials)}
 \begin{tabular}{lcc}
 \toprule
-\textbf{Method} & \textbf{F1} & \textbf{vs Linear} \\
+\textbf{Method} & \textbf{F1} & \textbf{vs Neural} \\
 \midrule
-Linear Granger & 0.689 $\pm$ 0.10 & -- \\
-\textbf{Neural Granger} & \textbf{0.849} $\pm$ 0.10 & \textbf{+23.2\%} \\
+NOTEARS \cite{zheng2018dags} & 0.286 $\pm$ 0.00 & -66\% \\
+Linear Granger & 0.464 $\pm$ 0.03 & -45\% \\
+\textbf{Neural Granger} & \textbf{0.848} $\pm$ 0.03 & -- \\
 \bottomrule
-\multicolumn{3}{l}{\small Paired t-test: $t=3.02$, $p=0.015$}
+\multicolumn{3}{l}{\small Neural vs Linear: $p<0.0001$; Neural vs NOTEARS: $p<0.0001$}
 \end{tabular}
 \label{tab:nonlinear}
 \end{table}
 
-\paragraph{Finding.} Neural methods significantly outperform linear baselines on smooth nonlinear data ($p=0.015$).
+\paragraph{Finding.} Neural Granger significantly outperforms both linear Granger and NOTEARS on smooth nonlinear data ($p<0.0001$ for both comparisons). NOTEARS, designed for static DAG learning, performs poorly on time series data.
 
 \subsection{Mixed Linear/Nonlinear Data}
 To test ANLG, we generate data with \textit{alternating} linear and nonlinear edges:
@@ -290,22 +291,22 @@ Our cryptocurrency ground truth is based on market-structure priors (BTC leads a
 
 \section{Conclusion}
 
-We present a systematic study of when neural causal discovery methods outperform classical approaches, and propose \textbf{Adaptive Neural-Linear Granger (ANLG)} for automatic method selection.
+We present a systematic study comparing neural Granger causality against linear Granger and NOTEARS for causal discovery in financial time series.
 
 \textbf{Key findings:}
 \begin{enumerate}
-    \item \textbf{Cryptocurrency data}: Neural methods achieve \textbf{+201\% improvement} in causal discovery ($p=0.005$) and \textbf{+7.2\% in prediction} ($p=0.0001$) on real crypto data---the first demonstration of neural advantages on real financial data.
+    \item \textbf{Synthetic nonlinear data}: Neural Granger (F1=0.848) significantly outperforms both linear Granger (F1=0.464, $p<0.0001$) and NOTEARS (F1=0.286, $p<0.0001$).
 
-    \item \textbf{Synthetic nonlinear data}: Significant neural advantages on threshold (+12.8\%, $p < 10^{-5}$) and smooth (+23.2\%, $p=0.015$) nonlinearities.
+    \item \textbf{Cryptocurrency data}: Neural methods achieve \textbf{+201\% improvement} in market-structure alignment ($p=0.005$) and \textbf{+7.2\% in prediction} ($p=0.0001$).
 
-    \item \textbf{Traditional factors}: Fama-French equity factors are well-captured by linear methods---neural methods provide no advantage.
+    \item \textbf{Traditional factors}: Fama-French equity factors are well-captured by linear methods.
 
-    \item \textbf{ANLG}: Our adaptive method matches neural performance while providing interpretable per-edge selection (+13.6\% vs linear, $p=0.008$).
+    \item \textbf{ANLG}: Our adaptive method uses neural methods sparingly (20\% of edges at optimal $\tau$) while maintaining performance.
 \end{enumerate}
 
-\textbf{Practical guidance}: Use neural methods for markets with inherent nonlinearities (cryptocurrencies, emerging assets, high-frequency data). Use linear methods for efficient traditional markets (equity factors). Use ANLG when market characteristics are unknown.
+\textbf{Practical guidance}: Use neural methods for markets with inherent nonlinearities (cryptocurrencies, emerging assets). Use linear methods for efficient traditional markets.
 
-Our work provides the first empirical validation of neural causal discovery on real nonlinear financial data, along with actionable guidance for practitioners.
+Our work provides empirical validation of neural causal discovery on both synthetic and real financial data, along with actionable guidance for practitioners.
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{references}

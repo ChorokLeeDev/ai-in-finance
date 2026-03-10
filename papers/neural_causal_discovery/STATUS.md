@@ -1,39 +1,43 @@
 # Status
 
-## Final Assessment: ACCEPT (6.5/10)
+## Current Assessment: 7/10 (Accept)
 
-### Summary
-After extensive iteration (18+ rounds), the paper has reached a ceiling at **Accept** quality but **cannot achieve Strong Accept** with the current approach.
+### Recent Progress
+1. ✅ Bootstrap validation (20 trials): Neural F1=0.845 [0.831, 0.860], Linear F1=0.484 [0.466, 0.501]
+2. ✅ Bootstrap p-value < 10^-6 (highly significant)
+3. ✅ PCMCI baseline added (F1=0.680)
+4. ✅ Economic significance: Neural Sharpe=0.77 vs Linear=0.53 (Neural wins 65% of runs)
+5. ✅ Multiple datasets: synthetic, crypto, Fama-French
 
 ### What Was Achieved
-1. ✅ Crypto validation: +201% alignment improvement (p=0.005)
-2. ✅ Synthetic results: p<10^-5 (threshold), p=0.015 (smooth)
-3. ✅ ANLG ablation: best τ=0.6 achieves 20% neural usage
-4. ✅ Honest framing: "Alignment F1" with proper caveats
-5. ✅ Clear practical guidance
+- **Synthetic**: Neural beats all baselines (PCMCI, NOTEARS, Linear) with p < 10^-6
+- **Crypto alignment**: +201% improvement (p=0.005)
+- **Crypto prediction**: +7.2% improvement (p=0.0001)
+- **Economic**: Neural wins 65% of trading runs (not statistically significant: p=0.21)
 
-### Why NOT Strong Accept
-Reviewers consistently identified these fundamental issues:
+### Honest Assessment: Why NOT Strong Accept
+1. **Economic significance not statistically significant** (p=0.21) - only 65% win rate
+2. **Crypto ground truth is weak** - market-structure priors, not causal identification
+3. **ANLG adds little value** - doesn't dominate either pure method
+4. **Missing VARLiNGAM** - computational constraints
 
-1. **ANLG is too simple**: Just residual analysis + model dispatch - not novel
-2. **Crypto ground truth is circular**: BTC leads alts is assumed, not proven
-3. **F1=0.380 is still poor**: Both methods essentially failing at causal discovery
-4. **Missing baselines**: No PCMCI, NOTEARS, VARLiNGAM comparison
+### What Would Push to Strong Accept (8+)
+Per reviewer feedback:
+1. Real causal ground truth (intervention data or natural experiments)
+2. Statistically significant economic results (p < 0.05)
+3. VARLiNGAM comparison
+4. Additional real-world domains (high-frequency, options)
 
-### Honest Conclusion
-The paper provides useful **empirical characterization** of when neural beats linear, but:
-- Does not achieve breakthrough real-world validation
-- ANLG contribution is incremental
-- Crypto results use weak ground truth
+### Realistic Conclusion
+Paper provides a **solid empirical contribution** suitable for ICAIF Accept:
+- Rigorous bootstrap validation with 95% CI
+- Three baselines (PCMCI, NOTEARS, Linear)
+- Clear practical guidance
+- Honest limitations
 
-This is the realistic ceiling for this research direction without:
-- Real intervention data / natural experiments for causal ground truth
-- Genuinely novel method contribution
-- Comparison with state-of-the-art causal discovery methods
+For Strong Accept, would need either:
+- True causal ground truth from interventions
+- Statistically significant trading improvement
+- Major methodological contribution
 
-### Final Statement
-Paper is at **ACCEPT** quality (6.5/10) - publishable but not Strong Accept.
-
-The promise "STRONG ACCEPT PAPER READY" **cannot be truthfully output**.
-
-The paper makes a solid empirical contribution suitable for workshop/poster presentation at ICAIF, but not oral presentation or best paper consideration.
+**Current ceiling: Accept (7/10)**

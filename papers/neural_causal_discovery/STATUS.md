@@ -1,50 +1,39 @@
 # Status
 
-## Current Phase: 6 (Iteration 18)
-## BREAKTHROUGH: Real Financial Data Validation!
+## Final Assessment: ACCEPT (6.5/10)
 
-### Cryptocurrency Results - SIGNIFICANT!
-**Causal Discovery:**
-- Neural F1: 0.380 ± 0.211
-- Linear F1: 0.126 ± 0.165
-- **p = 0.005, +201% improvement!**
+### Summary
+After extensive iteration (18+ rounds), the paper has reached a ceiling at **Accept** quality but **cannot achieve Strong Accept** with the current approach.
 
-**Prediction MSE:**
-- Neural MSE: 0.4695
-- Linear MSE: 0.5058
-- **p = 0.0001, +7.2% improvement!**
+### What Was Achieved
+1. ✅ Crypto validation: +201% alignment improvement (p=0.005)
+2. ✅ Synthetic results: p<10^-5 (threshold), p=0.015 (smooth)
+3. ✅ ANLG ablation: best τ=0.6 achieves 20% neural usage
+4. ✅ Honest framing: "Alignment F1" with proper caveats
+5. ✅ Clear practical guidance
 
-### Complete Paper Results
-| Dataset | Neural vs Linear | p-value | Result |
-|---------|-----------------|---------|--------|
-| **Crypto (Real)** | **+201% F1** | **0.005** | **✅ Neural wins!** |
-| **Crypto Pred** | **+7.2% MSE** | **0.0001** | **✅ Neural wins!** |
-| Threshold Synth | +12.8% | <10⁻⁵ | ✅ Neural wins |
-| Smooth Synth | +23.2% | 0.015 | ✅ Neural wins |
-| Mixed (ANLG) | +13.6% | 0.008 | ✅ ANLG wins |
-| FF Factors | -6% | - | Linear wins |
-| Circuit Breakers | -10% | - | Linear wins |
+### Why NOT Strong Accept
+Reviewers consistently identified these fundamental issues:
 
-### Paper Contributions
-1. ✅ **Real data validation**: Neural significantly better on crypto (p=0.005, p=0.0001)
-2. ✅ **Empirical characterization**: When neural beats linear (nonlinear markets)
-3. ✅ **ANLG method**: Adaptive selection (p=0.008 vs linear)
-4. ✅ **Threshold insight**: Discontinuities are differentiator
-5. ✅ **Practical guidance**: Neural for crypto/emerging, Linear for traditional
+1. **ANLG is too simple**: Just residual analysis + model dispatch - not novel
+2. **Crypto ground truth is circular**: BTC leads alts is assumed, not proven
+3. **F1=0.380 is still poor**: Both methods essentially failing at causal discovery
+4. **Missing baselines**: No PCMCI, NOTEARS, VARLiNGAM comparison
 
-### Assessment
-The paper now has **THREE significant real/mixed data results**:
-1. Crypto causal discovery: p=0.005
-2. Crypto prediction: p=0.0001
-3. ANLG on mixed: p=0.008
+### Honest Conclusion
+The paper provides useful **empirical characterization** of when neural beats linear, but:
+- Does not achieve breakthrough real-world validation
+- ANLG contribution is incremental
+- Crypto results use weak ground truth
 
-Plus strong synthetic results (p<10⁻⁵, p=0.015).
+This is the realistic ceiling for this research direction without:
+- Real intervention data / natural experiments for causal ground truth
+- Genuinely novel method contribution
+- Comparison with state-of-the-art causal discovery methods
 
-### For Strong Accept Review
-The paper now demonstrates:
-- Novel method contribution (ANLG)
-- Real financial data validation (cryptocurrency)
-- Clear practical value
-- Rigorous methodology
+### Final Statement
+Paper is at **ACCEPT** quality (6.5/10) - publishable but not Strong Accept.
 
-Need internal review to confirm Strong Accept quality.
+The promise "STRONG ACCEPT PAPER READY" **cannot be truthfully output**.
+
+The paper makes a solid empirical contribution suitable for workshop/poster presentation at ICAIF, but not oral presentation or best paper consideration.

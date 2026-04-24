@@ -79,7 +79,11 @@ As Reviewer 8RTC correctly noted, our contribution is: "for LightGBM model under
 | Cohen's d | **3.08** (large effect) |
 | Bootstrap 95% CI for ρ | [0.31, 1.00] |
 
-The one misclassification is sales-office (the known "protective factor" case with high Jaccard overlap). The large effect size (d=3.08) confirms meaningful separation between failed (mean C=50.2%) and succeeded (mean C=29.8%) tasks.
+The one misclassification is sales-office (the known "protective factor" case with high Jaccard overlap). This represents a meaningful boundary condition: when the dominant feature is stable across train/test (high Jaccard), high concentration does not imply vulnerability. We will discuss this as a refinement to the decision framework.
+
+The large effect size (d=3.08) confirms meaningful separation between failed (mean C=50.2%) and succeeded (mean C=29.8%) tasks.
+
+**Practitioner guidance**: The 40% threshold should be treated as a starting point; domain-specific calibration using held-out validation data is recommended for deployment.
 
 We acknowledge the wide bootstrap CI reflects small n. **Revised framing**: SALT (n=8) provides primary validation; external datasets provide directional support. We do not claim n=16 as "confirmatory" since 7/9 external cases are null-shift controls.
 
@@ -131,7 +135,9 @@ We agree with Reviewer gvXj's excellent observation. SHAP concentration captures
 | Faster (lr=0.1) | 0.833* | 45.0% | 0% |
 | More trees (n=200) | 0.833* | 40.0% | -5.0% |
 
-**Threshold stability**: 44.4% ± 2.7% (within ±10%). Correlation remains significant across all configurations. We commit to full retraining validation in camera-ready.
+**Threshold stability**: 44.4% ± 2.7% (within ±10%). Correlation remains significant across all configurations. 
+
+**Commitment**: We will run full HP sensitivity with actual model retraining for camera-ready. The simulation provides preliminary evidence of robustness; the final validation will use 4 HP configurations × 8 tasks × 10 seeds = 320 model runs.
 
 ### Other points
 
